@@ -1,0 +1,48 @@
+[user]
+  name = Meril Pilon
+  email = meril@blockchain.com
+  signingkey = 45B7A4566B0FF6C0
+
+[color]
+  ui = auto
+
+[core]
+  autocrlf = input
+  safecrlf = warn
+  editor = emacsclient
+
+[alias]
+  # misc
+  ci = commit
+  hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+  s = status
+  a = add
+  aa = add --all
+  pu = "!f() { git push -u origin `git branch | grep '*' | awk '{print $2}'`; }; f"
+  puf = push --force-with-lease
+  d = diff
+  dc = diff --cached
+  amend = commit --amend --no-edit
+
+  # branch
+  b = branch
+  bd = branch -D
+  co = checkout
+  chb = checkout -b
+
+  l = log --oneline --graph
+
+[branch]
+  autosetuprebase = always
+
+[rebase]
+  stat = true
+
+[rerere]
+  enabled = true
+
+[hub]
+  protocol = ssh
+
+[commit]
+  gpgsign = true

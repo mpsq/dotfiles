@@ -1,0 +1,82 @@
+! Xft settings
+Xft.dpi                  : 96
+Xft.antialias            : true
+Xft.rgba                 : rgb
+Xft.hinting              : true
+Xft.hintstyle            : hintslight
+
+! MISCS
+Xcursor.size             : 16
+
+! URXVT
+URxvt.loginShell         : true
+
+! Font
+URxvt.font               : xft:Hack:pixelsize=12:antialias=true:hinting=true,\
+                           xft:Symbola:pixelsize=12,\
+                           xft:Noto Color Emoji:minspace=False
+URxvt.letterSpace        : -1
+
+! Fugly scrollbar
+URxvt.scrollBar          : false
+URxvt*scrollBar_right    : false
+
+! Disables the insanely annoying Ctrl+Shift shortcut that enters ISO14755 mode
+URxvt.iso14755           : false
+URxvt.iso14755_52        : false
+
+! Cursor
+URxvt.cursorBlink        : true
+URxvt.cursorUnderline    : false
+
+! Larger history limit
+URxvt.saveLines          : 2000000
+
+! Extensions
+URxvt.perl-ext-common    : default,clipboard,keyboard-select,url-select,selection-to-clipboard,matcher,font-size
+URxvt.url-launcher       : chromium
+URxvt.matcher.button     : 1
+
+URxvt.copyCommand        : xclip -i -selection clipboard
+URxvt.pasteCommand       : xclip -o -selection clipboard
+
+URxvt.keysym.C-Up:     font-size:increase
+URxvt.keysym.C-Down:   font-size:decrease
+URxvt.keysym.C-S-Up:   font-size:incglobal
+URxvt.keysym.C-S-Down: font-size:decglobal
+URxvt.keysym.C-equal:  font-size:reset
+
+! Base16 Atelier Plateau
+! Scheme: Bram de Haan (http://atelierbram.github.io/syntax-highlighting/atelier-schemes/plateau)
+
+URxvt*background:                     #1b1818
+URxvt*foreground:                     #8a8585
+URxvt*cursorColor:                    #8a8585
+
+URxvt*scrollColor:                    #8a8585
+URxvt*highlightColor:                 #585050
+URxvt*highlightTextColor:             #7e7777
+
+URxvt*color0:                         #1b1818
+URxvt*color1:                         #ca4949
+URxvt*color2:                         #4b8b8b
+URxvt*color3:                         #a06e3b
+URxvt*color4:                         #7272ca
+URxvt*color5:                         #8464c4
+URxvt*color6:                         #5485b6
+URxvt*color7:                         #8a8585
+URxvt*color8:                         #655d5d
+URxvt*color9:                         #ca4949
+URxvt*color10:                        #4b8b8b
+URxvt*color11:                        #a06e3b
+URxvt*color12:                        #7272ca
+URxvt*color13:                        #8464c4
+URxvt*color14:                        #5485b6
+URxvt*color15:                        #f4ecec
+
+URxvt*color16:                        #b45a3c
+URxvt*color17:                        #bd5187
+URxvt*color18:                        #292424
+URxvt*color19:                        #585050
+URxvt*color20:                        #7e7777
+URxvt*color21:                        #e7dfd
