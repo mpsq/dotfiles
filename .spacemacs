@@ -39,7 +39,8 @@ values."
      html
      git
      shell
-     (markdown :variables markdown-live-preview-engine 'vmd)
+     (markdown :variables markdown-command "pandoc"
+                          markdown-live-preview-engine 'vmd)
      syntax-checking
      version-control
      yaml
@@ -128,10 +129,9 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(exotica
-                         ;; gruvbox
+   dotspacemacs-themes '(omtose-darker
+                         exotica
                          zenburn
-                         omtose-darker
                          darkokai
                          )
    ;; If non nil the cursor color matches the state color in GUI Emacs.
@@ -142,7 +142,7 @@ values."
                                :size 13
                                :weight normal
                                :width normal
-                               :powerline-scale 1.1)
+                               :powerline-scale 1.0)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
