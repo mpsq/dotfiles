@@ -32,12 +32,15 @@ values."
    dotspacemacs-configuration-layers
    '(
      python
+     better-defaults
      javascript
+     react
      helm
      auto-completion
      emacs-lisp
      html
      git
+     colors
      shell
      (markdown :variables markdown-command "pandoc"
                           markdown-live-preview-engine 'vmd)
@@ -54,7 +57,7 @@ values."
    dotspacemacs-additional-packages
    '(
      yasnippet-snippets
-     rjsx-mode
+     dumb-jump
      all-the-icons
      all-the-icons-dired
      )
@@ -333,13 +336,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; make them visible by default
   (spacemacs/toggle-whitespace-globally-on)
 
-  ;; show cmd output (git-hook) when git commit
-  (setq magit-diff-auto-show nil)
-  (add-hook 'git-commit-mode-hook (lambda () (save-selected-window (magit-process))))
-
-  ;; same for git pu
-  (add-hook 'git-push-mode-hook (lambda () (save-selected-window (magit-process))))
-
   ;; disable jshint since we prefer eslint checking
   (setq-default flycheck-disabled-checkers
               (append flycheck-disabled-checkers
@@ -348,11 +344,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   ;; fix emacs defaulting to firefox
   (setq browse-url-browser-function 'browse-url-chromium)
-
-  ;; prog-mode hooks
-  (add-hook 'prog-mode-hook 'fci-mode)
-  (add-hook 'prog-mode-hook 'line-number-mode)
-  (add-hook 'prog-mode-hook (lambda () (linum-mode 1)))
 
   ;; neotree goodness
   (setq neo-smart-open t)
@@ -367,6 +358,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (display-time-mode 1)                 ; show time in mode line on startup
 
   (setq auto-completion-enable-snippets-in-popup t)
+
   ;; js-mode hooks
   (add-hook 'js-mode-hook 'flycheck-mode)
 
@@ -410,7 +402,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
 
-  ;; Eye candy for neotree
+  ;; eye candy for neotree
   (setq neo-theme 'icons)
 
   ;; runs eslint --fix on the current file after save
@@ -428,21 +420,41 @@ before packages are loaded. If you are unsure, you should try in setting them in
             (lambda ()
               (add-hook 'after-save-hook #'eslint-fix-file-and-revert)))
 
-  ;; rjsx
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
-  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . rjsx-mode))
-  (add-to-list 'auto-mode-alist '("\\.react.js\\'" . rjsx-mode))
-  (add-to-list 'auto-mode-alist '("\\index.android.js\\'" . rjsx-mode))
-  (add-to-list 'auto-mode-alist '("\\index.ios.js\\'" . rjsx-mode))
-  (add-to-list 'magic-mode-alist '("/\\*\\* @jsx React\\.DOM \\*/" . rjsx-mode))
-  (add-to-list 'magic-mode-alist '("^import React" . rjsx-mode))
+  ;; set .js files to react mode
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
 
-  (add-to-list 'flycheck-global-modes "rjsx-mode")
+  ;;; Flow (JS) flycheck config (http://flowtype.org)
+  ;; from https://github.com/bodil/emacs.d/blob/master/bodil/bodil-js.el
+  (require 'f)
+  (require 'json)
+  (require 'flycheck)
 
-  (with-eval-after-load 'rjsx-mode
-    (define-key rjsx-mode-map "<" nil)
-    (define-key rjsx-mode-map (kbd "C-d") nil)
-    (define-key rjsx-mode-map ">" nil))
+  (defun flycheck-parse-flow (output checker buffer)
+    (let ((json-array-type 'list))
+      (let ((o (json-read-from-string output)))
+        (mapcar #'(lambda (errp)
+                    (let ((err (cadr (assoc 'message errp))))
+                      (flycheck-error-new
+                       :line (cdr (assoc 'line err))
+                       :column (cdr (assoc 'start err))
+                       :level 'error
+                       :message (cdr (assoc 'descr err))
+                       :filename (f-relative
+                                  (cdr (assoc 'path err))
+                                  (f-dirname (file-truename
+                                              (buffer-file-name))))
+                       :buffer buffer
+                       :checker checker)))
+                (cdr (assoc 'errors o))))))
+
+  (flycheck-define-checker javascript-flow
+    "Javascript type checking using Flow."
+    :command ("flow" "--json" source-original)
+    :error-parser flycheck-parse-flow
+    :modes react-mode
+    :next-checkers ((error . javascript-eslint))
+    )
+  (add-to-list 'flycheck-checkers 'javascript-flow)
 
   ;; map super to meta key to prevent conflict with i3
   (setq  x-meta-keysym 'super
@@ -459,7 +471,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (yasnippet-snippets majapahit-theme org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot spaceline-all-the-icons xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme rjsx-mode all-the-icons-dired yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic typit mmt sudoku pacmacs 2048-game vmd-mode yaml-mode anityinc-tomorrow-night-theme stekene-theme tronesque-theme all-the-icons memoize web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode flyspell-correct-helm flyspell-correct emmet-mode company-web web-completion-data auto-dictionary smeargle orgit mmm-mode markdown-toc markdown-mode magit-gitflow helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit ghub with-editor diff-hl company-tern dash-functional tern company-statistics company auto-yasnippet ac-ispell auto-complete web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+    (unfill rainbow-mode rainbow-identifiers mwim color-identifiers-mode flow-minor-mode flycheck-flow yasnippet-snippets majapahit-theme org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot spaceline-all-the-icons xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme rjsx-mode all-the-icons-dired yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic typit mmt sudoku pacmacs 2048-game vmd-mode yaml-mode anityinc-tomorrow-night-theme stekene-theme tronesque-theme all-the-icons memoize web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode flyspell-correct-helm flyspell-correct emmet-mode company-web web-completion-data auto-dictionary smeargle orgit mmm-mode markdown-toc markdown-mode magit-gitflow helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit ghub with-editor diff-hl company-tern dash-functional tern company-statistics company auto-yasnippet ac-ispell auto-complete web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
  '(safe-local-variable-values (quote ((eval progn (pp-buffer) (indent-buffer))))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
