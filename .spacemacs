@@ -268,7 +268,7 @@ values."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers t
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -416,7 +416,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (eslint-fix-file)
     (revert-buffer t t))
 
-  (add-hook 'js2-mode-hook
+  (add-hook 'react-mode-hook
             (lambda ()
               (add-hook 'after-save-hook #'eslint-fix-file-and-revert)))
 
