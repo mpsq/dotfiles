@@ -45,6 +45,9 @@ alias l="ls -lF --color=auto"
 alias la="ls -laF --color=auto"
 alias lsd='ls -lF --color=auto | grep "^d"'
 
+# Npm related
+alias locks="rm -rf node_modules && rm yarn.lock && yarn && rm package-lock.json && rm -rf node_modules && npm i"
+
 if type -P dircolors >/dev/null ; then
     # Enable colors for ls, etc.  Prefer ~/.dir_colors #64489
     LS_COLORS=
