@@ -1,6 +1,3 @@
 # ~/.bashrc
 
-if [[ $- != *i* ]] ; then
-    # Shell is non-interactive. Be done now!
-    return
-fi
+# There is nothing here (safety reasons...) check .bash_profile instead
