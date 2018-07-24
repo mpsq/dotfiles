@@ -1,6 +1,4 @@
-#
 # ~/.bash_profile
-#
 
 # Bash won't get SIGWINCH if another process is in the foreground.
 # Enable checkwinsize so that bash will check the terminal size when
@@ -147,16 +145,14 @@ export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
 # Add local binaries to path
 export PATH=$PATH:~/.local/bin
 
-# Use standard ISO 8601 timestamp
-# %F equivalent to %Y-%m-%d
-# %T equivalent to %H:%M:%S (24-hours format)
-export HISTTIMEFORMAT='%F %T '
-
 # Better history
 export HISTCONTROL="erasedups:ignoreboth"
 export HISTSIZE=100000
 export HISTFILESIZE=$HISTSIZE
-
+# Use standard ISO 8601 timestamp
+# %F equivalent to %Y-%m-%d
+# %T equivalent to %H:%M:%S (24-hours format)
+export HISTTIMEFORMAT='%F %T '
 # Don't record some commands
 export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
 
@@ -178,12 +174,12 @@ export GNUPGHOME="~/.gnupg"
 # Try to enable the auto-completion
 [ -r "/usr/share/bash-completion/bash_completion" ] && . /usr/share/bash-completion/bash_completion
 
-# Import any additional secrets
-[ -r ~/.secrets ] && source ~/.secrets
-
 # Import fzf
 [ -r "/usr/share/fzf/key-bindings.bash" ] && source /usr/share/fzf/key-bindings.bash
 [ -r "/usr/share/fzf/completion.bash" ] && source /usr/share/fzf/completion.bash
+
+# Import any additional secrets
+[ -r ~/.secrets ] && source ~/.secrets
 
 # Safety first
 source ~/.bashrc
