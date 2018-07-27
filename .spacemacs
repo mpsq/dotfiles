@@ -205,15 +205,14 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(gotham
-                         smyx
+   dotspacemacs-themes '(jazz
+                         soothe
                          planet
                          mustang
                          jazz
-                         soothe
+                         gotham
                          darkokai
                          omtose-darker
-                         exotica
                          )
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
@@ -516,8 +515,8 @@ before packages are loaded."
   )
 
   ;; make space a bit more subtle
-  ;; (set-face-attribute 'whitespace-space nil
-  ;;                     :foreground "#4a4a4a")
+  (set-face-attribute 'whitespace-space nil
+                      :foreground "#4e2c3f")
 
   ;; make them visible by default
   (spacemacs/toggle-whitespace-globally-on)
