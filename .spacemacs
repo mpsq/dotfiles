@@ -545,9 +545,6 @@ before packages are loaded."
   ;; snippets goodies
   (setq auto-completion-enable-snippets-in-popup t)
 
-  ;; js-mode hooks
-  ;; (add-hook 'js-mode-hook 'flycheck-mode)
-
   ;; make javascript nizerrrr
   (setq-default js2-basic-offset 2
                 js-indent-level 2
@@ -575,9 +572,10 @@ before packages are loaded."
   ;; fix files after save with eslint_d
   (add-hook 'js-jsx-mode-hook 'eslintd-fix-mode)
   (add-hook 'rjsx-mode-hook 'eslintd-fix-mode)
+  (add-hook 'web-mode-hook 'eslintd-fix-mode)
 
   ;; set .js files to jsx mode
-  ;; (add-to-list 'auto-mode-alist '("\\.js\\'" . js-jsx-mode))
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
 
   ;;; Flow (JS) flycheck config (http://flowtype.org)
   ;; from https://github.com/bodil/emacs.d/blob/master/bodil/bodil-js.el
@@ -613,7 +611,7 @@ before packages are loaded."
     "Javascript type checking using Flow."
     :command ("flow" "--json" source-original)
     :error-parser flycheck-parse-flow
-    :modes (js-mode js2-mode js3-mode react-mode js-jsx-mode)
+    :modes (js-mode js2-mode js3-mode react-mode js-jsx-mode rjsx-mode web-mode)
     :next-checkers ((error . javascript-eslint))
     )
 
