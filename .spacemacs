@@ -205,9 +205,8 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(doom-challenger-deep
+   dotspacemacs-themes '(doom-dracula
                          doom-peacock
-                         jazz
                          soothe
                          planet
                          mustang
@@ -224,7 +223,7 @@ It should only modify the values of Spacemacs settings."
    ;; to create your own spaceline theme. Value can be a symbol or list with\
    ;; additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(spacemacs :separator slant :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -468,7 +467,6 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
   )
 
 (defun dotspacemacs/user-load ()
@@ -533,6 +531,7 @@ before packages are loaded."
   ;; neotree goodness
   (setq neo-smart-open t)
   (setq neo-vc-integration '(face))
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 
   ;; mode line time stamp
   (setq display-time-24hr-format t)
@@ -620,8 +619,23 @@ before packages are loaded."
   ;; map super to meta key to prevent conflict with i3
   (setq  x-meta-keysym 'super
          x-super-keysym 'meta)
-  )
 
+  ;; options for doom themes
+  (require 'doom-themes)
+
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  ;; (doom-themes-neotree-config)
+
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config)
+)
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
 This is an auto-generated function, do not modify its content directly, use
