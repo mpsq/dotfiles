@@ -522,7 +522,7 @@ before packages are loaded."
   ;; neotree goodness
   (setq neo-smart-open t)
   (setq neo-vc-integration '(char))
-  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+  (setq neo-banner-message nil)
 
   ;; mode line time stamp
   (setq display-time-24hr-format t)
@@ -637,7 +637,8 @@ before packages are loaded."
   (doom-themes-visual-bell-config)
 
   ;; Enable custom neotree theme (all-the-icons must be installed!)
-  ;; (doom-themes-neotree-config)
+  (doom-themes-neotree-config)
+  ;; (setq doom-neotree-file-icons t)
 
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config)
