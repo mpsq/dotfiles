@@ -184,7 +184,9 @@ exec --no-startup-id synclient VertScrollDelta=-111
 exec_always --no-startup-id "nitrogen --set-scaled ~/Pictures/bkg.png"
 
 # Launch xflux with location set to London
-exec --no-startup-id "xflux -l 51.5939, 0.0883"
+# exec --no-startup-id "xflux -l 51.5939, 0.0883"
+# San Francisco
+# exec --no-startup-id "xflux -l 37.7841,-122.3957"
 
 # xss-lock for auto lock on systemd events
 exec --no-startup-id xss-lock -- ~/.config/i3/scripts/lock
