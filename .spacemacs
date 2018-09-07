@@ -483,7 +483,7 @@ before packages are loaded."
   (setq create-lockfiles nil)
 
   ;; Remove `unix' from modeline
-  (spaceline-toggle-buffer-encoding-abbrev-off)
+  ;; (spaceline-toggle-buffer-encoding-abbrev-off)
 
   ;; better dired
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
