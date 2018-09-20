@@ -68,6 +68,10 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+c focus child
 
+# assign workspaces
+bindsym $mod+Shift+n move workspace to output HDMI2
+bindsym $mod+Shift+m move workspace to output DP1
+
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
