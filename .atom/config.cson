@@ -71,11 +71,22 @@
     automaticallyUpdate: false
     closeDeletedFileTabs: true
     customFileTypes:
+      "source.ini": [
+        ".hgrc"
+        ".buckconfig"
+        ".flowconfig"
+      ]
       "source.json": [
         "di"
+        "BUCK.autodeps"
+      ]
+      "source.python": [
+        "BUCK"
       ]
     disabledPackages: [
       "vim-mode-plus"
+      "tree-view"
+      "image-view"
     ]
     ignoredNames: [
       ".git"
