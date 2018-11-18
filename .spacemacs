@@ -34,8 +34,6 @@ This function should only modify configuration layer settings."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(markdown
-     nginx
-     python
      better-defaults
      javascript
      helm
@@ -77,6 +75,7 @@ This function should only modify configuration layer settings."
                                       ;; Languages I don't use
                                       coffee-mode
                                       ;; etc
+                                      ivy
                                       lorem-ipsum
                                       google-translate
                                       uuidgen
@@ -175,7 +174,7 @@ It should only modify the values of Spacemacs settings."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner 'random
 
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
@@ -657,7 +656,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (doom-modeline helm magit ghub markdown-mode yasnippet-snippets yapfify yaml-mode xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe use-package unfill treepy toc-org tagedit symon string-inflection spaceline-all-the-icons smeargle slim-mode shrink-path shell-pop scss-mode sass-mode restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode prettier-js popwin pippel pipenv pip-requirements persp-mode pcre2el paradox overseer org-plus-contrib org-bullets open-junk-file nginx-mode neotree nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep livid-mode live-py-mode link-hint kotlin-mode json-navigator json-mode js2-refactor js-doc indent-guide importmagic impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag graphql golden-ratio gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-commit gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eslintd-fix eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav eldoc-eval editorconfig dumb-jump dotenv-mode doom-themes disable-mouse diminish define-word cython-mode counsel-projectile company-web company-statistics company-anaconda column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile all-the-icons-dired aggressive-indent ace-window ace-link ace-jump-helm-line ac-ispell))))
+    (yasnippet-snippets winum web-mode toc-org pytest pip-requirements paradox neotree mwim live-py-mode kotlin-mode hl-todo highlight-numbers helm-make git-timemachine git-link evil-surround evil-matchit editorconfig dumb-jump doom-themes doom-modeline counsel-projectile counsel swiper ivy company-anaconda color-identifiers-mode anaconda-mode aggressive-indent ace-window ace-link iedit smartparens flycheck company projectile helm helm-core yasnippet avy magit magit-popup git-commit ghub with-editor markdown-mode which-key use-package org-plus-contrib hydra evil yapfify yaml-mode xterm-color ws-butler web-beautify volatile-highlights vi-tilde-fringe unfill undo-tree treepy tagedit symon string-inflection spinner spaceline-all-the-icons smeargle slim-mode shrink-path shell-pop scss-mode sass-mode restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pyenv-mode py-isort pug-mode prettier-js popwin pippel pipenv persp-mode pcre2el parent-mode overseer org-bullets open-junk-file nginx-mode nameless multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep livid-mode link-hint json-navigator json-mode js2-refactor js-doc indent-guide importmagic impatient-mode hungry-delete highlight-parentheses highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag graphql goto-chg golden-ratio gitignore-templates gitconfig-mode gitattributes-mode git-messenger gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-numbers evil-nerd-commenter evil-mc evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eslintd-fix eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav eldoc-eval dotenv-mode disable-mouse diminish define-word cython-mode company-web company-statistics column-enforce-mode clean-aindent-mode centered-cursor-mode bind-key auto-yasnippet auto-highlight-symbol auto-compile async all-the-icons-dired ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
