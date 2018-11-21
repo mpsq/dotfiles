@@ -4,7 +4,8 @@
   signingkey = 45B7A4566B0FF6C0
 
 [color]
-  ui = auto
+  ui = always
+	diff = auto
 
 [core]
   autocrlf = input
