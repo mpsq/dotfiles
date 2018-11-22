@@ -46,37 +46,22 @@ URxvt.keysym.C-S-Up:   font-size:incglobal
 URxvt.keysym.C-S-Down: font-size:decglobal
 URxvt.keysym.C-equal:  font-size:reset
 
-! Base16 Atelier Savanna
-! Scheme: Bram de Haan (http://atelierbram.github.io/syntax-highlighting/atelier-schemes/savanna)
-
-URxvt*background:                     #171c19
-URxvt*foreground:                     #87928a
-URxvt*cursorColor:                    #87928a
-
-URxvt*scrollColor:                    #87928a
-URxvt*highlightColor:                 #526057
-URxvt*highlightTextColor:             #78877d
-
-URxvt*color0:                         #171c19
-URxvt*color1:                         #b16139
-URxvt*color2:                         #489963
-URxvt*color3:                         #a07e3b
-URxvt*color4:                         #478c90
-URxvt*color5:                         #55859b
-URxvt*color6:                         #1c9aa0
-URxvt*color7:                         #87928a
-URxvt*color8:                         #5f6d64
-URxvt*color9:                         #b16139
-URxvt*color10:                        #489963
-URxvt*color11:                        #a07e3b
-URxvt*color12:                        #478c90
-URxvt*color13:                        #55859b
-URxvt*color14:                        #1c9aa0
-URxvt*color15:                        #ecf4ee
-
-URxvt*color16:                        #9f713c
-URxvt*color17:                        #867469
-URxvt*color18:                        #232a25
-URxvt*color19:                        #526057
-URxvt*color20:                        #78877d
-URxvt*color21:                        #dfe7e2
+! Dracula Xresources palette
+*.background: #171c19
+*.foreground: #87928a
+*.color0:     #000000
+*.color8:     #4D4D4D
+*.color1:     #FF5555
+*.color9:     #FF6E67
+*.color2:     #50FA7B
+*.color10:    #5AF78E
+*.color3:     #F1FA8C
+*.color11:    #F4F99D
+*.color4:     #BD93F9
+*.color12:    #CAA9FA
+*.color5:     #FF79C6
+*.color13:    #FF92D0
+*.color6:     #8BE9FD
+*.color14:    #9AEDFE
+*.color7:     #BFBFBF
+*.color15:    #E6E6E6
