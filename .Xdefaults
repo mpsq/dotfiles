@@ -46,7 +46,7 @@ URxvt.keysym.C-S-Up:   font-size:incglobal
 URxvt.keysym.C-S-Down: font-size:decglobal
 URxvt.keysym.C-equal:  font-size:reset
 
-! Dracula Xresources palette
+! Dracula
 *.background: #171c19
 *.foreground: #87928a
 *.color0:     #000000
@@ -57,8 +57,8 @@ URxvt.keysym.C-equal:  font-size:reset
 *.color10:    #5AF78E
 *.color3:     #F1FA8C
 *.color11:    #F4F99D
-*.color4:     #BD93F9
-*.color12:    #CAA9FA
+*.color4:     #268bd2
+*.color12:    #6c71c4
 *.color5:     #FF79C6
 *.color13:    #FF92D0
 *.color6:     #8BE9FD
