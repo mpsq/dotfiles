@@ -71,7 +71,6 @@ export ORANGE
 export GREEN
 export PURPLE
 export WHITE
-
 export BOLD
 export RESET
 
@@ -93,12 +92,11 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     fi
 fi
 
-# (http://en.wikipedia.org/wiki/Unicode_symbols)
-symbol="\[$ORANGE\]❯\[$RESET\] "
+symbol="$\[$RESET\] "
 
 prompt_user="\[${BOLD}${GREEN}\]\u$host"
-prompt_cwd="\[$WHITE\]in \[$ORANGE\]\w"
-prompt_git="\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)"
+prompt_cwd="\[$WHITE\]\[$ORANGE\]\w"
+prompt_git="\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \")\[$PURPLE\]\$(parse_git_branch)"
 prompt_symbol="\[$WHITE\]\n$symbol"
 
 if test -z "$BASH_VERSION" || test -n "$BASH_VERSION" -a \( "${BASH##*/}" = "sh" \)
@@ -113,10 +111,10 @@ fi
 [ -x "$(command -v hub)" ] && eval "$(hub alias -s)"
 
 # Import z
-[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+[ -r "/usr/share/z/z.sh" ] && source /usr/share/z/z.sh
 
 # Import nvm
-[[ -r "/usr/share/nvm/init-nvm.sh" ]] && source /usr/share/nvm/init-nvm.sh
+[ -r "/usr/share/nvm/init-nvm.sh" ] && source /usr/share/nvm/init-nvm.sh
 
 # Try to enable the auto-completion
 [ -r "/usr/share/bash-completion/bash_completion" ] && . /usr/share/bash-completion/bash_completion
