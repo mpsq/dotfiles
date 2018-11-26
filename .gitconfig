@@ -19,7 +19,7 @@
   s = status
   a = add
   aa = add --all
-  pu = "!f() { git push -u origin `git branch | grep '*' | awk '{print $2}'`; }; f"
+  pu = "!git push -u origin \"$(git rev-parse --abbrev-ref HEAD)\""
   puf = push --force-with-lease
   d = diff
   dc = diff --cached

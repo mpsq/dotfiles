@@ -10,14 +10,6 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias ls="ls --color=auto"
-alias l="ls -lF --color=auto"
-alias la="ls -laF --color=auto"
-alias lsd='ls -lF --color=auto | grep "^d"'
-
 # Bash won't get SIGWINCH if another process is in the foreground.
 # Enable checkwinsize so that bash will check the terminal size when
 # it regains control

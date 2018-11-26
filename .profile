@@ -1,4 +1,5 @@
 # ~/.profile
+
 if type -P dircolors >/dev/null ; then
     # Enable colors for ls, etc.  Prefer ~/.dir_colors #64489
     LS_COLORS=
@@ -20,6 +21,16 @@ if type -P dircolors >/dev/null ; then
     fi
     unset used_default_dircolors
 fi
+
+# Color utils
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias ls="ls --color=auto"
+
+alias l="ls -lF --color=auto"
+alias la="ls -laF --color=auto"
+alias lsd='ls -lF --color=auto | grep "^d"'
 
 # Color man pages
 man() {
