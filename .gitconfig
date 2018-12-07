@@ -47,3 +47,5 @@
 
 [commit]
   gpgsign = true
+[github]
+	user = merildev

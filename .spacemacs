@@ -1,5 +1,6 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t -*-
 ;; This file is loaded by Spacemacs at startup.
+
 ;; It must be stored in your home directory.
 
 (defun dotspacemacs/layers ()
@@ -37,7 +38,7 @@ This function should only modify configuration layer settings."
    '(markdown
      better-defaults
      javascript
-     helm
+     ivy
      auto-completion
      emacs-lisp
      html
@@ -61,7 +62,6 @@ This function should only modify configuration layer settings."
      eslintd-fix
      doom-themes
      disable-mouse
-     keychain-environment
      eshell-git-prompt
      )
    ;; A list of packages that cannot be updated.
@@ -78,7 +78,6 @@ This function should only modify configuration layer settings."
                                       ;; Languages I don't use
                                       coffee-mode
                                       ;; etc
-                                      ivy
                                       lorem-ipsum
                                       google-translate
                                       uuidgen
@@ -662,7 +661,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (keychain-environment eshell-git-prompt yasnippet-snippets yaml-mode xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe use-package unfill toc-org tagedit symon string-inflection spaceline-all-the-icons smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode prettier-js popwin persp-mode pcre2el paradox overseer org-plus-contrib org-bullets open-junk-file neotree nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep livid-mode link-hint kotlin-mode json-navigator json-mode js2-refactor js-doc indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag golden-ratio gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eslintd-fix eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-themes doom-modeline disable-mouse diminish define-word counsel-projectile company-web company-statistics column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile all-the-icons-dired aggressive-indent ace-window ace-link ace-jump-helm-line ac-ispell))))
+    (magit-gh-pulls gh marshal logito pcache ht yasnippet-snippets yaml-mode xterm-color ws-butler writeroom-mode winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe use-package unfill toc-org tagedit symon string-inflection spaceline-all-the-icons smex smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode prettier-js popwin persp-mode pcre2el paradox overseer org-plus-contrib org-bullets open-junk-file neotree nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep livid-mode link-hint kotlin-mode json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make golden-ratio gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eslintd-fix eshell-z eshell-prompt-extras eshell-git-prompt esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-themes doom-modeline disable-mouse diminish define-word counsel-projectile counsel-css company-web company-statistics column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile all-the-icons-dired aggressive-indent ace-window ace-link ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
