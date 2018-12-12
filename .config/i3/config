@@ -110,10 +110,10 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # These bindings trigger as soon as you enter the resize mode
-bindsym $mod+Ctrl+Shift+h resize shrink width 1 px or 1 ppt
-bindsym $mod+Ctrl+Shift+j resize grow height 1 px or 1 ppt
-bindsym $mod+Ctrl+Shift+k resize shrink height 1 px or 1 ppt
-bindsym $mod+Ctrl+Shift+l resize grow width 1 px or 1 ppt
+bindsym $mod+Ctrl+Shift+h resize shrink width 2 px or 1 ppt
+bindsym $mod+Ctrl+Shift+j resize grow height 2 px or 1 ppt
+bindsym $mod+Ctrl+Shift+k resize shrink height 2 px or 1 ppt
+bindsym $mod+Ctrl+Shift+l resize grow width 2 px or 1 ppt
 
 # Theme
 set $base00 #101218
@@ -129,7 +129,7 @@ set $base09 #f99170
 set $base0A #ffefcc
 set $base0B #a5ffe1
 set $base0C #97e0ff
-set $base0D #97bbf7
+set $base0D #7780a1
 set $base0E #c0b7f9
 set $base0F #fcc09e
 
@@ -139,7 +139,10 @@ client.unfocused $base01 $base01 $base03 $base01
 client.urgent $base02 $base08 $base07 $base08
 
 # Lock session
-bindsym Ctrl+Shift+Super_L exec --no-startup-id ~/.config/i3/scripts/lock
+bindsym Ctrl+Shift+Super_L exec --no-startup-id "physlock"
+
+# Screenshot
+bindsym --release $mod+Shift+s exec scrot -s
 
 # Pulse Audio controls
 bindsym Shift+Ctrl+ISO_Level3_Shift exec --no-startup-id ~/.config/i3/scripts/volume_down
@@ -168,12 +171,12 @@ exec --no-startup-id synclient VertScrollDelta=-111
 exec_always --no-startup-id "nitrogen --set-scaled ~/Pictures/bkg.png"
 
 # Launch xflux with location set to London
-# exec --no-startup-id "xflux -l 51.5939, 0.0883"
+exec --no-startup-id "xflux -l 51.5939, 0.0883"
 # San Francisco
-exec --no-startup-id "xflux -l 37.7841,-122.3957"
+# exec --no-startup-id "xflux -l 37.7841,-122.3957"
 
 # Xss-lock for auto lock on systemd events
-exec --no-startup-id xss-lock -- ~/.config/i3/scripts/lock
+exec --no-startup-id xss-lock -- "physlock"
 
 # Transitions
 exec --no-startup-id compton
