@@ -657,7 +657,6 @@ before packages are loaded."
           ivy-do-completion-in-region nil
           ivy-wrap t
           ivy-fixed-height-minibuffer t
-          ivy-count-format "(%d/%d) "
           ;; Don't use ^ as initial input
           ivy-initial-inputs-alist nil
           ;; highlight til EOL
