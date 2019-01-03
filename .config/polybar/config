@@ -68,7 +68,6 @@ modules-right = cpu memory temperature updates filesystem volume wlan battery da
 
 tray-position = right
 tray-padding = 2
-tray-transparent = false
 
 ; }}}
 ; HDMI bar              ----------------------------------------------------- {{{

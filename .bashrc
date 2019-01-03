@@ -42,7 +42,7 @@ export HISTTIMEFORMAT='%F %T '
 export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
 
 # Default apps
-export EDITOR="emacsclient -t"
+export EDITOR="emacsclient"
 export VISUAL="emacsclient -c -a emacs"
 export BROWSER="chromium"
 export GNUPGHOME="~/.gnupg"
