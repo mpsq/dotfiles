@@ -401,7 +401,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `rg', `ag', `pt', `ack' and `grep'.
    ;; (default '("rg" "ag" "pt" "ack" "grep"))
-   dotspacemacs-search-tools '("rg" "ag" "pt" "ack" "grep")
+   dotspacemacs-search-tools '("ag" "rg" "pt" "ack" "grep")
 
    ;; Format specification for setting the frame title.
    ;; %a - the `abbreviated-file-name', or `buffer-name'
@@ -677,27 +677,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (web-mode evil-nerd-commenter doom-modeline company counsel swiper helm helm-core ivy magit git-commit ghub org-plus-contrib evil goto-chg yasnippet-snippets yaml-mode xterm-color ws-butler writeroom-mode with-editor winum which-key wgrep web-beautify volatile-highlights vi-tilde-fringe use-package unfill undo-tree treepy toc-org tagedit symon string-inflection spaceline-all-the-icons smex smeargle slim-mode shrink-path shell-pop scss-mode sass-mode restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode prettier-js popwin persp-mode pcre2el paradox overseer org-bullets open-junk-file neotree nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep livid-mode link-hint kotlin-mode json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make graphql golden-ratio gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eslintd-fix eshell-z eshell-prompt-extras eshell-git-prompt esh-help emmet-mode elisp-slime-nav eldoc-eval editorconfig dumb-jump dotenv-mode doom-themes disable-mouse diminish define-word counsel-projectile counsel-css company-web company-statistics column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile all-the-icons-dired aggressive-indent ace-window ace-link ac-ispell))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-)
-(defun dotspacemacs/emacs-custom-settings ()
-  "Emacs custom settings.
-This is an auto-generated function, do not modify its content directly, use
-Emacs customize menu instead.
-This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (uuidgen request password-generator lorem-ipsum helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-flx helm-descbinds helm-ag google-translate ace-jump-helm-line yasnippet-snippets yaml-mode xterm-color ws-butler writeroom-mode winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe use-package unfill toc-org tagedit symon string-inflection spaceline-all-the-icons smex smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode prettier-js popwin persp-mode pcre2el paradox overseer org-plus-contrib org-bullets open-junk-file neotree nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep livid-mode link-hint kotlin-mode json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make golden-ratio gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eslintd-fix eshell-z eshell-prompt-extras eshell-git-prompt esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-themes doom-modeline disable-mouse diminish define-word counsel-projectile counsel-css company-web company-statistics column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile all-the-icons-dired aggressive-indent ace-window ace-link ac-ispell))))
+    (doom-modeline smartparens evil yasnippet-snippets yaml-mode xterm-color ws-butler writeroom-mode winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe use-package unfill undo-tree toc-org tagedit symon string-inflection spaceline-all-the-icons smex smeargle slim-mode shrink-path shell-pop scss-mode sass-mode restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode prettier-js popwin persp-mode pcre2el paradox overseer org-plus-contrib org-bullets open-junk-file neotree nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep livid-mode link-hint kotlin-mode json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make goto-chg golden-ratio gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eslintd-fix eshell-z eshell-prompt-extras eshell-git-prompt esh-help emmet-mode elisp-slime-nav eldoc-eval editorconfig dumb-jump dotenv-mode doom-themes disable-mouse diminish define-word counsel-projectile counsel-css company-web company-statistics column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile all-the-icons-dired aggressive-indent ace-window ace-link ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
