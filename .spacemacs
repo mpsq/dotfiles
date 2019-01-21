@@ -59,6 +59,7 @@ This function should only modify configuration layer settings."
    '(
      all-the-icons
      all-the-icons-dired
+     all-the-icons-ivy
      kotlin-mode
      eslintd-fix
      doom-themes
@@ -605,19 +606,15 @@ before packages are loaded."
   (setq  x-meta-keysym 'super
          x-super-keysym 'meta)
 
-  ;; options for doom themes
   (require 'doom-themes)
 
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
-
-  ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
-
-  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-neotree-config)
+  (doom-themes-treemacs-config)
   (doom-themes-org-config)
-
 
   ;; Disable mouse
   (mouse-wheel-mode -1)
@@ -636,6 +633,7 @@ before packages are loaded."
     (setq ivy-height 12
           ivy-do-completion-in-region nil
           ivy-wrap t
+          ivy-display-style 'fancy
           ivy-fixed-height-minibuffer t
           ;; Don't use ^ as initial input
           ivy-initial-inputs-alist nil
@@ -644,6 +642,8 @@ before packages are loaded."
           ;; disable magic slash on non-match
           ivy-magic-slash-non-match-action nil)
   )
+
+  (use-package all-the-icons-ivy :ensure t)
 
   ;; treemacs tweaks
   (use-package treemacs
@@ -659,12 +659,12 @@ before packages are loaded."
     )
   )
 
-  ;; (treemacs :variables treemacs-use-follow-mode t)
-
   (use-package magithub
     :after magit
     :ensure t
     :config (magithub-feature-autoinject t))
+
+  (setq warning-suppress-types nil)
 )
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
@@ -678,7 +678,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (magithub yasnippet-snippets yaml-mode xterm-color ws-butler writeroom-mode winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-evil toc-org tagedit symon string-inflection spaceline-all-the-icons smex smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs request rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode prettier-js popwin persp-mode pcre2el password-generator paradox overseer org-plus-contrib org-bullets open-junk-file nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode link-hint kotlin-mode json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate golden-ratio gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eslintd-fix eshell-z eshell-prompt-extras eshell-git-prompt esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-themes doom-modeline disable-mouse diminish define-word counsel-projectile counsel-css company-web company-tern company-statistics column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile all-the-icons-dired aggressive-indent ace-link ac-ispell))))
+    (magithub yasnippet-snippets yaml-mode xterm-color ws-butler writeroom-mode winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-evil toc-org tagedit symon string-inflection spaceline-all-the-icons smex smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs request rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode prettier-js popwin persp-mode pcre2el password-generator paradox overseer org-plus-contrib org-bullets open-junk-file nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode link-hint kotlin-mode json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate golden-ratio gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eslintd-fix eshell-z eshell-prompt-extras eshell-git-prompt esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-themes doom-modeline disable-mouse diminish define-word counsel-projectile counsel-css company-web company-tern company-statistics column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile all-the-icons-ivy all-the-icons-dired aggressive-indent ace-link ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
