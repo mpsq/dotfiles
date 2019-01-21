@@ -69,22 +69,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(
-                                      ;; I hate tern
-                                      tern
-                                      company-tern
-                                      ;; I've no need for these Ruby extras
-                                      rbenv
-                                      rvm
-                                      ;; Languages I don't use
-                                      coffee-mode
-                                      ;; etc
-                                      lorem-ipsum
-                                      google-translate
-                                      uuidgen
-                                      request
-                                      password-generator
-                                      )
+   dotspacemacs-excluded-packages '()
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -291,7 +276,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
-   dotspacemacs-which-key-delay 0.4
+   dotspacemacs-which-key-delay 0.3
 
    ;; Which-key frame position. Possible values are `right', `bottom' and
    ;; `right-then-bottom'. right-then-bottom tries to display the frame to the
@@ -456,7 +441,6 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
   )
 
 (defun dotspacemacs/user-load ()
@@ -477,9 +461,6 @@ before packages are loaded."
 
   ;; Disable lockfiles
   (setq create-lockfiles nil)
-
-  ;; Remove `unix' from modeline
-  ;; (spaceline-toggle-buffer-encoding-abbrev-off)
 
   ;; better dired
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
@@ -516,9 +497,11 @@ before packages are loaded."
   (setq browse-url-browser-function 'browse-url-chromium)
 
   ;; neotree goodness
-  (setq neo-smart-open t)
-  (setq neo-vc-integration '(char))
-  (setq neo-banner-message nil)
+  ;; (setq neo-smart-open t)
+  ;; (setq neo-vc-integration '(char))
+  ;; (setq neo-banner-message nil)
+  ;; (doom-themes-neotree-config)
+  ;; (setq doom-neotree-file-icons t)
 
   ;; mode line time stamp
   (setq display-time-24hr-format t)
@@ -632,12 +615,9 @@ before packages are loaded."
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
 
-  ;; Enable custom neotree theme (all-the-icons must be installed!)
-  (doom-themes-neotree-config)
-  (setq doom-neotree-file-icons t)
-
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config)
+
 
   ;; Disable mouse
   (mouse-wheel-mode -1)
@@ -664,6 +644,27 @@ before packages are loaded."
           ;; disable magic slash on non-match
           ivy-magic-slash-non-match-action nil)
   )
+
+  ;; treemacs tweaks
+  (use-package treemacs
+    :ensure t
+    :defer t
+    :init
+    :config
+    (progn
+      (setq treemacs-no-png-images t)
+      (treemacs-follow-mode t)
+      (treemacs-filewatch-mode t)
+      (treemacs-fringe-indicator-mode t)
+    )
+  )
+
+  ;; (treemacs :variables treemacs-use-follow-mode t)
+
+  (use-package magithub
+    :after magit
+    :ensure t
+    :config (magithub-feature-autoinject t))
 )
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
@@ -677,7 +678,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (doom-modeline smartparens evil yasnippet-snippets yaml-mode xterm-color ws-butler writeroom-mode winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe use-package unfill undo-tree toc-org tagedit symon string-inflection spaceline-all-the-icons smex smeargle slim-mode shrink-path shell-pop scss-mode sass-mode restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode prettier-js popwin persp-mode pcre2el paradox overseer org-plus-contrib org-bullets open-junk-file neotree nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep livid-mode link-hint kotlin-mode json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make goto-chg golden-ratio gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eslintd-fix eshell-z eshell-prompt-extras eshell-git-prompt esh-help emmet-mode elisp-slime-nav eldoc-eval editorconfig dumb-jump dotenv-mode doom-themes disable-mouse diminish define-word counsel-projectile counsel-css company-web company-statistics column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile all-the-icons-dired aggressive-indent ace-window ace-link ac-ispell))))
+    (magithub yasnippet-snippets yaml-mode xterm-color ws-butler writeroom-mode winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-evil toc-org tagedit symon string-inflection spaceline-all-the-icons smex smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs request rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode prettier-js popwin persp-mode pcre2el password-generator paradox overseer org-plus-contrib org-bullets open-junk-file nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode link-hint kotlin-mode json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate golden-ratio gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eslintd-fix eshell-z eshell-prompt-extras eshell-git-prompt esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-themes doom-modeline disable-mouse diminish define-word counsel-projectile counsel-css company-web company-tern company-statistics column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile all-the-icons-dired aggressive-indent ace-link ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -21,7 +21,7 @@ shopt -s no_empty_cmd_completion
 # Enable history appending instead of overwriting when exiting
 shopt -s histappend
 
-# Autocorrect typos in path names when using `cd`
+# Autocorrect typos in path names when using cd
 shopt -s cdspell
 
 # Save multi-line commands as one command
