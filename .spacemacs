@@ -198,7 +198,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(doom :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -209,7 +209,8 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-default-font '("Meslo LG S"
                                :size 12
                                :weight normal
-                               :width normal)
+                               :width normal
+                               :powerline-scale 1.2)
 
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
@@ -664,6 +665,11 @@ before packages are loaded."
     :config (magithub-feature-autoinject t))
 
   (setq warning-suppress-types nil)
+
+  ;; Exclude some sections from the powerline
+  (spaceline-toggle-buffer-encoding-abbrev-off)
+  (spaceline-toggle-purpose-off)
+  (spaceline-toggle-minor-modes-off)
 )
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
