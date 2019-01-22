@@ -12,7 +12,7 @@ Xcursor.size             : 16
 URxvt.loginShell         : true
 
 ! Font
-URxvt.font               : xft:Hack:pixelsize=12:antialias=true:hinting=true,\
+URxvt.font               : xft:Meslo LG S:pixelsize=12:antialias=true:hinting=true,\
                            xft:Symbola:pixelsize=12,\
                            xft:Noto Color Emoji:minspace=False
 URxvt.letterSpace        : -1
