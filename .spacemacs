@@ -35,10 +35,11 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(javascript
-     markdown
+   '(markdown
      better-defaults
-     javascript
+     lsp
+     (javascript :variables
+         javascript-backend 'lsp)
      ivy
      auto-completion
      emacs-lisp
@@ -498,13 +499,6 @@ before packages are loaded."
   ;; fix emacs defaulting to firefox
   (setq browse-url-browser-function 'browse-url-chromium)
 
-  ;; neotree goodness
-  ;; (setq neo-smart-open t)
-  ;; (setq neo-vc-integration '(char))
-  ;; (setq neo-banner-message nil)
-  ;; (doom-themes-neotree-config)
-  ;; (setq doom-neotree-file-icons t)
-
   ;; mode line time stamp
   (setq display-time-24hr-format t)
   (setq display-time-format "%H:%M:%S")        ; add seconds
@@ -521,24 +515,15 @@ before packages are loaded."
                 js-indent-level 2
                 js2-include-node-externs t
                 js2-include-browser-externs t
-                js2-include-harmony-externs t
                 js2-bounce-indent-p t
                 js2-auto-indent-p nil
-                projectile-enable-caching t
-                ruby-insert-encoding-magic-comment nil
-                terraform-indent-level 2
                 web-mode-attr-indent-offset 2
                 web-mode-code-indent-offset 2
                 web-mode-css-indent-offset 2
                 web-mode-enable-auto-indentation t
                 web-mode-indent-style 2
                 web-mode-markup-indent-offset 2
-                web-mode-scss-indent-offset 2
-                spaceline-org-clock-p t
                 )
-
-  (setq-default js2-show-parse-errors nil)
-  (setq-default js2-strict-missing-semi-warning nil)
 
   ;; fix files after save with eslint_d
   (add-hook 'js-jsx-mode-hook 'eslintd-fix-mode)
@@ -558,6 +543,7 @@ before packages are loaded."
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers
                         '(javascript-jshint json-python-json javascript-jshint
+                          javascript-eslint
                           javascript-standard javascript-gjslint javascript-jscs)))
 
   (defun flycheck-parse-flow (output checker buffer)
@@ -586,7 +572,8 @@ before packages are loaded."
     :next-checkers ((error . javascript-eslint))
     )
 
-  (flycheck-add-mode 'javascript-eslint 'web-mode)
+  ;; (flycheck-add-mode 'javascript-eslint 'web-mode)
+  ;; (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
 
   ;; use local eslint from node_modules before global
   ;; http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
@@ -597,6 +584,7 @@ before packages are loaded."
            (eslint (and root
                         (expand-file-name "node_modules/eslint/bin/eslint.js"
                                           root))))
+
       (when (and eslint (file-executable-p eslint))
         (setq-local flycheck-javascript-eslint-executable eslint))))
   (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
@@ -612,7 +600,6 @@ before packages are loaded."
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (doom-themes-visual-bell-config)
   ;; (doom-themes-treemacs-config)
   (doom-themes-org-config)
 
@@ -683,7 +670,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (magithub yasnippet-snippets yaml-mode xterm-color ws-butler writeroom-mode winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-evil toc-org tagedit symon string-inflection spaceline-all-the-icons smex smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs request rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode prettier-js popwin persp-mode pcre2el password-generator paradox overseer org-plus-contrib org-bullets open-junk-file nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode link-hint kotlin-mode json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate golden-ratio gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eslintd-fix eshell-z eshell-prompt-extras eshell-git-prompt esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-themes doom-modeline disable-mouse diminish define-word counsel-projectile counsel-css company-web company-tern company-statistics column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile all-the-icons-ivy all-the-icons-dired aggressive-indent ace-link ac-ispell))))
+    (magithub yasnippet-snippets yaml-mode xterm-color ws-butler writeroom-mode winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-evil toc-org tagedit symon string-inflection spaceline-all-the-icons smex smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs request rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode prettier-js popwin persp-mode pcre2el password-generator paradox overseer org-plus-contrib org-bullets open-junk-file nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lsp-ui lorem-ipsum livid-mode link-hint kotlin-mode json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate golden-ratio gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eslintd-fix eshell-z eshell-prompt-extras eshell-git-prompt esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-themes doom-modeline disable-mouse diminish define-word counsel-projectile counsel-css company-web company-tern company-statistics company-lsp column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile all-the-icons-ivy all-the-icons-dired aggressive-indent ace-link ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
