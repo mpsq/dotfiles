@@ -139,7 +139,7 @@ client.unfocused $base01 $base01 $base03 $base01
 client.urgent $base02 $base08 $base07 $base08
 
 # Lock session
-bindsym Ctrl+Shift+Super_L exec --no-startup-id "physlock"
+bindsym Ctrl+Shift+Super_L exec --no-startup-id "physlock -m -p LOCKED"
 
 # Screenshot
 bindsym --release $mod+Shift+s exec scrot -s
