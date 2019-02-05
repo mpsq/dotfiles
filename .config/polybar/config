@@ -10,9 +10,10 @@
 ; colors                ----------------------------------------------------- {{{
 
 [colors]
-background = #222
+background = ${xrdb:background}
+foreground = ${xrdb:foreground}
+
 background-alt = #444
-foreground = #dfdfdf
 foreground-alt = #55
 primary = #ffb52a
 secondary = #e60053
@@ -44,11 +45,11 @@ overline-color = #f00
 underline-size = 2
 underline-color = #00f
 
-border-top-size = 4
+border-top-size = 3
 border-top-color = ${colors.background}
 
 border-bottom-size = 1
-border-bottom-color = #333
+border-bottom-color = #1d2021
 
 spacing = 1
 padding-left = 0
@@ -68,50 +69,6 @@ modules-right = cpu memory temperature updates filesystem volume wlan battery da
 
 tray-position = right
 tray-padding = 2
-
-; }}}
-; HDMI bar              ----------------------------------------------------- {{{
-
-[settings]
-screenchange-reload = true
-
-[bar/hdmi]
-monitor = ${env:MONITOR:HDMI1}
-width = 100%
-height = 15
-offset-x = 0
-offset-y = 0
-
-background = ${colors.background}
-foreground = ${colors.foreground}
-
-overline-size = 2
-overline-color = #f00
-underline-size = 2
-underline-color = #00f
-
-border-top-size = 4
-border-top-color = ${colors.background}
-
-border-bottom-size = 1
-border-bottom-color = #333
-
-spacing = 1
-padding-left = 0
-padding-right = 2
-module-margin-left = 1
-module-margin-right = 2
-
-font-0 = Sans-Regular:size=8;0
-font-1 = MaterialIcons:size=8;0
-font-2 = FontAwesome:size=8;0
-font-3 = Siji:size=8;0
-font-4 = Monospace:size=8;0
-
-modules-left = i3
-modules-center =
-modules-right = cpu memory volume wlan battery date
-
 
 ; }}}
 ; modules               ----------------------------------------------------- {{{
@@ -207,8 +164,7 @@ interval = 3.0
 
 format-connected = <label-connected>
 
-;label-connected = "%{F#dfdfdf} %{F#dfdfdfdfdfdf} %essid% [ %{F#dfdfdf} %{F#dfdfdfdfdfdf} %downspeed% ] [ %{F#dfdfdf} %{F#dfdfdfdfdfdf} %upspeed% ]"
-label-connected = "%{F#dfdfdf} %{F#dfdfdfdfdfdf} %essid% (%local_ip%)"
+label-connected = " %essid% (%local_ip%)"
 label-disconnected = "OFFLINE"
 label-connected-foreground = ${colors.high}
 label-disconnected-foreground = ${colors.alert}
@@ -225,7 +181,7 @@ ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/date]
 type = internal/date
-date =  %%{F#dfdfdf}%A, %d %B %Y  %%{F#dfdfdf}%H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
+date = " %A, %d %B %Y  %H:%M:%S  "
 interval = 1
 
 ; }}}
@@ -235,8 +191,8 @@ interval = 1
 type = internal/alsa
 
 format-volume = <label-volume>
-label-volume = "%{F#dfdfdf} %{F#dfdfdf}%percentage%%"
-label-volume-foreground = ${root.foreground}
+label-volume = " %percentage%%"
+label-volume-foreground = ${colors.foreground}
 
 format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground-alt}

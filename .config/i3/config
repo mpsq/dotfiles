@@ -116,27 +116,21 @@ bindsym $mod+Ctrl+Shift+k resize shrink height 2 px or 1 ppt
 bindsym $mod+Ctrl+Shift+l resize grow width 2 px or 1 ppt
 
 # Theme
-set $base00 #101218
-set $base01 #1f222d
-set $base02 #252936
-set $base03 #7780a1
-set $base04 #C0C5CE
-set $base05 #d1d4e0
-set $base06 #C9CCDB
-set $base07 #ffffff
-set $base08 #ee829f
-set $base09 #f99170
-set $base0A #ffefcc
-set $base0B #a5ffe1
-set $base0C #97e0ff
-set $base0D #7780a1
-set $base0E #c0b7f9
-set $base0F #fcc09e
+set $bg #282828
+set $red #cc241d
+set $green #98971a
+set $yellow #d79921
+set $blue #458588
+set $purple #b16286
+set $aqua #689d68
+set $gray #a89984
+set $darkgray #1d2021
 
-client.focused $base0D $base0D $base00 $base01
-client.focused_inactive $base02 $base02 $base03 $base01
-client.unfocused $base01 $base01 $base03 $base01
-client.urgent $base02 $base08 $base07 $base08
+# class                 border|backgr|text|indicator
+client.focused          $blue $blue $darkgray $purple
+client.focused_inactive $darkgray $darkgray $yellow $purple
+client.unfocused        $darkgray $darkgray $yellow $purple
+client.urgent           $red $red $white $red
 
 # Lock session
 bindsym Ctrl+Shift+Super_L exec --no-startup-id "physlock -m -p LOCKED"
