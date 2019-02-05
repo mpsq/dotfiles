@@ -498,6 +498,8 @@ before packages are loaded."
   (set-face-attribute 'whitespace-space nil
                       :foreground "#4e2c3f")
 
+  (setq fci-rule-color "#4e2c3f")
+
   ;; make them visible by default
   (spacemacs/toggle-whitespace-globally-on)
 
