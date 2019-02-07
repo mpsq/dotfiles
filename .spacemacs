@@ -646,9 +646,12 @@ before packages are loaded."
   (setq warning-suppress-types nil)
 
   ;; Exclude some sections from the powerline
-  (spaceline-toggle-buffer-encoding-abbrev-off)
-  (spaceline-toggle-purpose-off)
-  (spaceline-toggle-minor-modes-off)
+  (use-package spaceline
+    :config
+    (require 'spaceline-config)
+    (spaceline-toggle-purpose-off)
+    (spaceline-toggle-minor-modes-off)
+    (spaceline-toggle-buffer-encoding-abbrev-off))
 
   ;; Emacs in Chromium
   (require 'edit-server)
