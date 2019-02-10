@@ -131,7 +131,8 @@ fi
 [ -r "/usr/share/bash-completion/bash_completion" ] && . /usr/share/bash-completion/bash_completion
 
 # Import fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -r "/usr/share/fzf/key-bindings.bash" ] && source /usr/share/fzf/key-bindings.bash
+[ -r "/usr/share/fzf/completion.bash " ] && source /usr/share/fzf/completion.bash
 
 # Import any additional secrets
 [ -r ~/.secrets ] && source ~/.secrets
