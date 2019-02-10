@@ -1,10 +1,6 @@
 # ~/.bashrc
 
 alias boum='git co master && git pull origin master'
-alias undopush="git push -f origin HEAD^:master"
-
-alias locks="rm -rf node_modules && rm yarn.lock && yarn && rm package-lock.json && rm -rf node_modules && npm i"
-
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -31,7 +27,7 @@ shopt -s cmdhist
 set -o ignoreeof
 
 # Add local binaries to path
-export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/.local/bin:~/.yarn/bin
 
 # Better history
 export HISTCONTROL="erasedups:ignoreboth"
