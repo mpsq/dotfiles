@@ -5,5 +5,5 @@ pac=$(checkupdates | wc -l)
 if [ "$pac" != "0" ]; then
     echo "%{F#c6e600}   $pac "
 else
-    echo "%{F#dfdfdf}   $pac "
+    echo "   $pac "
 fi
