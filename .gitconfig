@@ -1,11 +1,11 @@
 [user]
-  name = Meril Pilon
-  email = meril@blockchain.com
+  name = Méril Pilon
+  email = meril.pilon@gmail.com
   signingkey = 45B7A4566B0FF6C0
 
 [color]
   ui = always
-	diff = auto
+  diff = auto
 
 [core]
   autocrlf = input
