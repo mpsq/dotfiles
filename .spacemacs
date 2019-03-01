@@ -68,6 +68,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-additional-packages
    '(
      edit-server
+     evil-collection
      flow-minor-mode
      gruvbox-theme
      flycheck-flow
@@ -660,6 +661,8 @@ before packages are loaded."
     (spaceline-toggle-version-control-on)
     (spaceline-toggle-buffer-encoding-abbrev-off))
 
+  (evil-collection-init 'ibuffer)
+
   ;; Emacs in Chromium
   (require 'edit-server)
   (setq edit-server-new-frame nil)
@@ -675,9 +678,12 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(evil-want-Y-yank-to-eol nil)
+ '(flycheck-javascript-flow-args nil)
  '(package-selected-packages
    (quote
-    (writeroom-mode treemacs-evil tide orgit moe-theme magit-svn lsp-ui forge closql emacsql-sqlite emacsql evil-nerd-commenter evil-magit dumb-jump doom-themes doom-modeline browse-at-remote ample-theme ace-link lsp-mode counsel swiper flycheck helm ivy magit transient lv all-the-icons treemacs ace-window org-plus-contrib hydra yasnippet-snippets yaml-mode xterm-color ws-butler winum which-key wgrep web-mode web-beautify volatile-highlights visual-fill-column vi-tilde-fringe uuidgen use-package unfill typescript-mode treemacs-projectile toc-org tagedit symon string-inflection spaceline-all-the-icons smex smeargle slim-mode shrink-path shell-pop scss-mode sass-mode restart-emacs request rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode prettier-js popwin pfuture persp-mode pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file nameless mwim multi-term move-text mmm-mode markdown-toc magithub magit-gitflow macrostep lorem-ipsum livid-mode link-hint kotlin-mode json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide impatient-mode hungry-delete ht hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make helm-core gruvbox-theme google-translate golden-ratio gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flyspell-correct-ivy flycheck-pos-tip flycheck-flow flx-ido flow-minor-mode fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eslintd-fix eshell-z eshell-prompt-extras eshell-git-prompt esh-help emmet-mode elisp-slime-nav eldoc-eval editorconfig edit-server dotenv-mode disable-mouse diminish diff-hl define-word counsel-projectile counsel-css company-web company-tern company-statistics company-lsp column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile all-the-icons-ivy all-the-icons-dired aggressive-indent ac-ispell))))
+    (evil-collection writeroom-mode treemacs-evil tide orgit moe-theme magit-svn lsp-ui forge closql emacsql-sqlite emacsql evil-nerd-commenter evil-magit dumb-jump doom-themes doom-modeline browse-at-remote ample-theme ace-link lsp-mode counsel swiper flycheck helm ivy magit transient lv all-the-icons treemacs ace-window org-plus-contrib hydra yasnippet-snippets yaml-mode xterm-color ws-butler winum which-key wgrep web-mode web-beautify volatile-highlights visual-fill-column vi-tilde-fringe uuidgen use-package unfill typescript-mode treemacs-projectile toc-org tagedit symon string-inflection spaceline-all-the-icons smex smeargle slim-mode shrink-path shell-pop scss-mode sass-mode restart-emacs request rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode prettier-js popwin pfuture persp-mode pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file nameless mwim multi-term move-text mmm-mode markdown-toc magithub magit-gitflow macrostep lorem-ipsum livid-mode link-hint kotlin-mode json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide impatient-mode hungry-delete ht hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make helm-core gruvbox-theme google-translate golden-ratio gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flyspell-correct-ivy flycheck-pos-tip flycheck-flow flx-ido flow-minor-mode fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eslintd-fix eshell-z eshell-prompt-extras eshell-git-prompt esh-help emmet-mode elisp-slime-nav eldoc-eval editorconfig edit-server dotenv-mode disable-mouse diminish diff-hl define-word counsel-projectile counsel-css company-web company-tern company-statistics company-lsp column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile all-the-icons-ivy all-the-icons-dired aggressive-indent ac-ispell)))
+ '(pdf-view-midnight-colors (quote ("#fdf4c1" . "#1d2021"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
