@@ -58,3 +58,5 @@
   includeStatusHeader = false
   includePullRequestsSection = false
   includeIssuesSection = false
+[gitlab]
+	user = meril
