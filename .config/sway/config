@@ -39,7 +39,7 @@ input * xkb_layout gb
 output "*" background ~/Pictures/bkg.png fill
 
 output eDP-1 {
-    scale 2
+    scale 1.5
 }
 
 ### Key bindings
@@ -171,9 +171,9 @@ exec swayidle -w \
          before-sleep 'swaylock -f -c 000000'
 
 # Launch xflux with location set to London
-# exec --no-startup-id "xflux -l 51.5939, 0.0883"
+exec --no-startup-id "redshift -l 51.5939:0.0883"
 # San Francisco
-# exec --no-startup-id "xflux -l 37.7841,-122.3957"
+# exec --no-startup-id "redshift -l 37.7841:-122.3957"
 
 exec --no-startup-id "mako"
 
