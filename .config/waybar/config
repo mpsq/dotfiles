@@ -29,7 +29,8 @@
         "spacing": 10
     },
     "clock": {
-        "tooltip-format": "{:%Y-%m-%d | %H:%M:%ss}",
+        "tooltip-format": "{:%Y-%m-%d | %H:%M:%S}",
+        "format": "{:%Y-%m-%d | %H:%M:%S}",
         "format-alt": "{:%Y-%m-%d}"
     },
     "cpu": {

@@ -505,8 +505,8 @@ before packages are loaded."
   )
 
   ;; make space a bit more subtle
-  (set-face-attribute 'whitespace-space nil
-                      :foreground "#666")
+  ;; (set-face-attribute 'whitespace-space nil
+  ;;                   :foreground "#666")
 
   (setq fci-rule-color "#4e2c3f")
 
@@ -668,11 +668,6 @@ before packages are loaded."
   (require 'edit-server)
   (setq edit-server-new-frame nil)
   (edit-server-start)
-
-  ;; Terrible fix for Forge issues
-  ;; https://lists.gnu.org/archive/html/bug-gnu-emacs/2019-02/msg00376.html
-  ;; https://github.com/magit/ghub/issues/81#issuecomment-471639772
-  (setq gnutls-log-level 1)
 )
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.

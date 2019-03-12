@@ -7,7 +7,7 @@ set $up k
 set $right l
 set $term urxvt
 
-font pango:Hack 8
+font pango:"Meslo LG S" 8
 
 ### Key bindings
 #

@@ -1,16 +1,41 @@
-font=Hack 10
-background-color=#222270
-text-color=#EEEEEE
-width=300
-height=150
-margin=9,10,0,0
+font=Meslo LG S 8
+background-color=#b1c6d7ff
+text-color=#000000ff
+margin=5,5,0,0
 padding=10
-border-size=2
-border-color=#ffa500
-markup=1
+border-size=0
 default-timeout=5000
-ignore-timeout=1
+max-visible=9
+format=<span font='9'><b>%a</b></span>\n%s\n%b
 
 [hidden]
+background-color=#bfbfbfff
+format=+ %h
+font=Meslo LG S 8
 
-format="(%h more)"
+[app-name=hud]
+font=Meslo LG S 8
+width=100
+format=<b>%s</b>
+background-color=#555555ff
+text-color=#eeeeeeff
+default-timeout=1000
+
+[app-name=test]
+width=500
+height=300
+margin=20
+
+[app-name=coredump-notify]
+background-color=#d09a9a
+
+[app-name=stdnotify urgency=high]
+background-color=#d09a9a
+
+[urgency=high]
+ignore-timeout=true
+default-timeout=0
+
+[!expiring]
+background-color=#555555ff
+text-color=#eeeeeeff
