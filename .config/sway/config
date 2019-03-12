@@ -1,0 +1,181 @@
+### Variables
+#
+set $mod Mod1
+set $left h
+set $down j
+set $up k
+set $right l
+set $term urxvt
+
+font pango:Hack 8
+
+### Key bindings
+#
+
+#
+# Basics:
+#
+bindsym $mod+Return exec $term
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec rofi -show drun
+floating_modifier $mod normal
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+
+#gaps
+smart_gaps on
+gaps inner 5
+gaps outer 5
+
+#
+# Moving around:
+#
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+#
+# Layout stuff:
+#
+bindsym $mod+y split h
+bindsym $mod+v split v
+
+bindsym $mod+f fullscreen toggle
+
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+
+bindsym $mod+a focus parent
+bindsym $mod+c focus child
+
+#
+# Workspaces:
+#
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+bindsym $mod+Control+h move workspace to output left
+bindsym $mod+Control+j move workspace to output down
+bindsym $mod+Control+k move workspace to output up
+bindsym $mod+Control+l move workspace to output right
+
+#
+# Resize mode:
+#
+bindsym $mod+Ctrl+Shift+h resize shrink width 2 px or 1 ppt
+bindsym $mod+Ctrl+Shift+j resize grow height 2 px or 1 ppt
+bindsym $mod+Ctrl+Shift+k resize shrink height 2 px or 1 ppt
+bindsym $mod+Ctrl+Shift+l resize grow width 2 px or 1 ppt
+
+#
+# Scratchpad:
+#
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
+### Theme
+#
+# class                 border  backgr. text    indicator child_border
+client.focused          #222222 #6272a4 #ffffff #ffffff   #285577
+client.focused_inactive #333333 #222222 #ffffff #888888   #5f676a
+client.unfocused        #333333 #222222 #888888 #888888   #222222
+client.urgent           #222222 #ffc123 #ffffff #ffc123   #900000
+
+default_border pixel 1
+default_floating_border pixel 1
+
+### Status Bar
+#
+bar {
+    position top
+    swaybar_command waybar
+}
+
+### Custom
+#
+
+input * xkb_layout gb
+
+output eDP-1 {
+    scale 2
+}
+
+# Pulse Audio controls
+bindsym Shift+Ctrl+ISO_Level3_Shift exec --no-startup-id volume_down
+bindsym Shift+Ctrl+Super_R exec --no-startup-id volume_up
+bindsym XF86AudioLowerVolume exec --no-startup-id volume_down
+bindsym XF86AudioRaiseVolume exec --no-startup-id volume_up
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 3
+bindsym XF86MonBrightnessDown exec xbacklight -dec 2
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+### Idle configuration
+#
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * dpms off"' \
+              resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 000000'
+
+# Launch xflux with location set to London
+# exec --no-startup-id "xflux -l 51.5939, 0.0883"
+# San Francisco
+# exec --no-startup-id "xflux -l 37.7841,-122.3957"
+
+# Notifications
+exec --no-startup-id "mako"
+
+# Lock session
+bindsym Ctrl+Shift+Super_L exec --no-startup-id "swaylock -f -c 000000"
+
+# Screenshot
+bindsym --release $mod+Shift+s exec grim -g  \"$(slurp)\" ~/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+
+exec_always import-gsettings \
+    gtk-theme:gtk-theme-name \
+    icon-theme:gtk-icon-theme-name \
+    cursor-theme:gtk-cursor-theme-name
+
+include @sysconfdir@/sway/config.d/*

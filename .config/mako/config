@@ -1,0 +1,16 @@
+font=Hack 10
+background-color=#222270
+text-color=#EEEEEE
+width=300
+height=150
+margin=9,10,0,0
+padding=10
+border-size=2
+border-color=#ffa500
+markup=1
+default-timeout=5000
+ignore-timeout=1
+
+[hidden]
+
+format="(%h more)"
