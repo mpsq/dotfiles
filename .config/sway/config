@@ -170,11 +170,7 @@ exec swayidle -w \
               resume 'swaymsg "output * dpms on"' \
          before-sleep 'swaylock -f -c 000000'
 
-# Launch xflux with location set to London
-exec "redshift -l 51.5939:0.0883"
-# San Francisco
-# exec --no-startup-id "redshift -l 37.7841:-122.3957"
-
-exec_always "mako"
+exec "redshift"
+exec "mako"
 
 include @sysconfdir@/sway/config.d/*

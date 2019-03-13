@@ -47,7 +47,7 @@ pinta
 playerctl
 postman-bin
 pulseaudio-modules-bt-git
-redshift
+redshift-wayland-git
 reflector
 rofi
 sakura
