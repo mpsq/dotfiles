@@ -3,6 +3,12 @@
   email = meril.pilon@gmail.com
   signingkey = 511547924D8EC86E
 
+[github]
+  user = merildev
+
+[gitlab]
+  user = meril
+
 [color]
   ui = always
   diff = auto
@@ -36,27 +42,25 @@
 [branch]
   autosetuprebase = always
 
+[commit]
+  gpgsign = true
+
 [rebase]
   stat = true
+
+[pull]
+  rebase = true
 
 [rerere]
   enabled = true
 
-[hub]
-  protocol = ssh
-
-[commit]
-  gpgsign = true
-
-[github]
-  user = merildev
-
 [magithub]
-  online = false
+  online = true
 
 [magithub "status"]
   includeStatusHeader = false
   includePullRequestsSection = false
   includeIssuesSection = false
-[gitlab]
-	user = meril
+
+[hub]
+  protocol = ssh
