@@ -1,0 +1,6 @@
+#/etc/vconsole.conf
+KEYMAP=uk
+FONT=ter-122n
+
+#/etc/locale.conf
+LANG=en_GB.UTF-8

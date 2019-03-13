@@ -138,15 +138,15 @@ bindsym $mod+minus scratchpad show
 # Custom:
 #
 # Pulse Audio controls
-bindsym Shift+Ctrl+ISO_Level3_Shift exec --no-startup-id volume_down
-bindsym Shift+Ctrl+Super_R exec --no-startup-id volume_up
-bindsym XF86AudioLowerVolume exec --no-startup-id volume_down
-bindsym XF86AudioRaiseVolume exec --no-startup-id volume_up
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym Shift+Ctrl+ISO_Level3_Shift exec ~/.local/bin/volume_down
+bindsym Shift+Ctrl+Super_R exec ~/.local/bin/volume_up
+bindsym XF86AudioLowerVolume exec ~/.local/bin/volume_down
+bindsym XF86AudioRaiseVolume exec ~/.local/bin/volume_up
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 3
-bindsym XF86MonBrightnessDown exec xbacklight -dec 2
+bindsym XF86MonBrightnessUp exec light -A 3
+bindsym XF86MonBrightnessDown exec light -U 2
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
@@ -171,10 +171,10 @@ exec swayidle -w \
          before-sleep 'swaylock -f -c 000000'
 
 # Launch xflux with location set to London
-exec --no-startup-id "redshift -l 51.5939:0.0883"
+exec "redshift -l 51.5939:0.0883"
 # San Francisco
 # exec --no-startup-id "redshift -l 37.7841:-122.3957"
 
-exec --no-startup-id "mako"
+exec_always "mako"
 
 include @sysconfdir@/sway/config.d/*
