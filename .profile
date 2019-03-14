@@ -31,7 +31,7 @@ alias ls="ls --color=auto"
 alias l="ls -lF --color=auto"
 alias la="ls -laF --color=auto"
 alias lsd='ls -lF --color=auto | grep "^d"'
-alias kc='eval `keychain --eval --agents ssh id_rsa`'
+alias kc='eval `keychain --eval --agents ssh,gpg id_rsa B78ABA26623D1326`'
 
 # Color man pages
 man() {
