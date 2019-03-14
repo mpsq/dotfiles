@@ -31,6 +31,7 @@ alias ls="ls --color=auto"
 alias l="ls -lF --color=auto"
 alias la="ls -laF --color=auto"
 alias lsd='ls -lF --color=auto | grep "^d"'
+alias kc='eval `keychain --eval --agents ssh id_rsa`'
 
 # Color man pages
 man() {
@@ -136,6 +137,3 @@ fi
 
 # Import any additional secrets
 [ -r ~/.secrets ] && source ~/.secrets
-
-eval $(gnome-keyring-daemon --start)
-export SSH_AUTH_SOCK
