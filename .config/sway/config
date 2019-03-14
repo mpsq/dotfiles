@@ -1,25 +1,26 @@
 ### Variables
 #
 set $mod Mod1
-set $left h
-set $down j
-set $up k
-set $right l
 set $term sakura -l
+
+set $bg #8a8a8a
+set $fg #8a8a8a
+set $fc #5faf87
 
 font pango:"Meslo LG S" 8
 
-smart_gaps on
 gaps inner 5
-gaps outer 5
+gaps outer 0
 
 ### Theme
 #
-# class                 border  backgr. text    indicator child_border
-client.focused          #222222 #6272a4 #ffffff #ffffff   #285577
-client.focused_inactive #333333 #222222 #ffffff #888888   #5f676a
-client.unfocused        #333333 #222222 #888888 #888888   #222222
-client.urgent           #222222 #ffc123 #ffffff #ffc123   #900000
+# class                 border  backgr. text indicator child_border
+client.focused          $fc     $bg     $fg  $bg       $fc
+client.focused_inactive $bg     $bg     $fg  $bg       $bg
+client.unfocused        $bg     $bg     $fg  $bg       $bg
+client.urgent           $bg     $bg     $fg  $bg       $bg
+client.placeholder      $bg     $bg     $fg  $bg       $bg
+client.background $bg
 
 default_border pixel 1
 default_floating_border pixel 1
@@ -27,8 +28,8 @@ default_floating_border pixel 1
 ### Status Bar
 #
 bar {
-    position top
-    swaybar_command waybar
+  position top
+  swaybar_command waybar
 }
 
 ### Input/output
@@ -39,7 +40,7 @@ input * xkb_layout gb
 output "*" background ~/Pictures/bkg.png fill
 
 output eDP-1 {
-    scale 1.5
+  scale 1.5
 }
 
 ### Key bindings
@@ -51,9 +52,9 @@ output eDP-1 {
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec rofi -show drun
-floating_modifier $mod normal
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+floating_modifier $mod normal
 
 #
 # Moving around:
@@ -160,15 +161,15 @@ bindsym --release $mod+Shift+s exec grim -g  \"$(slurp)\" ~/$(date +'%Y-%m-%d-%H
 ### Run stuff
 #
 exec_always import-gsettings \
-    gtk-theme:gtk-theme-name \
-    icon-theme:gtk-icon-theme-name \
-    cursor-theme:gtk-cursor-theme-name
+  gtk-theme:gtk-theme-name \
+  icon-theme:gtk-icon-theme-name \
+  cursor-theme:gtk-cursor-theme-name
 
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * dpms off"' \
-              resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock -f -c 000000'
+  timeout 300 'swaylock -f -c 000000' \
+  timeout 600 'swaymsg "output * dpms off"' \
+  resume 'swaymsg "output * dpms on"' \
+  before-sleep 'swaylock -f -c 000000'
 
 exec "redshift"
 exec "mako"
