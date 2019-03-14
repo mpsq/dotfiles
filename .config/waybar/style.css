@@ -13,19 +13,17 @@ window#waybar {
     color: #fdf6e3;
 }
 
+#workspaces button:hover,
 #workspaces button.focused {
     color: #268bd2;
 }
 
 #workspaces button:hover {
+    padding: 0 3px;
     box-shadow: inherit;
     text-shadow: inherit;
-}
-
-#workspaces button:hover {
     background: #1a1a1a;
     border: #1a1a1a;
-    padding: 0 3px;
 }
 
 #pulseaudio {
@@ -52,6 +50,22 @@ window#waybar {
     color: #859900;
 }
 
-#clock, #pulseaudio, #backlight, #memory, #cpu, #temp, #battery {
+#network {
+    color: #999;
+}
+
+#network.disconnected {
+    color: #df2935;
+}
+
+#idle_inhibitor,
+#clock,
+#pulseaudio,
+#backlight,
+#memory,
+#cpu,
+#temp,
+#battery,
+#network {
     padding: 0 10px;
 }
