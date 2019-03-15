@@ -51,7 +51,6 @@ output eDP-1 {
 #
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
-bindsym $mod+d exec rofi -show drun
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 floating_modifier $mod normal
@@ -157,6 +156,8 @@ bindsym XF86AudioPrev exec playerctl previous
 
 bindsym Ctrl+Shift+Super_L exec --no-startup-id "swaylock -f -c 000000"
 bindsym --release $mod+Shift+s exec grim -g  \"$(slurp)\" ~/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+bindsym $mod+d exec sakura --name=launcher -e "bash -c 'compgen -c | sort -u | fzf --no-extended --print-query | tail -n1 | xargs -r swaymsg -t command exec'"
+for_window [app_id="^launcher$"] floating enable
 
 ### Run stuff
 #
