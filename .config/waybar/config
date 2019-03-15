@@ -83,6 +83,6 @@
     "custom/spotify": {
         "format": " {}",
         "max-length": 40,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
+        "exec": "python ~/.local/bin/mediaplayer.py 2> /dev/null"
     }
 }
