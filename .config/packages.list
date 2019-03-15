@@ -22,6 +22,7 @@ keychain
 lastpass
 libldac
 light
+lpass
 lm_sensors
 lxappearance-gtk3
 mplayer
@@ -50,7 +51,6 @@ postman-bin
 pulseaudio-modules-bt-git
 redshift-wayland-git
 reflector
-rofi
 sakura
 seahorse
 shellcheck
