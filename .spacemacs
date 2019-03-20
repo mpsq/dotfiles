@@ -71,6 +71,7 @@ This function should only modify configuration layer settings."
    '(
      edit-server
      evil-collection
+     evil-terminal-cursor-changer
      flow-minor-mode
      gruvbox-theme
      keychain-environment
@@ -259,7 +260,7 @@ It should only modify the values of Spacemacs settings."
    ;; and TAB or `C-m' and `RET'.
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
-   dotspacemacs-distinguish-gui-tab nil
+   dotspacemacs-distinguish-gui-tab t
 
    ;; Name of the default layout (default "Default")
    dotspacemacs-default-layout-name "Default"
@@ -315,7 +316,7 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil a progress bar is displayed when spacemacs is loading. This
    ;; may increase the boot time on some systems and emacs builds, set it to
    ;; nil to boost the loading time. (default t)
-   dotspacemacs-loading-progress-bar t
+   dotspacemacs-loading-progress-bar nil
 
    ;; If non-nil the frame is fullscreen when Emacs starts up. (default nil)
    ;; (Emacs 24.4+ only)
@@ -595,8 +596,8 @@ before packages are loaded."
   (add-hook 'web-mode-hook 'flow-minor-enable-automatically)
 
   ;; map super to meta key to prevent conflict with i3
-  (setq  x-meta-keysym 'super
-         x-super-keysym 'meta)
+  ;;(setq  x-meta-keysym 'super
+  ;;       x-super-keysym 'meta)
 
   (require 'doom-themes)
 
@@ -685,6 +686,14 @@ before packages are loaded."
 
   (require 'keychain-environment)
   (keychain-refresh-environment)
+
+  (unless (display-graphic-p)
+      (require 'evil-terminal-cursor-changer)
+      (evil-terminal-cursor-changer-activate)
+      )
+
+  (define-key evil-normal-state-map (kbd "C-o i") 'evil-jump-forward)
+  (define-key evil-normal-state-map (kbd "C-o o") 'evil-jump-backward)
 )
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
