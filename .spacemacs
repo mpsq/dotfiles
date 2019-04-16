@@ -40,6 +40,7 @@ This function should only modify configuration layer settings."
      org
      lsp
      javascript
+     typescript
      (spell-checking :variables
                      spell-checking-enable-by-default nil)
      ivy
@@ -665,20 +666,6 @@ before packages are loaded."
     (spaceline-toggle-version-control-on)
     (spaceline-toggle-buffer-encoding-abbrev-off))
 
-  ;; (use-package evil
-  ;;   :ensure t
-  ;;   :init
-  ;;   (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
-  ;;   (setq evil-want-keybinding nil)
-  ;;   :config
-  ;;   (evil-mode 1))
-
-  ;; (use-package evil-collection
-  ;;   :after evil
-  ;;   :ensure t
-  ;;   :config
-  ;;   (evil-collection-init 'ibuffer))
-
   ;; Emacs in Chromium
   (require 'edit-server)
   (setq edit-server-new-frame nil)
@@ -694,6 +681,8 @@ before packages are loaded."
 
   (define-key evil-normal-state-map (kbd "C-o i") 'evil-jump-forward)
   (define-key evil-normal-state-map (kbd "C-o o") 'evil-jump-backward)
+
+  (setq ghub-use-workaround-for-emacs-bug nil)
 )
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
