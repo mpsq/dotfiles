@@ -40,11 +40,9 @@ This function should only modify configuration layer settings."
      org
      lsp
      javascript
-     typescript
      (spell-checking :variables
                      spell-checking-enable-by-default nil)
      ivy
-     typescript
      (version-control :variables
                        version-control-diff-tool 'git-gutter+
                        version-control-diff-side 'left
