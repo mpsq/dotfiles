@@ -41,12 +41,14 @@ This function should only modify configuration layer settings."
      lsp
      javascript
      (spell-checking :variables
-                     spell-checking-enable-by-default nil)
+                      spell-checking-enable-by-default nil)
      ivy
      (version-control :variables
                        version-control-diff-tool 'git-gutter+
                        version-control-diff-side 'left
                        version-control-global-margin t)
+     (rust :variables
+            rust-backend 'lsp)
      auto-completion
      emacs-lisp
      html

@@ -27,7 +27,7 @@ shopt -s cmdhist
 set -o ignoreeof
 
 # Add local binaries to path
-export PATH=$PATH:~/.local/bin:~/.yarn/bin
+export PATH=$PATH:~/.local/bin:~/.yarn/bin:~/.cargo/bin
 
 # Better history
 export HISTCONTROL="erasedups:ignoreboth"
