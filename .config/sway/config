@@ -39,10 +39,6 @@ input * xkb_layout gb
 
 output "*" background ~/Pictures/bkg.png fill
 
-output eDP-1 {
-  scale 1.5
-}
-
 ### Key bindings
 #
 
