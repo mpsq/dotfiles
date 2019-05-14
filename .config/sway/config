@@ -39,6 +39,10 @@ input * xkb_layout gb
 
 output "*" background ~/Pictures/bkg.png fill
 
+output DP-1 {
+  scale 2
+}
+
 ### Key bindings
 #
 
