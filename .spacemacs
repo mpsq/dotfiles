@@ -44,6 +44,7 @@ This function should only modify configuration layer settings."
      lsp
      markdown
      multiple-cursors
+     nginx
      org
      python
      shell
