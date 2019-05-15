@@ -33,33 +33,41 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(systemd
-     python
-     markdown
+   '(auto-completion
      better-defaults
-     org
-     lsp
-     javascript
-     typescript
-     (spell-checking :variables
-                      spell-checking-enable-by-default nil)
-     ivy
-     (version-control :variables
-                       version-control-diff-tool 'git-gutter+
-                       version-control-diff-side 'left
-                       version-control-global-margin t)
-     (rust :variables
-            rust-backend 'lsp)
-     auto-completion
-     emacs-lisp
-     html
-     git
      colors
-     shell
-     syntax-checking
+     dap
+     emacs-lisp
+     git
+     html
+     ivy
+     lsp
+     markdown
      multiple-cursors
-     yaml
+     org
+     python
+     shell
+     spell-checking
+     syntax-checking
+     systemd
      treemacs
+     yaml
+     (javascript :variables
+                 javascript-fmt-on-save t
+                 javascript-fmt-tool 'prettier
+                 javascript-backend 'lsp
+                 node-add-modules-path t)
+     (rust :variables
+           rust-backend 'lsp)
+     (typescript :variables
+                 typescript-fmt-on-save t
+                 typescript-fmt-tool 'prettier
+                 typescript-backend 'lsp
+                 node-add-modules-path t)
+     (version-control :variables
+                      version-control-diff-tool 'git-gutter+
+                      version-control-diff-side 'left
+                      version-control-global-margin t)
      )
 
    ;; List of additional packages that will be installed without being
@@ -74,10 +82,8 @@ This function should only modify configuration layer settings."
      edit-server
      evil-collection
      evil-terminal-cursor-changer
-     flow-minor-mode
      gruvbox-theme
      keychain-environment
-     flycheck-flow
      all-the-icons
      all-the-icons-dired
      all-the-icons-ivy
@@ -559,9 +565,6 @@ before packages are loaded."
   ;; fix files after save with eslint_d
   (add-hook 'web-mode-hook 'eslintd-fix-mode)
 
-  ;; set .js files to jsx mode
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
-
   ;; use local eslint from node_modules before global
   ;; http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
   (defun my/use-eslint-from-node-modules ()
@@ -576,37 +579,21 @@ before packages are loaded."
         (setq-local flycheck-javascript-eslint-executable eslint))))
   (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
 
-  ;; uses flycheck-flow and flycheck-eslint
-  ;; https://github.com/lbolla/emacs-flycheck-flow
-  ;; Note: uses add-node-modules-path added in web-mode-hook
-  (require 'flycheck-flow)
-  (with-eval-after-load 'flycheck
-    (flycheck-add-mode 'javascript-flow 'web-mode)
-    (flycheck-add-mode 'javascript-eslint 'web-mode)
-    (flycheck-add-next-checker 'javascript-flow 'javascript-eslint))
-
-  ;; disable jshint since we prefer eslint checking
+  (require 'flycheck)
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers
                         '(javascript-jshint json-python-json javascript-jshint
                           javascript-standard javascript-gjslint javascript-jscs)))
-
-  ;; flow-minor-mode - replacement for facebook's flow-for-emacs/flow.el
-  ;; provides flow type at position. uses flow from project node_modules.
-  ;; https://github.com/an-sh/flow-minor-mode
-  (require 'flow-minor-mode)
-  (add-hook 'web-mode-hook 'flow-minor-enable-automatically)
+  (setq-default flycheck-add-next-checker 'javascript-eslint)
 
   ;; map super to meta key to prevent conflict with i3
   ;;(setq  x-meta-keysym 'super
   ;;       x-super-keysym 'meta)
 
   (require 'doom-themes)
-
-  ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  ;; (doom-themes-treemacs-config)
+  (doom-themes-treemacs-config)
   (doom-themes-org-config)
 
   ;; Disable mouse
@@ -682,9 +669,8 @@ before packages are loaded."
 
   (define-key evil-normal-state-map (kbd "C-o i") 'evil-jump-forward)
   (define-key evil-normal-state-map (kbd "C-o o") 'evil-jump-backward)
-
-  (setq ghub-use-workaround-for-emacs-bug nil)
 )
+
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
 This is an auto-generated function, do not modify its content directly, use
@@ -696,7 +682,6 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(evil-want-Y-yank-to-eol nil)
- '(flycheck-javascript-flow-args nil)
  '(package-selected-packages
    (quote
     (systemd yapfify stickyfunc-enhance pytest pyenv-mode py-isort pippel pipenv pyvenv pip-requirements live-py-mode importmagic epc ctable concurrent deferred helm-pydoc helm-gtags helm-cscope xcscope ggtags cython-mode counsel-gtags company-anaconda anaconda-mode pythonic evil-collection writeroom-mode treemacs-evil tide orgit moe-theme magit-svn lsp-ui forge closql emacsql-sqlite emacsql evil-nerd-commenter evil-magit dumb-jump doom-themes doom-modeline browse-at-remote ample-theme ace-link lsp-mode counsel swiper flycheck helm ivy magit transient lv all-the-icons treemacs ace-window org-plus-contrib hydra yasnippet-snippets yaml-mode xterm-color ws-butler winum which-key wgrep web-mode web-beautify volatile-highlights visual-fill-column vi-tilde-fringe uuidgen use-package unfill typescript-mode treemacs-projectile toc-org tagedit symon string-inflection spaceline-all-the-icons smex smeargle slim-mode shrink-path shell-pop scss-mode sass-mode restart-emacs request rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode prettier-js popwin pfuture persp-mode pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file nameless mwim multi-term move-text mmm-mode markdown-toc magithub magit-gitflow macrostep lorem-ipsum livid-mode link-hint kotlin-mode json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide impatient-mode hungry-delete ht hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make helm-core gruvbox-theme google-translate golden-ratio gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flyspell-correct-ivy flycheck-pos-tip flycheck-flow flx-ido flow-minor-mode fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eslintd-fix eshell-z eshell-prompt-extras eshell-git-prompt esh-help emmet-mode elisp-slime-nav eldoc-eval editorconfig edit-server dotenv-mode disable-mouse diminish diff-hl define-word counsel-projectile counsel-css company-web company-tern company-statistics company-lsp column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile all-the-icons-ivy all-the-icons-dired aggressive-indent ac-ispell)))
