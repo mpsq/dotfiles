@@ -35,6 +35,10 @@ bar {
 ### Input/output
 #
 
+input 1739:31251:SYNA2393:00_06CB:7A13_Touchpad {
+  tap enabled
+}
+
 input * xkb_layout gb
 
 output "*" background ~/Pictures/bkg.png fill

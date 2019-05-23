@@ -1,4 +1,3 @@
-mdr-tools
 arc-gtk-theme
 archey3
 bash-completion
@@ -21,9 +20,7 @@ keybase
 keychain
 lastpass
 libinput-gestures
-libldac
 light
-lpass
 lm_sensors
 lxappearance-gtk3
 mplayer
@@ -49,7 +46,6 @@ peek
 pinta
 playerctl
 postman-bin
-pulseaudio-modules-bt-git
 redshift-wayland-git
 reflector
 sakura
