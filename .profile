@@ -26,11 +26,13 @@ fi
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
-alias ls="ls --color=auto"
 
-alias l="ls -lF --color=auto"
-alias la="ls -laF --color=auto"
-alias lsd='ls -lF --color=auto | grep "^d"'
+alias ls="exa --color=auto"
+alias l="exa -lF --color=auto"
+alias la="exa -laF --color=auto"
+alias lah="exa -lah --color=auto"
+alias lsd='exa -lF --color=auto | grep "^d"'
+
 alias kc='eval `keychain --eval --nogui --agents ssh,gpg id_rsa B78ABA26623D1326`'
 
 # Color man pages
