@@ -6,6 +6,8 @@ chromium
 codespell
 cowsay
 emacs
+eog
+evince
 firefox
 fzf
 glances
@@ -23,8 +25,10 @@ libinput-gestures
 light
 lm_sensors
 lxappearance-gtk3
+mako
 mplayer
 nano
+nautilus
 networkmanager-openvpn
 nm-connection-editor
 noto-fonts
@@ -46,6 +50,7 @@ peek
 pinta
 playerctl
 postman-bin
+powertop
 redshift-wayland-git
 reflector
 sakura
@@ -73,7 +78,6 @@ vcsh-git
 veracrypt
 waybar
 wayland
-yarn
 yay
 z
 zip
