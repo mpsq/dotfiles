@@ -9,6 +9,7 @@ emacs
 eog
 evince
 exa
+fd
 firefox
 fzf
 glances
@@ -18,8 +19,6 @@ gst-plugins-base
 gst-plugins-base-libs
 gst-plugins-good
 gst-plugins-ugly
-hub
-inkscape
 keybase
 keychain
 lastpass
@@ -28,10 +27,7 @@ light
 lm_sensors
 lxappearance-gtk3
 mako
-mplayer
-nano
 nautilus
-networkmanager-openvpn
 nm-connection-editor
 noto-fonts
 noto-fonts-cjk
@@ -43,7 +39,6 @@ numix-icon-theme-git
 nvm
 openvpn
 openvpn-nordvpn
-openvpn-update-resolv-conf-git
 otf-font-awesome
 p7zip
 pavucontrol
@@ -51,13 +46,14 @@ pcsclite
 peek
 pinta
 playerctl
-postman-bin
 powertop
 redshift-wayland-git
 reflector
+ripgrep
 sakura
 seahorse
 shellcheck
+slurp
 spotify
 sway
 swayidle
@@ -65,8 +61,6 @@ swaylock
 swaylock-blur
 terminus-font
 termsyn-font
-the_silver_searcher
-thunar
 ttf-all-the-icons
 ttf-bitstream-vera
 ttf-dejavu

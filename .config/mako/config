@@ -34,7 +34,6 @@ background-color=#d09a9a
 
 [urgency=high]
 ignore-timeout=true
-default-timeout=0
 
 [!expiring]
 background-color=#555555ff
