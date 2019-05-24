@@ -89,9 +89,6 @@ This function should only modify configuration layer settings."
      all-the-icons-dired
      all-the-icons-ivy
      forge
-     kotlin-mode
-     eslintd-fix
-     doom-themes
      disable-mouse
      eshell-git-prompt
      )
@@ -218,8 +215,10 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(moe-dark
-                         ample)
+   dotspacemacs-themes '(
+                         moe-dark
+                         gruvbox-dark-soft
+                         )
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -563,9 +562,6 @@ before packages are loaded."
   (setq-default js2-mode-show-parse-errors nil)
   (setq-default js2-mode-show-strict-warnings nil)
 
-  ;; fix files after save with eslint_d
-  (add-hook 'web-mode-hook 'eslintd-fix-mode)
-
   ;; use local eslint from node_modules before global
   ;; http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
   (defun my/use-eslint-from-node-modules ()
@@ -586,16 +582,12 @@ before packages are loaded."
                         '(javascript-jshint json-python-json javascript-jshint
                           javascript-standard javascript-gjslint javascript-jscs)))
   (setq-default flycheck-add-next-checker 'javascript-eslint)
+  (flycheck-add-mode 'javascript-eslint 'typescript-tsx-mode)
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
 
   ;; map super to meta key to prevent conflict with i3
   ;;(setq  x-meta-keysym 'super
   ;;       x-super-keysym 'meta)
-
-  (require 'doom-themes)
-  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-        doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (doom-themes-treemacs-config)
-  (doom-themes-org-config)
 
   ;; Disable mouse
   (mouse-wheel-mode -1)
