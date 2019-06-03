@@ -33,21 +33,32 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(auto-completion
-     better-defaults
+   '((auto-completion :variables auto-completion-enable-sort-by-usage t
+                      auto-completion-enable-snippets-in-popup t)
+     (better-defaults :veriables
+                      better-defaults-move-to-beginning-of-code-first t
+                      better-defaults-move-to-end-of-code-first t)
      colors
      dap
      emacs-lisp
      git
-     html
+     (html :variables web-fmt-tool 'prettier
+           css-enable-lsp t
+           scss-enable-lsp t
+           less-enable-lsp t)
      ivy
+     (json :variables json-fmt-tool 'prettier)
      lsp
      markdown
      multiple-cursors
      nginx
      org
      python
-     shell
+     (shell :variables
+            shell-default-shell 'shell
+            shell-default-term-shell "/bin/bash"
+            shell-default-height 30
+            shell-default-position 'bottom)
      spell-checking
      syntax-checking
      systemd
@@ -58,8 +69,7 @@ This function should only modify configuration layer settings."
                  javascript-fmt-tool 'prettier
                  javascript-backend 'lsp
                  node-add-modules-path t)
-     (rust :variables
-           rust-backend 'lsp)
+     (rust :variables rust-backend 'lsp)
      (typescript :variables
                  typescript-fmt-on-save t
                  typescript-fmt-tool 'prettier
@@ -81,7 +91,6 @@ This function should only modify configuration layer settings."
    dotspacemacs-additional-packages
    '(
      edit-server
-     evil-collection
      evil-terminal-cursor-changer
      gruvbox-theme
      keychain-environment
@@ -96,7 +105,12 @@ This function should only modify configuration layer settings."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(helm)
+   dotspacemacs-excluded-packages '(
+                                    helm
+                                    magit-svn
+                                    tern
+                                    tide
+                                    )
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -223,7 +237,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.1)
+   dotspacemacs-mode-line-theme '(doom :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -451,7 +465,7 @@ It should only modify the values of Spacemacs settings."
    ;; Run `spacemacs/prettify-org-buffer' when
    ;; visiting README.org files of Spacemacs.
    ;; (default nil)
-   dotspacemacs-pretty-docs nil))
+   dotspacemacs-pretty-docs t))
 
 (defun dotspacemacs/user-env ()
   "Environment variables setup.
@@ -485,14 +499,8 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  ;; Global basic auto complete
-  (global-company-mode)
-
   ;; Disable lockfiles
   (setq create-lockfiles nil)
-
-  ;; better dired
-  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
   ;; custom invisible chars - EOL are invisible :D
   (use-package whitespace
@@ -511,21 +519,12 @@ before packages are loaded."
     )
   )
 
-  ;; make space a bit more subtle
-  ;; (set-face-attribute 'whitespace-space nil
-  ;;                   :foreground "#666")
-
-  (setq fci-rule-color "#4e2c3f")
-
   ;; make them visible by default
   (spacemacs/toggle-whitespace-globally-on)
 
   ;; activate column indicator in prog-mode
   (setq fill-column 80)
   (add-hook 'prog-mode-hook 'turn-on-fci-mode)
-
-  ;; fix emacs defaulting to firefox
-  (setq browse-url-browser-function 'browse-url-chromium)
 
   ;; mode line time stamp
   (setq display-time-24hr-format t)
@@ -534,9 +533,6 @@ before packages are loaded."
   (setq display-time-default-load-average nil) ; don't show load average
   (setq display-time-mail-string "")           ; don't show mail
   (display-time-mode 1)                 ; show time in mode line on startup
-
-  ;; snippets goodies
-  (setq auto-completion-enable-snippets-in-popup t)
 
   ;; make javascript nizerrrr
   (setq-default js2-basic-offset 2
@@ -581,17 +577,10 @@ before packages are loaded."
   (flycheck-add-mode 'javascript-eslint 'typescript-tsx-mode)
   (flycheck-add-mode 'javascript-eslint 'web-mode)
 
-  ;; map super to meta key to prevent conflict with i3
-  ;;(setq  x-meta-keysym 'super
-  ;;       x-super-keysym 'meta)
-
   ;; Disable mouse
   (mouse-wheel-mode -1)
   (require 'disable-mouse)
   (global-disable-mouse-mode)
-
-  ;; Better search
-  (setq helm-ag-use-agignore t)
 
   ;; eshell nizzer
   (eshell-git-prompt-use-theme 'git-radar)
@@ -604,6 +593,7 @@ before packages are loaded."
           ivy-wrap t
           ivy-display-style 'fancy
           ivy-fixed-height-minibuffer t
+          ivy-enable-advanced-buffer-information t
           ;; Don't use ^ as initial input
           ivy-initial-inputs-alist nil
           ;; highlight til EOL
@@ -616,7 +606,6 @@ before packages are loaded."
 
   ;; treemacs tweaks
   (use-package treemacs
-
     :defer t
     :init
     :config
