@@ -42,6 +42,7 @@ This function should only modify configuration layer settings."
      dap
      emacs-lisp
      git
+     github
      (html :variables web-fmt-tool 'prettier
            css-enable-lsp t
            scss-enable-lsp t
@@ -90,16 +91,13 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
    '(
-     edit-server
-     evil-terminal-cursor-changer
-     gruvbox-theme
-     keychain-environment
      all-the-icons
-     all-the-icons-dired
      all-the-icons-ivy
-     forge
      disable-mouse
+     edit-server
      eshell-git-prompt
+     evil-terminal-cursor-changer
+     keychain-environment
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -227,8 +225,10 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(moe-dark
-                         gruvbox-dark-soft)
+   dotspacemacs-themes '(
+                         moe-dark
+                         gruvbox-dark-soft
+                         )
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -499,34 +499,11 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  ;; Disable lockfiles
   (setq create-lockfiles nil)
 
-  ;; custom invisible chars - EOL are invisible :D
-  (use-package whitespace
-    :ensure t
-    :diminish ""
-    :config
-    (progn
-      (setq whitespace-display-mappings
-            '((tab-mark 9 [9655 9] [92 9])
-              (newline-mark 10 [182 10])
-              (space-mark 32 [?·] [46])
-              (space-mark ?\xA0 [?~] [46])
-              )
-            )
-      (setq whitespace-style '(face spaces tabs newline tab-mark space-mark trailing))
-    )
-  )
-
-  ;; make them visible by default
   (spacemacs/toggle-whitespace-globally-on)
 
-  ;; activate column indicator in prog-mode
-  (setq fill-column 80)
-  (add-hook 'prog-mode-hook 'turn-on-fci-mode)
-
-  ;; mode line time stamp
+  ;; Mode line timestamp
   (setq display-time-24hr-format t)
   (setq display-time-format "%H:%M:%S")        ; add seconds
   (setq display-time-interval 1)               ; update every second
@@ -534,87 +511,71 @@ before packages are loaded."
   (setq display-time-mail-string "")           ; don't show mail
   (display-time-mode 1)                 ; show time in mode line on startup
 
-  ;; make javascript nizerrrr
+  ;; Make javascript better
   (setq-default js2-basic-offset 2
-                js-indent-level 2
-                js2-include-node-externs t
-                js2-include-browser-externs t
-                js2-bounce-indent-p t
-                js2-auto-indent-p nil
-                web-mode-attr-indent-offset 2
-                web-mode-code-indent-offset 2
-                web-mode-css-indent-offset 2
-                web-mode-enable-auto-indentation t
-                web-mode-indent-style 2
-                web-mode-markup-indent-offset 2
-                )
-
-  ;; Let flycheck handle parse errors
-  ;; https://github.com/magnars/.emacs.d/blob/bc02c2d8853afc8ee61cc705945b47c725b9fb65/settings/setup-js2-mode.el#L17
-  (setq-default js2-mode-show-parse-errors nil)
-  (setq-default js2-mode-show-strict-warnings nil)
-
-  ;; use local eslint from node_modules before global
-  ;; http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
-  (defun my/use-eslint-from-node-modules ()
-    (let* ((root (locate-dominating-file
-                  (or (buffer-file-name) default-directory)
-                  "node_modules"))
-           (eslint (and root
-                        (expand-file-name "node_modules/eslint/bin/eslint.js"
-                                          root))))
-
-      (when (and eslint (file-executable-p eslint))
-        (setq-local flycheck-javascript-eslint-executable eslint))))
-  (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
+    js-indent-level 2
+    typescript-indent-level 2
+    js2-include-node-externs t
+    js2-include-browser-externs t
+    js2-bounce-indent-p t
+    js2-auto-indent-p nil
+    web-mode-attr-indent-offset 2
+    web-mode-code-indent-offset 2
+    web-mode-css-indent-offset 2
+    web-mode-enable-auto-indentation t
+    web-mode-indent-style 2
+    web-mode-markup-indent-offset 2
+  )
 
   (require 'flycheck)
   (setq-default flycheck-disabled-checkers
-                (append flycheck-disabled-checkers
-                        '(javascript-jshint json-python-json javascript-jshint
-                          javascript-standard javascript-gjslint javascript-jscs)))
+    (append flycheck-disabled-checkers
+      '(javascript-jshint json-python-json javascript-jshint
+        javascript-standard javascript-gjslint javascript-jscs)))
   (setq-default flycheck-add-next-checker 'javascript-eslint)
   (flycheck-add-mode 'javascript-eslint 'typescript-tsx-mode)
   (flycheck-add-mode 'javascript-eslint 'web-mode)
 
   ;; Disable mouse
-  (mouse-wheel-mode -1)
   (require 'disable-mouse)
   (global-disable-mouse-mode)
+  (mouse-wheel-mode -1)
 
-  ;; eshell nizzer
+  ;; Custom invisible chars
+  (use-package whitespace
+    :ensure t
+    :config
+    (setq whitespace-style '(face spaces tabs tab-mark space-mark trailing))
+    )
+
   (eshell-git-prompt-use-theme 'git-radar)
 
+  (use-package all-the-icons-ivy :ensure t)
   (use-package ivy
     :ensure t
     :config
     (setq ivy-height 12
-          ivy-do-completion-in-region nil
-          ivy-wrap t
-          ivy-display-style 'fancy
-          ivy-fixed-height-minibuffer t
-          ivy-enable-advanced-buffer-information t
-          ;; Don't use ^ as initial input
-          ivy-initial-inputs-alist nil
-          ;; highlight til EOL
-          ivy-format-function #'ivy-format-function-line
-          ;; disable magic slash on non-match
-          ivy-magic-slash-non-match-action nil)
+      ivy-do-completion-in-region nil
+      ivy-wrap t
+      ivy-display-style 'fancy
+      ivy-fixed-height-minibuffer t
+      ivy-enable-advanced-buffer-information t
+      ;; Don't use ^ as initial input
+      ivy-initial-inputs-alist nil
+      ;; highlight til EOL
+      ivy-format-function #'ivy-format-function-line
+      ;; disable magic slash on non-match
+      ivy-magic-slash-non-match-action nil)
   )
 
-  (use-package all-the-icons-ivy :ensure t)
-
-  ;; treemacs tweaks
+  ;; Treemacs tweaks
   (use-package treemacs
-    :defer t
-    :init
+    :ensure t
     :config
-    (progn
-      (setq treemacs-no-png-images t)
-      (treemacs-follow-mode t)
-      (treemacs-filewatch-mode t)
-      (treemacs-fringe-indicator-mode t)
-    )
+    (setq treemacs-no-png-images t)
+    (treemacs-follow-mode t)
+    (treemacs-filewatch-mode t)
+    (treemacs-fringe-indicator-mode t)
   )
 
   (setq warning-suppress-types nil)
@@ -622,7 +583,6 @@ before packages are loaded."
   ;; Exclude some sections from the powerline
   (use-package spaceline-config
     :ensure spaceline
-    :init
     :config
     (spaceline-toggle-minor-modes-off)
     (spaceline-toggle-projectile-root-on)
@@ -630,7 +590,8 @@ before packages are loaded."
     (spaceline-toggle-flycheck-info-on)
     (spaceline-toggle-flycheck-warning-on)
     (spaceline-toggle-version-control-on)
-    (spaceline-toggle-buffer-encoding-abbrev-off))
+    (spaceline-toggle-buffer-encoding-abbrev-off)
+  )
 
   ;; Emacs in Chromium
   (require 'edit-server)
@@ -641,9 +602,9 @@ before packages are loaded."
   (keychain-refresh-environment)
 
   (unless (display-graphic-p)
-      (require 'evil-terminal-cursor-changer)
-      (evil-terminal-cursor-changer-activate)
-      )
+    (require 'evil-terminal-cursor-changer)
+    (evil-terminal-cursor-changer-activate)
+  )
 
   (define-key evil-normal-state-map (kbd "C-o i") 'evil-jump-forward)
   (define-key evil-normal-state-map (kbd "C-o o") 'evil-jump-backward)
