@@ -56,12 +56,12 @@ shellcheck
 slurp
 spotify
 sway
+swatbg
 swayidle
 swaylock
 swaylock-blur
 terminus-font
 termsyn-font
-ttf-all-the-icons
 ttf-bitstream-vera
 ttf-dejavu
 ttf-freefont
@@ -71,7 +71,7 @@ ttf-liberation
 ttf-meslo
 ttf-opensans
 unzip
-vcsh-git
+vcsh
 veracrypt
 waybar
 wayland
