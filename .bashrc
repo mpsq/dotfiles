@@ -54,7 +54,7 @@ txtrst='\e[0m'    # Text Reset
 
 prompt_git="\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \"\|)\$(parse_git_branch)\$([[ -n \$(git branch 2> /dev/null) ]] && echo \|)"
 
-PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtrst\]\[$txtprl\]$prompt_git\[$txtrst\] = \[$txtcyn\]do\[$txtrst\] "
+export PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtrst\]\[$txtprl\]$prompt_git\[$txtrst\]\[$txtcyn\]\n= \[$txtrst\]"
 
 # Some Colours
 txtcyn='\e[0;36m' # Cyan
