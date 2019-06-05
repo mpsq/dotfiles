@@ -537,14 +537,14 @@ before packages are loaded."
   (display-time-mode 1)                 ; show time in mode line on startup
 
   ;; Make javascript better
-  (setq-default js2-basic-offset 2
+  (setq-default
+    js2-basic-offset 2
     js-indent-level 2
     typescript-indent-level 2
     js2-include-node-externs t
     js2-include-browser-externs t
     js2-bounce-indent-p t
     js2-auto-indent-p nil
-    ;; Let flycheck handle parse errors
     js2-mode-show-parse-errors nil
     js2-mode-show-strict-warnings nil
     web-mode-attr-indent-offset 2
@@ -571,28 +571,21 @@ before packages are loaded."
   (mouse-wheel-mode -1)
 
   ;; Custom invisible chars
-  (use-package whitespace
-    :ensure t
-    :config
-    (setq whitespace-style '(face spaces tabs tab-mark space-mark trailing))
-  )
+  (require 'whitespace)
+  (setq whitespace-style '(face spaces tabs tab-mark space-mark trailing))
 
   (eshell-git-prompt-use-theme 'git-radar)
 
-  (use-package all-the-icons-ivy :ensure t)
-
   ;; Exclude some sections from the powerline
-  (use-package spaceline-config
-    :ensure spaceline
-    :config
-    (spaceline-toggle-minor-modes-off)
-    (spaceline-toggle-projectile-root-on)
-    (spaceline-toggle-flycheck-error-on)
-    (spaceline-toggle-flycheck-info-on)
-    (spaceline-toggle-flycheck-warning-on)
-    (spaceline-toggle-version-control-on)
-    (spaceline-toggle-buffer-encoding-abbrev-off)
-  )
+  (require' spaceline)
+  (require' spaceline-config)
+  (spaceline-toggle-minor-modes-off)
+  (spaceline-toggle-projectile-root-on)
+  (spaceline-toggle-flycheck-error-on)
+  (spaceline-toggle-flycheck-info-on)
+  (spaceline-toggle-flycheck-warning-on)
+  (spaceline-toggle-version-control-on)
+  (spaceline-toggle-buffer-encoding-abbrev-off)
 
   ;; Emacs in Chromium
   (require 'edit-server)
