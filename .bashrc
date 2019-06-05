@@ -1,5 +1,15 @@
 # ~/.bashrc
 
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+alias ls="exa --color=auto"
+alias l="exa -lF --color=auto"
+alias la="exa -laF --color=auto"
+alias lah="exa -lah --color=auto"
+alias lsd='exa -lF --color=auto | grep "^d"'
+
 alias boum='git co master && git pull origin master'
 alias ..="cd .."
 alias ...="cd ../.."
@@ -26,19 +36,28 @@ shopt -s cmdhist
 # Shell only exists after the 10th consecutive Ctrl-d. Same as IGNOREEOF=10
 set -o ignoreeof
 
-# Add local binaries to path
-export PATH=$PATH:~/.local/bin:~/.yarn/bin:~/.cargo/bin
+# Git branch details
+function parse_git_dirty() {
+    [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]] && echo "*"
+}
 
-# Better history
-export HISTCONTROL="erasedups:ignoreboth"
-export HISTSIZE=100000
-export HISTFILESIZE=$HISTSIZE
-export HISTTIMEFORMAT='%F %T '
-# Don't record some commands
-export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
+function parse_git_branch() {
+    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+}
 
-# Default apps
-export EDITOR="emacsclient"
-export VISUAL="emacsclient -c -a emacs"
-export BROWSER="chromium"
-export GNUPGHOME="~/.gnupg"
+# Some Colours
+txtcyn='\e[0;36m' # Cyan
+txtprl='\e[1;35m' # Purple
+bldblu='\e[1;34m' # Bold Blue
+bldylw='\e[1;33m' # Bold Yellow
+txtrst='\e[0m'    # Text Reset
+
+prompt_git="\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \"\|)\$(parse_git_branch)\$([[ -n \$(git branch 2> /dev/null) ]] && echo \|)"
+
+PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtrst\]\[$txtprl\]$prompt_git\[$txtrst\] = \[$txtcyn\]do\[$txtrst\] "
+
+# Some Colours
+txtcyn='\e[0;36m' # Cyan
+bldblu='\e[1;34m' # Bold Blue
+bldylw='\e[1;33m' # Bold Yellow
+txtrst='\e[0m'    # Text Reset
