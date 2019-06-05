@@ -33,7 +33,7 @@ alias la="exa -laF --color=auto"
 alias lah="exa -lah --color=auto"
 alias lsd='exa -lF --color=auto | grep "^d"'
 
-alias kc='eval `keychain --eval --nogui --agents ssh,gpg id_rsa B78ABA26623D1326`'
+eval $(keychain --eval --quiet --agents ssh,gpg id_rsa B78ABA26623D1326)
 
 # Color man pages
 man() {
