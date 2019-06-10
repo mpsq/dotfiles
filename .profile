@@ -23,7 +23,7 @@ eval $(keychain --eval --quiet --nogui --agents ssh,gpg id_rsa B78ABA26623D1326)
 [ -r ~/.secrets ] && source ~/.secrets
 
 # Add local binaries to path
-export PATH=$PATH:~/.local/bin:~/.yarn/bin:~/.cargo/bin
+export PATH=$PATH:/home/meril/.local/bin:/home/meril/.yarn/bin:/home/meril/.cargo/bin
 
 # Better history
 export HISTCONTROL="erasedups:ignoreboth"
@@ -36,7 +36,7 @@ export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
 export EDITOR="emacsclient"
 export VISUAL="emacsclient -c -a emacs"
 export BROWSER="chromium"
-export GNUPGHOME="~/.gnupg"
+export GNUPGHOME="/home/meril/.gnupg"
 
 # Colours
 if type -P dircolors >/dev/null ; then

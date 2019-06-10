@@ -81,16 +81,33 @@ This function should only modify configuration layer settings."
                treemacs-fringe-indicator-mode t)
      yaml
      (javascript :variables
+                 js-indent-level 2
+                 js2-auto-indent-p nil
+                 js2-basic-offset 2
+                 js2-bounce-indent-p t
+                 js2-include-browser-externs t
+                 js2-include-node-externs t
+                 js2-mode-show-parse-errors nil
+                 js2-mode-show-strict-warnings nil
+                 web-mode-attr-indent-offset 2
+                 web-mode-code-indent-offset 2
+                 web-mode-css-indent-offset 2
+                 web-mode-enable-auto-indentation t
+                 web-mode-indent-style 2
+                 web-mode-markup-indent-offset 2
+                 javascript-backend 'lsp
                  javascript-fmt-on-save t
                  javascript-fmt-tool 'prettier
-                 javascript-backend 'lsp
+                 javascript-import-tool 'import-js
                  node-add-modules-path t)
      (rust :variables rust-backend 'lsp)
      (typescript :variables
+                 node-add-modules-path t
+                 typescript-backend 'lsp
                  typescript-fmt-on-save t
                  typescript-fmt-tool 'prettier
-                 typescript-backend 'lsp
-                 node-add-modules-path t)
+                 typescript-indent-level 2
+                 typescript-linter 'eslint)
      (version-control :variables
                       version-control-diff-tool 'git-gutter+
                       version-control-diff-side 'left
@@ -523,46 +540,20 @@ before packages are loaded."
   (setq create-lockfiles nil)
   (setq warning-suppress-types nil)
 
-  (unless (display-graphic-p)
-    (setq powerline-default-separator 'utf-8)
-  )
-
   (spacemacs/toggle-whitespace-globally-on)
+  (eshell-git-prompt-use-theme 'git-radar)
+
+  (define-key evil-normal-state-map (kbd "C-o i") 'evil-jump-forward)
+  (define-key evil-normal-state-map (kbd "C-o o") 'evil-jump-backward)
 
   ;; Mode line timestamp
   (setq display-time-24hr-format t)
-  (setq display-time-format "%H:%M:%S")        ; add seconds
-  (setq display-time-interval 1)               ; update every second
-  (setq display-time-mail-string "")           ; don't show mail
-  (display-time-mode 1)                 ; show time in mode line on startup
-
-  ;; Make javascript better
-  (setq-default
-    js2-basic-offset 2
-    js-indent-level 2
-    typescript-indent-level 2
-    js2-include-node-externs t
-    js2-include-browser-externs t
-    js2-bounce-indent-p t
-    js2-auto-indent-p nil
-    js2-mode-show-parse-errors nil
-    js2-mode-show-strict-warnings nil
-    web-mode-attr-indent-offset 2
-    web-mode-code-indent-offset 2
-    web-mode-css-indent-offset 2
-    web-mode-enable-auto-indentation t
-    web-mode-indent-style 2
-    web-mode-markup-indent-offset 2
-  )
+  (setq display-time-format "%H:%M:%S")
+  (setq display-time-interval 1)
+  (setq display-time-mail-string "")
+  (display-time-mode 1)
 
   (require 'flycheck)
-  (setq-default flycheck-disabled-checkers
-    (append flycheck-disabled-checkers
-      '(javascript-jshint json-python-json javascript-jshint
-        javascript-standard javascript-gjslint javascript-jscs)))
-  (setq-default flycheck-add-next-checker 'javascript-eslint)
-  (flycheck-add-mode 'javascript-eslint 'typescript-tsx-mode)
-  (flycheck-add-mode 'javascript-eslint 'web-mode)
   (set-face-attribute 'flycheck-error nil :background "pink" :foreground "red")
 
   ;; Disable mouse
@@ -573,8 +564,6 @@ before packages are loaded."
   ;; Custom invisible chars
   (require 'whitespace)
   (setq whitespace-style '(face spaces tabs tab-mark space-mark trailing))
-
-  (eshell-git-prompt-use-theme 'git-radar)
 
   ;; Exclude some sections from the powerline
   (require' spaceline)
@@ -598,10 +587,8 @@ before packages are loaded."
   (unless (display-graphic-p)
     (require 'evil-terminal-cursor-changer)
     (evil-terminal-cursor-changer-activate)
+    (setq powerline-default-separator 'utf-8)
   )
-
-  (define-key evil-normal-state-map (kbd "C-o i") 'evil-jump-forward)
-  (define-key evil-normal-state-map (kbd "C-o o") 'evil-jump-backward)
 )
 
 (defun dotspacemacs/emacs-custom-settings ()
@@ -620,7 +607,6 @@ This function is called at the very end of Spacemacs initialization."
     (systemd yapfify stickyfunc-enhance pytest pyenv-mode py-isort pippel pipenv pyvenv pip-requirements live-py-mode importmagic epc ctable concurrent deferred helm-pydoc helm-gtags helm-cscope xcscope ggtags cython-mode counsel-gtags company-anaconda anaconda-mode pythonic evil-collection writeroom-mode treemacs-evil tide orgit moe-theme magit-svn lsp-ui forge closql emacsql-sqlite emacsql evil-nerd-commenter evil-magit dumb-jump doom-themes doom-modeline browse-at-remote ample-theme ace-link lsp-mode counsel swiper flycheck helm ivy magit transient lv all-the-icons treemacs ace-window org-plus-contrib hydra yasnippet-snippets yaml-mode xterm-color ws-butler winum which-key wgrep web-mode web-beautify volatile-highlights visual-fill-column vi-tilde-fringe uuidgen use-package unfill typescript-mode treemacs-projectile toc-org tagedit symon string-inflection spaceline-all-the-icons smex smeargle slim-mode shrink-path shell-pop scss-mode sass-mode restart-emacs request rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode prettier-js popwin pfuture persp-mode pcre2el password-generator paradox overseer org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file nameless mwim multi-term move-text mmm-mode markdown-toc magithub magit-gitflow macrostep lorem-ipsum livid-mode link-hint kotlin-mode json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-purpose ivy-hydra indent-guide impatient-mode hungry-delete ht hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make helm-core gruvbox-theme google-translate golden-ratio gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flyspell-correct-ivy flycheck-pos-tip flycheck-flow flx-ido flow-minor-mode fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eslintd-fix eshell-z eshell-prompt-extras eshell-git-prompt esh-help emmet-mode elisp-slime-nav eldoc-eval editorconfig edit-server dotenv-mode disable-mouse diminish diff-hl define-word counsel-projectile counsel-css company-web company-tern company-statistics company-lsp column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile all-the-icons-ivy all-the-icons-dired aggressive-indent ac-ispell)))
  '(pdf-view-midnight-colors (quote ("#fdf4c1" . "#1d2021"))))
 (custom-set-faces
-
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
