@@ -1,7 +1,6 @@
 arc-gtk-theme
 archey3
 bash-completion
-capitaine-cursors
 chromium
 codespell
 cowsay
@@ -34,8 +33,6 @@ noto-fonts-cjk
 noto-fonts-emoji
 noto-fonts-extra
 ntp
-numix-circle-icon-theme-git
-numix-icon-theme-git
 nvm
 openvpn
 openvpn-nordvpn
@@ -46,6 +43,7 @@ pcsclite
 peek
 pinta
 playerctl
+pop-icon-theme-bin
 powertop
 redshift-wlr-gamma-control-git
 reflector
