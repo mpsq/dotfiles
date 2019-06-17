@@ -40,7 +40,7 @@ input * {
   xkb_layout gb
 }
 
-output "*" background ~/Pictures/bkg.png fill
+output "*" background $(xdg-user-dir PICTURES)/bkg.png fill
 
 output DP-1 {
   scale 2
