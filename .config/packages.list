@@ -1,3 +1,4 @@
+alacritty
 arc-gtk-theme
 archey3
 bash-completion
@@ -73,6 +74,7 @@ vcsh
 veracrypt
 waybar
 wayland
+xdg-user-dirs
 yay
 z
 zip
