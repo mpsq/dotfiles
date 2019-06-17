@@ -159,7 +159,7 @@ bindsym XF86AudioPrev exec playerctl previous
 
 bindsym Ctrl+Shift+Super_L exec --no-startup-id "swaylock-blur"
 bindsym --release $mod+Shift+s exec grim -g  \"$(slurp)\" ~/$(date +'%Y-%m-%d-%H%M%S_grim.png')
-bindsym $mod+d exec sakura --name=launcher -e "bash -c 'compgen -c | sort -u | fzf --no-extended --print-query | tail -n1 | xargs -r swaymsg -t command exec'"
+bindsym $mod+d exec $term -d 60 5 --title launcher --class launcher -e "launcher"
 for_window [app_id="^launcher$"] floating enable
 
 ### Run stuff
