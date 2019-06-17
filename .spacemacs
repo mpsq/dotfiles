@@ -40,6 +40,7 @@ This function should only modify configuration layer settings."
                       better-defaults-move-to-end-of-code-first t)
      colors
      dap
+     docker
      emacs-lisp
      git
      github
