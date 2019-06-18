@@ -49,7 +49,6 @@ powertop
 redshift-wlr-gamma-control-git
 reflector
 ripgrep
-sakura
 seahorse
 shellcheck
 slurp
@@ -58,7 +57,7 @@ sway
 swatbg
 swayidle
 swaylock
-swaylock-blur
+swaylock-blur-bin
 terminus-font
 termsyn-font
 ttf-bitstream-vera
