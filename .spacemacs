@@ -80,7 +80,6 @@ This function should only modify configuration layer settings."
                treemacs-follow-mode t
                treemacs-filewatch-mode t
                treemacs-fringe-indicator-mode t)
-     yaml
      (javascript :variables
                  js-indent-level 2
                  js2-auto-indent-p nil
@@ -102,6 +101,7 @@ This function should only modify configuration layer settings."
                  javascript-import-tool 'import-js
                  node-add-modules-path t)
      (rust :variables rust-backend 'lsp)
+     terraform
      (typescript :variables
                  node-add-modules-path t
                  typescript-backend 'lsp
@@ -113,6 +113,7 @@ This function should only modify configuration layer settings."
                       version-control-diff-tool 'git-gutter+
                       version-control-diff-side 'left
                       version-control-global-margin t)
+     yaml
      )
 
    ;; List of additional packages that will be installed without being
@@ -259,9 +260,9 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         doom-Iosvkem
                          spacemacs-dark
                          moe-dark
-                         gruvbox-dark-soft
                          )
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',

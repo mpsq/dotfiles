@@ -1,7 +1,7 @@
 # ~/.profile
 
 # Load keychain
-eval $(keychain --eval --quiet --nogui --agents ssh,gpg id_rsa B78ABA26623D1326)
+eval $(keychain --eval --quiet --nogui --agents ssh,gpg id_rsa id_ed25519 B78ABA26623D1326)
 
 # Load Hub
 [ -x "$(command -v hub)" ] && eval "$(hub alias -s)"
