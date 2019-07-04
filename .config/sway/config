@@ -157,7 +157,7 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-bindsym Ctrl+Shift+Super_L exec --no-startup-id "swaylock-blur"
+bindsym Ctrl+Shift+Super_L exec --no-startup-id "swaylock-blur --blur-sigma=40"
 bindsym --release $mod+Shift+s exec grim -g  \"$(slurp)\" ~/$(date +'%Y-%m-%d-%H%M%S_grim.png')
 bindsym $mod+d exec $term -d 60 5 --title launcher --class launcher -e "launcher"
 for_window [app_id="^launcher$"] floating enable
