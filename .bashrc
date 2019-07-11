@@ -48,6 +48,9 @@ man() {
 # Load auto-completion
 [ -r "/usr/share/bash-completion/bash_completion" ] && . /usr/share/bash-completion/bash_completion
 
+# Cmd not found?
+[ -r "/usr/share/doc/pkgfile/command-not-found.bash" ] && . /usr/share/doc/pkgfile/command-not-found.bash
+
 # Import fzf
 [ -r "/usr/share/fzf/key-bindings.bash" ] && . /usr/share/fzf/key-bindings.bash
 [ -r "/usr/share/fzf/completion.bash " ] && . /usr/share/fzf/completion.bash
