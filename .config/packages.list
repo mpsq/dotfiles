@@ -1,7 +1,10 @@
 alacritty
 arc-gtk-theme
 archey3
+aspell-en
+aspell-fr
 bash-completion
+ccid
 chromium
 codespell
 cowsay
@@ -23,6 +26,7 @@ keybase
 keychain
 lastpass
 libinput-gestures
+libu2f-host
 light
 lm_sensors
 lxappearance
@@ -40,7 +44,6 @@ openvpn-nordvpn
 otf-font-awesome
 p7zip
 pavucontrol
-pcsclite
 peek
 pinta
 playerctl
@@ -54,11 +57,10 @@ shellcheck
 slurp
 spotify
 sway
-swatbg
+swaybg
 swayidle
 swaylock
 swaylock-blur-bin
-terminus-font
 termsyn-font
 ttf-bitstream-vera
 ttf-dejavu
@@ -74,6 +76,7 @@ veracrypt
 waybar
 wayland
 xdg-user-dirs
+xorg-server-xwayland
 yay
 z
 zip

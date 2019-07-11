@@ -125,8 +125,6 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
    '(
-     all-the-icons
-     all-the-icons-ivy
      disable-mouse
      edit-server
      eshell-git-prompt
@@ -577,6 +575,11 @@ before packages are loaded."
   (require 'disable-mouse)
   (global-disable-mouse-mode)
   (mouse-wheel-mode -1)
+  (mapc #'disable-mouse-in-keymap
+        (list evil-motion-state-map
+              evil-normal-state-map
+              evil-visual-state-map
+              evil-insert-state-map))
 
   ;; Custom invisible chars
   (require 'whitespace)

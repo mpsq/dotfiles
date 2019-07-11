@@ -1,28 +1,67 @@
 # ~/.bashrc
 
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
+### Disable ctrl-s sending XOFF
+stty ixany
+stty ixoff -ixon
 
-alias ls="exa --color=auto"
-alias l="exa -lF --color=auto"
-alias la="exa -laF --color=auto"
-alias lah="exa -lah --color=auto"
-alias lsd='exa -lF --color=auto | grep "^d"'
+# Load keychain
+eval $(keychain --eval --quiet --nogui --agents ssh,gpg id_rsa id_ed25519 B78ABA26623D1326)
 
-alias boum='git co master && git pull origin master'
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
+# Colours
+if type -P dircolors >/dev/null ; then
+    LS_COLORS=
+
+    if [[ -f ~/.dir_colors ]] ; then
+        used_default_dircolors="no"
+        eval "$(dircolors -b ~/.dir_colors)"
+    else
+        used_default_dircolors="yes"
+        eval "$(dircolors -b)"
+    fi
+
+    if [[ -n ${LS_COLORS:+set} ]] ; then
+        use_color=true
+    fi
+
+    unset used_default_dircolors
+fi
+
+# Man pages
+man() {
+    env \
+        LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+        LESS_TERMCAP_md=$(printf "\e[1;31m") \
+        LESS_TERMCAP_me=$(printf "\e[0m") \
+        LESS_TERMCAP_se=$(printf "\e[0m") \
+        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+        LESS_TERMCAP_ue=$(printf "\e[0m") \
+        LESS_TERMCAP_us=$(printf "\e[1;32m") \
+        man "$@"
+}
+
+# Import z
+[ -r "/usr/share/z/z.sh" ] && . /usr/share/z/z.sh
+
+# Import nvm
+[ -r "/usr/share/nvm/init-nvm.sh" ] && . /usr/share/nvm/init-nvm.sh
+
+# Load auto-completion
+[ -r "/usr/share/bash-completion/bash_completion" ] && . /usr/share/bash-completion/bash_completion
+
+# Import fzf
+[ -r "/usr/share/fzf/key-bindings.bash" ] && . /usr/share/fzf/key-bindings.bash
+[ -r "/usr/share/fzf/completion.bash " ] && . /usr/share/fzf/completion.bash
+
+# Import any additional secrets
+[ -r ~/.secrets ] && . ~/.secrets
 
 # Bash won't get SIGWINCH if another process is in the foreground.
 # Enable checkwinsize so that bash will check the terminal size when
 # it regains control
 shopt -s checkwinsize
 
-# Disable completion when the input buffer is empty
-shopt -s no_empty_cmd_completion
+# Case-insensitive globbing (used in pathname expansion)
+shopt -s nocaseglob
 
 # Enable history appending instead of overwriting when exiting
 shopt -s histappend
