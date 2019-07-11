@@ -48,6 +48,7 @@ pkgfile
 playerctl
 pop-icon-theme-bin
 powertop
+pygmentize
 redshift-wlr-gamma-control-git
 reflector
 ripgrep
@@ -61,6 +62,7 @@ swayidle
 swaylock
 swaylock-blur-bin
 termsyn-font
+tokei
 ttf-bitstream-vera
 ttf-dejavu
 ttf-freefont

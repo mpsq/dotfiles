@@ -4,6 +4,8 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
+alias ccat="pygmentize"
+
 alias ls="exa --color=auto"
 alias l="exa -lF --color=auto"
 alias la="exa -laF --color=auto"
