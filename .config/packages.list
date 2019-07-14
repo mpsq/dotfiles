@@ -31,6 +31,7 @@ lm_sensors
 lxappearance
 mako
 nautilus
+networkmanager
 newsboat
 nm-connection-editor
 noto-fonts
@@ -38,6 +39,7 @@ noto-fonts-cjk
 noto-fonts-emoji
 noto-fonts-extra
 ntp
+numix-circle-arc-icons-git
 nvm
 otf-font-awesome
 p7zip
@@ -46,7 +48,6 @@ peek
 pinta
 pkgfile
 playerctl
-pop-icon-theme-bin
 powertop
 pygmentize
 redshift-wlr-gamma-control-git
@@ -65,7 +66,6 @@ termsyn-font
 tokei
 ttf-bitstream-vera
 ttf-dejavu
-ttf-freefont
 ttf-hack
 ttf-inconsolata
 ttf-liberation
