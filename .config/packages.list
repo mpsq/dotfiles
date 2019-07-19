@@ -4,6 +4,8 @@ archey3
 aspell-en
 aspell-fr
 bash-completion
+bluez
+bluez-utils
 ccid
 chromium
 codespell
@@ -15,6 +17,7 @@ fd
 firefox
 fzf
 glances
+gnu-free-fonts
 grim
 gst-plugins-bad
 gst-plugins-base
@@ -49,6 +52,9 @@ pinta
 pkgfile
 playerctl
 powertop
+pulseaudio
+pulseaudio-alsa
+pulseaudio-bluetooth
 pygmentize
 redshift-wlr-gamma-control-git
 reflector
