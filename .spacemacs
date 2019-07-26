@@ -136,7 +136,6 @@ This function should only modify configuration layer settings."
 
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '(
-                                    helm
                                     magit-svn
                                     tern
                                     tide
@@ -281,8 +280,8 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-colorize-cursor-according-to-state t
 
    ;; Default font or prioritized list of fonts.
-   dotspacemacs-default-font '("Melso LG S"
-                               :size 12
+   dotspacemacs-default-font '("Meslo LG S"
+                               :size 8.5
                                :weight normal
                                :width normal)
 
