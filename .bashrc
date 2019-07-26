@@ -4,7 +4,7 @@
 stty ixany
 stty ixoff -ixon
 
-eval $(keychain --eval --quiet --nogui --agents ssh,gpg id_rsa id_ed25519 B78ABA26623D1326)
+eval $(keychain --eval --quiet --quick --nogui --ignore-missing --agents ssh,gpg id_rsa id_ed25519 B78ABA26623D1326)
 
 # Colours
 if type -P dircolors >/dev/null ; then

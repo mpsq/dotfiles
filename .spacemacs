@@ -534,6 +534,7 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
+  (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
   (setq configuration-layer-elpa-archives '(("melpa" . "melpa.org/packages/")
       ("org" . "orgmode.org/elpa/") ("gnu" . "elpa.gnu.org/packages/")))
   )
