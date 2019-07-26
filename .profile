@@ -1,8 +1,8 @@
 # ~/.profile
 
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
+alias grep="grep --color=auto"
+alias egrep="egrep --color=auto"
+alias fgrep="fgrep --color=auto"
 
 alias ccat="pygmentize"
 
@@ -12,7 +12,8 @@ alias la="exa -laF --color=auto"
 alias lah="exa -lah --color=auto"
 alias lsd='exa -lF --color=auto | grep "^d"'
 
-alias boum='git co master && git pull origin master'
+alias boum="git co master && git pull origin master"
+alias fire="DISPLAY= cacafire"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
