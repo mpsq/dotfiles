@@ -34,7 +34,6 @@ bar {
 
 ### Input/output
 #
-
 input * {
   tap enabled
   xkb_layout gb
@@ -55,7 +54,7 @@ output DP-1 {
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c reload
-bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+Shift+e exec swaynag -t warning -m 'Do you really want to exit Sway?' -b 'Yes, exit sway' 'swaymsg exit'
 floating_modifier $mod normal
 
 #

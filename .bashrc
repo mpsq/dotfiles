@@ -1,10 +1,9 @@
 # ~/.bashrc
 
-### Disable ctrl-s sending XOFF
+# Disable ctrl-s sending XOFF
 stty ixany
 stty ixoff -ixon
 
-# Load keychain
 eval $(keychain --eval --quiet --nogui --agents ssh,gpg id_rsa id_ed25519 B78ABA26623D1326)
 
 # Colours
@@ -14,9 +13,6 @@ if type -P dircolors >/dev/null ; then
     if [[ -f ~/.dir_colors ]] ; then
         used_default_dircolors="no"
         eval "$(dircolors -b ~/.dir_colors)"
-    else
-        used_default_dircolors="yes"
-        eval "$(dircolors -b)"
     fi
 
     if [[ -n ${LS_COLORS:+set} ]] ; then
@@ -39,23 +35,17 @@ man() {
         man "$@"
 }
 
-# Import z
 [ -r "/usr/share/z/z.sh" ] && . /usr/share/z/z.sh
 
-# Import nvm
 [ -r "/usr/share/nvm/init-nvm.sh" ] && . /usr/share/nvm/init-nvm.sh
 
-# Load auto-completion
 [ -r "/usr/share/bash-completion/bash_completion" ] && . /usr/share/bash-completion/bash_completion
 
-# Cmd not found?
 [ -r "/usr/share/doc/pkgfile/command-not-found.bash" ] && . /usr/share/doc/pkgfile/command-not-found.bash
 
-# Import fzf
 [ -r "/usr/share/fzf/key-bindings.bash" ] && . /usr/share/fzf/key-bindings.bash
 [ -r "/usr/share/fzf/completion.bash " ] && . /usr/share/fzf/completion.bash
 
-# Import any additional secrets
 [ -r ~/.secrets ] && . ~/.secrets
 
 # Bash won't get SIGWINCH if another process is in the foreground.
@@ -78,7 +68,6 @@ shopt -s cmdhist
 # Shell only exists after the 10th consecutive Ctrl-d. Same as IGNOREEOF=10
 set -o ignoreeof
 
-# Git branch details
 function parse_git_dirty() {
     [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]] && echo "*"
 }
@@ -97,9 +86,3 @@ txtrst='\e[0m'    # Text Reset
 prompt_git="\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \"\|)\$(parse_git_branch)\$([[ -n \$(git branch 2> /dev/null) ]] && echo \|)"
 
 export PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtrst\]\[$txtprl\]$prompt_git\[$txtrst\]\[$txtcyn\]\n= \[$txtrst\]"
-
-# Some Colours
-txtcyn='\e[0;36m' # Cyan
-bldblu='\e[1;34m' # Bold Blue
-bldylw='\e[1;33m' # Bold Yellow
-txtrst='\e[0m'    # Text Reset
