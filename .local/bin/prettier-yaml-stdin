@@ -1,0 +1,1 @@
+prettier --parser=markdown --prose-wrap=always --stdin
