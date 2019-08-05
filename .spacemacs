@@ -97,6 +97,7 @@ This function should only modify configuration layer settings."
                  web-mode-indent-style 2
                  web-mode-markup-indent-offset 2
                  javascript-backend 'lsp
+                 javascript-fmt-on-save t
                  javascript-fmt-tool 'prettier
                  javascript-import-tool 'import-js
                  node-add-modules-path t)
@@ -105,6 +106,7 @@ This function should only modify configuration layer settings."
      (typescript :variables
                  node-add-modules-path t
                  typescript-backend 'lsp
+                 typescript-fmt-on-save t
                  typescript-fmt-tool 'prettier
                  typescript-indent-level 2
                  typescript-linter 'eslint)
@@ -127,7 +129,6 @@ This function should only modify configuration layer settings."
      disable-mouse
      edit-server
      eshell-git-prompt
-     eslintd-fix
      evil-terminal-cursor-changer
      keychain-environment
      )
@@ -575,9 +576,6 @@ before packages are loaded."
   (flycheck-add-mode 'javascript-eslint 'typescript-tsx-mode)
   (flycheck-add-mode 'javascript-eslint 'typescript-mode)
   (flycheck-add-mode 'javascript-eslint 'web-mode)
-  (add-hook 'js2-mode-hook 'eslintd-fix-mode)
-  (add-hook 'typescript-mode-hook'eslintd-fix-mode)
-  (add-hook 'typescript-tsx-mode-hook'eslintd-fix-mode)
   (set-face-attribute 'flycheck-error nil :background "pink" :foreground "red")
 
   ;; Disable mouse
