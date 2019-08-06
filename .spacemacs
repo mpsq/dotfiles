@@ -57,11 +57,12 @@ This function should only modify configuration layer settings."
           ivy-fixed-height-minibuffer t
           ivy-enable-advanced-buffer-information t
           ivy-initial-inputs-alist nil
-          ;; highlight til EOL
           ivy-format-function #'ivy-format-function-line
           ivy-magic-slash-non-match-action nil)
      (json :variables json-fmt-tool 'prettier)
-     lsp
+     (lsp :variables
+          lsp-ui-sideline-show-symbol t
+          lsp-ui-flycheck-enable nil)
      markdown
      multiple-cursors
      nginx
@@ -82,6 +83,10 @@ This function should only modify configuration layer settings."
                treemacs-filewatch-mode t
                treemacs-fringe-indicator-mode t)
      (javascript :variables
+                 javascript-backend 'lsp
+                 javascript-fmt-on-save nil
+                 javascript-fmt-tool 'prettier
+                 javascript-import-tool 'import-js
                  js-indent-level 2
                  js2-auto-indent-p nil
                  js2-basic-offset 2
@@ -90,23 +95,19 @@ This function should only modify configuration layer settings."
                  js2-include-node-externs t
                  js2-mode-show-parse-errors nil
                  js2-mode-show-strict-warnings nil
+                 node-add-modules-path t
                  web-mode-attr-indent-offset 2
                  web-mode-code-indent-offset 2
                  web-mode-css-indent-offset 2
                  web-mode-enable-auto-indentation t
                  web-mode-indent-style 2
-                 web-mode-markup-indent-offset 2
-                 javascript-backend 'lsp
-                 javascript-fmt-on-save t
-                 javascript-fmt-tool 'prettier
-                 javascript-import-tool 'import-js
-                 node-add-modules-path t)
+                 web-mode-markup-indent-offset 2)
      (rust :variables rust-backend 'lsp)
      terraform
      (typescript :variables
                  node-add-modules-path t
                  typescript-backend 'lsp
-                 typescript-fmt-on-save t
+                 typescript-fmt-on-save nil
                  typescript-fmt-tool 'prettier
                  typescript-indent-level 2
                  typescript-linter 'eslint)
@@ -129,6 +130,7 @@ This function should only modify configuration layer settings."
      disable-mouse
      edit-server
      eshell-git-prompt
+     eslintd-fix
      evil-terminal-cursor-changer
      keychain-environment
      )
@@ -263,7 +265,9 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         kaolin-valley-dark
                          spacemacs-dark
+                         spacemacs-light
                          moe-dark
                          )
 
@@ -557,7 +561,6 @@ before packages are loaded."
   (setq create-lockfiles nil)
   (setq warning-suppress-types nil)
 
-  (spacemacs/toggle-whitespace-globally-on)
   (eshell-git-prompt-use-theme 'git-radar)
 
   (define-key evil-normal-state-map (kbd "C-o i") 'evil-jump-forward)
@@ -572,11 +575,17 @@ before packages are loaded."
 
   ;; JS/TS Linting
   (require 'flycheck)
-  (setq-default flycheck-add-next-checker 'javascript-eslint)
-  (flycheck-add-mode 'javascript-eslint 'typescript-tsx-mode)
-  (flycheck-add-mode 'javascript-eslint 'typescript-mode)
-  (flycheck-add-mode 'javascript-eslint 'web-mode)
-  (set-face-attribute 'flycheck-error nil :background "pink" :foreground "red")
+  (setq-default flycheck-disabled-checkers
+                (append flycheck-disabled-checkers
+                        '(javascript-jshint json-python-json javascript-jshint typescript-tslint
+                          javascript-standard javascript-gjslint javascript-jscs)))
+  (add-hook 'js2-mode-hook 'eslintd-fix-mode)
+  (add-hook 'js2-mode-hook 'whitespace-mode)
+  (add-hook 'typescript-mode-hook 'eslintd-fix-mode)
+  (add-hook 'typescript-mode-hook 'whitespace-mode)
+  (add-hook 'typescript-tsx-mode-hook 'eslintd-fix-mode)
+  (add-hook 'typescript-tsx-mode-hook 'whitespace-mode)
+  (set-face-attribute 'flycheck-error nil :background "#ff6666" :foreground "#fff")
 
   ;; Disable mouse
   (require 'disable-mouse)
@@ -587,10 +596,6 @@ before packages are loaded."
               evil-normal-state-map
               evil-visual-state-map
               evil-insert-state-map))
-
-  ;; Custom invisible chars
-  (require 'whitespace)
-  (setq whitespace-style '(face spaces tabs tab-mark space-mark trailing))
 
   ;; Exclude some sections from the powerline
   (require' spaceline)
@@ -616,6 +621,9 @@ before packages are loaded."
     (evil-terminal-cursor-changer-activate)
     (setq powerline-default-separator 'utf-8)
   )
+
+  ;; Custom invisible chars
+  (setq whitespace-style '(face spaces tabs tab-mark space-mark trailing))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
