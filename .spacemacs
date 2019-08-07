@@ -84,7 +84,7 @@ This function should only modify configuration layer settings."
                treemacs-fringe-indicator-mode t)
      (javascript :variables
                  javascript-backend 'lsp
-                 javascript-fmt-on-save nil
+                 javascript-fmt-on-save t
                  javascript-fmt-tool 'prettier
                  javascript-import-tool 'import-js
                  js-indent-level 2
@@ -107,7 +107,7 @@ This function should only modify configuration layer settings."
      (typescript :variables
                  node-add-modules-path t
                  typescript-backend 'lsp
-                 typescript-fmt-on-save nil
+                 typescript-fmt-on-save t
                  typescript-fmt-tool 'prettier
                  typescript-indent-level 2
                  typescript-linter 'eslint)
@@ -579,12 +579,6 @@ before packages are loaded."
                 (append flycheck-disabled-checkers
                         '(javascript-jshint json-python-json javascript-jshint typescript-tslint
                           javascript-standard javascript-gjslint javascript-jscs)))
-  (add-hook 'js2-mode-hook 'eslintd-fix-mode)
-  (add-hook 'js2-mode-hook 'whitespace-mode)
-  (add-hook 'typescript-mode-hook 'eslintd-fix-mode)
-  (add-hook 'typescript-mode-hook 'whitespace-mode)
-  (add-hook 'typescript-tsx-mode-hook 'eslintd-fix-mode)
-  (add-hook 'typescript-tsx-mode-hook 'whitespace-mode)
   (set-face-attribute 'flycheck-error nil :background "#ff6666" :foreground "#fff")
 
   ;; Disable mouse
@@ -624,6 +618,9 @@ before packages are loaded."
 
   ;; Custom invisible chars
   (setq whitespace-style '(face spaces tabs tab-mark space-mark trailing))
+  (add-hook 'js2-mode-hook 'whitespace-mode)
+  (add-hook 'typescript-mode-hook 'whitespace-mode)
+  (add-hook 'typescript-tsx-mode-hook 'whitespace-mode)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
