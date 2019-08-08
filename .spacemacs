@@ -75,7 +75,7 @@ This function should only modify configuration layer settings."
             shell-default-position 'bottom)
      spell-checking
      sql
-     syntax-checking
+     (syntax-checking :variables syntax-checking-enable-by-default nil)
      systemd
      (treemacs :variables
                treemacs-no-png-images t
@@ -579,6 +579,7 @@ before packages are loaded."
                 (append flycheck-disabled-checkers
                         '(javascript-jshint json-python-json javascript-jshint typescript-tslint
                           javascript-standard javascript-gjslint javascript-jscs)))
+  (advice-add 'flycheck-eslint-config-exists-p :override (lambda() t))
   (set-face-attribute 'flycheck-error nil :background "#ff6666" :foreground "#fff")
 
   ;; Disable mouse
