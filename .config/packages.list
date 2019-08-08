@@ -9,6 +9,9 @@ bluez-utils
 ccid
 chromium
 codespell
+docker
+docker-compose
+docker-machine
 emacs
 eog
 evince
@@ -28,7 +31,6 @@ keybase
 keychain
 lastpass
 libinput-gestures
-libu2f-host
 light
 lm_sensors
 lxappearance
@@ -70,6 +72,7 @@ swaybg
 swayidle
 swaylock
 swaylock-blur-bin
+systemd-swap
 termsyn-font
 tokei
 ttf-bitstream-vera
