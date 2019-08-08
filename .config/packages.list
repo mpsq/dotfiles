@@ -27,6 +27,7 @@ gst-plugins-base
 gst-plugins-base-libs
 gst-plugins-good
 gst-plugins-ugly
+jq
 keybase
 keychain
 lastpass
