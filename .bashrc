@@ -6,7 +6,13 @@ stty ixoff -ixon
 
 eval $(keychain --eval --quiet --quick --nogui --ignore-missing --agents ssh,gpg id_rsa id_ed25519 B78ABA26623D1326)
 
-# Colours
+# Some Colours
+txtcyn='\e[0;36m' # Cyan
+txtprl='\e[1;35m' # Purple
+bldblu='\e[1;34m' # Bold Blue
+bldylw='\e[1;33m' # Bold Yellow
+txtrst='\e[0m'    # Text Reset
+
 if type -P dircolors >/dev/null ; then
     LS_COLORS=
 
@@ -34,19 +40,6 @@ man() {
         LESS_TERMCAP_us=$(printf "\e[1;32m") \
         man "$@"
 }
-
-[ -r "/usr/share/z/z.sh" ] && . /usr/share/z/z.sh
-
-[ -r "/usr/share/nvm/init-nvm.sh" ] && . /usr/share/nvm/init-nvm.sh
-
-[ -r "/usr/share/bash-completion/bash_completion" ] && . /usr/share/bash-completion/bash_completion
-
-[ -r "/usr/share/doc/pkgfile/command-not-found.bash" ] && . /usr/share/doc/pkgfile/command-not-found.bash
-
-[ -r "/usr/share/fzf/key-bindings.bash" ] && . /usr/share/fzf/key-bindings.bash
-[ -r "/usr/share/fzf/completion.bash " ] && . /usr/share/fzf/completion.bash
-
-[ -r ~/.secrets ] && . ~/.secrets
 
 # Bash won't get SIGWINCH if another process is in the foreground.
 # Enable checkwinsize so that bash will check the terminal size when
@@ -76,13 +69,15 @@ function parse_git_branch() {
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
 
-# Some Colours
-txtcyn='\e[0;36m' # Cyan
-txtprl='\e[1;35m' # Purple
-bldblu='\e[1;34m' # Bold Blue
-bldylw='\e[1;33m' # Bold Yellow
-txtrst='\e[0m'    # Text Reset
-
 prompt_git="\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \"\|)\$(parse_git_branch)\$([[ -n \$(git branch 2> /dev/null) ]] && echo \|)"
 
 export PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtrst\]\[$txtprl\]$prompt_git\[$txtrst\]\[$txtcyn\]\n= \[$txtrst\]"
+
+# Source things
+[ -r "~/.secrets" ] && . ~/.secrets
+[ -r "/usr/share/bash-completion/bash_completion" ] && . /usr/share/bash-completion/bash_completion
+[ -r "/usr/share/doc/pkgfile/command-not-found.bash" ] && . /usr/share/doc/pkgfile/command-not-found.bash
+[ -r "/usr/share/fzf/completion.bash " ] && . /usr/share/fzf/completion.bash
+[ -r "/usr/share/fzf/key-bindings.bash" ] && . /usr/share/fzf/key-bindings.bash
+[ -r "/usr/share/nvm/init-nvm.sh" ] && . /usr/share/nvm/init-nvm.sh
+[ -r "/usr/share/z/z.sh" ] && . /usr/share/z/z.sh
