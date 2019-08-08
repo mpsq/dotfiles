@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+N=$(swaymsg -t get_workspaces | jq '.[] | select(.focused==true).name' | cut -d"\"" -f2 | xargs -n1 | awk '{print $1+1}' | xargs)
+swaymsg workspace "$N"
