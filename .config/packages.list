@@ -72,7 +72,6 @@ sway
 swaybg
 swayidle
 swaylock
-swaylock-blur-bin
 systemd-swap
 termsyn-font
 tokei
