@@ -169,10 +169,10 @@ exec_always import-gsettings \
   cursor-theme:gtk-cursor-theme-name
 
 exec swayidle -w \
-  timeout 300 'swaylock-blur' \
+  timeout 300 'swaylock' \
   timeout 600 'swaymsg "output * dpms off"' \
   resume 'swaymsg "output * dpms on"' \
-  before-sleep 'swaylock-blur'
+  before-sleep 'swaylock'
 
 exec "redshift"
 exec "mako"
