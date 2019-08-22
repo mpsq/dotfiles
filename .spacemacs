@@ -140,6 +140,7 @@ This function should only modify configuration layer settings."
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '(
                                     magit-svn
+                                    smartparens
                                     tern
                                     tide
                                     )
