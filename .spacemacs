@@ -265,12 +265,11 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         doom-opera
+                         kaolin-valley-dark
+                         moe-dark
                          kaolin-bubblegum
                          kaolin-dark
-                         kaolin-valley-dark
                          spacemacs-dark
-                         moe-dark
                          spacemacs-light
                          moe-light
                          )
@@ -544,7 +543,6 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
-  (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
   (setq configuration-layer-elpa-archives '(("melpa" . "melpa.org/packages/")
       ("org" . "orgmode.org/elpa/") ("gnu" . "elpa.gnu.org/packages/")))
   )
@@ -620,12 +618,6 @@ before packages are loaded."
     (evil-terminal-cursor-changer-activate)
     (setq powerline-default-separator 'utf-8)
   )
-
-  ;; Custom invisible chars
-  (setq whitespace-style '(face spaces tabs tab-mark space-mark trailing))
-  (add-hook 'js2-mode-hook 'whitespace-mode)
-  (add-hook 'typescript-mode-hook 'whitespace-mode)
-  (add-hook 'typescript-tsx-mode-hook 'whitespace-mode)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
