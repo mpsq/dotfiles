@@ -177,5 +177,6 @@ exec swayidle -w \
 exec "redshift"
 exec "mako"
 exec "libinput-gestures-setup start"
+exec "fetch-img"
 
 include @sysconfdir@/sway/config.d/*

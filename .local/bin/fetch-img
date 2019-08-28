@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+IMG=$(xdg-user-dir PICTURES)
+
+wget --output-document="${IMG}"/lock.png https://cldup.com/7Qa2UHQl2q.png
+wget --output-document="${IMG}"/bkg.png https://cldup.com/V_NHFTiAzN.png
