@@ -73,7 +73,7 @@ This function should only modify configuration layer settings."
             shell-default-term-shell "/bin/bash"
             shell-default-height 30
             shell-default-position 'bottom)
-     spell-checking
+     (spell-checking :variables enable-flyspell-auto-completion t)
      sql
      (syntax-checking :variables syntax-checking-enable-by-default nil)
      systemd
@@ -619,6 +619,8 @@ before packages are loaded."
     (evil-terminal-cursor-changer-activate)
     (setq powerline-default-separator 'utf-8)
   )
+
+  (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
