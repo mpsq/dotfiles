@@ -7,6 +7,8 @@ set $bg #8a8a8a
 set $fg #8a8a8a
 set $fc #5faf87
 
+set $satie_laptop 'Sharp Corporation 0x149A 0x00000000'
+
 font pango:"Meslo LG S" 8
 
 gaps inner 5
@@ -41,8 +43,9 @@ input * {
 
 output "*" background $(xdg-user-dir PICTURES)/bkg.png fill
 
-output DP-1 {
+output 'Samsung Electric Company U28E590 HTPKB05554' {
   scale 2
+  subpixel rgb
 }
 
 ### Key bindings
@@ -176,6 +179,7 @@ exec swayidle -w \
 
 exec "redshift"
 exec "mako"
+exec "kanshi"
 exec "libinput-gestures-setup start"
 exec "fetch-img"
 
