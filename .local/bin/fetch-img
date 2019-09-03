@@ -4,6 +4,6 @@ IMG=$(xdg-user-dir PICTURES)
 ONLINE=$(ping -q -w1 -c1 cldup.com &>/dev/null && echo OK || echo KO)
 
 if [ "$ONLINE" == "OK" ] ; then
-  wget --output-document="${IMG}"/lock.png https://cldup.com/7Qa2UHQl2q.png
+  wget --output-document="${IMG}"/lock.png https://cldup.com/Ou_vLwxF_s.png
   wget --output-document="${IMG}"/bkg.png https://cldup.com/V_NHFTiAzN.png
 fi

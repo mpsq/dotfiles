@@ -177,10 +177,10 @@ exec swayidle -w \
   resume 'swaymsg "output * dpms on"' \
   before-sleep 'swaylock'
 
-exec "redshift"
-exec "mako"
-exec "kanshi"
-exec "libinput-gestures-setup start"
-exec "fetch-img"
+exec --no-startup-id "redshift"
+exec --no-startup-id "mako"
+exec --no-startup-id "kanshi"
+exec --no-startup-id "libinput-gestures-setup start"
+exec --no-startup-id "fetch-img"
 
 include @sysconfdir@/sway/config.d/*
