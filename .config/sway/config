@@ -5,7 +5,7 @@ set $term alacritty
 
 set $bg #8a8a8a
 set $fg #8a8a8a
-set $fc #5faf87
+set $fc #af005f
 
 set $satie_laptop 'Sharp Corporation 0x149A 0x00000000'
 
