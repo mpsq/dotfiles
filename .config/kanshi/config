@@ -2,7 +2,6 @@
   output eDP-1 disable
   output "Samsung Electric Company U28E590 HTPKB05554" mode 3840x2160 enable scale 2
 }
-
 {
   output eDP-1 enable
 }
