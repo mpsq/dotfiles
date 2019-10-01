@@ -128,8 +128,8 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
    '(
+     atomic-chrome
      disable-mouse
-     edit-server
      eshell-git-prompt
      eslintd-fix
      evil-terminal-cursor-changer
@@ -610,9 +610,8 @@ before packages are loaded."
   (spaceline-toggle-buffer-encoding-abbrev-off)
 
   ;; Emacs in Chromium
-  (require 'edit-server)
-  (setq edit-server-new-frame nil)
-  (edit-server-start)
+  (require 'atomic-chrome)
+  (atomic-chrome-start-server)
 
   (require 'keychain-environment)
   (keychain-refresh-environment)
