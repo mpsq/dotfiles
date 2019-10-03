@@ -269,12 +269,9 @@ It should only modify the values of Spacemacs settings."
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
                          nimbus
-                         kaolin-valley-dark
                          moe-dark
-                         kaolin-bubblegum
-                         kaolin-dark
                          spacemacs-dark
-                         spacemacs-light
+                         kaolin-valley-light
                          moe-light
                          )
 
@@ -581,12 +578,11 @@ before packages are loaded."
 
   ;; JS/TS Linting
   (require 'flycheck)
-  (setq-default flycheck-disabled-checkers
-                (append flycheck-disabled-checkers
-                        '(javascript-jshint json-python-json javascript-jshint typescript-tslint
-                          javascript-standard javascript-gjslint javascript-jscs)))
-  (advice-add 'flycheck-eslint-config-exists-p :override (lambda() t))
+  ;;(advice-add 'flycheck-eslint-config-exists-p :override (lambda() t))
   (set-face-attribute 'flycheck-error nil :background "#ff6666" :foreground "#fff")
+
+  ;; LSP
+  (setq company-lsp-cache-candidates t)
 
   ;; Disable mouse
   (require 'disable-mouse)
