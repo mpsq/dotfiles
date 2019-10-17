@@ -50,15 +50,12 @@ This function should only modify configuration layer settings."
            scss-enable-lsp t
            less-enable-lsp t)
      (ivy :variables
-          ivy-height 12
-          ivy-do-completion-in-region nil
           ivy-wrap t
           ivy-display-style 'fancy
           ivy-fixed-height-minibuffer t
           ivy-enable-advanced-buffer-information t
           ivy-initial-inputs-alist nil
-          ivy-format-function #'ivy-format-function-line
-          ivy-magic-slash-non-match-action nil)
+          ivy-format-function #'ivy-format-function-line)
      (json :variables json-fmt-tool 'prettier)
      (lsp :variables
           lsp-ui-sideline-show-symbol t
@@ -75,7 +72,9 @@ This function should only modify configuration layer settings."
             shell-default-height 30
             shell-default-position 'bottom)
      shell-scripts
-     (spell-checking :variables enable-flyspell-auto-completion t)
+     (spell-checking :variables
+                     spell-checking-enable-by-default nil
+                     enable-flyspell-auto-completion t)
      sql
      (syntax-checking :variables syntax-checking-enable-by-default nil)
      systemd
