@@ -613,6 +613,13 @@ before packages are loaded."
   (require 'keychain-environment)
   (keychain-refresh-environment)
 
+  (require 'kaolin-themes)
+  (setq kaolin-themes-distinct-fringe t)
+  (setq kaolin-themes-git-gutter-solid t)
+  (setq kaolin-themes-distinct-company-scrollbar t)
+  (setq kaolin-themes-italic-comments t)
+  (setq kaolin-themes-underline-wave nil)
+
   (unless (display-graphic-p)
     (require 'evil-terminal-cursor-changer)
     (evil-terminal-cursor-changer-activate)
