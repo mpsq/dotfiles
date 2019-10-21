@@ -26,7 +26,6 @@ This function should only modify configuration layer settings."
    ;; a layer lazily. (default t)
    dotspacemacs-ask-for-lazy-installation t
 
-   ;; If non-nil layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
    dotspacemacs-configuration-layer-path '()
@@ -110,8 +109,7 @@ This function should only modify configuration layer settings."
                  typescript-backend 'lsp
                  typescript-fmt-on-save t
                  typescript-fmt-tool 'prettier
-                 typescript-indent-level 2
-                 typescript-linter 'eslint)
+                 typescript-indent-level 2)
      (version-control :variables
                       version-control-diff-tool 'git-gutter+
                       version-control-diff-side 'left
@@ -128,13 +126,13 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
    '(
+     all-the-icons
+     all-the-icons-ivy
      atomic-chrome
      disable-mouse
      eshell-git-prompt
-     eslintd-fix
      evil-terminal-cursor-changer
      keychain-environment
-     nimbus-theme
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -207,8 +205,8 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-use-spacelpa nil
 
    ;; If non-nil then verify the signature for downloaded Spacelpa archives.
-   ;; (default nil)
-   dotspacemacs-verify-spacelpa-archives nil
+   ;; (default t)
+   dotspacemacs-verify-spacelpa-archives t
 
    ;; If non-nil then spacemacs will check for updates at startup
    ;; when the current branch is not `develop'. Note that checking for
@@ -228,9 +226,6 @@ It should only modify the values of Spacemacs settings."
    ;; section of the documentation for details on available variables.
    ;; (default 'vim)
    dotspacemacs-editing-style 'vim
-
-   ;; If non-nil output loading progress in `*Messages*' buffer. (default nil)
-   dotspacemacs-verbose-loading nil
 
    ;; Specify the startup banner. Default value is `official', it displays
    ;; the official spacemacs logo. An integer value is the index of text
@@ -270,7 +265,6 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-themes '(
                          kaolin-temple
                          moe-dark
-                         nimbus
                          spacemacs-dark
                          kaolin-valley-light
                          moe-light
@@ -544,9 +538,6 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-
-  (setq configuration-layer-elpa-archives '(("melpa" . "melpa.org/packages/")
-      ("org" . "orgmode.org/elpa/") ("gnu" . "elpa.gnu.org/packages/")))
   )
 
 (defun dotspacemacs/user-load ()
@@ -569,6 +560,9 @@ before packages are loaded."
 
   (define-key evil-normal-state-map (kbd "C-o i") 'evil-jump-forward)
   (define-key evil-normal-state-map (kbd "C-o o") 'evil-jump-backward)
+
+  ;; Add icons to ivy
+  (all-the-icons-ivy-setup)
 
   ;; Mode line timestamp
   (setq display-time-24hr-format t)
