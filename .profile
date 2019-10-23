@@ -36,3 +36,7 @@ export EDITOR="em"
 export VISUAL="em"
 export BROWSER="chromium"
 export GNUPGHOME="/home/meril/.gnupg"
+
+# Wayland apps
+export XDG_SESSION_TYPE=wayland
+export MOZ_ENABLE_WAYLAND=1

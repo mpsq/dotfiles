@@ -8,4 +8,8 @@
 }
 {
   output eDP-1 enable
+  output "Samsung Electric Company SAMSUNG 0x00000F00" mode 1920x1080 enable scale 1
+}
+{
+  output eDP-1 enable
 }
