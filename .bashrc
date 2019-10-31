@@ -1,43 +1,33 @@
+#!/usr/bin/env bash
 # ~/.bashrc
+# shellcheck disable=SC1091,SC1090
 
 # Disable ctrl-s sending XOFF
 stty ixany
 stty ixoff -ixon
 
-eval $(keychain --eval --quiet --quick --nogui --ignore-missing --agents ssh,gpg id_rsa id_ed25519 B78ABA26623D1326)
-
 # Some Colours
 txtcyn='\e[0;36m' # Cyan
 txtprl='\e[1;35m' # Purple
 bldblu='\e[1;34m' # Bold Blue
-bldylw='\e[1;33m' # Bold Yellow
 txtrst='\e[0m'    # Text Reset
 
 if type -P dircolors >/dev/null ; then
-    LS_COLORS=
-
     if [[ -f ~/.dir_colors ]] ; then
-        used_default_dircolors="no"
         eval "$(dircolors -b ~/.dir_colors)"
     fi
-
-    if [[ -n ${LS_COLORS:+set} ]] ; then
-        use_color=true
-    fi
-
-    unset used_default_dircolors
 fi
 
 # Man pages
 man() {
     env \
-        LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-        LESS_TERMCAP_md=$(printf "\e[1;31m") \
-        LESS_TERMCAP_me=$(printf "\e[0m") \
-        LESS_TERMCAP_se=$(printf "\e[0m") \
-        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-        LESS_TERMCAP_ue=$(printf "\e[0m") \
-        LESS_TERMCAP_us=$(printf "\e[1;32m") \
+        LESS_TERMCAP_mb="$(printf "\e[1;31m")" \
+        LESS_TERMCAP_md="$(printf "\e[1;31m")" \
+        LESS_TERMCAP_me="$(printf "\e[0m")" \
+        LESS_TERMCAP_se="$(printf "\e[0m")" \
+        LESS_TERMCAP_so="$(printf "\e[1;44;33m")" \
+        LESS_TERMCAP_ue="$(printf "\e[0m")" \
+        LESS_TERMCAP_us="$(printf "\e[1;32m")" \
         man "$@"
 }
 
@@ -74,10 +64,14 @@ prompt_git="\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \"\|)\$(parse_git
 export PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtrst\]\[$txtprl\]$prompt_git\[$txtrst\]\[$txtcyn\]\n= \[$txtrst\]"
 
 # Source things
-[ -r "~/.secrets" ] && . ~/.secrets
+[ -r "$HOME/.secrets" ] && . "$HOME/.secrets"
 [ -r "/usr/share/bash-completion/bash_completion" ] && . /usr/share/bash-completion/bash_completion
 [ -r "/usr/share/doc/pkgfile/command-not-found.bash" ] && . /usr/share/doc/pkgfile/command-not-found.bash
 [ -r "/usr/share/fzf/completion.bash " ] && . /usr/share/fzf/completion.bash
 [ -r "/usr/share/fzf/key-bindings.bash" ] && . /usr/share/fzf/key-bindings.bash
 [ -r "/usr/share/nvm/init-nvm.sh" ] && . /usr/share/nvm/init-nvm.sh
 [ -r "/usr/share/z/z.sh" ] && . /usr/share/z/z.sh
+
+# Load Keychain
+eval "$(keychain --eval --quiet --quick --nogui --ignore-missing --agents ssh,gpg \
+     id_rsa id_ed25519 B78ABA26623D1326)"

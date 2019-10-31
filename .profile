@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # ~/.profile
 
 alias grep="grep --color=auto"
@@ -35,7 +36,7 @@ export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear:gpg"
 export EDITOR="em"
 export VISUAL="em"
 export BROWSER="chromium"
-export GNUPGHOME="/home/meril/.gnupg"
+export GNUPGHOME="$HOME/.gnupg"
 
 # Wayland apps
 export XDG_SESSION_TYPE=wayland
