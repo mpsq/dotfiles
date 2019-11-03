@@ -4,10 +4,10 @@
   signingkey = B78ABA26623D1326
 
 [github]
-  user = merildev
+  user = mpsq
 
 [gitlab]
-  user = meril
+  user = mpsq
 
 [color]
   ui = always
