@@ -6,12 +6,6 @@
 stty ixany
 stty ixoff -ixon
 
-# Some Colours
-txtcyn='\e[0;36m' # Cyan
-txtprl='\e[1;35m' # Purple
-bldblu='\e[1;34m' # Bold Blue
-txtrst='\e[0m'    # Text Reset
-
 if type -P dircolors >/dev/null ; then
     if [[ -f ~/.dir_colors ]] ; then
         eval "$(dircolors -b ~/.dir_colors)"
@@ -51,17 +45,26 @@ shopt -s cmdhist
 # Shell only exists after the 10th consecutive Ctrl-d. Same as IGNOREEOF=10
 set -o ignoreeof
 
-function parse_git_dirty() {
-    [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]] && echo "*"
-}
+# Fancy PS1
+if [[ $TERM = xterm-256color ]] ; then
+    # Some Colours
+    txtcyn='\e[0;36m' # Cyan
+    txtprl='\e[1;35m' # Purple
+    bldblu='\e[1;34m' # Bold Blue
+    txtrst='\e[0m'    # Text Reset
 
-function parse_git_branch() {
-    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
-}
+    function parse_git_dirty() {
+        [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]] && echo "*"
+    }
 
-prompt_git="\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \"\|)\$(parse_git_branch)\$([[ -n \$(git branch 2> /dev/null) ]] && echo \|)"
+    function parse_git_branch() {
+        git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+    }
 
-export PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtrst\]\[$txtprl\]$prompt_git\[$txtrst\]\[$txtcyn\]\n= \[$txtrst\]"
+    prompt_git="\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \"\|)\$(parse_git_branch)\$([[ -n \$(git branch 2> /dev/null) ]] && echo \|)"
+
+    export PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtrst\]\[$txtprl\]$prompt_git\[$txtrst\]\[$txtcyn\]\n= \[$txtrst\]"
+fi
 
 # Source things
 [ -r "$HOME/.secrets" ] && . "$HOME/.secrets"
