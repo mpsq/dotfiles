@@ -133,7 +133,7 @@ This function should only modify configuration layer settings."
      all-the-icons-ivy
      atomic-chrome
      disable-mouse
-     eshell-git-prompt
+     eshell-up
      evil-terminal-cursor-changer
      keychain-environment
      )
@@ -558,8 +558,6 @@ before packages are loaded."
   (setq create-lockfiles nil)
   (setq warning-suppress-types nil)
 
-  (eshell-git-prompt-use-theme 'git-radar)
-
   (define-key evil-normal-state-map (kbd "C-o i") 'evil-jump-forward)
   (define-key evil-normal-state-map (kbd "C-o o") 'evil-jump-backward)
 
@@ -623,6 +621,11 @@ before packages are loaded."
   )
 
   (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))
+
+  ;; eshell
+  (require 'em-alias)
+  (require 'eshell-up)
+  (setq eshell-aliases-file ".eshell.aliases")
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
