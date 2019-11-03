@@ -133,6 +133,7 @@ This function should only modify configuration layer settings."
      all-the-icons-ivy
      atomic-chrome
      disable-mouse
+     eshell-prompt-extras
      eshell-up
      evil-terminal-cursor-changer
      keychain-environment
@@ -626,6 +627,13 @@ before packages are loaded."
   (require 'em-alias)
   (require 'eshell-up)
   (setq eshell-aliases-file ".eshell.aliases")
+
+  (defun eshell-new()
+    "Open a new instance of eshell."
+    (interactive)
+    (eshell 'N))
+
+  (spacemacs/set-leader-keys "ass" 'eshell-new)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
