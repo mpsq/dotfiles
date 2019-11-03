@@ -102,8 +102,11 @@ This function should only modify configuration layer settings."
                  web-mode-enable-auto-indentation t
                  web-mode-indent-style 2
                  web-mode-markup-indent-offset 2)
-     (rust :variables rust-backend 'lsp)
-     terraform
+     (rust :variables
+           rust-backend 'lsp
+           rust-format-on-save t)
+     (terraform :variables
+                terraform-auto-format-on-save t)
      (typescript :variables
                  node-add-modules-path t
                  typescript-backend 'lsp
@@ -263,7 +266,7 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         kaolin-dark
+                         kaolin-temple
                          moe-dark
                          spacemacs-dark
                          moe-light
