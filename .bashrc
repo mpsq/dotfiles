@@ -69,15 +69,24 @@ else
     export PS1='\u at \h in \w\n\$ '
 fi
 
-# Source things
-[ -r "$HOME/.secrets" ] && . "$HOME/.secrets"
-[ -r "/usr/share/bash-completion/bash_completion" ] && . /usr/share/bash-completion/bash_completion
-[ -r "/usr/share/doc/pkgfile/command-not-found.bash" ] && . /usr/share/doc/pkgfile/command-not-found.bash
-[ -r "/usr/share/fzf/completion.bash " ] && . /usr/share/fzf/completion.bash
-[ -r "/usr/share/fzf/key-bindings.bash" ] && . /usr/share/fzf/key-bindings.bash
-[ -r "/usr/share/nvm/init-nvm.sh" ] && . /usr/share/nvm/init-nvm.sh
-[ -r "/usr/share/z/z.sh" ] && . /usr/share/z/z.sh
+if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
+    function clear(){
+        printf  "\e]51;E(vterm-clear-scrollback)\e\\";
+        tput clear;
+    }
+else
+    [ -r "/usr/share/fzf/key-bindings.bash" ] && . /usr/share/fzf/key-bindings.bash
+fi
 
-# Load Keychain
+# Source things
+[ -r "$HOME/.aliases" ] && . "$HOME/.aliases"
+[ -r "$HOME/.secrets" ] && . "$HOME/.secrets"
+[ -r "/usr/share/z/z.sh" ] && . /usr/share/z/z.sh
+[ -r "/usr/share/bash-completion/bash_completion" ] && . /usr/share/bash-completion/bash_completion
+[ -r "/usr/share/fzf/completion.bash " ] && . /usr/share/fzf/completion.bash
+[ -r "/usr/share/doc/pkgfile/command-not-found.bash" ] && . /usr/share/doc/pkgfile/command-not-found.bash
+[ -r "/usr/share/nvm/init-nvm.sh" ] && . /usr/share/nvm/init-nvm.sh
+
+
 eval "$(keychain --eval --quiet --quick --nogui --ignore-missing --agents ssh,gpg \
      id_rsa id_ed25519 B78ABA26623D1326)"

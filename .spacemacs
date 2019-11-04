@@ -1,4 +1,5 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t -*-
+
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -66,7 +67,7 @@ This function should only modify configuration layer settings."
      python
      restclient
      (shell :variables
-            shell-default-shell 'eshell
+            shell-default-shell 'vterm
             shell-default-term-shell "/bin/bash"
             shell-default-height 30
             shell-default-position 'bottom)
@@ -133,7 +134,6 @@ This function should only modify configuration layer settings."
      all-the-icons-ivy
      atomic-chrome
      disable-mouse
-     eshell-git-prompt
      eshell-up
      evil-terminal-cursor-changer
      keychain-environment
@@ -635,18 +635,13 @@ before packages are loaded."
     (eshell 'N))
 
   (spacemacs/set-leader-keys "ass" 'eshell-new)
-  (eshell-git-prompt-use-theme 'powerline)
 
-  ;; Hack to get ansi colors support in eshell
-  ;; TERM being set to dumb prevents git from using colors by default
-  ;; setting TERM to eshell is a hack since eshell is not a term - need to revisit this
-  (add-hook 'eshell-mode-hook
-            (lambda ()
-              (setenv "TERM" "eshell")))
-  (add-hook 'eshell-before-prompt-hook (setq xterm-color-preserve-properties t))
-  (add-to-list 'eshell-preoutput-filter-functions 'xterm-color-filter)
-  (setq eshell-output-filter-functions
-        (remove 'eshell-handle-ansi-color eshell-output-filter-functions))
+  ;; vterm
+  (evil-define-key 'insert vterm-mode-map (kbd "C-v")      #'vterm--self-insert)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-u")      #'vterm--self-insert)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-d")      #'vterm--self-insert)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-k")      #'vterm--self-insert)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-r")      #'vterm--self-insert)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
