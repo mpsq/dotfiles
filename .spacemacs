@@ -637,16 +637,16 @@ before packages are loaded."
   (spacemacs/set-leader-keys "ass" 'eshell-new)
 
   ;; vterm
-  (evil-define-key 'normal vterm-mode-map (kbd "C-k") '(lambda () (interactive) (vterm-send-key "<up>")))
-  (evil-define-key 'normal vterm-mode-map (kbd "C-j") '(lambda () (interactive) (vterm-send-key "<down>")))
+  (evil-define-key 'normal vterm-mode-map (kbd "C-k") #'vterm-send-up)
+  (evil-define-key 'normal vterm-mode-map (kbd "C-j") #'vterm-send-down)
 
+  (evil-define-key 'insert vterm-mode-map (kbd "C-k") #'vterm-send-up)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-j") #'vterm-send-down)
   (evil-define-key 'insert vterm-mode-map (kbd "C-v") #'vterm--self-insert)
   (evil-define-key 'insert vterm-mode-map (kbd "C-u") #'vterm--self-insert)
   (evil-define-key 'insert vterm-mode-map (kbd "C-d") #'vterm--self-insert)
-  (evil-define-key 'insert vterm-mode-map (kbd "C-k") #'vterm--self-insert)
-  (evil-define-key 'insert vterm-mode-map (kbd "C-j") #'vterm--self-insert)
-  (evil-define-key 'insert vterm-mode-map (kbd "C-l") #'vterm--self-insert)
   (evil-define-key 'insert vterm-mode-map (kbd "C-r") #'vterm--self-insert)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-l") #'vterm--self-insert)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
