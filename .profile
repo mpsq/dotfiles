@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+# ~/.profile
+
 # Add local binaries to path
 export PATH=$PATH:/home/meril/.local/bin:/home/meril/.yarn/bin:/home/meril/.cargo/bin
 
