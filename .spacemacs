@@ -66,11 +66,11 @@ This function should only modify configuration layer settings."
      python
      restclient
      (shell :variables
-            shell-default-shell 'shell
+            shell-default-shell 'eshell
             shell-default-term-shell "/bin/bash"
             shell-default-height 30
             shell-default-position 'bottom)
-     shell-scripts
+     (shell-scripts :variables shell-scripts-backend 'lsp)
      (spell-checking :variables
                      spell-checking-enable-by-default nil
                      enable-flyspell-auto-completion t)
@@ -133,7 +133,7 @@ This function should only modify configuration layer settings."
      all-the-icons-ivy
      atomic-chrome
      disable-mouse
-     eshell-prompt-extras
+     eshell-git-prompt
      eshell-up
      evil-terminal-cursor-changer
      keychain-environment
@@ -143,6 +143,7 @@ This function should only modify configuration layer settings."
 
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '(
+                                    eshell-prompt-extras
                                     magit-svn
                                     smartparens
                                     tern
@@ -634,6 +635,18 @@ before packages are loaded."
     (eshell 'N))
 
   (spacemacs/set-leader-keys "ass" 'eshell-new)
+  (eshell-git-prompt-use-theme 'powerline)
+
+  ;; Hack to get ansi colors support in eshell
+  ;; TERM being set to dumb prevents git from using colors by default
+  ;; setting TERM to eshell is a hack since eshell is not a term - need to revisit this
+  (add-hook 'eshell-mode-hook
+            (lambda ()
+              (setenv "TERM" "eshell")))
+  (add-hook 'eshell-before-prompt-hook (setq xterm-color-preserve-properties t))
+  (add-to-list 'eshell-preoutput-filter-functions 'xterm-color-filter)
+  (setq eshell-output-filter-functions
+        (remove 'eshell-handle-ansi-color eshell-output-filter-functions))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will

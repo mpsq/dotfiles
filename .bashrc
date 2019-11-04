@@ -45,8 +45,9 @@ shopt -s cmdhist
 # Shell only exists after the 10th consecutive Ctrl-d. Same as IGNOREEOF=10
 set -o ignoreeof
 
-# Fancy PS1
-if [[ $TERM = xterm-256color ]] ; then
+if [[ "$TERM" != "dumb" ]]; then
+    export CLI_COLOR=1
+
     # Some Colours
     txtcyn='\e[0;36m' # Cyan
     txtprl='\e[1;35m' # Purple
@@ -61,9 +62,11 @@ if [[ $TERM = xterm-256color ]] ; then
         git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
     }
 
-    prompt_git="\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \"\|)\$(parse_git_branch)\$([[ -n \$(git branch 2> /dev/null) ]] && echo \|)"
+    git_branch="\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \"\|)\$(parse_git_branch)\$([[ -n \$(git branch 2> /dev/null) ]] && echo \|)"
 
-    export PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtrst\]\[$txtprl\]$prompt_git\[$txtrst\]\[$txtcyn\]\n= \[$txtrst\]"
+    export PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtrst\]\[$txtprl\]$git_branch\[$txtrst\]\[$txtcyn\]\n= \[$txtrst\]"
+else
+    export PS1='\u at \h in \w\n\$ '
 fi
 
 # Source things
