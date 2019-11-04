@@ -6,10 +6,8 @@
 stty ixany
 stty ixoff -ixon
 
-if type -P dircolors >/dev/null ; then
-    if [[ -f ~/.dir_colors ]] ; then
-        eval "$(dircolors -b ~/.dir_colors)"
-    fi
+if [[ $(hash dircolors 2> /dev/null) ]] && [ -f "$HOME/.dir_colors" ]; then
+    eval "$(dircolors -b ~/.dir_colors)"
 fi
 
 # Man pages
@@ -74,8 +72,6 @@ if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
         printf  "\e]51;E(vterm-clear-scrollback)\e\\";
         tput clear;
     }
-else
-    [ -r "/usr/share/fzf/key-bindings.bash" ] && . /usr/share/fzf/key-bindings.bash
 fi
 
 # Source things
@@ -84,9 +80,12 @@ fi
 [ -r "/usr/share/z/z.sh" ] && . /usr/share/z/z.sh
 [ -r "/usr/share/bash-completion/bash_completion" ] && . /usr/share/bash-completion/bash_completion
 [ -r "/usr/share/fzf/completion.bash " ] && . /usr/share/fzf/completion.bash
+[ -r "/usr/share/fzf/key-bindings.bash" ] && . /usr/share/fzf/key-bindings.bash
 [ -r "/usr/share/doc/pkgfile/command-not-found.bash" ] && . /usr/share/doc/pkgfile/command-not-found.bash
 [ -r "/usr/share/nvm/init-nvm.sh" ] && . /usr/share/nvm/init-nvm.sh
 
+# FZF set RETURN to C-l
+export FZF_DEFAULT_OPTS=--bind=ctrl-l:accept
 
 eval "$(keychain --eval --quiet --quick --nogui --ignore-missing --agents ssh,gpg \
      id_rsa id_ed25519 B78ABA26623D1326)"
