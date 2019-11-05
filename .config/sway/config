@@ -3,9 +3,9 @@
 set $mod Mod1
 set $term alacritty
 
-set $bg #8a8a8a
-set $fg #8a8a8a
-set $fc #af005f
+set $bg #879193
+set $fg #879193
+set $fc #d6224d
 
 set $satie_laptop 'Sharp Corporation 0x149A 0x00000000'
 

@@ -4,18 +4,18 @@
 }
 
 window#waybar {
-    background: #292b2e;
-    color: #fdf6e3;
+    background: #161618;
+    color: #efeff1;
 }
 
 #workspaces button {
     padding: 0 2px;
-    color: #fdf6e3;
+    color: #efeff1;
 }
 
 #workspaces button:hover,
 #workspaces button.focused {
-    color: #268bd2;
+    color: #d6224d;
 }
 
 #workspaces button:hover {
@@ -24,38 +24,6 @@ window#waybar {
     text-shadow: inherit;
     background: #1a1a1a;
     border: #1a1a1a;
-}
-
-#pulseaudio {
-    color: #268bd2;
-}
-
-#backlight {
-    color: #b58900
-}
-
-#memory {
-    color: #2aa198;
-}
-
-#temperature {
-    color: #b58900
-}
-
-#cpu {
-    color: #6c71c4;
-}
-
-#battery {
-    color: #859900;
-}
-
-#network {
-    color: #999;
-}
-
-#network.disconnected {
-    color: #df2935;
 }
 
 #idle_inhibitor,

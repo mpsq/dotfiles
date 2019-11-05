@@ -154,8 +154,8 @@ draw_bold_text_with_bright_colors: false
 
 colors:
   primary:
-    background: '0x222222'
-    foreground: '0xc2c2b0'
+    background: '0x1b1b1b'
+    foreground: '0xefeff1'
 
   cursor:
     text:   '0xc2c2b0'
@@ -163,13 +163,13 @@ colors:
 
   normal:
     black:   '0x111111'
-    red:     '0xaa4450'
-    green:   '0x719611'
-    yellow:  '0xcc8800'
-    blue:    '0x6688aa'
-    magenta: '0x8f6f8f'
-    cyan:    '0x528b8b'
-    white:   '0xd3d3d3'
+    red:     '0xe84c58'
+    green:   '0x18a318'
+    yellow:  '0xeeeb28'
+    blue:    '0x526af3'
+    magenta: '0xc932c9'
+    cyan:    '0x0bc9cf'
+    white:   '0xf2f2f2'
 
   bright:
     black:   '0x181818'
