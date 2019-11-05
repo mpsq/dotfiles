@@ -3,10 +3,13 @@ arc-gtk-theme
 archey3
 aspell-en
 aspell-fr
+awslogs
 bash-completion
+bashate
 bluez
 bluez-utils
 ccid
+chamber
 chromium
 codespell
 docker
@@ -16,6 +19,7 @@ emacs
 eog
 evince
 exa
+fargate-cli
 fd
 firefox
 fzf
@@ -27,6 +31,7 @@ gst-plugins-base
 gst-plugins-base-libs
 gst-plugins-good
 gst-plugins-ugly
+hadolint-bin
 jq
 kanshi
 keybase
@@ -38,6 +43,8 @@ lm_sensors
 lxappearance
 mako
 mpv
+mullvad-vpn
+myrepos
 nautilus
 neofetch
 networkmanager
@@ -75,6 +82,7 @@ swayidle
 swaylock
 systemd-swap
 termsyn-font
+tflint-vin
 tokei
 ttf-bitstream-vera
 ttf-dejavu
