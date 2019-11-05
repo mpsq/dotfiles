@@ -268,10 +268,8 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         kaolin-temple
+                         kaolin-valley-dark
                          moe-dark
-                         spacemacs-dark
-                         moe-light
                          )
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
@@ -612,9 +610,11 @@ before packages are loaded."
   (require 'kaolin-themes)
   (setq kaolin-themes-distinct-fringe t)
   (setq kaolin-themes-git-gutter-solid t)
+  (setq kaolin-themes-hl-line-colored t)
+  (setq kaolin-themes-bold t)
   (setq kaolin-themes-distinct-company-scrollbar t)
   (setq kaolin-themes-italic-comments t)
-  (setq kaolin-themes-underline-wave nil)
+  (setq kaolin-themes-underline-wave t)
 
   (unless (display-graphic-p)
     (require 'evil-terminal-cursor-changer)
