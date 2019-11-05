@@ -47,6 +47,7 @@ mullvad-vpn
 myrepos
 nautilus
 neofetch
+nerd-fonts-complete
 networkmanager
 newsboat
 nm-connection-editor
@@ -82,7 +83,7 @@ swayidle
 swaylock
 systemd-swap
 termsyn-font
-tflint-vin
+tflint-bin
 tokei
 ttf-bitstream-vera
 ttf-dejavu

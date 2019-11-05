@@ -9,7 +9,7 @@ set $fc #af005f
 
 set $satie_laptop 'Sharp Corporation 0x149A 0x00000000'
 
-font pango:"Meslo LG S" 8
+font pango:"ShureTechMono Nerd Font Mono" 9
 
 gaps inner 5
 gaps outer 0
