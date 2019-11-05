@@ -163,10 +163,10 @@ colors:
 
   normal:
     black:   '0x111111'
-    red:     '0xe84c58'
-    green:   '0x18a318'
-    yellow:  '0xeeeb28'
-    blue:    '0x526af3'
+    red:     '0xaf5f5f'
+    green:   '0x5f875f'
+    yellow:  '0xa39423'
+    blue:    '0x8787d7'
     magenta: '0xc932c9'
     cyan:    '0x0bc9cf'
     white:   '0xf2f2f2'
