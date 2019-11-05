@@ -1,6 +1,6 @@
 {
     "layer": "top",
-    "height": 22,
+    "height": 20,
     "modules-left": ["sway/workspaces", "sway/mode", "custom/spotify"],
     "modules-center": ["sway/window"],
     "modules-right": ["idle_inhibitor", "pulseaudio", "cpu", "memory", "backlight", "battery", "network", "clock", "tray"],
