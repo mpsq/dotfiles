@@ -63,7 +63,7 @@ This function should only modify configuration layer settings."
      markdown
      multiple-cursors
      nginx
-     org
+     (org :variables org-projectile-file "TODOs.org")
      python
      restclient
      (shell :variables
