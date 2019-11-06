@@ -1,5 +1,4 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t -*-
-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -558,25 +557,11 @@ before packages are loaded."
   (setq create-lockfiles nil)
   (setq warning-suppress-types nil)
 
-  (define-key evil-normal-state-map (kbd "C-o i") 'evil-jump-forward)
-  (define-key evil-normal-state-map (kbd "C-o o") 'evil-jump-backward)
-
-  ;; Add icons to ivy
-  (all-the-icons-ivy-setup)
-
-  ;; Mode line timestamp
-  (setq display-time-24hr-format t)
-  (setq display-time-format "%H:%M:%S")
-  (setq display-time-interval 1)
-  (setq display-time-mail-string "")
-  (display-time-mode 1)
-
   ;; JS/TS Linting
   (require 'flycheck)
-  ;;(advice-add 'flycheck-eslint-config-exists-p :override (lambda() t))
   (set-face-attribute 'flycheck-error nil :background "#ff6666" :foreground "#fff")
 
-  ;; LSP
+  ;; completion
   (setq company-lsp-cache-candidates t)
 
   ;; Disable mouse
@@ -589,7 +574,27 @@ before packages are loaded."
               evil-visual-state-map
               evil-insert-state-map))
 
-  ;; Exclude some sections from the powerline
+  ;; Emacs in Chromium
+  (require 'atomic-chrome)
+  (atomic-chrome-start-server)
+
+  (require 'keychain-environment)
+  (keychain-refresh-environment)
+
+  ;; candy eye
+  (require 'kaolin-themes)
+  (setq kaolin-themes-distinct-fringe t)
+  (setq kaolin-themes-git-gutter-solid t)
+  (setq kaolin-themes-hl-line-colored t)
+  (setq kaolin-themes-bold t)
+  (setq kaolin-themes-distinct-company-scrollbar t)
+  (setq kaolin-themes-italic-comments t)
+  (setq kaolin-themes-underline-wave t)
+
+  ;; Add icons to ivy
+  (all-the-icons-ivy-setup)
+
+  ;; Exclude some sections from the spaceline
   (require' spaceline)
   (require' spaceline-config)
   (spaceline-toggle-minor-modes-off)
@@ -600,29 +605,11 @@ before packages are loaded."
   (spaceline-toggle-version-control-on)
   (spaceline-toggle-buffer-encoding-abbrev-off)
 
-  ;; Emacs in Chromium
-  (require 'atomic-chrome)
-  (atomic-chrome-start-server)
-
-  (require 'keychain-environment)
-  (keychain-refresh-environment)
-
-  (require 'kaolin-themes)
-  (setq kaolin-themes-distinct-fringe t)
-  (setq kaolin-themes-git-gutter-solid t)
-  (setq kaolin-themes-hl-line-colored t)
-  (setq kaolin-themes-bold t)
-  (setq kaolin-themes-distinct-company-scrollbar t)
-  (setq kaolin-themes-italic-comments t)
-  (setq kaolin-themes-underline-wave t)
-
   (unless (display-graphic-p)
     (require 'evil-terminal-cursor-changer)
     (evil-terminal-cursor-changer-activate)
     (setq powerline-default-separator 'utf-8)
   )
-
-  (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))
 
   ;; eshell
   (require 'em-alias)
@@ -647,6 +634,12 @@ before packages are loaded."
   (evil-define-key 'insert vterm-mode-map (kbd "C-d") #'vterm--self-insert)
   (evil-define-key 'insert vterm-mode-map (kbd "C-r") #'vterm--self-insert)
   (evil-define-key 'insert vterm-mode-map (kbd "C-l") #'vterm--self-insert)
+
+  ;; bindings
+  (define-key evil-normal-state-map (kbd "C-o i") 'evil-jump-forward)
+  (define-key evil-normal-state-map (kbd "C-o o") 'evil-jump-backward)
+
+  (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
