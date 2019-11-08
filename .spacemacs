@@ -640,6 +640,8 @@ before packages are loaded."
   (define-key evil-normal-state-map (kbd "C-o o") 'evil-jump-backward)
 
   (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))
+
+  (setq epa-armor t)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
