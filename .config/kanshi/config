@@ -4,6 +4,10 @@
 }
 {
   output eDP-1 disable
+  output "Dell Inc. DELL SE2219H JQCCHS2" mode 1920x1080 enable scale 1
+}
+{
+  output eDP-1 disable
   output "Unknown Q2577W ADQG59A000358" enable
 }
 {
