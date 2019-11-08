@@ -3,6 +3,7 @@ dockerfile-language-server-nodejs
 import-js
 markdown-spellcheck
 npm
+prettier
 speller
 typescript
 typescript-language-server
