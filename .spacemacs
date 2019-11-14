@@ -136,6 +136,7 @@ This function should only modify configuration layer settings."
      eshell-up
      evil-terminal-cursor-changer
      keychain-environment
+     xclip
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -278,7 +279,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(doom :separator wave :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -641,6 +642,7 @@ before packages are loaded."
 
   (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))
 
+  ;; gpg settings
   (setq epa-armor t)
 )
 
