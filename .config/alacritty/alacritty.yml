@@ -4,7 +4,7 @@ window:
 font:
   normal:
     family: ShureTechMono Nerd Font Mono
-  size: 10.0
+  size: 9.0
 
 colors:
   primary:
