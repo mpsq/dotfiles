@@ -82,6 +82,7 @@ swaybg
 swayidle
 swaylock
 systemd-swap
+termite-nocsd
 termsyn-font
 tflint-bin
 tokei

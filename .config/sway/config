@@ -1,7 +1,7 @@
 ### Variables
 #
 set $mod Mod1
-set $term alacritty
+set $term env WAYLAND_DISPLAY= alacritty
 
 set $bg #879193
 set $fg #879193
