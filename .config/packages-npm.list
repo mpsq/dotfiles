@@ -9,4 +9,5 @@ typescript
 typescript-language-server
 vscode-css-languageserver-bin
 vscode-html-languageserver-bin
+yaml-language-server
 yarn
