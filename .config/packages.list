@@ -49,7 +49,6 @@ nautilus
 neofetch
 nerd-fonts-complete
 networkmanager
-newsboat
 nm-connection-editor
 noto-fonts
 noto-fonts-cjk
@@ -82,16 +81,12 @@ swaybg
 swayidle
 swaylock
 systemd-swap
-termite-nocsd
-termsyn-font
 tflint-bin
 tokei
 ttf-bitstream-vera
 ttf-dejavu
 ttf-hack
-ttf-inconsolata
 ttf-liberation
-ttf-meslo
 ttf-opensans
 unzip
 vcsh
