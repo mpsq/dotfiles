@@ -1,4 +1,4 @@
-font=ShureTechMono Nerd Font Mono
+font=ShureTechMono Nerd Font Mono 8
 background-color=#b1c6d7ff
 text-color=#000000ff
 margin=5,5,0,0
@@ -11,10 +11,10 @@ format=<span font='9'><b>%a</b></span>\n%s\n%b
 [hidden]
 background-color=#bfbfbfff
 format=+ %h
-font=Meslo LG S 8
+font=ShureTechMono Nerd Font Mono 8
 
 [app-name=hud]
-font=Meslo LG S 8
+font=ShureTechMono Nerd Font Mono 8
 width=100
 format=<b>%s</b>
 background-color=#555555ff
