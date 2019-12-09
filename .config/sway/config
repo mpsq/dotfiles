@@ -165,14 +165,13 @@ exec_always import-gsettings \
   icon-theme:gtk-icon-theme-name \
   cursor-theme:gtk-cursor-theme-name
 
-exec_always pkill kanshi; exec kanshi
-
 exec swayidle -w \
   timeout 300 'swaylock' \
   timeout 600 'swaymsg "output * dpms off"' \
   resume 'swaymsg "output * dpms on"' \
   before-sleep 'swaylock'
 
+exec --no-startup-id "kanshi"
 exec --no-startup-id "redshift"
 exec --no-startup-id "mako"
 exec --no-startup-id "libinput-gestures-setup start"
