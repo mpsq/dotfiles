@@ -87,5 +87,6 @@ fi
 # FZF set RETURN to C-l
 export FZF_DEFAULT_OPTS=--bind=ctrl-l:accept
 
-eval "$(keychain --eval --quiet --quick --nogui --ignore-missing --agents ssh,gpg \
-     id_rsa id_ed25519 B78ABA26623D1326)"
+if [[ "$TERM" == "xterm-256color" ]]; then
+    eval "$(keychain --eval --quiet --quick --nogui --ignore-missing --agents ssh,gpg id_rsa id_ed25519 B78ABA26623D1326)"
+fi
