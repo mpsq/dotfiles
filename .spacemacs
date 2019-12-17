@@ -645,6 +645,8 @@ before packages are loaded."
 
   ;; gpg settings
   (setq epa-armor t)
+  (setq epa-pinentry-mode 'loopback)
+  (pinentry-start)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will

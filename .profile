@@ -20,3 +20,7 @@ export GNUPGHOME="$HOME/.gnupg"
 # Wayland apps
 export XDG_SESSION_TYPE=wayland
 export MOZ_ENABLE_WAYLAND=1
+
+# gpg
+GPG_TTY=$(tty)
+export GPG_TTY
