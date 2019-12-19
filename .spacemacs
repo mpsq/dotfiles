@@ -1,8 +1,10 @@
 
+
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
 (defun dotspacemacs/layers ()
+
   "Layer configuration:
 This function should only modify configuration layer settings."
   (setq-default
@@ -55,33 +57,6 @@ This function should only modify configuration layer settings."
           ivy-enable-advanced-buffer-information t
           ivy-initial-inputs-alist nil
           ivy-format-function #'ivy-format-function-line)
-     (json :variables json-fmt-tool 'prettier)
-     (lsp :variables
-          lsp-ui-sideline-show-symbol t
-          lsp-ui-flycheck-enable nil)
-     markdown
-     multiple-cursors
-     nginx
-     (org :variables org-projectile-file "TODOs.org")
-     python
-     restclient
-     (shell :variables
-            shell-default-shell 'vterm
-            shell-default-term-shell "/bin/bash"
-            shell-default-height 30
-            shell-default-position 'bottom)
-     (shell-scripts :variables shell-scripts-backend 'lsp)
-     (spell-checking :variables
-                     spell-checking-enable-by-default nil
-                     enable-flyspell-auto-completion t)
-     sql
-     (syntax-checking :variables syntax-checking-enable-by-default nil)
-     systemd
-     (treemacs :variables
-               treemacs-no-png-images t
-               treemacs-follow-mode t
-               treemacs-filewatch-mode t
-               treemacs-fringe-indicator-mode t)
      (javascript :variables
                  javascript-backend 'lsp
                  javascript-fmt-on-save t
@@ -102,11 +77,38 @@ This function should only modify configuration layer settings."
                  web-mode-enable-auto-indentation t
                  web-mode-indent-style 2
                  web-mode-markup-indent-offset 2)
+     (json :variables json-fmt-tool 'prettier)
+     (lsp :variables
+          lsp-ui-sideline-show-symbol t
+          lsp-ui-flycheck-enable nil)
+     markdown
+     multiple-cursors
+     nginx
+     (org :variables org-projectile-file "TODOs.org")
+     python
+     restclient
      (rust :variables
            rust-backend 'lsp
            rust-format-on-save t)
+     (shell :variables
+            shell-default-shell 'vterm
+            shell-default-term-shell "/bin/bash"
+            shell-default-height 30
+            shell-default-position 'bottom)
+     (shell-scripts :variables shell-scripts-backend 'lsp)
+     (spell-checking :variables
+                     spell-checking-enable-by-default nil
+                     enable-flyspell-auto-completion t)
+     sql
+     (syntax-checking :variables syntax-checking-enable-by-default nil)
+     systemd
      (terraform :variables
                 terraform-auto-format-on-save t)
+     (treemacs :variables
+               treemacs-no-png-images t
+               treemacs-follow-mode t
+               treemacs-filewatch-mode t
+               treemacs-fringe-indicator-mode t)
      (typescript :variables
                  node-add-modules-path t
                  typescript-backend 'lsp
@@ -624,6 +626,9 @@ before packages are loaded."
     (eshell 'N))
 
   (spacemacs/set-leader-keys "ass" 'eshell-new)
+
+  (require 'treemacs)
+  (setq treemacs-sorting 'alphabetic-asc)
 
   ;; vterm
   (evil-define-key 'normal vterm-mode-map (kbd "C-k") #'vterm-send-up)
