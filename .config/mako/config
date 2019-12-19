@@ -21,11 +21,6 @@ background-color=#555555ff
 text-color=#eeeeeeff
 default-timeout=1000
 
-[app-name=test]
-width=500
-height=300
-margin=20
-
 [app-name=coredump-notify]
 background-color=#d09a9a
 
