@@ -82,7 +82,10 @@ fi
 [ -r "/usr/share/fzf/completion.bash " ] && . /usr/share/fzf/completion.bash
 [ -r "/usr/share/fzf/key-bindings.bash" ] && . /usr/share/fzf/key-bindings.bash
 [ -r "/usr/share/doc/pkgfile/command-not-found.bash" ] && . /usr/share/doc/pkgfile/command-not-found.bash
-[ -r "/usr/share/nvm/init-nvm.sh" ] && . /usr/share/nvm/init-nvm.sh
+
+export NVM_DIR="$HOME/.nvm"
+export NVM_SOURCE="/usr/share/nvm"
+[ -s "$NVM_SOURCE/nvm.sh" ] && . "$NVM_SOURCE/nvm.sh"
 
 # FZF set RETURN to C-l
 export FZF_DEFAULT_OPTS=--bind=ctrl-l:accept
