@@ -2,7 +2,10 @@
 # ~/.profile
 
 # Add local binaries to path
-export PATH=$PATH:/home/meril/.local/bin:/home/meril/.yarn/bin:/home/meril/.cargo/bin
+export PATH=$PATH:/home/meril/.local/bin
+export PATH=$PATH:/home/meril/.yarn/bin
+export PATH=$PATH:/home/meril/.cargo/bin
+export PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 
 # Better history
 export HISTCONTROL="erasedups:ignoreboth"
