@@ -21,8 +21,12 @@ export BROWSER="chromium"
 export GNUPGHOME="$HOME/.gnupg"
 
 # Wayland apps
-export XDG_SESSION_TYPE=wayland
+export QT_QPA_PLATFORM=wayland-egl
+export CLUTTER_BACKEND=wayland
+export SDL_VIDEODRIVER=wayland
 export MOZ_ENABLE_WAYLAND=1
+export XDG_CURRENT_DESKTOP=sway
+export XDG_SESSION_TYPE=wayland
 
 # gpg
 GPG_TTY=$(tty)
