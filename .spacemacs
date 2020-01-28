@@ -48,6 +48,7 @@ This function should only modify configuration layer settings."
            css-enable-lsp t
            scss-enable-lsp t
            less-enable-lsp t)
+     import-js
      (ivy :variables
           ivy-wrap t
           ivy-display-style 'fancy
@@ -56,7 +57,6 @@ This function should only modify configuration layer settings."
           ivy-initial-inputs-alist nil
           ivy-format-function #'ivy-format-function-line)
      (javascript :variables
-                 javascript-backend 'lsp
                  javascript-fmt-on-save t
                  javascript-fmt-tool 'prettier
                  javascript-import-tool 'import-js
@@ -77,12 +77,12 @@ This function should only modify configuration layer settings."
                  web-mode-markup-indent-offset 2)
      (json :variables json-fmt-tool 'prettier)
      (lsp :variables
-          lsp-ui-sideline-show-symbol t
-          lsp-ui-flycheck-enable nil)
+          lsp-ui-sideline-show-symbol t)
      markdown
      multiple-cursors
      nginx
      (org :variables org-projectile-file "TODOs.org")
+     prettier
      python
      restclient
      ruby
@@ -110,9 +110,9 @@ This function should only modify configuration layer settings."
                treemacs-fringe-indicator-mode t)
      (typescript :variables
                  node-add-modules-path t
-                 typescript-backend 'lsp
                  typescript-fmt-on-save t
                  typescript-fmt-tool 'prettier
+                 typescript-linter 'eslint
                  typescript-indent-level 2)
      (version-control :variables
                       version-control-diff-tool 'git-gutter+
@@ -270,7 +270,7 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         kaolin-valley-dark
+                         kaolin-temple
                          moe-dark
                          )
 
