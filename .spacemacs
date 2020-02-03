@@ -32,12 +32,15 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '((auto-completion :variables auto-completion-enable-sort-by-usage t
+   '((auto-completion :variables
+                      auto-completion-enable-sort-by-usage t
+                      auto-completion-enable-help-tooltip t
                       auto-completion-enable-snippets-in-popup t)
      (better-defaults :veriables
                       better-defaults-move-to-beginning-of-code-first t
                       better-defaults-move-to-end-of-code-first t)
      colors
+     common-lisp
      dap
      docker
      emacs-lisp
@@ -87,7 +90,6 @@ This function should only modify configuration layer settings."
      restclient
      ruby
      (rust :variables
-           rust-backend 'lsp
            rust-format-on-save t)
      (shell :variables
             shell-default-shell 'vterm
@@ -559,6 +561,8 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (setq create-lockfiles nil)
   (setq warning-suppress-types nil)
+
+  (global-company-mode)
 
   ;; JS/TS Linting
   (require 'flycheck)
