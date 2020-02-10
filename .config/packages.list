@@ -43,13 +43,15 @@ lm_sensors
 lxappearance
 mako
 mpv
-mullvad-vpn
+msmtp
+mullvad-vpn-bin
 myrepos
 nautilus
 neofetch
 nerd-fonts-complete
 networkmanager
 nm-connection-editor
+notmuch
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
@@ -57,6 +59,7 @@ noto-fonts-extra
 ntp
 numix-circle-arc-icons-git
 nvm
+offlineimap
 otf-font-awesome
 p7zip
 pavucontrol
@@ -74,6 +77,7 @@ reflector
 ripgrep
 seahorse
 shellcheck
+signal-desktop
 slurp
 spotify
 sway
