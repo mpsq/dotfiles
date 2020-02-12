@@ -40,8 +40,6 @@ input * {
   xkb_layout gb
 }
 
-output "*" background $(xdg-user-dir PICTURES)/bkg.png fill
-
 ### Key bindings
 #
 
@@ -175,6 +173,6 @@ exec --no-startup-id "kanshi"
 exec --no-startup-id "redshift"
 exec --no-startup-id "mako"
 exec --no-startup-id "libinput-gestures-setup start"
-exec --no-startup-id "fetch-img"
+exec_always --no-startup-id "set-bkg-lck"
 
 include @sysconfdir@/sway/config.d/*

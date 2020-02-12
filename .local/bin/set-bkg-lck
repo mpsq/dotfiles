@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+swaybg --color "#555555"
+
+IMG=$(xdg-user-dir PICTURES)
+ONLINE=$(ping -q -w1 -c1 gnu.org &>/dev/null && echo OK || echo KO)
+
+if [ "$ONLINE" == "OK" ] ; then
+  wget --output-document="${IMG}"/lck.png https://source.unsplash.com/random/2560x1440/?abstract
+  wget --output-document="${IMG}"/bkg.png https://source.unsplash.com/random/2560x1440/?mountains
+
+  swaybg --image "$IMG"/bkg.png --mode fill
+fi

@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-IMG=$(xdg-user-dir PICTURES)
-ONLINE=$(ping -q -w1 -c1 cldup.com &>/dev/null && echo OK || echo KO)
-
-if [ "$ONLINE" == "OK" ] ; then
-  wget --output-document="${IMG}"/lock.png https://cldup.com/5uUMKEOOBG.jpg
-  wget --output-document="${IMG}"/bkg.png https://cldup.com/UB0ZcHV7ru.jpeg
-fi

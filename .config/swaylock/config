@@ -1,7 +1,7 @@
 daemonize
 ignore-empty-password
 
-image=~/img/lock.png
+image=~/img/lck.png
 
 # color=2F343F
 bs-hl-color=2F343F
