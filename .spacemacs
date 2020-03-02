@@ -116,6 +116,7 @@ This function should only modify configuration layer settings."
                  typescript-fmt-on-save t
                  typescript-fmt-tool 'prettier
                  typescript-linter 'eslint
+                 typescript-lsp-linter nil
                  typescript-indent-level 2)
      (version-control :variables
                       version-control-diff-tool 'git-gutter+
@@ -568,6 +569,7 @@ before packages are loaded."
   ;; JS/TS Linting
   (require 'flycheck)
   (set-face-attribute 'flycheck-error nil :background "#ff6666" :foreground "#fff")
+  (add-hook 'typescript-mode-hook 'flycheck-mode)
 
   ;; completion
   (setq company-lsp-cache-candidates t)
