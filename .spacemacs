@@ -84,7 +84,7 @@ This function should only modify configuration layer settings."
      markdown
      multiple-cursors
      nginx
-     notmuch
+     mu4e
      (org :variables org-projectile-file "TODOs.org")
      prettier
      python
@@ -669,7 +669,6 @@ before packages are loaded."
   (setq message-sendmail-extra-arguments '("--read-envelope-from"))
   (setq message-sendmail-f-is-evil 't)
   (setq message-send-mail-function 'message-send-mail-with-sendmail)
-  (setq notmuch-fcc-dirs "\"Sent Items\"")
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
