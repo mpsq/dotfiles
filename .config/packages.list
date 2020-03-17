@@ -32,6 +32,7 @@ gst-plugins-base-libs
 gst-plugins-good
 gst-plugins-ugly
 hadolint-bin
+isync
 jq
 kanshi
 keybase
@@ -59,7 +60,6 @@ noto-fonts-extra
 ntp
 numix-circle-arc-icons-git
 nvm
-offlineimap
 otf-font-awesome
 p7zip
 pavucontrol

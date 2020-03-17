@@ -84,7 +84,30 @@ This function should only modify configuration layer settings."
      markdown
      multiple-cursors
      nginx
-     mu4e
+     (mu4e :variables
+           mu4e-headers-auto-update t
+           mu4e-change-filenames-when-moving t
+           mu4e-compose-keep-self-cc nil
+           mu4e-compose-complete-addresse t
+           mu4e-compose-dont-reply-to-self t
+           mu4e-enable-async-operations t
+           mu4e-enable-mode-line t
+           mu4e-enable-notifications t
+           mu4e-get-mail-command "mbsync -a"
+           mu4e-headers-auto-update t
+           mu4e-headers-leave-behavior 'ask
+           mu4e-headers-visible-lines 20
+           mu4e-html2text-command 'mu4e-shr2text
+           mu4e-maildir "~/.mail-archive/mailfence"
+           mu4e~main-buffer-name "*mu4e-main*"
+           mu4e-drafts-folder "/mailfence/Drafts"
+           mu4e-sent-folder "/mailfence/Sent Items"
+           mu4e-trash-folder "/mailfence/Trash"
+           mu4e-split-view 'horizontal
+           mu4e-view-prefer-html t
+           mu4e-update-interval 120
+           mu4e-use-fancy-chars t
+           mu4e-use-maildirs-extension t)
      (org :variables org-projectile-file "TODOs.org")
      prettier
      python
@@ -566,6 +589,9 @@ before packages are loaded."
 
   (global-company-mode)
 
+  ;; open links with ff
+  (setq browse-url-browser-function 'browse-url-firefox)
+
   ;; JS/TS Linting
   (require 'flycheck)
   (set-face-attribute 'flycheck-error nil :background "#ff6666" :foreground "#fff")
@@ -659,16 +685,23 @@ before packages are loaded."
   (setq epa-pinentry-mode 'loopback)
   (pinentry-start)
 
-  ;; after a message is sent, kill the buffer
-  (setq message-kill-buffer-on-exit t)
+  ;; sendmail configuration
+  (setq mail-specify-envelope-from t
+        mail-envelope-from 'header
+        mail-user-agent 'mu4e-user-agent
+        message-kill-buffer-on-exit t
+        message-sendmail-envelope-from 'header
+        message-sendmail-extra-arguments '("--read-envelope-from")
+        message-sendmail-f-is-evil 't
+        message-send-mail-function 'message-send-mail-with-sendmail)
 
-  ;; add the from address when sending messages
-  (setq mail-specify-envelope-from t)
-  (setq mail-envelope-from 'header)
-  (setq message-sendmail-envelope-from 'header)
-  (setq message-sendmail-extra-arguments '("--read-envelope-from"))
-  (setq message-sendmail-f-is-evil 't)
-  (setq message-send-mail-function 'message-send-mail-with-sendmail)
+  (require 'mu4e)
+  ;; spell check
+  (add-hook 'mu4e-compose-mode-hook
+            (defun my-do-compose-stuff ()
+              "My settings for message composition."
+              (set-fill-column 72)
+              (flyspell-mode)))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
