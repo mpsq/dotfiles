@@ -85,29 +85,24 @@ This function should only modify configuration layer settings."
      multiple-cursors
      nginx
      (mu4e :variables
-           mu4e-headers-auto-update t
+           mu4e-attachment-dir "~/dl"
            mu4e-change-filenames-when-moving t
            mu4e-compose-keep-self-cc nil
-           mu4e-compose-complete-addresse t
            mu4e-compose-dont-reply-to-self t
-           mu4e-enable-async-operations t
            mu4e-enable-mode-line t
            mu4e-enable-notifications t
-           mu4e-get-mail-command "mbsync -a"
+           mu4e-get-mail-command "offlineimap"
            mu4e-headers-auto-update t
-           mu4e-headers-leave-behavior 'ask
-           mu4e-headers-visible-lines 20
+           mu4e-headers-visible-lines 40
            mu4e-html2text-command 'mu4e-shr2text
            mu4e-maildir "~/.mail-archive/mailfence"
-           mu4e~main-buffer-name "*mu4e-main*"
-           mu4e-drafts-folder "/mailfence/Drafts"
-           mu4e-sent-folder "/mailfence/Sent Items"
-           mu4e-trash-folder "/mailfence/Trash"
+           mu4e-drafts-folder "/Drafts"
+           mu4e-sent-folder "/Sent Items"
+           mu4e-trash-folder "/Trash"
            mu4e-split-view 'horizontal
            mu4e-view-prefer-html t
            mu4e-update-interval 120
-           mu4e-use-fancy-chars t
-           mu4e-use-maildirs-extension t)
+           mu4e-use-fancy-chars t)
      (org :variables org-projectile-file "TODOs.org")
      prettier
      python
