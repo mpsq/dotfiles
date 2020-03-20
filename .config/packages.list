@@ -32,6 +32,9 @@ gst-plugins-base-libs
 gst-plugins-good
 gst-plugins-ugly
 hadolint-bin
+hunspell-en_GB
+hunspell-en_US
+hunspell-fr
 jq
 kanshi
 keybase

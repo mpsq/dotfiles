@@ -32,6 +32,7 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
+
    '((auto-completion :variables
                       auto-completion-enable-sort-by-usage t
                       auto-completion-enable-help-tooltip t
@@ -65,6 +66,7 @@ This function should only modify configuration layer settings."
                  javascript-import-tool 'import-js
                  js-indent-level 2
                  js2-auto-indent-p nil
+
                  js2-basic-offset 2
                  js2-bounce-indent-p t
                  js2-include-browser-externs t
@@ -95,14 +97,21 @@ This function should only modify configuration layer settings."
            mu4e-headers-auto-update t
            mu4e-headers-visible-lines 40
            mu4e-html2text-command 'mu4e-shr2text
-           mu4e-maildir "~/.mail-archive/mailfence"
-           mu4e-drafts-folder "/Drafts"
-           mu4e-sent-folder "/Sent Items"
-           mu4e-trash-folder "/Trash"
+           mu4e-main-buffer-name "*mu4e-main*"
+           mu4e-maildir "~/.mail-archive/"
+           mu4e-maildirs-extension-buffer-name "*mu4e-main*"
+           ;; https://github.com/agpchil/mu4e-maildirs-extension/issues/52
+           mu4e-maildirs-extension-insert-before-str ""
+           mu4e-drafts-folder "/mailfence/Drafts"
+           mu4e-sent-folder "/mailfence/Sent Items"
+           mu4e-trash-folder "/mailfence/Trash"
+           mu4e-spacemacs-kill-layout-on-exit t
            mu4e-split-view 'horizontal
            mu4e-view-prefer-html t
            mu4e-update-interval 120
-           mu4e-use-fancy-chars t)
+           mu4e-use-fancy-chars t
+           mu4e-use-maildirs-extension t
+           mu4e-view-show-addresses t)
      (org :variables org-projectile-file "TODOs.org")
      prettier
      python
@@ -642,18 +651,6 @@ before packages are loaded."
     (setq powerline-default-separator 'utf-8)
   )
 
-  ;; eshell
-  (require 'em-alias)
-  (require 'eshell-up)
-  (setq eshell-aliases-file ".eshell.aliases")
-
-  (defun eshell-new()
-    "Open a new instance of eshell."
-    (interactive)
-    (eshell 'N))
-
-  (spacemacs/set-leader-keys "ass" 'eshell-new)
-
   (require 'treemacs)
   (setq treemacs-sorting 'alphabetic-asc)
 
@@ -690,8 +687,11 @@ before packages are loaded."
         message-sendmail-f-is-evil 't
         message-send-mail-function 'message-send-mail-with-sendmail)
 
+  ;; Enable Desktop notifications
+  (with-eval-after-load 'mu4e-alert
+    (mu4e-alert-set-default-style 'notifications))
+
   (require 'mu4e)
-  ;; spell check
   (add-hook 'mu4e-compose-mode-hook
             (defun my-do-compose-stuff ()
               "My settings for message composition."
