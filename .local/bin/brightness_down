@@ -8,5 +8,5 @@ if [ "$MACHINE_ID" = 'work' ]; then
     redshift -o -b "$new"&
     kill -9 "$pid"
 else
-    light -A 3
+    light -U 3
 fi
