@@ -60,6 +60,7 @@ This function should only modify configuration layer settings."
           ivy-enable-advanced-buffer-information t
           ivy-initial-inputs-alist nil
           ivy-format-function #'ivy-format-function-line)
+     java
      (javascript :variables
                  javascript-fmt-on-save t
                  javascript-fmt-tool 'prettier
