@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+if [ "$MACHINE_ID" = 'work' ]; then
+    current=$(ps -eo args | grep redshift | sed -n -e 's/^.*-b //p' | bc)
+    current="${current:-1}"
+    new=$(echo "$current - 0.05" | bc)
+    pid=$(pidof redshift)
+    redshift -o -b "$new"&
+    kill -9 "$pid"
+else
+    light -A 3
+fi

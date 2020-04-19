@@ -1,6 +1,6 @@
 * {
-    font-size: 10.0pt;
-    font-family: "ShureTechMono Nerd Font";
+    font-size: 9.0pt;
+    font-family: "OverpassMono Nerd Font";
 }
 
 window#waybar {
@@ -35,5 +35,5 @@ window#waybar {
 #temp,
 #battery,
 #network {
-    padding: 0 10px;
+    padding: 0 9px;
 }
