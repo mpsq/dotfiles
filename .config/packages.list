@@ -30,6 +30,7 @@ fwupd
 fzf
 git
 glances
+glu
 gnome-disk-utility
 gnu-free-fonts
 grim
@@ -56,6 +57,7 @@ linux-firmware
 lm_sensors
 lxappearance
 mako
+mesa
 mkinitcpio
 mlocate
 mpv
@@ -126,6 +128,7 @@ unrar
 unzip
 vcsh
 veracrypt
+vulkan-mesa-layer
 waybar
 wayland
 wget
