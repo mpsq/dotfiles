@@ -24,6 +24,7 @@ evince
 exa
 fargate-cli
 fd
+file-roller
 firefox
 fwupd
 fzf
@@ -37,6 +38,7 @@ gst-plugins-base
 gst-plugins-base-libs
 gst-plugins-good
 gst-plugins-ugly
+gtk-engine-murrine
 hadolint-bin
 hunspell-en_GB
 hunspell-en_US
@@ -89,6 +91,14 @@ pulseaudio
 pulseaudio-alsa
 pulseaudio-bluetooth
 pygmentize
+qt5-multimedia
+qt5-script
+qt5-styleplugins
+qt5-wayland
+qt5-webchannel
+qt5-webengine
+qt5-webkit
+qt5ct
 redshift-wlr-gamma-control-git
 reflector
 ripgrep
@@ -112,6 +122,7 @@ ttf-hack
 ttf-liberation
 ttf-opensans
 usbutils
+unrar
 unzip
 vcsh
 veracrypt

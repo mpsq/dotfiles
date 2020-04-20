@@ -47,6 +47,7 @@ This function should only modify configuration layer settings."
      emacs-lisp
      git
      github
+     (go :variables go-format-before-save t)
      (html :variables
            web-fmt-tool 'prettier
            css-enable-lsp t
@@ -129,7 +130,7 @@ This function should only modify configuration layer settings."
                      spell-checking-enable-by-default nil
                      enable-flyspell-auto-completion t)
      sql
-     (syntax-checking :variables syntax-checking-enable-by-default nil)
+     syntax-checking
      systemd
      (terraform :variables
                 terraform-auto-format-on-save t)

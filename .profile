@@ -5,6 +5,7 @@
 export PATH=$PATH:/home/meril/.local/bin
 export PATH=$PATH:/home/meril/.yarn/bin
 export PATH=$PATH:/home/meril/.cargo/bin
+export PATH=$PATH:/home/meril/go/bin
 export PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 
 # Better history
@@ -22,6 +23,7 @@ export GNUPGHOME="$HOME/.gnupg"
 
 # Wayland apps
 export QT_QPA_PLATFORM=wayland-egl
+export QT_QPA_PLATFORMTHEME=qt5ct
 export CLUTTER_BACKEND=wayland
 export SDL_VIDEODRIVER=wayland
 export MOZ_ENABLE_WAYLAND=1
