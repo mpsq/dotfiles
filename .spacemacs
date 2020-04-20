@@ -62,12 +62,11 @@ This function should only modify configuration layer settings."
           ivy-format-function #'ivy-format-function-line)
      java
      (javascript :variables
-                 javascript-fmt-on-save t
+                 javascript-fmt-on-save nil
                  javascript-fmt-tool 'prettier
                  javascript-import-tool 'import-js
                  js-indent-level 2
                  js2-auto-indent-p nil
-
                  js2-basic-offset 2
                  js2-bounce-indent-p t
                  js2-include-browser-externs t
