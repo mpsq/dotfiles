@@ -1,6 +1,5 @@
 alacritty
 arc-gtk-theme
-archey3
 aspell-en
 aspell-fr
 awslogs
@@ -10,7 +9,6 @@ bc
 bluez
 bluez-utils
 ccid
-chamber
 chromium
 cmake
 codespell
@@ -83,9 +81,9 @@ otf-font-awesome
 p7zip
 pavucontrol
 peek
+pinta
 pipewire
 pipewire-pulse
-pinta
 pkgfile
 playerctl
 powertop
@@ -114,18 +112,16 @@ sway
 swaybg
 swayidle
 swaylock
-systemd-swap
 tflint-bin
 tldr
 tokei
 ttf-bitstream-vera
 ttf-dejavu
-ttf-hack
 ttf-liberation
 ttf-opensans
-usbutils
 unrar
 unzip
+usbutils
 vcsh
 veracrypt
 vulkan-mesa-layer
