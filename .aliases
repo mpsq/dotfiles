@@ -18,6 +18,6 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-alias em="emacsclient -t -a \"emacs -nw\""
+alias em="TERM=xterm-24bit emacsclient -t -a \"emacs -nw\""
 
 alias zoom="QT_QPA_PLATFORM= zoom"

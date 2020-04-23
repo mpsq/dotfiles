@@ -1,6 +1,6 @@
 env:
   WINIT_HIDPI_FACTOR: "1"
-  TERM: xterm-24bit
+  TERM: xterm-256color
 
 window:
   decorations: none
