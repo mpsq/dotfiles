@@ -63,7 +63,7 @@ This function should only modify configuration layer settings."
           ivy-format-function #'ivy-format-function-line)
      java
      (javascript :variables
-                 javascript-fmt-on-save nil
+                 javascript-fmt-on-save t
                  javascript-fmt-tool 'prettier
                  javascript-import-tool 'import-js
                  js-indent-level 2
