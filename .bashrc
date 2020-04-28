@@ -82,6 +82,7 @@ fi
 [ -r "/usr/share/fzf/completion.bash " ] && . /usr/share/fzf/completion.bash
 [ -r "/usr/share/fzf/key-bindings.bash" ] && . /usr/share/fzf/key-bindings.bash
 [ -r "/usr/share/doc/pkgfile/command-not-found.bash" ] && . /usr/share/doc/pkgfile/command-not-found.bash
+[ -f "$HOME/.config/tabtab/__tabtab.bash" ] && . ~/.config/tabtab/__tabtab.bash || true
 
 export NVM_DIR="$HOME/.nvm"
 export NVM_SOURCE="/usr/share/nvm"

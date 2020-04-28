@@ -30,6 +30,7 @@ git
 glances
 glu
 gnome-disk-utility
+gnome-themes-standard
 gnu-free-fonts
 grim
 gst-libav
@@ -39,6 +40,7 @@ gst-plugins-base-libs
 gst-plugins-good
 gst-plugins-ugly
 gtk-engine-murrine
+gtk-engines
 hadolint-bin
 hunspell-en_GB
 hunspell-en_US
