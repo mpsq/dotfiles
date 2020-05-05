@@ -1,0 +1,60 @@
+! MISCS
+Xcursor.size             : 16
+
+! URXVT
+URxvt.loginShell         : true
+
+! Font
+URxvt.font               : xft:ShureTechMono Nerd Font Mono:pixelsize=13:antialias=true:hinting=true,\
+                           xft:Symbola:pixelsize=13,\
+                           xft:Noto Color Emoji:minspace=False
+URxvt.letterSpace        : 0
+
+! Fugly scrollbar
+URxvt.scrollBar          : false
+URxvt.scrollBar_right    : false
+
+! Disables the insanely annoying Ctrl+Shift shortcut that enters ISO14755 mode
+URxvt.iso14755           : false
+URxvt.iso14755_52        : false
+
+! Cursor
+URxvt.cursorBlink        : true
+URxvt.cursorUnderline    : false
+
+! Larger history limit
+URxvt.saveLines          : 2000000
+
+! Extensions
+URxvt.perl-ext-common    : default,clipboard,keyboard-select,url-select,selection-to-clipboard,matcher,font-size
+URxvt.url-launcher       : chromium
+URxvt.matcher.button     : 1
+
+!URxvt.copyCommand        : xclip -i -selection clipboard
+!URxvt.pasteCommand       : xclip -o -selection clipboard
+
+URxvt.keysym.C-Up:     font-size:increase
+URxvt.keysym.C-Down:   font-size:decrease
+URxvt.keysym.C-S-Up:   font-size:incglobal
+URxvt.keysym.C-S-Down: font-size:decglobal
+URxvt.keysym.C-equal:  font-size:reset
+
+URxvt.foreground:   #fce8c3
+URxvt.background:   #1c1b19
+URxvt.cursorColor:  #fce8c3
+URxvt.color0:       #1c1b19
+URxvt.color8:       #2d2b28
+URxvt.color1:       #ff3128
+URxvt.color9:       #f75341
+URxvt.color2:       #519f50
+URxvt.color10:      #98bc37
+URxvt.color3:       #fbb829
+URxvt.color11:      #fed06e
+URxvt.color4:       #5573a3
+URxvt.color12:      #8eb2f7
+URxvt.color5:       #e02c6d
+URxvt.color13:      #e35682
+URxvt.color6:       #0aaeb3
+URxvt.color14:      #53fde9
+URxvt.color7:       #918175
+URxvt.color15:      #fce8c3
