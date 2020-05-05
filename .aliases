@@ -20,4 +20,4 @@ alias .....="cd ../../../.."
 
 alias em="TERM=xterm-24bit emacsclient -t -a \"emacs -nw\""
 
-alias zoom="QT_QPA_PLATFORM= zoom"
+alias zoom="QT_QPA_PLATFORM= XDG_CURRENT_DESKTOP=gnome zoom"
