@@ -1,39 +1,179 @@
+@keyframes blink-warning {
+    70% {
+        color: white;
+    }
+
+    to {
+        color: white;
+        background-color: orange;
+    }
+}
+
+@keyframes blink-critical {
+    70% {
+        color: white;
+    }
+
+    to {
+        color: white;
+        background-color: red;
+    }
+}
+
 * {
-    font-size: 9.0pt;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
     font-family: "OverpassMono Nerd Font";
 }
 
-window#waybar {
-    background: #161618;
-    color: #efeff1;
+#waybar {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 9.0pt;
+}
+
+#backlight,
+#battery,
+#clock,
+#cpu,
+#idle_inhibitor,
+#memory,
+#mode,
+#network,
+#pulseaudio,
+#temperature,
+#tray {
+    padding-left: 10px;
+    padding-right: 12px;
+    min-width: 50px;
+}
+
+#backlight {}
+
+#battery {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#battery.warning {
+    color: orange;
+}
+
+#battery.critical {
+    color: red;
+}
+
+#battery.warning.discharging {
+    animation-name: blink-warning;
+    animation-duration: 3s;
+}
+
+#battery.critical.discharging {
+    animation-name: blink-critical;
+    animation-duration: 2s;
+}
+
+#clock {
+    font-weight: bold;
+}
+
+#cpu {
+    border-top: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+#cpu.warning {
+    color: orange;
+}
+
+#cpu.critical {
+    color: red;
+}
+
+#idle_inhibitor {}
+
+#memory {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#memory.warning {
+    color: orange;
+}
+
+#memory.critical {
+    color: red;
+    animation-name: blink-critical;
+    animation-duration: 2s;
+}
+
+#mode {
+    border-bottom: 2px solid white;
+    padding-top: 2px;
+}
+
+#network {
+    border-top: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+#network.disconnected {
+    color: orange;
+}
+
+#pulseaudio {
+    border-top: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+#pulseaudio.muted {
+    /* No styles */
+}
+
+#custom-spotify {
+    color: rgb(102, 220, 105);
+    padding-left: 8px;
+}
+
+#temperature {
+    border-top: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+#temperature.critical {
+    color: red;
+}
+
+#tray {
+    /* No styles */
+}
+
+#window {
+    margin-left: 32px;
+    margin-right: 32px;
+    font-weight: bold;
 }
 
 #workspaces button {
-    padding: 0 2px;
-    color: #efeff1;
-}
-
-#workspaces button:hover,
-#workspaces button.focused {
-    color: #d6224d;
+    border-bottom: 2px solid transparent;
+    padding-top: 2px;
+    padding-left: 12px;
+    padding-right: 12px;
+    color: white;
 }
 
 #workspaces button:hover {
-    padding: 0 3px;
+    background:#323232;
     box-shadow: inherit;
     text-shadow: inherit;
-    background: #1a1a1a;
-    border: #1a1a1a;
 }
 
-#idle_inhibitor,
-#clock,
-#pulseaudio,
-#backlight,
-#memory,
-#cpu,
-#temp,
-#battery,
-#network {
-    padding: 0 9px;
+#workspaces button.focused {
+    border-color: white;
+}
+
+#workspaces button.urgent {
+    border-color: orange;
+    color: orange;
 }

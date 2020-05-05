@@ -1,21 +1,27 @@
 {
     "layer": "top",
+    "position": "top",
     "height": 24,
     "modules-left": ["sway/workspaces", "sway/mode", "custom/spotify"],
     "modules-center": ["sway/window"],
-    "modules-right": ["idle_inhibitor", "pulseaudio", "cpu", "memory", "backlight", "battery", "network", "clock", "tray"],
+    "modules-right": ["idle_inhibitor", "pulseaudio", "backlight", "cpu", "memory", "temperature", "battery", "network", "clock", "tray"],
     "sway/workspaces": {
+        "all-outputs": false,
         "disable-scroll": true,
-        "all-outputs": true,
-        "format": "{name}{icon}",
+        "format": "{icon} {name}",
         "format-icons": {
-            "urgent": "-",
-            "focused": "",
-            "default": ""
+            "1:www": "龜",
+            "2:mail": "",
+            "3:editor": "",
+            "4:terminals": "",
+            "5:portal": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
         }
     },
     "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
+        "format": "<span style=\"italic\">  {}</span>"
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -24,28 +30,18 @@
             "deactivated": ""
         }
     },
-    "tray": {
-        "icon-size": 21,
-        "spacing": 10
-    },
     "clock": {
         "tooltip-format": "{:%Y-%m-%d | %H:%M}",
-        "format": "{:%Y-%m-%d | %H:%M}",
-        "format-alt": "{:%Y-%m-%d}"
+        "format": "{:%Y-%m-%d | %H:%M}"
     },
     "cpu": {
-        "format": "{usage}% "
-    },
-    "temperature": {
-      "thermal-zone": 0,
-      "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
-      "critical-threshold": 80
+        "format": " {usage}%"
     },
     "memory": {
-        "format": "{}% "
+        "format": " {}%"
     },
     "backlight": {
-        "format": "{percent}% {icon}",
+        "format": "{icon} {percent}%",
         "format-icons": ["", ""]
     },
     "battery": {
@@ -55,20 +51,18 @@
             "critical": 15
         },
         "bat": "BAT0",
-        "format": "{capacity}% {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
+        "format": " {capacity}%",
+        "format-discharging": "{icon} {capacity}% - {time}",
         "format-icons": ["", "", "", "", ""]
     },
     "network": {
-        // "interface": "wlp2s0", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr} ",
-        "format-disconnected": "Disconnected ⚠"
+        "format-wifi": " {essid} ({signalStrength}%)",
+        "format-ethernet": " {ipaddr}",
+        "format-disconnected": "Disconnected"
     },
     "pulseaudio": {
-        "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}% {icon}",
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
         "format-muted": "",
         "format-icons": {
             "headphones": "",
@@ -85,5 +79,15 @@
         "format": " {}",
         "max-length": 40,
         "exec": "python ~/.local/bin/mediaplayer.py 2> /dev/null"
+    },
+    "temperature": {
+        "critical-threshold": 80,
+        "interval": 5,
+        "format": "{icon} {temperatureC}°C",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
     }
 }
