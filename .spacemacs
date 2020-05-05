@@ -116,7 +116,7 @@ This function should only modify configuration layer settings."
            mu4e-view-show-addresses t)
      (org :variables org-projectile-file "TODOs.org")
      prettier
-     python
+     (python :variables python-format-on-save t)
      restclient
      ruby
      (rust :variables
