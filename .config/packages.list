@@ -16,6 +16,7 @@ dmidecode
 docker
 docker-compose
 docker-machine
+dnsmasq
 emacs
 eog
 evince
@@ -45,6 +46,8 @@ hadolint-bin
 hunspell-en_GB
 hunspell-en_US
 hunspell-fr
+inetutils
+iptables
 jq
 iw
 kanshi
@@ -132,6 +135,8 @@ waybar
 wayland
 wget
 wl-clipboard
+xdg-desktop-portal
+xdg-desktop-portal-wlr
 xdg-user-dirs
 xorg-server-xwayland
 yay
