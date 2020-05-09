@@ -128,8 +128,9 @@ This function should only modify configuration layer settings."
             shell-default-position 'bottom)
      (shell-scripts :variables shell-scripts-backend 'lsp)
      (spell-checking :variables
-                     spell-checking-enable-by-default nil
-                     enable-flyspell-auto-completion t)
+                     enable-flyspell-auto-completion t
+                     spell-checking-enable-auto-dictionary t
+                     spell-checking-enable-by-default nil)
      sql
      syntax-checking
      systemd
@@ -701,6 +702,14 @@ before packages are loaded."
               "My settings for message composition."
               (set-fill-column 72)
               (flyspell-mode)))
+
+  ;; Better markdown: auto spell-check and auto prettier on save
+  (defun markdown-mode-before-save-hook ()
+    (when (eq major-mode 'markdown-mode)
+      (prettier-js)))
+
+  (add-hook 'before-save-hook #'markdown-mode-before-save-hook)
+  (add-hook 'text-mode-hook 'flyspell-mode)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will

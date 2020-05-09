@@ -29,6 +29,7 @@ fwupd
 fzf
 git
 glances
+glfw-wayland
 glu
 gnome-disk-utility
 gnome-themes-standard
@@ -55,6 +56,9 @@ keybase
 keychain
 lastpass
 libinput-gestures
+libva-vdpau-driver
+libva1
+libvdpau-va-gl
 light
 linux
 linux-firmware
