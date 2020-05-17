@@ -105,7 +105,7 @@ This function should only modify configuration layer settings."
            mu4e-spacemacs-kill-layout-on-exit t
            mu4e-view-prefer-html t
            mu4e-split-view 'vertical
-           mu4e-update-interval 120
+           mu4e-update-interval 360
            mu4e-use-fancy-chars t
            mu4e-use-maildirs-extension t
            mu4e-view-show-addresses t)
@@ -693,20 +693,20 @@ before packages are loaded."
   (keychain-refresh-environment)
 
   ;; sendmail configuration
-  (setq mail-specify-envelope-from t
-        mail-envelope-from 'header
+  (setq mail-envelope-from 'header
         mail-user-agent 'mu4e-user-agent
-        message-kill-buffer-on-exit t
+        mail-specify-envelope-from t
+        message-send-mail-function 'message-send-mail-with-sendmail
         message-sendmail-envelope-from 'header
         message-sendmail-extra-arguments '("--read-envelope-from")
         message-sendmail-f-is-evil 't
-        message-send-mail-function 'message-send-mail-with-sendmail)
-
-  (require 'mu4e)
+        send-mail-function 'smtpmail-send-it
+        sendmail-program "/usr/bin/msmtp")
 
   ;; Enable Desktop notifications
-  (with-eval-after-load 'mu4e-alert
-    (mu4e-alert-set-default-style 'notifications))
+  (require 'mu4e-alert)
+  (setq mu4e-alert-set-default-style 'libnotify
+        mu4e-alert-email-notification-types '(subjects))
 
   (add-hook
    'mu4e-compose-mode-hook
