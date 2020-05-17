@@ -1,2 +1,0 @@
-alias up eshell-up $1
-alias pk eshell-up-peek $1
