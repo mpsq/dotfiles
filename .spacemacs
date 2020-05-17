@@ -100,15 +100,11 @@ This function should only modify configuration layer settings."
            mu4e-get-mail-command "offlineimap"
            mu4e-headers-auto-update t
            mu4e-headers-visible-lines 40
-           mu4e-html2text-command 'mu4e-shr2text
-           mu4e-main-buffer-name "*mu4e-main*"
-           mu4e-maildir "~/.mail-archive"
-           mu4e-maildirs-extension-buffer-name "*mu4e-main*"
            ;; https://github.com/agpchil/mu4e-maildirs-extension/issues/52
            mu4e-maildirs-extension-insert-before-str ""
            mu4e-spacemacs-kill-layout-on-exit t
-           mu4e-split-view 'horizontal
            mu4e-view-prefer-html t
+           mu4e-split-view 'vertical
            mu4e-update-interval 120
            mu4e-use-fancy-chars t
            mu4e-use-maildirs-extension t
@@ -725,7 +721,7 @@ before packages are loaded."
       (prettier-js)))
 
   (add-hook 'before-save-hook #'markdown-mode-before-save-hook)
-  (add-hook 'text-mode-hook 'flyspell-mode)
+  (add-hook 'markdown-mode-hook 'flyspell-mode)
 
   (when (file-exists-p "~/.spacemacs-private")
     (load-file "~/.spacemacs-private"))
