@@ -6,5 +6,9 @@
   output "Unknown Q2577W ADQG59A000358" enable
 }
 {
+  output eDP-1 disable
+  output "Dell Inc. DELL U3415W 68MCF513088L" enable
+}
+{
   output eDP-1 enable
 }
