@@ -1,4 +1,5 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t -*-
+
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -64,6 +65,7 @@ This function should only modify configuration layer settings."
           ivy-format-function #'ivy-format-function-line)
      java
      (javascript :variables
+                 javascript-backend 'lsp
                  javascript-fmt-on-save t
                  javascript-fmt-tool 'prettier
                  javascript-import-tool 'import-js
@@ -168,6 +170,7 @@ This function should only modify configuration layer settings."
      all-the-icons-ivy
      atomic-chrome
      disable-mouse
+     github-review
      eshell-up
      evil-terminal-cursor-changer
      keychain-environment
@@ -596,35 +599,50 @@ before packages are loaded."
   (setq create-lockfiles nil)
   (setq warning-suppress-types nil)
 
+  ;; completion
   (global-company-mode)
 
   ;; open links with ff
   (setq browse-url-browser-function 'browse-url-firefox)
 
+  ;; lsp/dap
+  (require 'lsp-mode)
+  (setq lsp-file-watch-threshold 6000)
+  (require 'dap-mode)
+  (use-package dap-mode
+    :bind
+    ("<f5>" . dap-debug)
+    ("<f9>" . dap-step-in)
+    ("<f10>" . dap-step-out)
+    ("<f6>" . dap-next)
+    ("<f7>" . dap-continue))
+  (custom-set-faces
+   '(dap-ui-pending-breakpoint-face ((t (:underline "dim gray"))))
+   '(dap-ui-verified-breakpoint-face ((t (:underline "green")))))
+  (setq dap-auto-configure-features '(sessions locals controls tooltip))
+
   ;; JS/TS Linting
   (require 'flycheck)
   (set-face-attribute 'flycheck-error nil :background "#ff6666" :foreground "#fff")
   (add-hook 'typescript-mode-hook 'flycheck-mode)
-
-  ;; completion
-  (setq company-lsp-cache-candidates t)
+  (add-hook 'lsp-mode-hook #'lsp-lens-mode)
+  (global-flycheck-mode)
 
   ;; Disable mouse
   (require 'disable-mouse)
   (global-disable-mouse-mode)
   (mouse-wheel-mode -1)
-  (mapc #'disable-mouse-in-keymap
-        (list evil-motion-state-map
-              evil-normal-state-map
-              evil-visual-state-map
-              evil-insert-state-map))
+  (mapc
+   #'disable-mouse-in-keymap
+   (list
+    evil-motion-state-map
+    evil-normal-state-map
+    evil-visual-state-map
+    evil-insert-state-map))
 
   ;; Emacs in Chromium
   (require 'atomic-chrome)
   (atomic-chrome-start-server)
-
-  (require 'keychain-environment)
-  (keychain-refresh-environment)
 
   ;; candy eye
   (require 'kaolin-themes)
@@ -650,19 +668,15 @@ before packages are loaded."
   (spaceline-toggle-version-control-on)
   (spaceline-toggle-buffer-encoding-abbrev-off)
 
+  ;; change cursor according to edit mode in emacs-nox
   (unless (display-graphic-p)
     (require 'evil-terminal-cursor-changer)
     (evil-terminal-cursor-changer-activate)
     (setq powerline-default-separator 'utf-8)
+    (dap-ui-controls-mode 0)
   )
 
-  (require 'treemacs)
-  (setq treemacs-sorting 'alphabetic-asc)
-
   ;; vterm
-  (evil-define-key 'normal vterm-mode-map (kbd "C-k") #'vterm-send-up)
-  (evil-define-key 'normal vterm-mode-map (kbd "C-j") #'vterm-send-down)
-
   (evil-define-key 'insert vterm-mode-map (kbd "C-k") #'vterm-send-up)
   (evil-define-key 'insert vterm-mode-map (kbd "C-j") #'vterm-send-down)
   (evil-define-key 'insert vterm-mode-map (kbd "C-v") #'vterm--self-insert)
@@ -675,12 +689,15 @@ before packages are loaded."
   (define-key evil-normal-state-map (kbd "C-o i") 'evil-jump-forward)
   (define-key evil-normal-state-map (kbd "C-o o") 'evil-jump-backward)
 
+  ;; evilify even more Emacs tools
   (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))
 
-  ;; gpg settings
+  ;; gpg settings/keyring
   (setq epa-armor t)
   (setq epa-pinentry-mode 'loopback)
   (pinentry-start)
+  (require 'keychain-environment)
+  (keychain-refresh-environment)
 
   ;; sendmail configuration
   (setq mail-specify-envelope-from t
@@ -692,16 +709,18 @@ before packages are loaded."
         message-sendmail-f-is-evil 't
         message-send-mail-function 'message-send-mail-with-sendmail)
 
+  (require 'mu4e)
+
   ;; Enable Desktop notifications
   (with-eval-after-load 'mu4e-alert
     (mu4e-alert-set-default-style 'notifications))
 
-  (require 'mu4e)
-  (add-hook 'mu4e-compose-mode-hook
-            (defun my-do-compose-stuff ()
-              "My settings for message composition."
-              (set-fill-column 72)
-              (flyspell-mode)))
+  (add-hook
+   'mu4e-compose-mode-hook
+   (defun my-do-compose-stuff ()
+     "My settings for message composition."
+     (set-fill-column 72)
+     (flyspell-mode)))
 
   ;; Better markdown: auto spell-check and auto prettier on save
   (defun markdown-mode-before-save-hook ()
@@ -726,12 +745,13 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (csv-mode seeing-is-believing rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocopfmt rubocop rspec-mode robe rbenv rake minitest helm-gtags helm helm-core async ggtags enh-ruby-mode counsel chruby bundler inf-ruby treemacs evil ansi package-build shut-up epl git commander f dash s sqlup-mode sql-indent yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill typescript-mode treemacs-projectile treemacs-evil toml-mode toc-org tagedit systemd symon symbol-overlay string-inflection spaceline-all-the-icons smex smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs request rainbow-mode rainbow-identifiers rainbow-delimiters racer pytest pyenv-mode py-isort pug-mode prettier-js popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-cliplink org-bullets org-brain open-junk-file nodejs-repl nginx-mode nameless mwim multi-term move-text moe-theme mmm-mode markdown-toc magit-gitflow macrostep lsp-ui lsp-treemacs lsp-python-ms lorem-ipsum livid-mode live-py-mode link-hint keychain-environment json-navigator js2-refactor js-doc ivy-yasnippet ivy-xref ivy-rich ivy-purpose ivy-hydra indent-guide importmagic impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate golden-ratio gnuplot gitignore-templates gitignore-mode github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md fuzzy forge font-lock+ flyspell-correct-ivy flycheck-rust flycheck-pos-tip flycheck-package flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-terminal-cursor-changer evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eslintd-fix eshell-z eshell-prompt-extras eshell-git-prompt esh-help emmet-mode elisp-slime-nav editorconfig edit-server dumb-jump dotenv-mode doom-modeline dockerfile-mode docker disable-mouse diminish diff-hl devdocs define-word dap-mode cython-mode counsel-projectile counsel-css company-web company-terraform company-tern company-statistics company-lsp company-anaconda column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode cargo browse-at-remote blacken auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent add-node-modules-path ace-link ac-ispell)))
+    (evil-lispy lispy csv-mode seeing-is-believing rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocopfmt rubocop rspec-mode robe rbenv rake minitest helm-gtags helm helm-core async ggtags enh-ruby-mode counsel chruby bundler inf-ruby treemacs evil ansi package-build shut-up epl git commander f dash s sqlup-mode sql-indent yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill typescript-mode treemacs-projectile treemacs-evil toml-mode toc-org tagedit systemd symon symbol-overlay string-inflection spaceline-all-the-icons smex smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs request rainbow-mode rainbow-identifiers rainbow-delimiters racer pytest pyenv-mode py-isort pug-mode prettier-js popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-cliplink org-bullets org-brain open-junk-file nodejs-repl nginx-mode nameless mwim multi-term move-text moe-theme mmm-mode markdown-toc magit-gitflow macrostep lsp-ui lsp-treemacs lsp-python-ms lorem-ipsum livid-mode live-py-mode link-hint keychain-environment json-navigator js2-refactor js-doc ivy-yasnippet ivy-xref ivy-rich ivy-purpose ivy-hydra indent-guide importmagic impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate golden-ratio gnuplot gitignore-templates gitignore-mode github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md fuzzy forge font-lock+ flyspell-correct-ivy flycheck-rust flycheck-pos-tip flycheck-package flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-terminal-cursor-changer evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eslintd-fix eshell-z eshell-prompt-extras eshell-git-prompt esh-help emmet-mode elisp-slime-nav editorconfig edit-server dumb-jump dotenv-mode doom-modeline dockerfile-mode docker disable-mouse diminish diff-hl devdocs define-word dap-mode cython-mode counsel-projectile counsel-css company-web company-terraform company-tern company-statistics company-lsp company-anaconda column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode cargo browse-at-remote blacken auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent add-node-modules-path ace-link ac-ispell)))
  '(send-mail-function (quote mailclient-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(dap-ui-pending-breakpoint-face ((t (:underline "dim gray"))))
+ '(dap-ui-verified-breakpoint-face ((t (:underline "green")))))
 )
