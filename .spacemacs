@@ -102,13 +102,10 @@ This function should only modify configuration layer settings."
            mu4e-headers-visible-lines 40
            mu4e-html2text-command 'mu4e-shr2text
            mu4e-main-buffer-name "*mu4e-main*"
-           mu4e-maildir "~/.mail-archive/"
+           mu4e-maildir "~/.mail-archive"
            mu4e-maildirs-extension-buffer-name "*mu4e-main*"
            ;; https://github.com/agpchil/mu4e-maildirs-extension/issues/52
            mu4e-maildirs-extension-insert-before-str ""
-           mu4e-drafts-folder "/mailfence/Drafts"
-           mu4e-sent-folder "/mailfence/Sent Items"
-           mu4e-trash-folder "/mailfence/Trash"
            mu4e-spacemacs-kill-layout-on-exit t
            mu4e-split-view 'horizontal
            mu4e-view-prefer-html t
@@ -729,7 +726,10 @@ before packages are loaded."
 
   (add-hook 'before-save-hook #'markdown-mode-before-save-hook)
   (add-hook 'text-mode-hook 'flyspell-mode)
-)
+
+  (when (file-exists-p "~/.spacemacs-private")
+    (load-file "~/.spacemacs-private"))
+  )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
