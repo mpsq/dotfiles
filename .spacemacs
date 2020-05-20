@@ -97,11 +97,10 @@ This function should only modify configuration layer settings."
            mu4e-compose-dont-reply-to-self t
            mu4e-enable-mode-line t
            mu4e-enable-notifications t
-           mu4e-get-mail-command "offlineimap"
+           mu4e-get-mail-command "offlineimap -o"
            mu4e-headers-auto-update t
+           mu4e-headers-date-format "%Y-%m-%d %H:%M"
            mu4e-headers-visible-lines 40
-           ;; https://github.com/agpchil/mu4e-maildirs-extension/issues/52
-           mu4e-maildirs-extension-insert-before-str ""
            mu4e-spacemacs-kill-layout-on-exit t
            mu4e-view-prefer-html t
            mu4e-split-view 'vertical
@@ -695,7 +694,8 @@ before packages are loaded."
   ;; sendmail configuration
   (setq mail-envelope-from 'header
         mail-user-agent 'mu4e-user-agent
-        mail-specify-envelope-from t
+        mail-specify-envelope-from 't
+        message-kill-buffer-on-exit 't
         message-send-mail-function 'message-send-mail-with-sendmail
         message-sendmail-envelope-from 'header
         message-sendmail-extra-arguments '("--read-envelope-from")
@@ -704,9 +704,8 @@ before packages are loaded."
         sendmail-program "/usr/bin/msmtp")
 
   ;; Enable Desktop notifications
-  (require 'mu4e-alert)
-  (setq mu4e-alert-set-default-style 'libnotify
-        mu4e-alert-email-notification-types '(subjects))
+  (with-eval-after-load 'mu4e-alert
+    (mu4e-alert-set-default-style 'libnotify))
 
   (add-hook
    'mu4e-compose-mode-hook
