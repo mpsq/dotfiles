@@ -39,3 +39,5 @@ export XDG_CONFIG_HOME=/home/meril/.config
 # gpg
 GPG_TTY=$(tty)
 export GPG_TTY
+
+export XZ_DEFAULTS="-T 0"
