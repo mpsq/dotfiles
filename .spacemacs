@@ -64,7 +64,15 @@ This function should only modify configuration layer settings."
           ivy-enable-advanced-buffer-information t
           ivy-initial-inputs-alist nil
           ivy-format-function #'ivy-format-function-line)
-     java
+     (java :variables
+           lsp-java-vmargs '(
+                             "-noverify"
+                             "-Xmx1G"
+                             "-XX:+UseG1GC"
+                             "-XX:+UseStringDeduplication"
+                             "--add-exports"
+                             "java.base/jdk.internal.math=io.questdb"
+                             ))
      (javascript :variables
                  javascript-backend 'lsp
                  javascript-fmt-on-save t
@@ -163,7 +171,6 @@ This function should only modify configuration layer settings."
      all-the-icons
      all-the-icons-ivy
      atomic-chrome
-     disable-mouse
      github-review
      eshell-up
      evil-terminal-cursor-changer
@@ -302,10 +309,10 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         challenger-deep
-                         sanityinc-tomorrow-night
-                         kaolin-ocean
                          darktooth
+                         sanityinc-tomorrow-night
+                         challenger-deep
+                         kaolin-ocean
                          srcery
                          )
 
@@ -316,7 +323,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.3)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -324,7 +331,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font or prioritized list of fonts.
    dotspacemacs-default-font '("ShureTechMono Nerd Font Mono"
-                               :size 10.0
+                               :size 11.0
                                :weight normal
                                :width normal)
 
@@ -623,18 +630,6 @@ before packages are loaded."
   (add-hook 'typescript-mode-hook 'flycheck-mode)
   (add-hook 'lsp-mode-hook #'lsp-lens-mode)
   (global-flycheck-mode)
-
-  ;; Disable mouse
-  (require 'disable-mouse)
-  (global-disable-mouse-mode)
-  (mouse-wheel-mode -1)
-  (mapc
-   #'disable-mouse-in-keymap
-   (list
-    evil-motion-state-map
-    evil-normal-state-map
-    evil-visual-state-map
-    evil-insert-state-map))
 
   ;; Emacs in Chromium
   (require 'atomic-chrome)
