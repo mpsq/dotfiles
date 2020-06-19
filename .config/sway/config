@@ -35,9 +35,15 @@ bar {
 
 ### Input/output
 #
-input * {
-  tap enabled
+input type:keyboard {
   xkb_layout gb
+}
+
+input type:touchpad {
+  tap enabled
+  natural_scroll disabled
+  dwt enabled
+  pointer_accel 0.2
 }
 
 ### Key bindings
@@ -170,7 +176,6 @@ exec swayidle -w \
   before-sleep 'swaylock'
 
 exec --no-startup-id "kanshi"
-exec --no-startup-id "redshift"
 exec --no-startup-id "mako"
 exec --no-startup-id "libinput-gestures-setup start"
 exec_always --no-startup-id "set-bkg-lck"
