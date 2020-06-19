@@ -6,9 +6,8 @@ alias egrep="egrep --color=auto"
 alias fgrep="fgrep --color=auto"
 
 alias ls="ls --color=auto"
-alias l="ls -lF --color=auto"
-alias la="ls -laF --color=auto"
-alias lah="ls -lah --color=auto"
+alias l="ls -lFh --color=auto"
+alias la="ls -laFh --color=auto"
 alias lsd='ls -lF --color=auto | grep "^d"'
 
 alias boum="git co master && git pull origin master"
