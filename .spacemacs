@@ -71,7 +71,7 @@ This function should only modify configuration layer settings."
                              "-XX:+UseG1GC"
                              "-XX:+UseStringDeduplication"
                              "--add-exports"
-                             "java.base/jdk.internal.math=io.questdb"
+                             "java.base/jdk.internal.math=ALL-UNNAMED"
                              ))
      (javascript :variables
                  javascript-backend 'lsp
@@ -106,7 +106,7 @@ This function should only modify configuration layer settings."
            mu4e-compose-dont-reply-to-self t
            mu4e-enable-mode-line t
            mu4e-enable-notifications t
-           mu4e-get-mail-command "offlineimap -o"
+           mu4e-get-mail-command "offlineimap -o -f ~/.offlineimap.log"
            mu4e-headers-auto-update t
            mu4e-headers-date-format "%Y-%m-%d %H:%M"
            mu4e-headers-visible-lines 40
