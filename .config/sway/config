@@ -43,7 +43,7 @@ input type:touchpad {
   tap enabled
   natural_scroll disabled
   dwt enabled
-  pointer_accel 0.2
+  pointer_accel 0.15
 }
 
 ### Key bindings
