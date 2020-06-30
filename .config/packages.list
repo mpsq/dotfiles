@@ -109,7 +109,7 @@ qt5-webchannel
 qt5-webengine
 qt5-webkit
 qt5ct
-redshift-wlr-gamma-control-git
+redshift-wayland-git
 reflector
 ripgrep
 seahorse
