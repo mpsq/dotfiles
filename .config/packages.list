@@ -134,11 +134,11 @@ unzip
 usbutils
 vcsh
 veracrypt
-vulkan-mesa-layer
 waybar
 wayland
 wget
 wl-clipboard
+wl-recorder-git
 xdg-desktop-portal
 xdg-desktop-portal-wlr
 xdg-user-dirs
