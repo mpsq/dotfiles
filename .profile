@@ -19,7 +19,7 @@ export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear:gpg"
 # Default apps
 export EDITOR="em"
 export VISUAL="em"
-export BROWSER="chromium"
+export BROWSER="firefox"
 export GNUPGHOME="$HOME/.gnupg"
 
 # Wayland apps
