@@ -33,7 +33,6 @@ glfw-wayland
 glu
 gnome-disk-utility
 gnome-themes-standard
-gnu-free-fonts
 grim
 gst-libav
 gst-plugins-bad
@@ -121,9 +120,7 @@ swaylock
 tflint-bin
 tldr
 tokei
-ttf-bitstream-vera
 ttf-hack
-ttf-liberation
 ttf-opensans
 unrar
 unzip
