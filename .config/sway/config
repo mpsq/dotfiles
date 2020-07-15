@@ -9,7 +9,7 @@ set $fc #d6224d
 
 set $satie_laptop 'Sharp Corporation 0x149A 0x00000000'
 
-font pango:"ShureTechMono Nerd Font Mono" 9
+font pango:monospace 9
 
 gaps inner 5
 gaps outer 0
@@ -43,7 +43,7 @@ input type:touchpad {
   tap enabled
   natural_scroll disabled
   dwt enabled
-  pointer_accel 0.15
+  pointer_accel 0.12
 }
 
 ### Key bindings

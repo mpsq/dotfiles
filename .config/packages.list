@@ -75,14 +75,10 @@ mullvad-vpn-bin
 myrepos
 nautilus
 neofetch
-nerd-fonts-complete
 networkmanager
 nm-connection-editor
 python-gobject
-noto-fonts
-noto-fonts-cjk
 noto-fonts-emoji
-noto-fonts-extra
 ntp
 numix-circle-arc-icons-git
 nvm
@@ -127,7 +123,7 @@ tflint-bin
 tldr
 tokei
 ttf-bitstream-vera
-ttf-dejavu
+ttf-hack
 ttf-liberation
 ttf-opensans
 unrar

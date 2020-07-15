@@ -10,8 +10,8 @@ window:
 
 font:
   normal:
-    family: ShureTechMono Nerd Font Mono
-  size: 10.0
+    family: monospace
+  size: 9.0
 
 colors:
   # Default colors
