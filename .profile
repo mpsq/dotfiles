@@ -41,3 +41,7 @@ GPG_TTY=$(tty)
 export GPG_TTY
 
 export XZ_DEFAULTS="-T 0"
+
+# fzf
+export FZF_DEFAULT_OPTS=--bind=ctrl-l:accept
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#cbe3e7,bg:#100e23,hl:#91ddff --color=fg+:#a6b3cc,bg+:#565575,hl+:#65b2ff --color=info:#95ffa4,prompt:#ff8080,pointer:#906cff --color=marker:#62d196,spinner:#c991e1,header:#ffe9aa'

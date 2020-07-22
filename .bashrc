@@ -88,9 +88,6 @@ export NVM_DIR="$HOME/.nvm"
 export NVM_SOURCE="/usr/share/nvm"
 [ -s "$NVM_SOURCE/nvm.sh" ] && . "$NVM_SOURCE/nvm.sh"
 
-# FZF set RETURN to C-l
-export FZF_DEFAULT_OPTS=--bind=ctrl-l:accept
-
 if [[ "$TERM" = "xterm-256color" || "$TERM" = "xterm-24bit" ]]; then
     eval "$(keychain --eval --quiet --quick --nogui --ignore-missing --agents ssh,gpg id_rsa id_ed25519 B78ABA26623D1326)"
 fi

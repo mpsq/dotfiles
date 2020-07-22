@@ -3,9 +3,10 @@
 set $mod Mod1
 set $term alacritty
 
-set $bg #879193
-set $fg #879193
-set $fc #d6224d
+set $bg #906cff
+set $fg #cbe3e7
+set $fc #c991e1
+set $ur #ff8080
 
 set $satie_laptop 'Sharp Corporation 0x149A 0x00000000'
 
@@ -20,7 +21,7 @@ gaps outer 0
 client.focused          $fc     $bg     $fg  $bg       $fc
 client.focused_inactive $bg     $bg     $fg  $bg       $bg
 client.unfocused        $bg     $bg     $fg  $bg       $bg
-client.urgent           $bg     $bg     $fg  $bg       $bg
+client.urgent           $ur     $bg     $fg  $bg       $ur
 client.placeholder      $bg     $bg     $fg  $bg       $bg
 client.background $bg
 
