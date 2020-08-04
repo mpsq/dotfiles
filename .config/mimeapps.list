@@ -12,7 +12,7 @@ application/x-extension-xhtml=firefox.desktop
 application/x-extension-xht=firefox.desktop
 x-scheme-handler/eclipse+command=_usr_lib_eclipse_.desktop
 application/pdf=org.gnome.Evince.desktop
-
+image/jpeg=org.gnome.eog.desktop
 
 [Added Associations]
 x-scheme-handler/http=firefox.desktop;
@@ -31,3 +31,4 @@ application/zip=org.gnome.FileRoller.desktop;
 application/javascript=vim.desktop;
 image/svg+xml=org.gnome.eog.desktop;
 application/pdf=evince.desktop;org.gnome.Evince.desktop;
+image/jpeg=org.gnome.eog.desktop;
