@@ -81,6 +81,7 @@
         "exec": "python ~/.local/bin/mediaplayer.py 2> /dev/null"
     },
     "temperature": {
+        "thermal-zone": 3,
         "critical-threshold": 80,
         "interval": 5,
         "format": "{icon} {temperatureC}°C",
