@@ -7,7 +7,7 @@
 }
 {
   output eDP-1 disable
-  output "Dell Inc. DELL U3415W 68MCF513088L" enable
+  output "Dell Inc. DELL U3415W 68MCF513088L" mode 3440x1440 enable
 }
 {
   output eDP-1 disable
