@@ -76,6 +76,7 @@ nautilus
 neofetch
 networkmanager
 nm-connection-editor
+pamixer
 python-gobject
 noto-fonts-emoji
 ntp
@@ -132,6 +133,7 @@ wayland
 wget
 wl-clipboard
 wf-recorder-git
+wob
 xdg-desktop-portal
 xdg-desktop-portal-wlr
 xdg-user-dirs

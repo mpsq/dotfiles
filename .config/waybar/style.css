@@ -57,6 +57,7 @@
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
+    border-top: 2px solid rgba(255, 255, 255, 0.6);
 }
 
 #battery.warning {
@@ -79,11 +80,10 @@
 
 #clock {
     font-weight: bold;
-}
-
-#cpu {
     border-top: 2px solid rgba(255, 255, 255, 0.6);
 }
+
+#cpu {}
 
 #cpu.warning {
     color: orange;
@@ -96,6 +96,7 @@
 #idle_inhibitor {}
 
 #memory {
+    border-top: 2px solid rgba(255, 255, 255, 0.6);
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
@@ -116,9 +117,7 @@
     padding-top: 2px;
 }
 
-#network {
-    border-top: 2px solid rgba(255, 255, 255, 0.6);
-}
+#network {}
 
 #network.disconnected {
     color: orange;
@@ -128,26 +127,20 @@
     border-top: 2px solid rgba(255, 255, 255, 0.6);
 }
 
-#pulseaudio.muted {
-    /* No styles */
-}
+#pulseaudio.muted {}
 
 #custom-spotify {
     color: rgb(102, 220, 105);
     padding-left: 8px;
 }
 
-#temperature {
-    border-top: 2px solid rgba(255, 255, 255, 0.6);
-}
+#temperature {}
 
 #temperature.critical {
     color: red;
 }
 
-#tray {
-    /* No styles */
-}
+#tray {}
 
 #window {
     margin-left: 32px;

@@ -146,7 +146,7 @@ bindsym Shift+Ctrl+ISO_Level3_Shift exec volume_down
 bindsym Shift+Ctrl+Super_R exec volume_up
 bindsym XF86AudioLowerVolume exec volume_down
 bindsym XF86AudioRaiseVolume exec volume_up
-bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+bindsym XF86AudioMute exec pamixer --toggle-mute && ( pamixer --get-mute && echo 0 > $SWAYSOCK.wob ) || pamixer --get-volume > $SWAYSOCK.wob
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec brightness_up
@@ -176,6 +176,7 @@ exec swayidle -w \
   resume 'swaymsg "output * dpms on"' \
   before-sleep 'swaylock'
 
+exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob
 exec --no-startup-id "kanshi"
 exec --no-startup-id "mako"
 exec --no-startup-id "libinput-gestures-setup start"

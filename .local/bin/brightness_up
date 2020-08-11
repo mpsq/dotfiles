@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-light -A 3
+light -A 3 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob

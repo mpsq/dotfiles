@@ -1,6 +1,2 @@
-#!/bin/bash
-
-for SINK in `pacmd list-sinks | grep 'index:' | cut -b12-`
-do
-    pactl set-sink-volume $SINK +2%
-done
+#!/bin/sh
+pamixer -ui 2 && pamixer --get-volume > $SWAYSOCK.wob
