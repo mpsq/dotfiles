@@ -41,7 +41,6 @@ This function should only modify configuration layer settings."
                       better-defaults-move-to-beginning-of-code-first t
                       better-defaults-move-to-end-of-code-first t)
      colors
-     common-lisp
      csv
      dap
      docker
@@ -123,7 +122,6 @@ This function should only modify configuration layer settings."
      prettier
      (python :variables python-format-on-save t)
      restclient
-     ruby
      (rust :variables
            rust-format-on-save t)
      (shell :variables
@@ -172,9 +170,7 @@ This function should only modify configuration layer settings."
    '(
      all-the-icons
      all-the-icons-ivy
-     atomic-chrome
      github-review
-     eshell-up
      evil-terminal-cursor-changer
      keychain-environment
      pinentry
@@ -657,10 +653,6 @@ before packages are loaded."
   (add-hook 'lsp-mode-hook #'lsp-lens-mode)
   (global-flycheck-mode)
 
-  ;; Emacs in Chromium
-  (require 'atomic-chrome)
-  (atomic-chrome-start-server)
-
   ;; candy eye
   (require 'kaolin-themes)
   (setq kaolin-themes-distinct-fringe t)
@@ -690,6 +682,7 @@ before packages are loaded."
     (require 'evil-terminal-cursor-changer)
     (evil-terminal-cursor-changer-activate)
     (setq powerline-default-separator 'utf-8)
+    (setq dap-auto-configure-features (remove 'controls dap-auto-configure-features))
     (dap-ui-controls-mode 0)
   )
 
@@ -708,6 +701,8 @@ before packages are loaded."
 
   ;; evilify even more Emacs tools
   (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))
+  (setq evil-emacs-state-modes (delq 'proced-mode evil-emacs-state-modes))
+  (setq evil-emacs-state-modes (delq 'proced-mode-map evil-emacs-state-modes))
 
   ;; gpg settings/keyring
   (setq epa-armor t)
@@ -755,6 +750,8 @@ before packages are loaded."
     (web-mode-markup-indent-offset 2)
     (web-mode-css-indent-offset 2)
     (web-mode-code-indent-offset 2))
+
+  (setq read-process-output-max (* 1024 1024))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
