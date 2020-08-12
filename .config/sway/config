@@ -176,7 +176,7 @@ exec swayidle -w \
   resume 'swaymsg "output * dpms on"' \
   before-sleep 'swaylock'
 
-exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob
+exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob -p 5 -b 0 -t 2000 --border-color '#dd906cff' --bar-color '#ddcbe3e7' --background-color '#dd906cff'
 exec --no-startup-id "kanshi"
 exec --no-startup-id "mako"
 exec --no-startup-id "libinput-gestures-setup start"

@@ -73,7 +73,9 @@
             "car": "",
             "default": ["", ""]
         },
-        "on-click": "pavucontrol"
+        "on-click": "pavucontrol",
+        "on-scroll-up": "volume_up",
+        "on-scroll-down": "volume_down"
     },
     "custom/spotify": {
         "format": " {}",
