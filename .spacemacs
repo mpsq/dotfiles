@@ -497,11 +497,8 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-line-numbers '(:relative nil
         :visual t
         :disabled-for-modes dired-mode
-                            doc-view-mode
-                            markdown-mode
                             org-mode
                             pdf-view-mode
-                            text-mode
         :size-limit-kb 1000)
 
    ;; Code folding method. Possible values are `evil' and `origami'.
@@ -578,6 +575,15 @@ It should only modify the values of Spacemacs settings."
    ;; If it does deactivate it here.
    ;; (default t)
    dotspacemacs-use-clean-aindent-mode t
+
+   ;; If non-nil activate `snoopy-mode' which shifts your number row
+   ;; to match the set of signs given in `dotspacemacs-snoopy-keyrow'
+   ;; in programming modes (insert-mode only). (default nil)
+   dotspacemacs-use-snoopy-mode nil
+
+   ;; Text of shifted values from your
+   ;; keyboard's number row. (default '!@#$%^&*()')
+   dotspacemacs-snoopy-keyrow "!@#$%^&*()"
 
    ;; Either nil or a number of seconds. If non-nil zone out after the specified
    ;; number of seconds. (default nil)
