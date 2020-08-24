@@ -11,6 +11,7 @@ alias la="ls -laFh --color=auto"
 alias lsd='ls -lF --color=auto | grep "^d"'
 
 alias boum="git co master && git pull origin master"
+alias vgit="vcsh dotfiles"
 alias fire="DISPLAY= cacafire"
 alias ..="cd .."
 alias ...="cd ../.."
