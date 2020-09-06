@@ -657,16 +657,6 @@ before packages are loaded."
   (add-hook 'lsp-mode-hook #'lsp-lens-mode)
   (global-flycheck-mode)
 
-  ;; candy eye
-  (require 'kaolin-themes)
-  (setq kaolin-themes-distinct-fringe t)
-  (setq kaolin-themes-git-gutter-solid t)
-  (setq kaolin-themes-hl-line-colored t)
-  (setq kaolin-themes-bold t)
-  (setq kaolin-themes-distinct-company-scrollbar t)
-  (setq kaolin-themes-italic-comments t)
-  (setq kaolin-themes-underline-wave t)
-
   ;; Add icons to ivy
   (all-the-icons-ivy-setup)
 
@@ -699,7 +689,7 @@ before packages are loaded."
   (evil-define-key 'insert vterm-mode-map (kbd "C-r") #'vterm--self-insert)
   (evil-define-key 'insert vterm-mode-map (kbd "C-l") #'vterm--self-insert)
 
-  ;; bindings
+  ;; nox bindings
   (define-key evil-normal-state-map (kbd "C-o i") 'evil-jump-forward)
   (define-key evil-normal-state-map (kbd "C-o o") 'evil-jump-backward)
 
@@ -742,7 +732,6 @@ before packages are loaded."
   (defun markdown-mode-before-save-hook ()
     (when (eq major-mode 'markdown-mode)
       (prettier-js)))
-
   (add-hook 'before-save-hook #'markdown-mode-before-save-hook)
   (add-hook 'markdown-mode-hook 'flyspell-mode)
 
@@ -755,6 +744,7 @@ before packages are loaded."
     (web-mode-css-indent-offset 2)
     (web-mode-code-indent-offset 2))
 
+  ;; LSP performance
   (setq read-process-output-max (* 1024 1024))
   )
 
