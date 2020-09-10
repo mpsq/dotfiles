@@ -7,8 +7,9 @@ function dl() {
 
     if [ "$online" == "OK" ] ; then
         wget --quiet --output-document="${IMG}"/lck.png https://cldup.com/fO2nWH2ugM.png
-        cp "${IMG}"/lck.png "${IMG}"/bkg.png
+        wget --quiet --output-document="${IMG}"/lck.png https://cldup.com/8n4B8Ez6Do.png
     fi
 }
 
 dl
+swaybg --image "$IMG"/bkg.png --mode fill&
