@@ -1,5 +1,0 @@
-#!/bin/sh -x
-
-if [[ $MACHINE_ID == "work" ]] ; then
-    wlr-brightness
-fi

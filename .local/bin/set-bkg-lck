@@ -2,27 +2,13 @@
 
 IMG=$(xdg-user-dir PICTURES)
 
-
-function setSwayBg() {
-    swaybg --image "$IMG"/bkg.png --mode fill&
-}
-
-
-function fromUnsplash() {
+function dl() {
     local online=$(ping -q -w1 -c1 gnu.org &>/dev/null && echo OK || echo KO)
 
-    pkill swaybg
-    setSwayBg
-
     if [ "$online" == "OK" ] ; then
-        kill $!
-
-        wget --quiet --output-document="${IMG}"/lck.png https://source.unsplash.com/random/2560x1440/?abstract
-        wget --quiet --output-document="${IMG}"/bkg.png https://source.unsplash.com/random/2560x1440/?mountains
-
-        setSwayBg
+        wget --quiet --output-document="${IMG}"/lck.png https://cldup.com/fO2nWH2ugM.png
+        cp "${IMG}"/lck.png "${IMG}"/bkg.png
     fi
 }
 
-pkill swaybg
-setSwayBg
+dl
