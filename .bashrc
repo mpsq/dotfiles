@@ -77,6 +77,7 @@ fi
 # Source things
 [ -r "$HOME/.aliases" ] && . "$HOME/.aliases"
 [ -r "$HOME/.secrets" ] && . "$HOME/.secrets"
+[ -r "$HOME/.profile-priv" ] && . "$HOME/.profile-priv"
 [ -r "/usr/share/z/z.sh" ] && . /usr/share/z/z.sh
 [ -r "/usr/share/bash-completion/bash_completion" ] && . /usr/share/bash-completion/bash_completion
 [ -r "/usr/share/fzf/completion.bash " ] && . /usr/share/fzf/completion.bash
