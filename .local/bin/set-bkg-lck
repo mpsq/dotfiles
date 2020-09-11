@@ -6,7 +6,7 @@ function dl() {
     local online=$(ping -q -w1 -c1 gnu.org &>/dev/null && echo OK || echo KO)
 
     if [ "$online" == "OK" ] ; then
-        wget --quiet --output-document="${IMG}"/lck.png https://cldup.com/fO2nWH2ugM.png
+        wget --quiet --output-document="${IMG}"/bkg.png https://cldup.com/fO2nWH2ugM.png
         wget --quiet --output-document="${IMG}"/lck.png https://cldup.com/8n4B8Ez6Do.png
     fi
 }
