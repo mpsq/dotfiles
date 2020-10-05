@@ -11,7 +11,7 @@ window:
 font:
   normal:
     family: monospace
-  size: 9.0
+  size: 10.0
 
 colors:
   # Default colors

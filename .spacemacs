@@ -107,6 +107,7 @@ This function should only modify configuration layer settings."
            mu4e-get-mail-command "offlineimap -o"
            mu4e-headers-auto-update t
            mu4e-headers-date-format "%Y-%m-%d %H:%M"
+           mu4e-headers-include-related nil
            mu4e-headers-visible-lines 40
            mu4e-spacemacs-kill-layout-on-exit t
            mu4e-view-prefer-html t
@@ -252,7 +253,9 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil then Spacelpa repository is the primary source to install
    ;; a locked version of packages. If nil then Spacemacs will install the
-   ;; latest version of packages from MELPA. (default nil)
+   ;; latest version of packages from MELPA. Spacelpa is currently in
+   ;; experimental state please use only for testing purposes.
+   ;; (default nil)
    dotspacemacs-use-spacelpa nil
 
    ;; If non-nil then verify the signature for downloaded Spacelpa archives.
