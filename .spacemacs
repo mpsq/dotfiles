@@ -322,8 +322,8 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         challenger-deep
                          sanityinc-tomorrow-night
+                         challenger-deep
                          kaolin-ocean
                          srcery
                          )
@@ -749,6 +749,9 @@ before packages are loaded."
 
   ;; LSP performance
   (setq read-process-output-max (* 1024 1024))
+
+  ;; magit inline diff
+  (setq magit-diff-refine-hunk (quote all))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
