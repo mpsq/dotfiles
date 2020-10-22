@@ -76,6 +76,7 @@ This function should only modify configuration layer settings."
                  javascript-fmt-on-save t
                  javascript-fmt-tool 'prettier
                  javascript-import-tool 'import-js
+                 javascript-lsp-linter nil
                  js-indent-level 2
                  js2-auto-indent-p nil
                  js2-basic-offset 2
@@ -150,9 +151,8 @@ This function should only modify configuration layer settings."
                  node-add-modules-path t
                  typescript-fmt-on-save t
                  typescript-fmt-tool 'prettier
-                 typescript-linter 'eslint
-                 typescript-lsp-linter nil
-                 typescript-indent-level 2)
+                 typescript-indent-level 2
+                 typescript-lsp-linter nil)
      (version-control :variables
                       version-control-diff-tool 'git-gutter+
                       version-control-diff-side 'left
@@ -657,8 +657,9 @@ before packages are loaded."
   (require 'flycheck)
   (set-face-attribute 'flycheck-error nil :background "#ff6666" :foreground "#fff")
   (add-hook 'typescript-mode-hook 'flycheck-mode)
+  (add-hook 'typescript-tsx-mode-hook 'flycheck-mode)
+  (flycheck-add-mode 'javascript-eslint 'typescript-tsx-mode)
   (add-hook 'lsp-mode-hook #'lsp-lens-mode)
-  (global-flycheck-mode)
 
   ;; Add icons to ivy
   (all-the-icons-ivy-setup)
