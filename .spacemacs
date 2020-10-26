@@ -172,6 +172,7 @@ This function should only modify configuration layer settings."
      all-the-icons
      all-the-icons-ivy
      github-review
+     evil-collection
      evil-terminal-cursor-changer
      keychain-environment
      pinentry
@@ -322,7 +323,7 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         sanityinc-tomorrow-night
+                         sanityinc-tomorrow-eighties
                          challenger-deep
                          kaolin-ocean
                          srcery
@@ -613,6 +614,7 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+  (setq evil-want-keybinding nil)
   )
 
 (defun dotspacemacs/user-load ()
@@ -698,9 +700,11 @@ before packages are loaded."
   (define-key evil-normal-state-map (kbd "C-o o") 'evil-jump-backward)
 
   ;; evilify even more Emacs tools
+  (require 'evil-collection)
   (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))
   (setq evil-emacs-state-modes (delq 'proced-mode evil-emacs-state-modes))
   (setq evil-emacs-state-modes (delq 'proced-mode-map evil-emacs-state-modes))
+  (evil-collection-init 'mu4e)
 
   ;; gpg settings/keyring
   (setq epa-armor t)
