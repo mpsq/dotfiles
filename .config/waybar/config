@@ -1,96 +1,114 @@
 {
-    "layer": "top",
-    "position": "top",
-    "height": 24,
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/spotify"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["idle_inhibitor", "pulseaudio", "cpu", "memory", "temperature", "battery", "network", "clock", "tray"],
-    "sway/workspaces": {
-        "all-outputs": false,
-        "disable-scroll": true,
-        "format": "{icon} {name}",
-        "format-icons": {
-            "1:www": "龜",
-            "2:mail": "",
-            "3:editor": "",
-            "4:terminals": "",
-            "5:portal": "",
-            "urgent": "",
-            "focused": "",
-            "default": ""
-        }
-    },
-    "sway/mode": {
-        "format": "<span style=\"italic\">  {}</span>"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
-    "clock": {
-        "tooltip-format": "{:%Y-%m-%d | %H:%M}",
-        "format": "{:%Y-%m-%d | %H:%M}"
-    },
-    "cpu": {
-        "format": " {usage}%"
-    },
-    "memory": {
-        "format": " {}%"
-    },
-    "backlight": {
-        "format": "{icon} {percent}%",
-        "format-icons": ["", ""]
-    },
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "bat": "BAT0",
-        "format": " {capacity}%",
-        "format-discharging": "{icon} {capacity}% - {time}",
-        "format-icons": ["", "", "", "", ""]
-    },
-    "network": {
-        "format-wifi": " {essid} ({signalStrength}%)",
-        "format-ethernet": " {ipaddr}",
-        "format-disconnected": "Disconnected"
-    },
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "{icon} {volume}%",
-        "format-muted": "",
-        "format-icons": {
-            "headphones": "",
-            "handsfree": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", ""]
-        },
-        "on-click": "pavucontrol",
-        "on-scroll-up": "volume_up",
-        "on-scroll-down": "volume_down"
-    },
-    "custom/spotify": {
-        "format": " {}",
-        "max-length": 40,
-        "exec": "python ~/.local/bin/mediaplayer.py 2> /dev/null"
-    },
-    "temperature": {
-        "thermal-zone": 3,
-        "critical-threshold": 80,
-        "interval": 5,
-        "format": "{icon} {temperatureC}°C",
-        "format-icons": ["", "", "", "", ""]
-    },
-    "tray": {
-        "icon-size": 21,
-        "spacing": 10
+  "layer": "top",
+  "position": "top",
+  "height": 24,
+  "modules-left": ["sway/workspaces", "sway/mode", "custom/spotify"],
+  "modules-center": ["sway/window"],
+  "modules-right": [
+    "custom/crypto",
+    "idle_inhibitor",
+    "pulseaudio",
+    "cpu",
+    "memory",
+    "temperature",
+    "battery",
+    "network",
+    "clock",
+    "tray"
+  ],
+  "sway/workspaces": {
+    "all-outputs": false,
+    "disable-scroll": true,
+    "format": "{icon} {name}",
+    "format-icons": {
+      "1:www": "龜",
+      "2:mail": "",
+      "3:editor": "",
+      "4:terminals": "",
+      "5:portal": "",
+      "urgent": "",
+      "focused": "",
+      "default": ""
     }
+  },
+  "sway/mode": {
+    "format": "<span style=\"italic\">  {}</span>"
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "clock": {
+    "tooltip-format": "{:%Y-%m-%d | %H:%M}",
+    "format": "{:%Y-%m-%d | %H:%M}"
+  },
+  "cpu": {
+    "format": " {usage}%"
+  },
+  "memory": {
+    "format": " {}%"
+  },
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": ["", ""]
+  },
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "bat": "BAT0",
+    "format": " {capacity}%",
+    "format-discharging": "{icon} {capacity}% - {time}",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "network": {
+    "format-wifi": " {essid} ({signalStrength}%)",
+    "format-ethernet": " {ipaddr}",
+    "format-disconnected": "Disconnected"
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{icon} {volume}%",
+    "format-muted": "",
+    "format-icons": {
+      "headphones": "",
+      "handsfree": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", ""]
+    },
+    "on-click": "pavucontrol",
+    "on-scroll-up": "volume_up",
+    "on-scroll-down": "volume_down"
+  },
+  "custom/spotify": {
+    "format": " {}",
+    "max-length": 40,
+    "exec": "python ~/.local/bin/mediaplayer.py 2> /dev/null"
+  },
+  "custom/crypto": {
+    "format": "{}",
+    "interval": 600,
+    "return-type": "json",
+    "exec": "~/.config/waybar/modules/crypto/crypto.py",
+    "exec-if": "ping pro-api.coinmarketcap.com -c1"
+  },
+  "temperature": {
+    "thermal-zone": 3,
+    "critical-threshold": 80,
+    "interval": 5,
+    "format": "{icon} {temperatureC}°C",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "tray": {
+    "icon-size": 21,
+    "spacing": 10
+  }
 }
