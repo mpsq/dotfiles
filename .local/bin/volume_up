@@ -1,11 +1,9 @@
 #!/bin/sh
-ids=$(pamixer --list-sinks | sed -n '1d;p' | wc -l)
-i="0"
+ids=($(pamixer --list-sinks | sed -n '1d;p' | grep -oP '^([0-9])'))
 
-while [ $i -lt $ids ]
-do
-    vol=$(ponymix --device "$i" increase 2)
-    i=$[$i+1]
+for i in "${ids[@]}"; do
+    ponymix --device "$i" increase 2
 done
 
+vol=$(ponymix get-volume)
 echo "$vol" > $SWAYSOCK.wob
