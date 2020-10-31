@@ -171,9 +171,10 @@ This function should only modify configuration layer settings."
    '(
      all-the-icons
      all-the-icons-ivy
-     github-review
      evil-collection
      evil-terminal-cursor-changer
+     github-review
+     ivy-posframe
      keychain-environment
      pinentry
      srcery-theme
@@ -183,13 +184,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(
-                                    eshell-prompt-extras
-                                    magit-svn
-                                    smartparens
-                                    tern
-                                    tide
-                                    )
+   dotspacemacs-excluded-packages '(smartparens)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -323,9 +318,9 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         kaolin-ocean
                          sanityinc-tomorrow-eighties
                          challenger-deep
-                         kaolin-ocean
                          srcery
                          )
 
@@ -344,7 +339,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font or prioritized list of fonts.
    dotspacemacs-default-font '("monospace"
-                               :size 11.0
+                               :size 10.0
                                :weight normal
                                :width normal)
 
@@ -505,7 +500,7 @@ It should only modify the values of Spacemacs settings."
                             pdf-view-mode
         :size-limit-kb 1000)
 
-   ;; Code folding method. Possible values are `evil' and `origami'.
+   ;; Code folding method. Possible values are `evil', `origami' and `vimish'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
 
@@ -677,7 +672,7 @@ before packages are loaded."
   (spaceline-toggle-version-control-on)
   (spaceline-toggle-buffer-encoding-abbrev-off)
 
-  ;; change cursor according to edit mode in emacs-nox
+  ;; emacs-nox specific
   (unless (display-graphic-p)
     (require 'evil-terminal-cursor-changer)
     (evil-terminal-cursor-changer-activate)
@@ -757,7 +752,19 @@ before packages are loaded."
 
   ;; magit inline diff
   (setq magit-diff-refine-hunk (quote all))
+
+  (require 'ivy-posframe)
+  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display)))
+  (ivy-posframe-mode 1)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ '(warning-suppress-log-types '((comp))))
+)
