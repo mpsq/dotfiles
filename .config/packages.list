@@ -15,13 +15,11 @@ docker
 docker-compose
 docker-machine
 dnsmasq
-emacs
 eog
 evince
 exa
 fd
 file-roller
-firefox
 fwupd
 fzf
 gammastep
