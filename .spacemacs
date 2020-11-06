@@ -33,7 +33,8 @@ This function should only modify configuration layer settings."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
 
-   '((auto-completion :variables
+   '(react
+     (auto-completion :variables
                       auto-completion-enable-sort-by-usage t
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-snippets-in-popup t)
@@ -123,6 +124,7 @@ This function should only modify configuration layer settings."
           org-projectile-file "TODOs.org")
      prettier
      (python :variables python-format-on-save t)
+     react
      restclient
      (rust :variables
            rust-format-on-save t)
