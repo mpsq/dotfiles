@@ -5,6 +5,7 @@
   "modules-left": ["sway/workspaces", "sway/mode", "custom/spotify"],
   "modules-center": ["sway/window"],
   "modules-right": [
+    "custom/mu",
     "custom/crypto",
     "idle_inhibitor",
     "pulseaudio",
@@ -99,6 +100,12 @@
     "return-type": "json",
     "exec": "~/.config/waybar/modules/crypto/crypto.py",
     "exec-if": "ping pro-api.coinmarketcap.com -c1"
+  },
+  "custom/mu": {
+    "format": "{}",
+    "interval": 60,
+    "return-type": "json",
+    "exec": "~/.config/waybar/modules/mu/check.sh"
   },
   "temperature": {
     "thermal-zone": 3,
