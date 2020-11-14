@@ -4,6 +4,7 @@ import-js
 markdown-spellcheck
 npm
 prettier
+serverless
 speller
 typescript
 typescript-language-server
