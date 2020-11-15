@@ -35,6 +35,7 @@ export MOZ_WEBRENDER=1
 export XDG_CURRENT_DESKTOP=sway
 export XDG_SESSION_TYPE=wayland
 export XDG_CONFIG_HOME=/home/meril/.config
+export DOOMDIR="$XDG_CONFIG_HOME/doom-emacs"
 
 # gpg
 GPG_TTY=$(tty)
