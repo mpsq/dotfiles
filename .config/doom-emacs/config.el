@@ -1,16 +1,5 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Modeline
-(use-package! mu4e
-  :config
-  (setq
-   doom-modeline-height 25
-   doom-modeline-enable-word-count t
-   doom-modeline-buffer-encoding nil
-   doom-modeline-github t
-   doom-modeline-mu4e t
-   doom-modeline-gnus nil))
-
 ;; Doom config
 (setq-default
  doom-theme 'doom-miramare
@@ -26,6 +15,19 @@
 (setq display-line-numbers-type 'relative)
 (setq-default show-trailing-whitespace t)
 (setq-default fill-column 80)
+
+;; Indentation madness...
+(setq-default evil-shift-width 2
+              standard-indent 2
+              tab-width 2)
+(setq indent-tabs-mode nil)
+(setq javascript-indent-level 2)
+(setq js-indent-level 2)
+(setq js2-basic-offset 2)
+(setq web-mode-markup-indent-offset 2)
+(setq web-mode-css-indent-offset 2)
+(setq web-mode-code-indent-offset 2)
+(setq css-indent-offset 2)
 
 ;; No evil snipe (get my "s" and "S" back)
 ;; (after! evil-snipe (evil-snipe-mode -1))
@@ -54,6 +56,22 @@
   :desc "Switch to window 7" :n "7" #'winum-select-window-7
   :desc "Switch to window 8" :n "8" #'winum-select-window-8
   :desc "Switch to window 9" :n "9" #'winum-select-window-9))
+
+(add-hook! typescript-mode
+  (setq typescript-indent-level 2))
+(setq-hook! 'typescript-tsx-mode-hook web-mode-code-indent-offset 2)
+
+;; Modeline
+(use-package! mu4e
+  :config
+  (setq
+   doom-modeline-height 25
+   doom-modeline-enable-word-count t
+   doom-modeline-buffer-encoding nil
+   doom-modeline-github t
+   doom-modeline-mu4e t
+   doom-modeline-gnus nil))
+
 
 ;; Improve ivy
 (map!
@@ -140,20 +158,6 @@ Return nil if on a link url, markup, html, or references."
 
 ;; Magit inline diff
 (setq magit-diff-refine-hunk (quote all))
-
-;; Indentation madness...
-(add-hook! typescript-mode
-  (setq typescript-indent-level 2))
-(setq-hook! 'typescript-tsx-mode-hook web-mode-code-indent-offset 2)
-(setq indent-tabs-mode nil)
-(setq javascript-indent-level 2)
-(setq js-indent-level 2)
-(setq js2-basic-offset 2)
-(setq web-mode-markup-indent-offset 2)
-(setq web-mode-css-indent-offset 2)
-(setq web-mode-code-indent-offset 2)
-(setq css-indent-offset 2)
-(setq evil-shift-width 2)
 
 ;; vterm
 (evil-define-key 'insert vterm-mode-map (kbd "C-k") #'vterm-send-up)

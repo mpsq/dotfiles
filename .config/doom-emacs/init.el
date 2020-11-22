@@ -6,7 +6,7 @@
 
 (doom! :completion
        (company +childframe)
-       (ivy +fuxxy +prescient +childframe +icons)
+       (ivy +fuzzy +childframe +icons)
 
        :ui
        doom
