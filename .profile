@@ -6,6 +6,7 @@ export PATH=$PATH:/home/meril/.local/bin
 export PATH=$PATH:/home/meril/.yarn/bin
 export PATH=$PATH:/home/meril/.cargo/bin
 export PATH=$PATH:/home/meril/go/bin
+export PATH=$PATH:/home/meril/.emacs.d/bin
 export PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 

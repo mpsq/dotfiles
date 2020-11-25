@@ -96,7 +96,6 @@
 (keychain-refresh-environment)
 
 ;; Email configuration
-(setq +mu4e-backend 'offlineimap)
 (setq
  mu4e-alert-set-default-style 'libnotify
  mu4e-attachment-dir "~/dl"
@@ -105,17 +104,14 @@
  mu4e-compose-dont-reply-to-self t
  mu4e-enable-mode-line t
  mu4e-enable-notifications t
- mu4e-get-mail-command "offlineimap -o"
  mu4e-headers-auto-update t
  mu4e-headers-date-format "%Y-%m-%d %H:%M"
  mu4e-headers-include-related nil
  mu4e-headers-visible-lines 40
  mu4e-view-prefer-html t
  mu4e-split-view 'vertical
- mu4e-update-interval 360
  mu4e-use-fancy-chars t
  mu4e-index-cleanup t
- mu4e-index-lazy-check nil
  mu4e-view-show-addresses t)
 (after! mu4e
   (setq mail-envelope-from 'header
@@ -126,6 +122,9 @@
         message-sendmail-envelope-from 'header
         message-sendmail-extra-arguments '("--read-envelope-from")
         message-sendmail-f-is-evil 't
+        mu4e-get-mail-command "offlineimap -o -d -l ~/.offlineimap.log"
+        mu4e-index-lazy-check nil
+        mu4e-update-interval 360
         send-mail-function 'smtpmail-send-it
         sendmail-program "/usr/bin/msmtp"))
 

@@ -1,6 +1,7 @@
 bash-language-server
 dockerfile-language-server-nodejs
 import-js
+marked
 markdown-spellcheck
 npm
 prettier
