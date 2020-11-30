@@ -3,10 +3,9 @@ env:
   TERM: xterm-256color
 
 window:
-  decorations: none
   padding:
-    x: 2
-    y: 1
+    x: 4
+    y: 2
 
 font:
   normal:
@@ -14,63 +13,41 @@ font:
   size: 10.0
 
 colors:
-  # Default colors
   primary:
-    background: '0x1b182c'
-    foreground: '0xcbe3e7'
+    background: "0x1b182c"
+    foreground: "0xcbe3e7"
 
-  # Normal colors
   normal:
-    black:   '0x100e23'
-    red:     '0xff8080'
-    green:   '0x95ffa4'
-    yellow:  '0xffe9aa'
-    blue:    '0x91ddff'
-    magenta: '0xc991e1'
-    cyan:    '0xaaffe4'
-    white:   '0xcbe3e7'
+    black: "0x100e23"
+    red: "0xff8080"
+    green: "0x95ffa4"
+    yellow: "0xffe9aa"
+    blue: "0x91ddff"
+    magenta: "0xc991e1"
+    cyan: "0xaaffe4"
+    white: "0xcbe3e7"
 
-  # Bright colors
   bright:
-    black:   '0x565575'
-    red:     '0xff5458'
-    green:   '0x62d196'
-    yellow:  '0xffb378'
-    blue:    '0x65b2ff'
-    magenta: '0x906cff'
-    cyan:    '0x63f2f1'
-    white:   '0xa6b3cc'
-
-#shell:
-#  program: /bin/bash
-#  args:
-#    - --login
+    black: "0x565575"
+    red: "0xff5458"
+    green: "0x62d196"
+    yellow: "0xffb378"
+    blue: "0x65b2ff"
+    magenta: "0x906cff"
+    cyan: "0x63f2f1"
+    white: "0xa6b3cc"
 
 key_bindings:
-  - { key: V,        mods: Control|Alt, action: Paste              }
-  - { key: C,        mods: Control|Alt, action: Copy               }
-  - { key: Key0,     mods: Control,       action: ResetFontSize    }
-  - { key: Equals,   mods: Control,       action: IncreaseFontSize }
-  - { key: Subtract, mods: Control,       action: DecreaseFontSize }
-  - { key: Paste,                   action: Paste                  }
-  - { key: Copy,                    action: Copy                   }
-  - { key: L,        mods: Control, action: ClearLogNotice         }
-  - { key: L,        mods: Control, chars: "\x0c"                  }
-  - { key: V,        mods: Control|Shift, action: Paste            }
-  - { key: C,        mods: Control|Shift, action: Copy             }
-  - { key: Insert,   mods: Shift,         action: PasteSelection   }
-  - { key: Key0,     mods: Control,       action: ResetFontSize    }
-  - { key: Equals,   mods: Control,       action: IncreaseFontSize }
-  - { key: Add,      mods: Control,       action: IncreaseFontSize }
-  - { key: Subtract, mods: Control,       action: DecreaseFontSize }
-  - { key: Minus,    mods: Control,       action: DecreaseFontSize }
-  - { key: Return,   mods: Alt,           action: ToggleFullscreen }
-  - { key: Paste,                    action: Paste                            }
-  - { key: Copy,                     action: Copy                             }
-  - { key: L,         mods: Control, action: ClearLogNotice                   }
-  - { key: L,         mods: Control, chars: "\x0c"                            }
-  - { key: NumpadEnter,              chars: "\n"                              }
-  - { key: PageUp,    mods: Shift,   action: ScrollPageUp,   mode: ~Alt       }
-  - { key: PageDown,  mods: Shift,   action: ScrollPageDown, mode: ~Alt       }
-  - { key: Home,      mods: Shift,   action: ScrollToTop,    mode: ~Alt       }
-  - { key: End,       mods: Shift,   action: ScrollToBottom, mode: ~Alt       }
+  - { key: V, mods: Control|Shift, action: Paste }
+  - { key: C, mods: Control|Shift, action: Copy }
+  - { key: Paste, action: Paste }
+  - { key: Copy, action: Copy }
+  - { key: Key0, mods: Control, action: ResetFontSize }
+  - { key: Equals, mods: Control, action: IncreaseFontSize }
+  - { key: L, mods: Control, action: ClearLogNotice }
+  - { key: L, mods: Control, chars: "\x0c" }
+  - { key: NumpadEnter, chars: "\n" }
+  - { key: PageUp, mods: Shift, action: ScrollPageUp, mode: ~Alt }
+  - { key: PageDown, mods: Shift, action: ScrollPageDown, mode: ~Alt }
+  - { key: Home, mods: Shift, action: ScrollToTop, mode: ~Alt }
+  - { key: End, mods: Shift, action: ScrollToBottom, mode: ~Alt }
