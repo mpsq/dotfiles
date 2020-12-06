@@ -122,7 +122,7 @@
         message-sendmail-envelope-from 'header
         message-sendmail-extra-arguments '("--read-envelope-from")
         message-sendmail-f-is-evil 't
-        mu4e-get-mail-command "offlineimap -o -d -l ~/.offlineimap.log"
+        mu4e-get-mail-command "offlineimap -o -d imap,thread,maildir -l ~/.offlineimap.log"
         mu4e-index-lazy-check nil
         mu4e-update-interval 360
         send-mail-function 'smtpmail-send-it
