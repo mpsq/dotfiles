@@ -90,7 +90,7 @@ export NVM_SOURCE="/usr/share/nvm"
 [ -s "$NVM_SOURCE/nvm.sh" ] && . "$NVM_SOURCE/nvm.sh"
 
 if [[ "$TERM" = "xterm-256color" || "$TERM" = "xterm-24bit" ]]; then
-    eval "$(keychain --eval --quiet --quick --nogui --ignore-missing --agents ssh,gpg id_rsa id_ed25519 B78ABA26623D1326)"
+    eval "$(keychain --nogui --quiet --agents ssh,gpg --eval ~/.ssh/id_dg_rsa ~/.ssh/id_rsa B78ABA26623D1326)"
 fi
 
 set -o vi
