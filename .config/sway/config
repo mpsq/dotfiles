@@ -161,8 +161,9 @@ bindsym XF86AudioPrev exec playerctl previous
 
 bindsym Ctrl+Shift+Super_L exec --no-startup-id "swaylock"
 bindsym --release $mod+Shift+s exec grim -g  \"$(slurp)\" ~/$(date +'%Y-%m-%d-%H%M%S_grim.png')
-bindsym $mod+d exec $term -d 60 5 --title launcher --class launcher -e "launcher"
-for_window [title="launcher"] floating enable, border none
+for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 20 ppt 10 ppt, border pixel 5
+set $menu exec $term --class=launcher -e launcher
+bindsym $mod+d exec $menu
 
 ### Run stuff
 #
