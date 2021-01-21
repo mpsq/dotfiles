@@ -29,6 +29,9 @@
 (setq web-mode-code-indent-offset 2)
 (setq css-indent-offset 2)
 
+;; LSP
+(setq lsp-file-watch-threshold 20000)
+
 ;; No evil snipe (get my "s" and "S" back)
 ;; (after! evil-snipe (evil-snipe-mode -1))
 
