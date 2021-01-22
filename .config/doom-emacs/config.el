@@ -46,6 +46,13 @@
 (setq-hook! 'typescript-mode-hook +format-with-lsp nil)
 (setq-hook! 'web-hook +format-with-lsp nil)
 
+(setq +format-on-save-enabled-modes
+      '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
+            sql-mode         ; sqlformat is currently broken
+            tex-mode         ; latexindent is broken
+            java-mode
+            latex-mode))
+
 ;; Better window selection
 (map!
  (:leader
