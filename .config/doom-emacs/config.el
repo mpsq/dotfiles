@@ -98,6 +98,7 @@
   (treemacs-follow-mode))
 
 ;; GPG settings/keyring
+(setq password-cache-expiry nil)
 (setq epa-armor t)
 (setq epg-pinentry-mode 'loopback)
 (after! pinentry
