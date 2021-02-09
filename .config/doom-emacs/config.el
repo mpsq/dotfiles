@@ -22,7 +22,9 @@
               tab-width 2)
 (setq indent-tabs-mode nil)
 (setq javascript-indent-level 2)
+(setq typecript-indent-level 2)
 (setq js-indent-level 2)
+(setq jsx-indent-level 2)
 (setq js2-basic-offset 2)
 (setq web-mode-markup-indent-offset 2)
 (setq web-mode-css-indent-offset 2)
@@ -98,6 +100,8 @@
   (treemacs-follow-mode))
 
 ;; GPG settings/keyring
+(setq auth-sources '("~/.authinfo.gpg")
+      auth-source-cache-expiry nil) ; default is 7200 (2h)
 (setq password-cache-expiry nil)
 (setq epa-armor t)
 (setq epg-pinentry-mode 'loopback)
