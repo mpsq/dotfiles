@@ -2,7 +2,7 @@
 
 ;; Doom config
 (setq-default
- doom-theme 'doom-miramare
+ doom-theme 'doom-monokai-pro
  doom-font (font-spec :family "monospace" :size 13)
  doom-variable-pitch-font (font-spec :family "Overpass")
  doom-big-font (font-spec :family "monospace" :size 15)
