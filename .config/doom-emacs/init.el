@@ -81,7 +81,7 @@
        (yaml +lsp)
 
        :email
-       mu4e
+       (mu4e +gmail)
 
        :app
        calendar
