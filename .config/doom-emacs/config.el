@@ -34,9 +34,6 @@
 ;; LSP
 (setq lsp-file-watch-threshold 20000)
 
-;; No evil snipe (get my "s" and "S" back)
-;; (after! evil-snipe (evil-snipe-mode -1))
-
 ;; Prioritise javascript-eslint checker
 (setq-hook! 'js2-mode-hook flycheck-checker 'javascript-eslint)
 (setq-hook! 'typescript-tsx-mode-hook flycheck-checker 'javascript-eslint)
@@ -73,6 +70,30 @@
   (setq typescript-indent-level 2))
 (setq-hook! 'typescript-tsx-mode-hook web-mode-code-indent-offset 2)
 
+
+;; Improve ivy
+(map!
+ :leader
+ :desc "Resume latest ivy" :nv "r l" #'ivy-resume)
+
+;; Email configuration
+(setq
+ mu4e-attachment-dir "~/dl"
+ mu4e-headers-include-related nil
+ mu4e-index-lazy-check nil)
+(setq +mu4e-backend 'offlineimap)
+(after! mu4e
+  (setq mail-envelope-from 'header
+        mail-user-agent 'mu4e-user-agent
+        mail-specify-envelope-from 't
+        message-kill-buffer-on-exit 't
+        message-send-mail-function #'message-send-mail-with-sendmail
+        message-sendmail-envelope-from 'header
+        message-sendmail-extra-arguments '("--read-envelope-from")
+        message-sendmail-f-is-evil 't
+        send-mail-function #'smtpmail-send-it
+        sendmail-program "/usr/bin/msmtp"))
+
 ;; Modeline
 (use-package! mu4e
   :config
@@ -83,12 +104,6 @@
    doom-modeline-github t
    doom-modeline-mu4e t
    doom-modeline-gnus nil))
-
-
-;; Improve ivy
-(map!
- :leader
- :desc "Resume latest ivy" :nv "r l" #'ivy-resume)
 
 (after! ivy-posframe
   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center))))
@@ -109,24 +124,6 @@
   :config
   (pinentry-start))
 (keychain-refresh-environment)
-
-;; Email configuration
-(setq
- mu4e-attachment-dir "~/dl"
- mu4e-headers-include-related nil
- mu4e-index-lazy-check nil
- mu4e-backend 'offlineimap)
-(after! mu4e
-  (setq mail-envelope-from 'header
-        mail-user-agent 'mu4e-user-agent
-        mail-specify-envelope-from 't
-        message-kill-buffer-on-exit 't
-        message-send-mail-function #'message-send-mail-with-sendmail
-        message-sendmail-envelope-from 'header
-        message-sendmail-extra-arguments '("--read-envelope-from")
-        message-sendmail-f-is-evil 't
-        send-mail-function #'smtpmail-send-it
-        sendmail-program "/usr/bin/msmtp"))
 
 ;; Auto flyspell
 (add-hook! 'mu4e-compose-mode-hook
