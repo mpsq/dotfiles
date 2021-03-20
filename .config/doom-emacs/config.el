@@ -49,7 +49,6 @@
       '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
             sql-mode         ; sqlformat is currently broken
             tex-mode         ; latexindent is broken
-            java-mode
             latex-mode))
 
 ;; Better window selection
