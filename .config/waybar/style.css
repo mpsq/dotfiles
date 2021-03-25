@@ -41,6 +41,7 @@
 #cpu,
 #custom-crypto,
 #custom-mu,
+#custom-spotify,
 #idle_inhibitor,
 #memory,
 #mode,
@@ -48,27 +49,15 @@
 #pulseaudio,
 #temperature,
 #tray {
-  padding-left: 10px;
+  padding-left: 12px;
   padding-right: 12px;
-  min-width: 50px;
-}
-
-#backlight {
+  min-width: 35px;
 }
 
 #battery {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-  border-top: 2px solid rgba(255, 255, 255, 0.6);
-}
-
-#battery.warning {
-  color: orange;
-}
-
-#battery.critical {
-  color: red;
 }
 
 #battery.warning.discharging {
@@ -81,78 +70,24 @@
   animation-duration: 2s;
 }
 
-#clock {
-  font-weight: bold;
-  border-top: 2px solid rgba(255, 255, 255, 0.6);
-}
-
-#cpu {
-}
-
-#cpu.warning {
-  color: orange;
-}
-
-#cpu.critical {
-  color: red;
-}
-
-#idle_inhibitor {
-}
-
-#memory {
-  border-top: 2px solid rgba(255, 255, 255, 0.6);
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
-#memory.warning {
-  color: orange;
-}
-
-#memory.critical {
-  color: red;
-  animation-name: blink-critical;
-  animation-duration: 2s;
-}
-
-#mode {
-  border-bottom: 2px solid white;
-  padding-top: 2px;
-}
-
-#custom-mu.new {
-  color: red;
-}
-
-#network {
-}
-
-#network.disconnected {
-  color: orange;
-}
-
-#pulseaudio {
-  border-top: 2px solid rgba(255, 255, 255, 0.6);
-}
-
-#pulseaudio.muted {
-}
-
-#custom-spotify {
-  color: rgb(102, 220, 105);
-  padding-left: 8px;
-}
-
-#temperature {
-}
-
+#battery.critical,
+#cpu.critical,
 #temperature.critical {
   color: red;
 }
 
-#tray {
+#custom-mu.new {
+  color: yellow;
+}
+
+#battery.warning,
+#cpu.warning,
+#network.disconnected {
+  color: orange;
+}
+
+#custom-spotify {
+  color: rgb(102, 220, 105);
 }
 
 #window {
@@ -164,8 +99,8 @@
 #workspaces button {
   border-bottom: 2px solid transparent;
   padding-top: 2px;
-  padding-left: 12px;
-  padding-right: 12px;
+  padding-left: 6px;
+  padding-right: 6px;
   color: white;
 }
 
