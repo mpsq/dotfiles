@@ -28,13 +28,8 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export QT_QPA_PLATFORM=wayland-egl
 export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_WAYLAND_FORCE_DPI=physical
-export CLUTTER_BACKEND=wayland
-export SDL_VIDEODRIVER=wayland
 export MOZ_ENABLE_WAYLAND=1
-export MOZ_ACCELERATED=1
 export MOZ_WEBRENDER=1
-export XDG_CURRENT_DESKTOP=sway
-export XDG_SESSION_TYPE=wayland
 export XDG_CONFIG_HOME=/home/meril/.config
 export DOOMDIR="$XDG_CONFIG_HOME/doom-emacs"
 
@@ -42,10 +37,14 @@ export DOOMDIR="$XDG_CONFIG_HOME/doom-emacs"
 GPG_TTY=$(tty)
 export GPG_TTY
 
-export XZ_DEFAULTS="-T 0"
-
 # fzf
 export FZF_DEFAULT_OPTS=--bind=ctrl-l:accept
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' --color=fg:#cbe3e7,bg:#100e23,hl:#91ddff --color=fg+:#a6b3cc,bg+:#565575,hl+:#65b2ff --color=info:#95ffa4,prompt:#ff8080,pointer:#906cff --color=marker:#62d196,spinner:#c991e1,header:#ffe9aa'
 
+# Misc.
 [ -r "$HOME/.config/priv/stuff.bash" ] && . "$HOME/.config/priv/stuff.bash"
+export XZ_DEFAULTS="-T 0"
+
+if [ "$(ls /dev/dri/ | grep -c card)" == "2" ]; then
+  export WLR_DRM_DEVICES=/dev/dri/card0:/dev/dri/card1
+fi
