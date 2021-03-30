@@ -3,9 +3,8 @@ aws-session-manager-plugin
 bashate
 bitwarden-cli
 chamber
-emacs-native-comp-git-enhanced
+emacs-gcc-wayland-devel-bin
 fargate-cli
-fedora-firefox-wayland-bin
 hadolint-bin
 libinput-gestures
 mu
