@@ -79,8 +79,7 @@
 (setq
  mu4e-attachment-dir "~/dl"
  mu4e-headers-include-related nil
- mu4e-index-lazy-check nil
- mu4e-update-interval 360)
+ mu4e-index-lazy-check nil)
 (setq +mu4e-backend 'offlineimap)
 (after! mu4e
   (setq mail-envelope-from 'header
