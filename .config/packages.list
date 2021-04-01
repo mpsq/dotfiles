@@ -38,6 +38,7 @@ gst-plugins-good
 gst-plugins-ugly
 gtk-engine-murrine
 gtk-engines
+hunspell
 hunspell-en_GB
 hunspell-en_US
 hunspell-fr
