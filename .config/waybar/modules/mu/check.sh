@@ -1,5 +1,5 @@
 #!/bin/sh
-count=$(mu msgs-count --query='flag:unread')
+count=$(mu msgs-count --query='flag:unread AND NOT flag:trashed')
 class=""
 
 if [[ count -gt 0 ]]; then

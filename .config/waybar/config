@@ -5,20 +5,21 @@
   "modules-left": [
     "sway/workspaces",
     "sway/mode",
-    "battery",
-    "custom/crypto",
-    "custom/spotify"
+    "sway/window"
   ],
-  "modules-center": ["sway/window"],
+  "modules-center": [
+    "clock"
+  ],
   "modules-right": [
     "custom/mu",
+    "custom/crypto",
     "idle_inhibitor",
     "pulseaudio",
     "cpu",
     "memory",
     "temperature",
     "network",
-    "clock",
+    "battery",
     "tray"
   ],
   "sway/workspaces": {
@@ -47,8 +48,8 @@
     }
   },
   "clock": {
-    "tooltip-format": "{:%Y-%m-%d | %H:%M}",
-    "format": "{:%Y-%m-%d | %H:%M}"
+    "tooltip-format": "{:%d-%m-%Y | %H:%M}",
+    "format": "{:%A | %d %B %Y | %H:%M}"
   },
   "cpu": {
     "format": " {usage}%"
@@ -91,11 +92,6 @@
     "on-click": "pavucontrol",
     "on-scroll-up": "volume_up",
     "on-scroll-down": "volume_down"
-  },
-  "custom/spotify": {
-    "format": " {}",
-    "max-length": 40,
-    "exec": "python ~/.local/bin/mediaplayer.py 2> /dev/null"
   },
   "custom/crypto": {
     "format": "{}",

@@ -41,7 +41,6 @@
 #cpu,
 #custom-crypto,
 #custom-mu,
-#custom-spotify,
 #idle_inhibitor,
 #memory,
 #mode,
@@ -86,14 +85,18 @@
   color: orange;
 }
 
-#custom-spotify {
-  color: rgb(102, 220, 105);
+#clock {
+  font-weight: bold;
 }
 
 #window {
-  margin-left: 32px;
-  margin-right: 32px;
-  font-weight: bold;
+  margin-left: 12px;
+  padding: 0 26px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+window#waybar.empty #window {
+  background: transparent;
 }
 
 #workspaces button {
