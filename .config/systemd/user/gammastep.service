@@ -1,0 +1,9 @@
+[Unit]
+BindsTo=sway-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/gammastep
+
+[Install]
+WantedBy=sway-session.target

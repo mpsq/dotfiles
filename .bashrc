@@ -6,11 +6,13 @@
 stty ixany
 stty ixoff -ixon
 
+# Colours
+## Dirs
 if [[ $(hash dircolors 2> /dev/null) ]] && [ -f "$HOME/.dir_colors" ]; then
     eval "$(dircolors -b ~/.dir_colors)"
 fi
 
-# Man pages
+## Man pages
 man() {
     env \
         LESS_TERMCAP_mb="$(printf "\e[1;31m")" \
@@ -43,6 +45,7 @@ shopt -s cmdhist
 # Shell only exists after the 10th consecutive Ctrl-d. Same as IGNOREEOF=10
 set -o ignoreeof
 
+# Git prompt
 if [[ "$TERM" != "dumb" ]]; then
     export CLI_COLOR=1
 
@@ -67,6 +70,7 @@ else
     export PS1='\u at \h in \w\n\$ '
 fi
 
+# TODO: Remove?
 if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
     function clear(){
         printf  "\e]51;E(vterm-clear-scrollback)\e\\";
@@ -74,23 +78,20 @@ if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
     }
 fi
 
+# Load Keychain
+if [[ "$TERM" = "xterm-256color" || "$TERM" = "xterm-24bit" ]]; then
+    eval "$(keychain --nogui --quiet --agents ssh,gpg --eval ~/.ssh/id_dg_rsa ~/.ssh/id_rsa B78ABA26623D1326)"
+fi
+
 # Source things
 [ -r "$HOME/.aliases" ] && . "$HOME/.aliases"
-[ -r "$HOME/.secrets" ] && . "$HOME/.secrets"
-[ -r "$HOME/.profile-priv" ] && . "$HOME/.profile-priv"
+[ -f "$XDG_CONFIG_HOME/tabtab/__tabtab.bash" ] && . "$XDG_CONFIG_HOME/tabtab/__tabtab.bash" || true
 [ -r "/usr/share/z/z.sh" ] && . /usr/share/z/z.sh
 [ -r "/usr/share/bash-completion/bash_completion" ] && . /usr/share/bash-completion/bash_completion
 [ -r "/usr/share/fzf/completion.bash " ] && . /usr/share/fzf/completion.bash
 [ -r "/usr/share/fzf/key-bindings.bash" ] && . /usr/share/fzf/key-bindings.bash
 [ -r "/usr/share/doc/pkgfile/command-not-found.bash" ] && . /usr/share/doc/pkgfile/command-not-found.bash
-[ -f "$HOME/.config/tabtab/__tabtab.bash" ] && . ~/.config/tabtab/__tabtab.bash || true
-
-export NVM_DIR="$HOME/.nvm"
-export NVM_SOURCE="/usr/share/nvm"
 [ -s "$NVM_SOURCE/nvm.sh" ] && . "$NVM_SOURCE/nvm.sh"
 
-if [[ "$TERM" = "xterm-256color" || "$TERM" = "xterm-24bit" ]]; then
-    eval "$(keychain --nogui --quiet --agents ssh,gpg --eval ~/.ssh/id_dg_rsa ~/.ssh/id_rsa B78ABA26623D1326)"
-fi
-
+# Enable vi mode
 set -o vi

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+if [ $(hostnamectl status | grep "Static hostname" | awk '{print $3}') == "quino" ]; then
+  swayidle -w \
+    timeout 300 'swaylock' \
+    before-sleep 'swaylock'
+else
+  swayidle -w \
+    timeout 300 'swaylock' \
+    timeout 600 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"' \
+    before-sleep 'swaylock'
+fi

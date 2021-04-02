@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+IMG=$(xdg-user-dir PICTURES)
+
+function dl() {
+    local online=$(ping -q -w1 -c1 gnu.org &>/dev/null && echo OK || echo KO)
+
+    if [ "$online" == "OK" ] ; then
+        wget --quiet --output-document="${IMG}"/bkg.png https://cldup.com/1dM_TOR8sC.jpg
+        wget --quiet --output-document="${IMG}"/lck.png https://cldup.com/2B7FMMfC_j.jpg
+    fi
+}
+
+dl
+swaybg --image "$IMG"/bkg.png --mode fill

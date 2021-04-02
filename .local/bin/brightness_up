@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-light -A 3 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
+light -A 3 && light -G | cut -d'.' -f1 > /run/user/1000/wob.sock

@@ -6,4 +6,4 @@ for i in "${ids[@]}"; do
 done
 
 vol=$(ponymix get-volume)
-echo "$vol" > $SWAYSOCK.wob
+echo "$vol" > /run/user/1000/wob.sock
