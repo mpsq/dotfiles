@@ -76,10 +76,6 @@
  :desc "Resume latest ivy" :nv "r l" #'ivy-resume)
 
 ;; Email configuration
-(setq
- mu4e-attachment-dir "~/dl"
- mu4e-headers-include-related nil
- mu4e-index-lazy-check nil)
 (setq +mu4e-backend 'offlineimap)
 (after! mu4e
   (setq mail-envelope-from 'header
@@ -90,6 +86,11 @@
         message-sendmail-envelope-from 'header
         message-sendmail-extra-arguments '("--read-envelope-from")
         message-sendmail-f-is-evil 't
+        mu4e-attachment-dir "~/dl"
+        mu4e-get-mail-command "true"
+        mu4e-headers-include-related nil
+        mu4e-index-lazy-check nil
+        mu4e-update-interval 60
         send-mail-function #'smtpmail-send-it
         sendmail-program "/usr/bin/msmtp"))
 
