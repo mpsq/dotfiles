@@ -1,0 +1,17 @@
+[Unit]
+Description=A lightweight overlay volume/backlight/progress/anything bar for Wayland
+Requires=wob.socket
+Wants=wob.socket
+Documentation=man:wob(1)
+Documentation=https://github.com/francma/wob/
+
+[Service]
+Type=simple
+StandardInput=socket
+StandardOutput=journal
+ExecStart=/usr/bin/wob -p 5 -b 0 -t 2000 --border-color "#dd906cff" --bar-color "#ddcbe3e7" --background-color "#dd906cff"
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
+Also=wob.socket
