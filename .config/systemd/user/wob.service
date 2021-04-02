@@ -9,6 +9,7 @@ Documentation=https://github.com/francma/wob/
 Type=simple
 StandardInput=socket
 StandardOutput=journal
+ExecStartPre=/bin/sleep 5
 ExecStart=/usr/bin/wob -p 5 -b 0 -t 2000 --border-color "#dd906cff" --bar-color "#ddcbe3e7" --background-color "#dd906cff"
 Restart=on-failure
 

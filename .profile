@@ -28,10 +28,11 @@ export MOZ_ENABLE_WAYLAND=1
 export MOZ_WEBRENDER=1
 
 # Homes
+export XDG_CURRENT_DESKTOP="sway"
+export XDG_CONFIG_HOME="/home/meril/.config"
 export DOOMDIR="$XDG_CONFIG_HOME/doom-emacs"
 export GNUPGHOME="$HOME/.gnupg"
 export JAVA_HOME="/usr/lib/jvm/java-11-openjdk"
-export XDG_CONFIG_HOME="/home/meril/.config"
 export NVM_DIR="$HOME/.nvm"
 export NVM_SOURCE="/usr/share/nvm"
 

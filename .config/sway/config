@@ -171,6 +171,6 @@ bindsym $mod+d exec $menu
 
 ### Start session
 #
-exec_always "systemctl --user import-environment; systemctl --user start sway-session.target"
+exec_always startw --with-cleanup
 
 include @sysconfdir@/sway/config.d/*
