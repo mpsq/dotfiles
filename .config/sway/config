@@ -8,8 +8,6 @@ set $fg #cbe3e7
 set $fc #c991e1
 set $ur #ff8080
 
-set $satie_laptop 'Sharp Corporation 0x149A 0x00000000'
-
 font pango:monospace 9
 
 gaps inner 5
@@ -143,15 +141,15 @@ bindsym $mod+minus scratchpad show
 # Custom:
 #
 # Pulse Audio controls
-bindsym Shift+Ctrl+ISO_Level3_Shift exec volume_down
-bindsym Shift+Ctrl+Super_R exec volume_up
-bindsym XF86AudioLowerVolume exec volume_down
-bindsym XF86AudioRaiseVolume exec volume_up
-bindsym XF86AudioMute exec audio_toggle
+bindsym Shift+Ctrl+ISO_Level3_Shift exec volume-down
+bindsym Shift+Ctrl+Super_R exec volume-up
+bindsym XF86AudioLowerVolume exec volume-down
+bindsym XF86AudioRaiseVolume exec volume-up
+bindsym XF86AudioMute exec audio-toggle
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec brightness_up
-bindsym XF86MonBrightnessDown exec brightness_down
+bindsym XF86MonBrightnessUp exec brightness-up
+bindsym XF86MonBrightnessDown exec brightness-down
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
@@ -160,7 +158,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Lock
-bindsym Ctrl+Shift+Super_L exec --no-startup-id "swaylock"
+bindsym Ctrl+Shift+Super_L exec --no-startup-id swaylock
 
 # Screenshot
 bindsym --release $mod+Shift+u exec grim -g  \"$(slurp)\" ~/$(date +'%Y-%m-%d-%H%M%S_instant.png')

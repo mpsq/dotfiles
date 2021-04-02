@@ -1,0 +1,10 @@
+#!/bin/sh
+
+systemctl --user enable --now offlineimap-oneshot.timer
+
+# Custom
+systemctl --user enable --now gammastep
+systemctl --user enable --now kanshi
+systemctl --user enable --now libinput-gestures
+systemctl --user enable --now mako
+systemctl --user enable --now wob
