@@ -1,0 +1,10 @@
+[Unit]
+BindsTo=sway-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/meril/.local/services/gsettings
+RemainAfterExit=true
+
+[Install]
+WantedBy=sway-session.target
