@@ -5,7 +5,7 @@ set $term alacritty
 
 set $bg #906cff
 set $fg #cbe3e7
-set $fc #c991e1
+set $fc #f9a825
 set $ur #ff8080
 
 font pango:monospace 9
@@ -161,7 +161,7 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym Ctrl+Shift+Super_L exec --no-startup-id swaylock
 
 # Screenshot
-bindsym --release $mod+Shift+u exec grim -g  \"$(slurp)\" ~/$(date +'%Y-%m-%d-%H%M%S_instant.png')
+bindsym --release $mod+Shift+u exec screenshot
 
 ### Launcher
 #
