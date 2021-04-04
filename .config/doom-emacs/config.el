@@ -123,7 +123,6 @@
 (after! pinentry
   :config
   (pinentry-start))
-(keychain-refresh-environment)
 
 ;; Auto flyspell
 (add-hook! 'mu4e-compose-mode-hook

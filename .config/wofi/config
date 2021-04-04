@@ -1,0 +1,11 @@
+allow_markup=true
+insensitive=true
+key_down=Control_L-j
+key_up=Control_L-k
+lines=10
+term=alacritty
+width=600
+mode=drun
+colors=colors
+filter_rate=50
+no_actions=true

@@ -3,14 +3,14 @@
 set $mod Mod1
 set $term alacritty
 
-set $bg #906cff
-set $fg #cbe3e7
-set $fc #f9a825
-set $ur #ff8080
+set $bg #1c1e26
+set $fg #e0e0e0
+set $fc #59e1e3
+set $ur #e95678
 
 font pango:monospace 9
 
-gaps inner 5
+gaps inner 6
 gaps outer 0
 
 ### Theme
@@ -24,7 +24,7 @@ client.placeholder      $bg     $bg     $fg  $bg       $bg
 client.background $bg
 
 default_border pixel 1
-default_floating_border pixel 1
+default_floating_border pixel 3
 
 ### Status Bar
 #
@@ -60,7 +60,7 @@ focus_on_window_activation focus
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c reload
-bindsym $mod+Shift+e exec swaynag -t warning -m 'Do you really want to exit Sway?' -b 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+Shift+e exec wofi-power
 floating_modifier $mod normal
 
 #
@@ -171,9 +171,7 @@ bindsym --release $mod+Shift+u exec screenshot
 
 ### Launcher
 #
-for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 20 ppt 10 ppt, border pixel 5
-set $menu exec $term --class=launcher -e launcher
-bindsym $mod+d exec $menu
+bindsym $mod+d exec wofi
 
 ### Floating
 #
@@ -215,6 +213,6 @@ xwayland enable
 
 ### Start session
 #
-exec_always startw --with-cleanup
+exec_always $HOME/.local/bin/startw
 
 include @sysconfdir@/sway/config.d/*

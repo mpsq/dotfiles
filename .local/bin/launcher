@@ -1,2 +1,0 @@
-#!/usr/bin/env sh
-compgen -c | sort -u | fzf --no-extended --print-query | tail -n1 | xargs -r swaymsg -t command exec
