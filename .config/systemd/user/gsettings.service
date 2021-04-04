@@ -1,5 +1,6 @@
 [Unit]
-BindsTo=sway-session.target
+PartOf=sway-session.target
+After=sway-session.target
 
 [Service]
 Type=oneshot

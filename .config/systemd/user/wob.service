@@ -1,9 +1,9 @@
 [Unit]
 Description=A lightweight overlay volume/backlight/progress/anything bar for Wayland
-Requires=wob.socket
-Wants=wob.socket
 Documentation=man:wob(1)
 Documentation=https://github.com/francma/wob/
+Requires=wob.socket
+Wants=wob.socket
 
 [Service]
 Type=simple

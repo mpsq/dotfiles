@@ -45,6 +45,12 @@ input type:touchpad {
   pointer_accel 0.12
 }
 
+### Focus settings
+#
+no_focus [window_role="pop-up"]
+no_focus [app_id="waybar"]
+focus_on_window_activation focus
+
 ### Key bindings
 #
 
@@ -168,6 +174,44 @@ bindsym --release $mod+Shift+u exec screenshot
 for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 20 ppt 10 ppt, border pixel 5
 set $menu exec $term --class=launcher -e launcher
 bindsym $mod+d exec $menu
+
+### Floating
+#
+# Display window as floating. Find out wayland app_id with "swaymsg -t get_tree | jq '.' | grep app_id" and xorg class with xprop
+for_window [class = "(?i)pinentry"] floating enable
+for_window [app_id = "(Y|y)ad"] floating enable
+for_window [app_id="mpv"] sticky enable, resize set 450px 450px
+for_window [app_id = "nm-connection-editor"] floating enable
+for_window [app_id = "virt-manager"] floating enable
+for_window [title = "About Mozilla Firefox"] floating enable
+for_window [app_id="firefox" title="Library"] floating enable, border pixel 1, sticky enable
+for_window [app_id = "pavucontrol"] floating enable
+for_window [class = "^Zoom$"] floating enable
+for_window [app_id = "zoom"] floating enable
+for_window [app_id = "nm-openconnect-auth-dialog"] floating enable
+for_window [app_id = "gnome-calculator"] floating enable
+for_window [title="Save File"] floating enable
+for_window [app_id="wdisplays"] floating enable
+for_window [app_id="floating_shell_portrait"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 40 ppt
+for_window [app_id="floating_shell"] floating enable, border pixel 1, sticky enable
+for_window [app_id = "qt5ct"] floating enable
+for_window [app_id = "gnome-tweaks"] floating enable
+## General Floats
+for_window [window_role="Open Files|dialog|task_dialog|bubble|page-info|Preferences|pop-up"] floating enable
+for_window [instance="file_progress"]  sticky enable
+for_window [title="File Operation Progress"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt
+for_window [window_role = "GtkFileChooserDialog"] floating enable, resize set 320 320, move position center
+for_window [title="Copying"] floating enable
+for_window [title="File Already Exist"] floating enable
+for_window [class="info|Mate-color-select|gcolor2|timesup|QtPass|GtkFileChooserDialog"] sticky enable
+for_window [window_role="File Operation Progress"] floating enable sticky
+for_window [window_role="Save As"] floating enable
+for_window [app_id = "floating"] floating enable
+
+## X-Wayland
+# Tag xwayland windows with [X]
+for_window [shell="xwayland"] title_format "<span>[X] %title</span>"
+xwayland enable
 
 ### Start session
 #
