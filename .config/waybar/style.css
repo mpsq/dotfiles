@@ -48,9 +48,9 @@
 #pulseaudio,
 #temperature,
 #tray {
-  padding-left: 12px;
-  padding-right: 12px;
-  min-width: 35px;
+  padding-left: 8px;
+  padding-right: 8px;
+  min-width: 32px;
 }
 
 #battery {

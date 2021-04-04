@@ -57,6 +57,7 @@ linux-firmware
 lm_sensors
 lxappearance
 mako
+man-db
 mesa
 mkinitcpio
 mlocate
