@@ -28,6 +28,7 @@ background-color=#d09a9a
 background-color=#d09a9a
 
 [urgency=high]
+border-color=#ee2e24
 ignore-timeout=true
 
 [!expiring]
