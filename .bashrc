@@ -19,8 +19,6 @@ set -o ignoreeof
 stty ixany
 stty ixoff -ixon
 
-export CLI_COLOR=1
-
 # Colours
 if [[ $(hash dircolors 2> /dev/null) ]] && [ -f "$HOME/.dir_colors" ]; then
     eval "$(dircolors -b ~/.dir_colors)"
@@ -51,7 +49,6 @@ export PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtrst\]\[$txtprl\]$git_branch\[$txtrs
 [ -r "/usr/share/doc/pkgfile/command-not-found.bash" ] && . /usr/share/doc/pkgfile/command-not-found.bash
 [ -s "$NVM_SOURCE/nvm.sh" ] && . "$NVM_SOURCE/nvm.sh"
 
-# TODO: Remove?
 if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
     function clear(){
         printf  "\e]51;E(vterm-clear-scrollback)\e\\";
