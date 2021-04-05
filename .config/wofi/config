@@ -1,4 +1,5 @@
 allow_markup=true
+allow_images=true
 insensitive=true
 key_down=Control_L-j
 key_up=Control_L-k
