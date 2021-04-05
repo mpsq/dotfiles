@@ -3,6 +3,7 @@
 systemctl --user enable --now offlineimap-oneshot.timer
 
 # Custom
+systemctl --user enable --now flashfocus
 systemctl --user enable --now gammastep
 systemctl --user enable --now gsettings
 systemctl --user enable --now kanshi
