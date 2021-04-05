@@ -71,6 +71,7 @@ networkmanager
 nm-connection-editor
 pamixer
 python-gobject
+python-pip
 noto-fonts-emoji
 ntp
 offlineimap
@@ -80,7 +81,6 @@ p7zip
 packer
 papirus-icon-theme
 pavucontrol
-peek
 pinta
 pipewire
 pipewire-media-session
@@ -123,6 +123,7 @@ veracrypt
 waybar
 wayland
 wget
+wf-recorder
 wl-clipboard
 wofi
 xdg-desktop-portal
