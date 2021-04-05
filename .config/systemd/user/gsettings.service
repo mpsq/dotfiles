@@ -4,7 +4,7 @@ After=sway-session.target
 
 [Service]
 Type=oneshot
-ExecStart=/home/meril/.local/services/gsettings
+ExecStart=%h/.local/services/gsettings
 RemainAfterExit=true
 
 [Install]

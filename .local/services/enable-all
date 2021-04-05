@@ -9,6 +9,7 @@ systemctl --user enable --now inactive-windows-transparency
 systemctl --user enable --now kanshi
 systemctl --user enable --now libinput-gestures
 systemctl --user enable --now mako
+systemctl --user enable --now polkit-gnome
 systemctl --user enable --now sway-bg
 systemctl --user enable --now sway-idle
 systemctl --user enable --now wob

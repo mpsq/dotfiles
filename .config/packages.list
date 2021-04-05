@@ -28,6 +28,7 @@ glances
 glfw-wayland
 glu
 gnome-disk-utility
+gnome-polkit
 gnome-themes-standard
 grim
 gst-libav
