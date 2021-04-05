@@ -60,7 +60,6 @@ focus_on_window_activation focus
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c reload
-bindsym $mod+Shift+e exec wofi-power
 floating_modifier $mod normal
 
 #
@@ -169,9 +168,11 @@ bindsym Ctrl+Shift+Super_L exec --no-startup-id swaylock
 # Screenshot
 bindsym --release $mod+Shift+u exec screenshot
 
-### Launcher
+### Wofi
 #
 bindsym $mod+d exec wofi
+bindsym $mod+Shift+e exec wofi-power
+bindsym $mod+Shift+w exec wofi-window-switcher
 
 ### Floating
 #

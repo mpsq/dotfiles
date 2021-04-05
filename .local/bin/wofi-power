@@ -1,6 +1,6 @@
 #!/bin/sh
 
-selected=$(printf '%s\n' Logout Suspend Reboot Shutdown | wofi --show dmenu --width 300 --height 190 | awk '{print tolower($1)}') # 
+selected=$(printf '%s\n' Logout Suspend Reboot Shutdown | wofi --show dmenu --width 300 --lines 4 | awk '{print tolower($1)}')
 
 case $selected in
   logout)

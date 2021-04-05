@@ -21,14 +21,12 @@ exa
 fd
 file-roller
 fwupd
-fzf
 gammastep
 git
 glances
 glfw-wayland
 glu
 gnome-disk-utility
-gnome-polkit
 gnome-themes-standard
 grim
 gst-libav
@@ -70,6 +68,7 @@ neofetch
 networkmanager
 nm-connection-editor
 pamixer
+polkit-gnome
 python-gobject
 python-pip
 noto-fonts-emoji

@@ -1,6 +1,5 @@
 [Unit]
-Description=Legacy polkit authentication agent for GNOME
-PartOf=sway-session.target
+PartOf=graphical-session.target
 
 [Service]
 Type=simple
