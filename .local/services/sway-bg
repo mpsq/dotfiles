@@ -11,5 +11,8 @@ function dl() {
     fi
 }
 
+swaybg --image "$IMG"/bkg.png --mode fill &
 dl
+PID=$!
+kill -s 9 $PID
 swaybg --image "$IMG"/bkg.png --mode fill
