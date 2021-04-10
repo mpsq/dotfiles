@@ -7,6 +7,9 @@ if [[ "$TERM" == "dumb" ]]; then
     exit 0
 fi
 
+# Vars
+hname=$(hostnamectl status | grep "Static hostname" | awk '{print $3}')
+
 # Better history
 shopt -s checkwinsize
 shopt -s nocaseglob
@@ -48,6 +51,8 @@ export PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtrst\]\[$txtprl\]$git_branch\[$txtrs
 [ -r "/usr/share/skim/key-bindings.bash" ] && . /usr/share/skim/key-bindings.bash
 [ -r "/usr/share/doc/pkgfile/command-not-found.bash" ] && . /usr/share/doc/pkgfile/command-not-found.bash
 [ -s "$NVM_SOURCE/nvm.sh" ] && . "$NVM_SOURCE/nvm.sh"
+[ -s "$HOME/.$hname-bashrc" ] && . "$HOME/.$hname-bashrc"
+
 
 if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
     function clear(){
