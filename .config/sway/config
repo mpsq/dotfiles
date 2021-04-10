@@ -2,7 +2,6 @@
 #
 set $mod Mod1
 set $term alacritty
-
 set $bg #1c1e26
 set $fg #e0e0e0
 set $fc #59e1e3
@@ -26,7 +25,7 @@ client.background $bg
 default_border pixel 1
 default_floating_border pixel 3
 
-### Status Bar
+### Waybar
 #
 bar {
   swaybar_command waybar
@@ -44,6 +43,10 @@ input type:touchpad {
   dwt enabled
   pointer_accel 0.12
 }
+
+## XWayland
+#
+xwayland enable
 
 ### Focus settings
 #
@@ -166,7 +169,7 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym Ctrl+Shift+Super_L exec --no-startup-id swaylock
 
 # Screenshot
-bindsym --release $mod+Shift+u exec screenshot
+bindsym --release $mod+Shift+u exec --no-startup-id screenshot
 
 ### Wofi
 #
@@ -207,10 +210,10 @@ for_window [window_role="File Operation Progress"] floating enable sticky
 for_window [window_role="Save As"] floating enable
 for_window [app_id = "floating"] floating enable
 
-## X-Wayland
-# Tag xwayland windows with [X]
-for_window [shell="xwayland"] title_format "<span>[X] %title</span>"
-xwayland enable
+### Assign
+#
+assign [class = "^Zoom$"] 9
+assign [app_id = "zoom"] 9
 
 ### Start session
 #
