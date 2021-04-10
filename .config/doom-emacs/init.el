@@ -54,7 +54,7 @@
        (docker +lsp)
        (eval +overlay)
        gist
-       lookup
+       (lookup +dictionary +offline)
        (lsp +peek)
        (magit +forge)
        pdf
