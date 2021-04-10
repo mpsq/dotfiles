@@ -1,2 +1,2 @@
 #!/bin/sh
-grim -g  \"$(slurp)\" ~/$(date +'%Y-%m-%d-%H%M%S_instant.png')
+grim -g "$(slurp)" ~/$(date +'%Y-%m-%d-%H%M%S_instant.png')
