@@ -1,9 +1,11 @@
 amazon-ecr-credential-helper
 aws-session-manager-plugin
 bashate
+bitwarden-bin
 bitwarden-cli
 chamber
 emacs-gcc-wayland-devel-bin
+english-wordnet
 fargate-cli
 flashfocus-git
 hadolint-bin
@@ -15,7 +17,8 @@ nvm
 spotify
 tflint-bin
 ttf-iosevka
-vcsh
+vcsh-git
 wob
+wordnet-cli
 yay
 zsa-wally

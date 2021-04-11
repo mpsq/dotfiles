@@ -2,6 +2,7 @@ alacritty
 arc-gtk-theme
 aspell-en
 aspell-fr
+baobab
 bash-completion
 bc
 bluez
@@ -20,14 +21,18 @@ evince
 exa
 fd
 file-roller
+firefox
+firefox-developer-edition
 flatpak
 fwupd
 gammastep
+gimp
 git
 glances
 glfw-wayland
 glu
 gnome-disk-utility
+gnome-system-monitor
 gnome-themes-standard
 grim
 gst-libav
@@ -49,6 +54,7 @@ imv
 iw
 kanshi
 keybase
+libreoffice-fresh
 libva-vdpau-driver
 libvdpau-va-gl
 light
@@ -64,6 +70,7 @@ mlocate
 most
 mpv
 msmtp-mta
+mythes-en
 nautilus
 neofetch
 networkmanager
@@ -111,6 +118,7 @@ sway
 swaybg
 swayidle
 swaylock
+systemd-resolvconf
 tldr
 tokei
 ttf-droid
