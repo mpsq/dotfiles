@@ -155,6 +155,7 @@ Return nil if on a link url, markup, html, or references."
 (setq magit-diff-refine-hunk (quote all))
 
 ;; vterm
+(setq vterm-buffer-name "*vterm*")
 (evil-define-key 'insert vterm-mode-map (kbd "C-k") #'vterm-send-up)
 (evil-define-key 'insert vterm-mode-map (kbd "C-j") #'vterm-send-down)
 
