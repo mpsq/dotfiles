@@ -8,7 +8,7 @@ if [[ "$TERM" == "dumb" ]]; then
 fi
 
 # Vars
-hname=$(hostnamectl status | grep "Static hostname" | awk '{print $3}')
+hname=$(hostname)
 
 # Better history
 shopt -s checkwinsize
@@ -17,6 +17,11 @@ shopt -s histappend
 shopt -s cdspell
 shopt -s cmdhist
 set -o ignoreeof
+export HISTCONTROL="erasedups:ignoreboth"
+export HISTSIZE=100000
+export HISTFILESIZE=$HISTSIZE
+export HISTTIMEFORMAT='%F %T '
+export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear:gpg"
 
 # Disable ctrl-s sending XOFF
 stty ixany
@@ -28,11 +33,14 @@ if [[ $(hash dircolors 2> /dev/null) ]] && [ -f "$HOME/.dir_colors" ]; then
 fi
 
 function parse_git_dirty() {
-    [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]] && echo "*"
+    if [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]]; then
+    echo "*"
+    fi
 }
 
 function parse_git_branch() {
-    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+    git branch --no-color 2> /dev/null | \
+        sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
 
 git_branch="\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \"\|)\$(parse_git_branch)\$([[ -n \$(git branch 2> /dev/null) ]] && echo \|)"
@@ -52,7 +60,6 @@ export PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtrst\]\[$txtprl\]$git_branch\[$txtrs
 [ -r "/usr/share/doc/pkgfile/command-not-found.bash" ] && . /usr/share/doc/pkgfile/command-not-found.bash
 [ -s "$NVM_SOURCE/nvm.sh" ] && . "$NVM_SOURCE/nvm.sh"
 [ -s "$HOME/.$hname-bashrc" ] && . "$HOME/.$hname-bashrc"
-
 
 if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
     function clear(){

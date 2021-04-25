@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [ $(hostnamectl status | grep "Static hostname" | awk '{print $3}') == "quino" ]; then
+if $(hostname | grep -q corp); then
   swayidle -w \
     timeout 300 'swaylock' \
     before-sleep 'swaylock'
