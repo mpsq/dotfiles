@@ -1,36 +1,72 @@
-font=monospace 8
-background-color=#b1c6d7ff
-text-color=#000000ff
-margin=5,5,0,0
+## mako config
+
+# color
+
+progress-color=over #5588aaff
+text-color=#c2c2c2
+background-color=#444444
+border-color=#aaaaaa
 padding=10
-border-size=0
+
+# ui
+
+layer=overlay
+border-radius=5
+border-size=2
+width=350
+height=400
+group-by=app-name,summary
+max-icon-size=48
+icon-path=/usr/share/icons/Papirus
+
+# behaviour
+
+anchor=bottom-center
 default-timeout=5000
-max-visible=9
-format=<span font='9'><b>%a</b></span>\n%s\n%b
+max-history=5
+max-visible=8
+ignore-timeout=1
 
-[hidden]
-background-color=#bfbfbfff
-format=+ %h
-font=monospace 8
+# format
 
-[app-name=hud]
-font=monospace 8
-width=100
-format=<b>%s</b>
-background-color=#555555ff
-text-color=#eeeeeeff
-default-timeout=1000
+format=%a\n<b>%s</b>\n%b
+[grouped]
+format=%a (%g)\n<b>%s</b>\n%b
 
-[app-name=coredump-notify]
-background-color=#d09a9a
+# urgency
 
-[app-name=stdnotify urgency=high]
-background-color=#d09a9a
+[urgency=low]
+background-color=#444444BB
+border-color=#44444444
+default-timeout=3500
+
+[urgency=normal]
+default-timeout=5000
 
 [urgency=high]
-border-color=#ee2e24
-ignore-timeout=true
+border-color=#900000
+default-timeout=0
 
-[!expiring]
-background-color=#555555ff
-text-color=#eeeeeeff
+# per-app overrides
+
+[app-name=notify-send]
+format=<b>%s</b>\n%b
+history=0
+
+[app-name=Firefox summary~="New message from.*"]
+border-color=#c158dc
+background-color=#c158dc
+default-timeout=8000
+
+[app-name=Firefox summary~="New message in.*"]
+text-color=#c158dc
+default-timeout=8000
+
+[app-name=Firefox body~="[0-9][0-9]:[0-9][0-9] – [0-9][0-9]:[0-9][0-9]$"]
+background-color=#4b830d
+border-color=#c2c2c2
+border-size=3
+default-timeout=60000
+
+[actionable]
+border-radius=0
