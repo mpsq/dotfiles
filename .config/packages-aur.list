@@ -4,6 +4,7 @@ bashate
 bitwarden-bin
 bitwarden-cli
 chamber
+direnv
 emacs-gcc-wayland-devel-bin
 english-wordnet
 flashfocus-git

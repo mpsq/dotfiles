@@ -110,6 +110,7 @@ qt5ct
 reflector
 ripgrep
 shellcheck
+shfmt
 signal-desktop
 skim
 slurp
@@ -119,6 +120,7 @@ swaybg
 swayidle
 swaylock
 systemd-resolvconf
+tidy
 tldr
 tokei
 ttf-droid
