@@ -6,7 +6,7 @@
  doom-font (font-spec :family "monospace" :size 13)
  doom-variable-pitch-font (font-spec :family "Overpass")
  doom-big-font (font-spec :family "monospace" :size 15)
- doom-serif-font (font-spec :family "Droid Sans" :weight 'light)
+ doom-serif-font (font-spec :family "Noto Serif" :weight 'light)
  doom-themes-enable-bold t
  doom-themes-enable-italic t)
 
@@ -49,6 +49,7 @@
       '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
             sql-mode         ; sqlformat is currently broken
             tex-mode         ; latexindent is broken
+            web-mode
             latex-mode))
 
 ;; Better window selection
@@ -68,7 +69,6 @@
 (add-hook! typescript-mode
   (setq typescript-indent-level 2))
 (setq-hook! 'typescript-tsx-mode-hook web-mode-code-indent-offset 2)
-
 
 ;; Improve ivy
 (map!
@@ -98,7 +98,6 @@
 (use-package! mu4e
   :config
   (setq
-   doom-modeline-height 25
    doom-modeline-enable-word-count t
    doom-modeline-buffer-encoding nil
    doom-modeline-github t
