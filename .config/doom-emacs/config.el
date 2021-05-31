@@ -30,27 +30,26 @@
 (setq web-mode-css-indent-offset 2)
 (setq web-mode-code-indent-offset 2)
 (setq css-indent-offset 2)
+(add-hook! typescript-mode
+  (setq typescript-indent-level 2))
+(setq-hook! 'typescript-tsx-mode-hook web-mode-code-indent-offset 2)
 
 ;; LSP
 (setq lsp-file-watch-threshold 20000)
 
-;; Prioritise javascript-eslint checker
-(setq-hook! 'js2-mode-hook flycheck-checker 'javascript-eslint)
-(setq-hook! 'typescript-tsx-mode-hook flycheck-checker 'javascript-eslint)
-(setq-hook! 'typescript-mode-hook flycheck-checker 'javascript-eslint)
-
 ;; Format on save -- Disable LSP
-(setq-hook! 'js2-mode-hook +format-with-lsp nil)
-(setq-hook! 'typescript-tsx-mode-hook +format-with-lsp nil)
-(setq-hook! 'typescript-mode-hook +format-with-lsp nil)
-(setq-hook! 'web-hook +format-with-lsp nil)
+;;(setq-hook! 'js2-mode-hook +format-with-lsp nil)
+;;(setq-hook! 'typescript-tsx-mode-hook +format-with-lsp nil)
+;;(setq-hook! 'typescript-mode-hook +format-with-lsp nil)
+;;(setq-hook! 'web-hook +format-with-lsp nil)
 
 (setq +format-on-save-enabled-modes
-      '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
-            sql-mode         ; sqlformat is currently broken
-            tex-mode         ; latexindent is broken
-            web-mode
-            latex-mode))
+     '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
+           sql-mode         ; sqlformat is currently broken
+           tex-mode         ; latexindent is broken
+           web-mode         ; broken with templates
+           yaml-mode        ; clashes with other formatting tools
+           latex-mode))
 
 ;; Better window selection
 (map!
@@ -66,11 +65,7 @@
   :desc "Switch to window 8" :n "8" #'winum-select-window-8
   :desc "Switch to window 9" :n "9" #'winum-select-window-9))
 
-(add-hook! typescript-mode
-  (setq typescript-indent-level 2))
-(setq-hook! 'typescript-tsx-mode-hook web-mode-code-indent-offset 2)
-
-;; Improve ivy
+;; ivy shortcut
 (map!
  :leader
  :desc "Resume latest ivy" :nv "r l" #'ivy-resume)
@@ -109,6 +104,8 @@
 
 ;; Treemacs config
 (remove-hook 'doom-load-theme-hook #'doom-themes-treemacs-config)
+
+(setq +treemacs-git-mode 'deferred)
 (after! treemacs
   (setq treemacs-no-png-images t)
   (treemacs-follow-mode))
@@ -153,11 +150,19 @@ Return nil if on a link url, markup, html, or references."
 ;; Magit inline diff
 (setq magit-diff-refine-hunk (quote all))
 
-;; vterm
-(setq vterm-buffer-name "*vterm*")
-(evil-define-key 'insert vterm-mode-map (kbd "C-k") #'vterm-send-up)
-(evil-define-key 'insert vterm-mode-map (kbd "C-j") #'vterm-send-down)
-
 ;; Load private stuff
 (when (file-exists-p "~/.config/priv/config.el")
   (load-file "~/.config/priv/config.el"))
+
+(when (featurep! :lang sh)
+  ;; use shfmt directly instead of format-all which fucks up tabs
+  (use-package! shfmt
+    :hook (sh-mode . shfmt-on-save-mode)
+    :config
+    (setq
+     shfmt-arguments
+     `(
+       ;; indent with spaces, has to be 2 different strings due to the space
+       "-i" , "2"
+       ;; indent switch case
+       "-ci"))))
