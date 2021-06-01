@@ -79,6 +79,7 @@ pamixer
 polkit-gnome
 python-gobject
 python-pip
+noto-fonts
 noto-fonts-emoji
 ntp
 offlineimap
@@ -94,7 +95,6 @@ pipewire
 pipewire-media-session
 pkgfile
 playerctl
-ponymix
 powertop
 pulseaudio
 pulseaudio-alsa
