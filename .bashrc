@@ -90,5 +90,7 @@ else
   . ~/.profile
 
   # .envrc integration
-  [ command -v direnv &> /dev/null ] && eval "$(direnv hook bash)"
+  if command -v direnv >/dev/null; then
+    eval "$(direnv hook bash)"
+  fi
 fi
