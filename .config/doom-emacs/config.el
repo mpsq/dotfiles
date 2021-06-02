@@ -2,7 +2,7 @@
 
 ;; Doom config
 (setq-default
- doom-theme 'doom-horizon
+ doom-theme 'doom-monokai-pro
  doom-font (font-spec :family "monospace" :size 13)
  doom-variable-pitch-font (font-spec :family "Overpass")
  doom-big-font (font-spec :family "monospace" :size 15)
@@ -38,10 +38,10 @@
 (setq lsp-file-watch-threshold 20000)
 
 ;; Format on save -- Disable LSP
-;;(setq-hook! 'js2-mode-hook +format-with-lsp nil)
-;;(setq-hook! 'typescript-tsx-mode-hook +format-with-lsp nil)
-;;(setq-hook! 'typescript-mode-hook +format-with-lsp nil)
-;;(setq-hook! 'web-hook +format-with-lsp nil)
+(setq-hook! 'js2-mode-hook +format-with-lsp nil)
+(setq-hook! 'typescript-tsx-mode-hook +format-with-lsp nil)
+(setq-hook! 'typescript-mode-hook +format-with-lsp nil)
+(setq-hook! 'web-hook +format-with-lsp nil)
 
 (setq +format-on-save-enabled-modes
      '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
