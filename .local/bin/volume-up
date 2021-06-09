@@ -2,8 +2,8 @@
 ids=($(pamixer --list-sinks | sed -n '1d;p' | grep -oP '^([0-9])'))
 
 for i in "${ids[@]}"; do
-    ponymix --device "$i" increase 2
+    pamixer --sink "$i" -i 2
 done
 
-vol=$(ponymix get-volume)
+vol=$(pamixer --get-volume)
 echo "$vol" > /run/user/1000/wob.sock
