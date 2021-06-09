@@ -2,15 +2,16 @@
 
 ;; Doom config
 (setq-default
- doom-theme 'doom-monokai-pro
- doom-font (font-spec :family "monospace" :size 13)
- doom-variable-pitch-font (font-spec :family "Overpass")
- doom-big-font (font-spec :family "monospace" :size 15)
- doom-serif-font (font-spec :family "Noto Serif" :weight 'light)
+ doom-theme 'doom-challenger-deep
+ doom-font (font-spec :family "Liberation Mono" :size 10.0)
+ doom-variable-pitch-font (font-spec :family "Liberation Sans")
+ doom-big-font (font-spec :family "Liberation Mono" :size 12.0)
+ doom-serif-font (font-spec :family "Liberation Serif" :weight 'light)
  doom-themes-enable-bold t
  doom-themes-enable-italic t)
 
 ;; Misc. settings
+(setq gc-cons-threshold 100000000)
 (setq org-directory "~/docs")
 (setq display-line-numbers-type 'relative)
 (setq-default show-trailing-whitespace t)

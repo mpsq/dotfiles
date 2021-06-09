@@ -79,12 +79,10 @@ pamixer
 polkit-gnome
 python-gobject
 python-pip
-noto-fonts
 noto-fonts-emoji
 ntp
 offlineimap
 otf-font-awesome
-otf-overpass
 p7zip
 packer
 papirus-icon-theme
@@ -124,9 +122,7 @@ systemd-resolvconf
 tidy
 tldr
 tokei
-ttf-droid
-ttf-hack
-ttf-opensans
+ttf-liberation
 unrar
 unzip
 usbutils
