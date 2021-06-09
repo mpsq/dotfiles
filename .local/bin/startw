@@ -14,7 +14,14 @@ done
 
 export XDG_CURRENT_DESKTOP=sway
 VARIABLES="DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-SESSION_TARGET="sway-session.target"
 
-systemctl --user import-environment $VARIABLES
-systemctl --user --wait start "$SESSION_TARGET"
+# DBus activation environment is independent from systemd. While most of
+# dbus-activated services are already using `SystemdService` directive, some
+# still don't and thus we should set the dbus environment with a separate
+# command.
+if hash dbus-update-activation-environment 2>/dev/null; then
+    dbus-update-activation-environment --systemd $VARIABLES
+fi
+
+systemctl --user import-environment
+systemctl --user --wait start sway-session.target
