@@ -3,3 +3,4 @@
 
 (package! pinentry)
 (package! shfmt)
+(package! protobuf-mode)

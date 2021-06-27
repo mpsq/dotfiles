@@ -52,13 +52,16 @@
        :tools
        (debugger +lsp)
        (docker +lsp)
+       direnv
        (eval +overlay)
        gist
        (lookup +dictionary +offline)
        (lsp +peek)
+       make
        (magit +forge)
        pdf
        rgb
+       taskrunner
        terraform
 
        :os
