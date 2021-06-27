@@ -19,3 +19,5 @@ alias .....="cd ../../../.."
 
 alias em="emacs"
 alias emc="emacsclient"
+
+alias sway="exec systemd-cat --identifier=sway sway"
