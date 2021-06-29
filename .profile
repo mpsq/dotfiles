@@ -1,6 +1,10 @@
-while read -r l; do
-   eval export "$l"
-done < <(grep . ~/.config/environment.d/10-all.conf)
+FILES=~/.config/environment.d/*
+for f in $FILES
+do
+  while read -r l; do
+    eval export "$l"
+  done < <(grep . "$f")
+done
 
 [ -r "$XDG_CONFIG_HOME/priv/stuff.bash" ] && . "$XDG_CONFIG_HOME/priv/stuff.bash"
 
