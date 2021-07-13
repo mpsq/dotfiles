@@ -1,5 +1,4 @@
 amazon-ecr-credential-helper
-aws-session-manager-plugin
 bashate
 bitwarden-bin
 bitwarden-cli
@@ -17,7 +16,6 @@ myrepos
 nvm
 spotify
 tflint-bin
-ttf-symbola
 vcsh-git
 wob
 wordnet-cli

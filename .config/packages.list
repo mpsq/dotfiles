@@ -122,7 +122,8 @@ systemd-resolvconf
 tidy
 tldr
 tokei
-ttf-liberation
+ttc-iosevka-ss17
+ttf-dejavu
 unrar
 unzip
 usbutils

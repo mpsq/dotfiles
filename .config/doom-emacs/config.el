@@ -1,26 +1,29 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Doom config
-(setq-default
- doom-theme 'doom-challenger-deep
- doom-font (font-spec :family "Liberation Mono" :size 10.0)
- doom-variable-pitch-font (font-spec :family "Liberation Sans")
- doom-big-font (font-spec :family "Liberation Mono" :size 12.0)
- doom-serif-font (font-spec :family "Liberation Serif" :weight 'light)
- doom-themes-enable-bold t
- doom-themes-enable-italic t)
+(setq doom-theme 'modus-vivendi)
+
+(setq doom-font (font-spec :family "Iosevka SS17" :size 10.0)
+      doom-big-font (font-spec :family "Iosevka SS17" :size 12.0)
+      doom-variable-pitch-font (font-spec :family "DejaVu Sans" :size 10.0)
+      doom-unicode-font (font-spec :family "Liberation Mono")
+      doom-serif-font (font-spec :family "DejaVu Sans Mono")
+      doom-unicode-font (font-spec :family "Iosevka SS17")
+      doom-symbol-fallback-font-families nil
+      doom-themes-enable-bold nil
+      doom-themes-enable-italic nil
+      doom-emoji-fallback-font-families '("Noto Color Emoji"))
 
 ;; Misc. settings
-(setq gc-cons-threshold 100000000)
 (setq org-directory "~/docs")
 (setq display-line-numbers-type 'relative)
-(setq-default show-trailing-whitespace t)
-(setq-default fill-column 80)
+(setq show-trailing-whitespace t)
+(setq fill-column 80)
 
 ;; Indentation madness...
-(setq-default evil-shift-width 2
-              standard-indent 2
-              tab-width 2)
+(setq evil-shift-width 2)
+(setq standard-indent 2)
+(setq tab-width 2)
 (setq indent-tabs-mode nil)
 (setq javascript-indent-level 2)
 (setq typecript-indent-level 2)
@@ -36,7 +39,9 @@
 (setq-hook! 'typescript-tsx-mode-hook web-mode-code-indent-offset 2)
 
 ;; LSP
-(setq lsp-file-watch-threshold 20000)
+;; (setq lsp-file-watch-threshold 20000)
+(setq lsp-idle-delay 0.999)
+(setq lsp-eslint-trace-server nil)
 
 ;; Format on save -- Disable LSP
 (setq-hook! 'js2-mode-hook +format-with-lsp nil)
