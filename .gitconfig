@@ -18,26 +18,25 @@
   safecrlf = warn
   editor = emacsclient
 
+[log]
+  date = relative
+
+[format]
+  pretty = %C(Yellow)%h  %C(reset)%ad (%C(Green)%cr%C(reset))%x09 %C(Cyan)%an: %C(reset)%s
+
 [alias]
   # misc
   ci = commit
-  hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
   s = status
   a = add
   aa = add --all
   pu = "!git push -u origin \"$(git rev-parse --abbrev-ref HEAD)\""
   puf = push --force-with-lease
   d = diff
-  dc = diff --cached
-  amend = commit --amend --no-edit
 
   # branch
   b = branch
-  bd = branch -D
   co = checkout
-  chb = checkout -b
-
-  l = log --oneline --graph
 
 [branch]
   autosetuprebase = always
