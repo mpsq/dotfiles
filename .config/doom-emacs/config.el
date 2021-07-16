@@ -1,13 +1,13 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Doom config
-(setq doom-theme 'modus-vivendi)
+(setq doom-theme 'doom-Iosvkem)
 
 (setq doom-font (font-spec :family "Iosevka SS17" :size 10.0)
       doom-big-font (font-spec :family "Iosevka SS17" :size 12.0)
-      doom-variable-pitch-font (font-spec :family "DejaVu Sans" :size 10.0)
+      doom-variable-pitch-font (font-spec :family "Droid Sans" :size 10.0)
       doom-unicode-font (font-spec :family "Liberation Mono")
-      doom-serif-font (font-spec :family "DejaVu Sans Mono")
+      doom-serif-font (font-spec :family "Droid Sans Mono")
       doom-unicode-font (font-spec :family "Iosevka SS17")
       doom-symbol-fallback-font-families nil
       doom-themes-enable-bold nil
@@ -19,6 +19,9 @@
 (setq display-line-numbers-type 'relative)
 (setq show-trailing-whitespace t)
 (setq fill-column 80)
+;; (setq auto-window-vscroll nil)
+;; (setq line-move-visual nil)
+;; (setq select-active-regions nil)
 
 ;; Indentation madness...
 (setq evil-shift-width 2)
@@ -39,7 +42,7 @@
 (setq-hook! 'typescript-tsx-mode-hook web-mode-code-indent-offset 2)
 
 ;; LSP
-;; (setq lsp-file-watch-threshold 20000)
+(setq lsp-file-watch-threshold 20000)
 (setq lsp-idle-delay 0.999)
 (setq lsp-eslint-trace-server nil)
 
@@ -99,7 +102,7 @@
 (use-package! mu4e
   :config
   (setq
-   doom-modeline-enable-word-count t
+   doom-modeline-enable-word-count nil
    doom-modeline-buffer-encoding nil
    doom-modeline-github t
    doom-modeline-mu4e t
