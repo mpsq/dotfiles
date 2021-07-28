@@ -102,7 +102,7 @@
   },
   "custom/mu": {
     "format": "{}",
-    "interval": 60,
+    "interval": 5,
     "return-type": "json",
     "exec": "~/.config/waybar/modules/mu/check.sh"
   },

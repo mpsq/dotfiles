@@ -1,6 +1,6 @@
 #!/bin/sh
 
-systemctl --user enable --now offlineimap-oneshot.timer
+systemctl --user enable --now mbsync.timer
 
 # Custom
 systemctl --user enable --now flashfocus

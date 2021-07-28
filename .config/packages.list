@@ -34,6 +34,7 @@ glu
 gnome-disk-utility
 gnome-system-monitor
 gnome-themes-standard
+goimapnotify
 grim
 gst-libav
 gst-plugins-bad
@@ -49,6 +50,7 @@ hunspell-en_US
 hunspell-fr
 inetutils
 iptables
+isync
 jq
 imv
 iw
@@ -81,7 +83,6 @@ python-gobject
 python-pip
 noto-fonts-emoji
 ntp
-offlineimap
 otf-font-awesome
 p7zip
 packer

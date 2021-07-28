@@ -3,15 +3,13 @@
 ;; Doom config
 (setq doom-theme 'doom-Iosvkem)
 
-(setq doom-font (font-spec :family "Iosevka SS17" :size 10.0)
-      doom-big-font (font-spec :family "Iosevka SS17" :size 12.0)
-      doom-variable-pitch-font (font-spec :family "Droid Sans" :size 10.0)
+(setq doom-font (font-spec :family "Iosevka Fixed SS17" :size 13 :slant 'normal :weight 'normal)
+      doom-big-font (font-spec :family "Iosevka Fixed SS17" :size 14)
+      doom-variable-pitch-font (font-spec :family "Droid Sans" :size 13)
       doom-unicode-font (font-spec :family "Liberation Mono")
       doom-serif-font (font-spec :family "Droid Sans Mono")
       doom-unicode-font (font-spec :family "Iosevka SS17")
-      doom-symbol-fallback-font-families nil
-      doom-themes-enable-bold nil
-      doom-themes-enable-italic nil
+      doom-symbol-fallback-font-families '("Unifont")
       doom-emoji-fallback-font-families '("Noto Color Emoji"))
 
 ;; Misc. settings
@@ -19,9 +17,6 @@
 (setq display-line-numbers-type 'relative)
 (setq show-trailing-whitespace t)
 (setq fill-column 80)
-;; (setq auto-window-vscroll nil)
-;; (setq line-move-visual nil)
-;; (setq select-active-regions nil)
 
 ;; Indentation madness...
 (setq evil-shift-width 2)
@@ -93,8 +88,9 @@
         mu4e-attachment-dir "~/dl"
         mu4e-get-mail-command "true"
         mu4e-headers-include-related nil
-        mu4e-index-lazy-check nil
-        mu4e-update-interval 60
+        mu4e-index-lazy-check t
+        mu4e-update-interval 5
+        mu4e-change-filenames-when-moving t
         send-mail-function #'smtpmail-send-it
         sendmail-program "/usr/bin/msmtp"))
 
