@@ -212,6 +212,9 @@ for_window [app_id = "floating"] floating enable
 
 ### Assign
 #
+assign [app_id = "emacs"] 2
+assign [class = "^Spotify$"] 4
+assign [app_id = "Signal"] 4
 assign [class = "^Zoom$"] 9
 assign [app_id = "zoom"] 9
 
