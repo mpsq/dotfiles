@@ -10,7 +10,7 @@ window:
 font:
   normal:
     family: monospace
-  size: 10.0
+  size: 11
 
 colors:
   primary:
