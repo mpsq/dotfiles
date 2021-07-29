@@ -88,7 +88,7 @@
         mu4e-attachment-dir "~/dl"
         mu4e-get-mail-command "true"
         mu4e-headers-include-related nil
-        mu4e-index-lazy-check t
+        mu4e-index-lazy-check nil
         mu4e-update-interval 5
         mu4e-change-filenames-when-moving t
         send-mail-function #'smtpmail-send-it
