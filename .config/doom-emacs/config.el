@@ -3,7 +3,7 @@
 ;; Doom config
 (setq doom-theme 'doom-Iosvkem)
 
-(setq doom-font (font-spec :family "Iosevka Fixed SS17" :size 13 :slant 'normal :weight 'normal)
+(setq doom-font (font-spec :family "Iosevka Fixed SS17" :size 13)
       doom-big-font (font-spec :family "Iosevka Fixed SS17" :size 14)
       doom-variable-pitch-font (font-spec :family "Droid Sans" :size 13)
       doom-unicode-font (font-spec :family "Liberation Mono")
@@ -75,7 +75,7 @@
  :desc "Resume latest ivy" :nv "r l" #'ivy-resume)
 
 ;; Email configuration
-(setq +mu4e-backend 'offlineimap)
+;; (setq +mu4e-backend 'offlineimap)
 (after! mu4e
   (setq mail-envelope-from 'header
         mail-user-agent 'mu4e-user-agent
@@ -158,16 +158,3 @@ Return nil if on a link url, markup, html, or references."
 ;; Load private stuff
 (when (file-exists-p "~/.config/priv/config.el")
   (load-file "~/.config/priv/config.el"))
-
-(when (featurep! :lang sh)
-  ;; use shfmt directly instead of format-all which fucks up tabs
-  (use-package! shfmt
-    :hook (sh-mode . shfmt-on-save-mode)
-    :config
-    (setq
-     shfmt-arguments
-     `(
-       ;; indent with spaces, has to be 2 different strings due to the space
-       "-i" , "2"
-       ;; indent switch case
-       "-ci"))))
