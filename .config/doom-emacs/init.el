@@ -6,7 +6,7 @@
 
 (doom! :completion
        (company +childframe)
-       (ivy +fuzzy +childframe +icons)
+       (vertico +icons)
 
        :ui
        doom
@@ -18,6 +18,7 @@
        hydra
        indent-guides
        modeline
+       nav-flash
        ophints
        (popup +defaults)
        treemacs
@@ -51,14 +52,14 @@
 
        :tools
        (debugger +lsp)
-       (docker +lsp)
        direnv
+       (docker +lsp)
        (eval +overlay)
        gist
        (lookup +dictionary +offline)
        (lsp +peek)
-       make
        (magit +forge)
+       make
        pdf
        rgb
        taskrunner

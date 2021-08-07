@@ -69,11 +69,6 @@
   :desc "Switch to window 8" :n "8" #'winum-select-window-8
   :desc "Switch to window 9" :n "9" #'winum-select-window-9))
 
-;; ivy shortcut
-(map!
- :leader
- :desc "Resume latest ivy" :nv "r l" #'ivy-resume)
-
 ;; Email configuration
 ;; (setq +mu4e-backend 'offlineimap)
 (after! mu4e
