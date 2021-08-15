@@ -1,11 +1,19 @@
+# M - J
 {
   output eDP-1 disable
   output "Unknown Q2577W ADQG59A000358" enable
 }
+# T
+{
+  output eDP-1 disable
+  output "Dell Inc. DELL P3421W 8C6SH53" enable
+}
+# M - M
 {
   output eDP-1 disable
   output "Dell Inc. DELL P2418D MY3ND02E0BET" enable
 }
+# Default
 {
   output eDP-1 enable
 }
