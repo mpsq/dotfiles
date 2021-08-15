@@ -20,8 +20,8 @@
        modeline
        nav-flash
        ophints
-       (popup +defaults)
-       treemacs
+       (popup +all +defaults)
+       (treemacs +lsp)
        vc-gutter
        vi-tilde-fringe
        (window-select +numbers)
@@ -36,7 +36,7 @@
        snippets
 
        :emacs
-       dired
+       (dired +icons)
        electric
        (ibuffer +icons)
        undo
@@ -52,7 +52,6 @@
 
        :tools
        (debugger +lsp)
-       direnv
        (docker +lsp)
        (eval +overlay)
        gist
@@ -86,9 +85,6 @@
 
        :email
        (mu4e +gmail)
-
-       :app
-       calendar
 
        :config
        (default +bindings +smartparens))

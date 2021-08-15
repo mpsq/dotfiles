@@ -1,9 +1,8 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Doom config
-(setq doom-theme 'doom-Iosvkem)
-
-(setq doom-font (font-spec :family "Iosevka Fixed SS17" :size 13)
+(setq doom-theme 'doom-Iosvkem
+      doom-font (font-spec :family "Iosevka Fixed SS17" :size 13)
       doom-big-font (font-spec :family "Iosevka Fixed SS17" :size 14)
       doom-variable-pitch-font (font-spec :family "Droid Sans" :size 13)
       doom-unicode-font (font-spec :family "Liberation Mono")
@@ -12,41 +11,45 @@
       doom-symbol-fallback-font-families '("Unifont")
       doom-emoji-fallback-font-families '("Noto Color Emoji"))
 
+;; Nicer default buffer names
+(setq doom-fallback-buffer-name "► Doom"
+      +doom-dashboard-name "► Doom")
+
 ;; Misc. settings
-(setq org-directory "~/docs")
-(setq display-line-numbers-type 'relative)
-(setq show-trailing-whitespace t)
-(setq fill-column 80)
+(setq display-line-numbers-type 'relative
+      evil-want-fine-undo t               ; By default while in insert all changes are one big blob. Be more granular
+      fill-column 80
+      org-directory "~/docs"
+      scroll-margin 2
+      show-trailing-whitespace t
+      undo-limit 80000000)
 
 ;; Indentation madness...
-(setq evil-shift-width 2)
-(setq standard-indent 2)
-(setq tab-width 2)
-(setq indent-tabs-mode nil)
-(setq javascript-indent-level 2)
-(setq typecript-indent-level 2)
-(setq js-indent-level 2)
-(setq jsx-indent-level 2)
-(setq js2-basic-offset 2)
-(setq web-mode-markup-indent-offset 2)
-(setq web-mode-css-indent-offset 2)
-(setq web-mode-code-indent-offset 2)
-(setq css-indent-offset 2)
+(setq evil-shift-width 2
+      standard-indent 2
+      tab-width 2
+      indent-tabs-mode nil
+      typecript-indent-level 2
+      javascript-indent-level 2
+      js-indent-level 2
+      jsx-indent-level 2
+      js2-basic-offset 2
+      web-mode-markup-indent-offset 2
+      web-mode-css-indent-offset 2
+      web-mode-code-indent-offset 2
+      css-indent-offset 2)
 (add-hook! typescript-mode
   (setq typescript-indent-level 2))
 (setq-hook! 'typescript-tsx-mode-hook web-mode-code-indent-offset 2)
 
 ;; LSP
 (setq lsp-file-watch-threshold 20000)
-(setq lsp-idle-delay 0.999)
-(setq lsp-eslint-trace-server nil)
 
-;; Format on save -- Disable LSP
+;; Format on save
 (setq-hook! 'js2-mode-hook +format-with-lsp nil)
 (setq-hook! 'typescript-tsx-mode-hook +format-with-lsp nil)
 (setq-hook! 'typescript-mode-hook +format-with-lsp nil)
 (setq-hook! 'web-hook +format-with-lsp nil)
-
 (setq +format-on-save-enabled-modes
      '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
            sql-mode         ; sqlformat is currently broken
@@ -69,8 +72,16 @@
   :desc "Switch to window 8" :n "8" #'winum-select-window-8
   :desc "Switch to window 9" :n "9" #'winum-select-window-9))
 
+;; Improve completion
+(after! company
+  (setq company-idle-delay 0.5
+        company-minimum-prefix-length 2
+        company-show-quick-access t)
+  (add-hook 'evil-normal-state-entry-hook #'company-abort))
+(setq-default history-length 1000)
+(setq-default prescient-history-length 1000)
+
 ;; Email configuration
-;; (setq +mu4e-backend 'offlineimap)
 (after! mu4e
   (setq mail-envelope-from 'header
         mail-user-agent 'mu4e-user-agent
@@ -99,23 +110,19 @@
    doom-modeline-mu4e t
    doom-modeline-gnus nil))
 
-(after! ivy-posframe
-  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center))))
-
 ;; Treemacs config
-(remove-hook 'doom-load-theme-hook #'doom-themes-treemacs-config)
-
 (setq +treemacs-git-mode 'deferred)
+(remove-hook 'doom-load-theme-hook #'doom-themes-treemacs-config)
 (after! treemacs
-  (setq treemacs-no-png-images t)
-  (treemacs-follow-mode))
+   (setq treemacs-no-png-images t)
+   (treemacs-follow-mode))
 
 ;; GPG settings/keyring
 (setq auth-sources '("~/.authinfo.gpg")
-      auth-source-cache-expiry nil) ; default is 7200 (2h)
-(setq password-cache-expiry nil)
-(setq epa-armor t)
-(setq epg-pinentry-mode 'loopback)
+      auth-source-cache-expiry nil
+      password-cache-expiry nil
+      epa-armor t
+      epg-pinentry-mode 'loopback)
 (after! pinentry
   :config
   (pinentry-start))
