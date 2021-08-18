@@ -1,7 +1,7 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Doom config
-(setq doom-theme 'doom-Iosvkem
+(setq doom-theme 'doom-gruvbox
       doom-font (font-spec :family "Iosevka Fixed SS17" :size 13)
       doom-big-font (font-spec :family "Iosevka Fixed SS17" :size 14)
       doom-variable-pitch-font (font-spec :family "Droid Sans" :size 13)
@@ -82,6 +82,7 @@
 (setq-default prescient-history-length 1000)
 
 ;; Email configuration
+(setq +mu4e-backend nil)
 (after! mu4e
   (setq mail-envelope-from 'header
         mail-user-agent 'mu4e-user-agent
@@ -90,10 +91,9 @@
         message-send-mail-function #'message-send-mail-with-sendmail
         message-sendmail-envelope-from 'header
         message-sendmail-extra-arguments '("--read-envelope-from")
-        message-sendmail-f-is-evil 't
+        message-sendmail-f-is-evil t
         mu4e-attachment-dir "~/dl"
         mu4e-get-mail-command "true"
-        mu4e-headers-include-related nil
         mu4e-index-lazy-check nil
         mu4e-update-interval 5
         mu4e-change-filenames-when-moving t
