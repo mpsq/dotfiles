@@ -84,6 +84,7 @@
 ;; Email configuration
 (setq +mu4e-backend nil)
 (after! mu4e
+  (mu4e-alert-enable-mode-line-display)
   (setq mail-envelope-from 'header
         mail-user-agent 'mu4e-user-agent
         mail-specify-envelope-from 't
@@ -104,11 +105,9 @@
 (use-package! mu4e
   :config
   (setq
-   doom-modeline-enable-word-count nil
    doom-modeline-buffer-encoding nil
    doom-modeline-github t
-   doom-modeline-mu4e t
-   doom-modeline-gnus nil))
+   doom-modeline-mu4e t))
 
 ;; Treemacs config
 (setq +treemacs-git-mode 'deferred)
