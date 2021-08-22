@@ -25,12 +25,6 @@ client.background $bg
 default_border pixel 1
 default_floating_border pixel 3
 
-### Waybar
-#
-bar {
-  swaybar_command waybar
-}
-
 ### Input/output
 #
 input type:keyboard {

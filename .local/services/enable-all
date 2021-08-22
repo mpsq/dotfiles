@@ -14,3 +14,4 @@ systemctl --user enable --now polkit-gnome
 systemctl --user enable --now sway-bg
 systemctl --user enable --now sway-idle
 systemctl --user enable --now wob
+systemctl --user enable --now waybar
