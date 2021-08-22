@@ -28,7 +28,6 @@ fwupd
 gammastep
 gimp
 git
-glances
 glfw-wayland
 glu
 gnome-disk-utility
@@ -44,6 +43,7 @@ gst-plugins-good
 gst-plugins-ugly
 gtk-engine-murrine
 gtk-engines
+htop
 hunspell
 hunspell-en_GB
 hunspell-en_US
