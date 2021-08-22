@@ -32,9 +32,11 @@ input type:keyboard {
 }
 
 input type:touchpad {
+  drag enabled
+  dwt enabled
   tap enabled
   natural_scroll disabled
-  dwt enabled
+  middle_emulation enabled
   pointer_accel 0.12
 }
 
@@ -211,6 +213,13 @@ assign [class = "^Spotify$"] 4
 assign [app_id = "Signal"] 4
 assign [class = "^Zoom$"] 9
 assign [app_id = "zoom"] 9
+
+# for X11 apps: for_window X move window to workspace
+for_window [class="Spotify"] move window to workspace 4
+
+# prevent idle state at fullscreen mode for some apps
+for_window [app_id="Chromium"] inhibit_idle fullscreen
+for_window [app_id="firefox"] inhibit_idle fullscreen
 
 ### Start session
 #
