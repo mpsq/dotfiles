@@ -8,6 +8,10 @@
   output eDP-1 disable
   output "Dell Inc. DELL P3421W 8C6SH53" enable
 }
+{
+  output eDP-1 disable
+  output "Dell Inc. DELL P3421W 5F6SH53" enable
+}
 # M - M
 {
   output eDP-1 disable
