@@ -1,9 +1,9 @@
 #!/bin/sh
 count=$(mu msgs-count --query='flag:unread AND NOT flag:trashed')
-class=""
 
 if [[ count -gt 0 ]]; then
-  class="new"
+  echo "{\"text\":\"\uf0e0 $count\",\"class\":\"new\"}"
+else
+  echo "{\"text\":\"\"}"
 fi
 
-echo "{\"text\":\"\uf0e0 $count\",\"class\":\"$class\"}"

@@ -1,0 +1,22 @@
+#!/bin/sh
+
+FAILED_USER="$(systemctl --plain --no-legend --user list-units --state=failed | wc -l)"
+FAILED_SYSTEM="$(systemctl --plain --no-legend list-units --state=failed | wc -l)"
+
+OUT=""
+
+if [ "$FAILED_USER" != 0 ]; then
+  OUT="$OUT $FAILED_USER user unit"
+fi
+
+if [ "$FAILED_SYSTEM" != 0 ]; then
+  OUT="$OUT $FAILED_SYSTEM system unit"
+fi
+
+if [ -n "$OUT" ]; then
+  OUT="<span foreground='orange'>■</span> $OUT"
+else
+  OUT="<span>■</span>"
+fi
+
+echo "$OUT"
