@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -m
+set -euom pipefail
 
 IMG=$(xdg-user-dir PICTURES)
 
