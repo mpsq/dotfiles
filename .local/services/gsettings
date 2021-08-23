@@ -1,6 +1,5 @@
-#!/bin/sh
-
-# usage: import-gsettings <gsettings key>:<settings.ini key> <gsettings key>:<settings.ini key> ...
+#!/usr/bin/env bash
+set -euo pipefail
 
 expressions=""
 in="gtk-theme:gtk-theme-name \
