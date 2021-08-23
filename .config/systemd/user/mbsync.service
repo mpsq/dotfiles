@@ -4,4 +4,4 @@ Description=Mailbox synchronization service
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/mbsync -Va
-ExecStartPost=/usr/bin/emacsclient -e '(mu4e-update-index)'
+ExecStartPost=/usr/bin/bash -c 'emacsclient -ue \'(mu4e-update-index)\' || mu index -q'
