@@ -16,7 +16,7 @@ fi
 if [ -n "$OUT" ]; then
   OUT="<span foreground='orange'>■</span> $OUT"
 else
-  OUT="<span>■</span>"
+  OUT="■"
 fi
 
 echo "$OUT"
