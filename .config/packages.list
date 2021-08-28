@@ -11,6 +11,7 @@ ccid
 chromium
 cmake
 codespell
+dbus-python
 dmidecode
 docker
 docker-compose
