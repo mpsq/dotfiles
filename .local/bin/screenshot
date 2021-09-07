@@ -1,2 +1,14 @@
 #!/bin/sh
-grim -g "$(slurp)" ~/$(date +'%Y-%m-%d-%H%M%S_instant.png')
+
+mkdir -p ~/instants
+now=$(date +'%Y-%m-%d-%H%M%S')
+
+if [[ "$1" == "video" ]]; then
+    if ps -e | grep -q wf-recorder; then
+        killall -s 2 wf-recorder
+    else
+        wf-recorder -g "$(slurp)" -f ~/instants/"$now".mp4
+    fi
+else
+    grim -g "$(slurp)" ~/instants/"$now".png
+fi
