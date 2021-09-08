@@ -31,6 +31,12 @@ parse_git_branch() {
     sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
 
+# If TTY
+if [ -t 0 ]; then
+  export GPG_TTY=`tty`
+  echo "UPDATESTARTUPTTY" | gpg-connect-agent > /dev/null 2>&1
+fi
+
 if [[ "$TERM" == "dumb" ]]; then
   PS1='\u at \h in \w\n\$ '
 else
