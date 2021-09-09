@@ -73,11 +73,6 @@
   :desc "Switch to window 9" :n "9" #'winum-select-window-9))
 
 ;; Improve completion
-(after! company
-  (setq company-idle-delay 0.5
-        company-minimum-prefix-length 2
-        company-show-quick-access t)
-  (add-hook 'evil-normal-state-entry-hook #'company-abort))
 (setq-default history-length 1000)
 (setq-default prescient-history-length 1000)
 
