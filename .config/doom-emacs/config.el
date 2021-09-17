@@ -79,7 +79,6 @@
 ;; Email configuration
 (setq +mu4e-backend nil)
 (after! mu4e
-  (mu4e-alert-enable-mode-line-display)
   (setq mail-envelope-from 'header
         mail-user-agent 'mu4e-user-agent
         mail-specify-envelope-from 't
@@ -92,7 +91,6 @@
         mu4e-get-mail-command "true"
         mu4e-index-lazy-check nil
         mu4e-update-interval 5
-        mu4e-change-filenames-when-moving t
         send-mail-function #'smtpmail-send-it
         sendmail-program "/usr/bin/msmtp"))
 
@@ -120,33 +118,6 @@
 (after! pinentry
   :config
   (pinentry-start))
-
-;; Auto flyspell
-(add-hook! 'mu4e-compose-mode-hook
-          (defun my-do-compose ()
-            "My settings for message composition."
-            (set-fill-column 80)
-            (flyspell-mode)))
-(defun +markdown-flyspell-word-p ()
-  "Return t if point is on a word that should be spell checked.
-Return nil if on a link url, markup, html, or references."
-  (let ((faces (doom-enlist (get-text-property (point) 'face))))
-    (or (and (memq 'font-lock-comment-face faces)
-             (memq 'markdown-code-face faces))
-        (not (cl-loop with unsafe-faces = '(markdown-reference-face
-                                            markdown-url-face
-                                            markdown-markup-face
-                                            markdown-comment-face
-                                            markdown-html-attr-name-face
-                                            markdown-html-attr-value-face
-                                            markdown-html-tag-name-face
-                                            markdown-code-face)
-                      for face in faces
-                      if (memq face unsafe-faces)
-                      return t)))))
-(set-flyspell-predicate! '(markdown-mode gfm-mode)
-  #'+markdown-flyspell-word-p)
-(add-hook 'markdown-mode-hook 'flyspell-mode)
 
 ;; Magit inline diff
 (setq magit-diff-refine-hunk (quote all))
