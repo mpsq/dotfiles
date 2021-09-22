@@ -1,7 +1,7 @@
 ### Variables
 #
 set $mod Mod1
-set $term alacritty
+set $term foot
 set $bg #1c1e26
 set $fg #e0e0e0
 set $fc #59e1e3
@@ -144,22 +144,20 @@ bindsym $mod+minus scratchpad show
 #
 # Custom:
 #
-# Pulse Audio controls
+# Audio controls
 bindsym Shift+Ctrl+ISO_Level3_Shift exec volume-down
 bindsym Shift+Ctrl+Super_R exec volume-up
 bindsym XF86AudioLowerVolume exec volume-down
 bindsym XF86AudioRaiseVolume exec volume-up
 bindsym XF86AudioMute exec audio-toggle
-
-# Sreen brightness controls
-bindsym XF86MonBrightnessUp exec brightness-up
-bindsym XF86MonBrightnessDown exec brightness-down
-
-# Media player controls
 bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+# Sreen brightness
+bindsym XF86MonBrightnessUp exec brightness-up
+bindsym XF86MonBrightnessDown exec brightness-down
 
 # Lock
 bindsym Ctrl+Shift+Super_L exec --no-startup-id swaylock
@@ -168,11 +166,13 @@ bindsym Ctrl+Shift+Super_L exec --no-startup-id swaylock
 bindsym --release $mod+Shift+u exec --no-startup-id screenshot
 bindsym --release $mod+Shift+v exec --no-startup-id "screenshot video"
 
-### Wofi
-#
+# Launcher
 bindsym $mod+d exec wofi
 bindsym $mod+Shift+e exec wofi-power
 bindsym $mod+Shift+w exec wofi-window-switcher
+
+# Notifications
+bindsym $mod+Shift+n exec makoctl dismiss --all
 
 ### Floating
 #
