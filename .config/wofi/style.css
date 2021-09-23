@@ -1,39 +1,44 @@
 window {
-  margin: 0px;
-  border: 1px solid #B877DB;
-  background-color: #1A1C23;
+  margin: 0;
+  border: 1px solid #ee64ac;
+  background-color: #1c1e26;
 }
 
 #input {
   margin: 5px;
+  padding: 5px;
   border: none;
-  color: #FDF0ED;
-  background-color: #2E303E;
+  color: #1c1e26;
+  background-color: #d5d8da;
 }
 
 #inner-box {
   margin: 5px;
   border: none;
-  background-color: #1A1C23;
+  background-color: #1c1e26;
 }
 
 #outer-box {
   margin: 5px;
   border: none;
-  background-color: #1A1C23;
+  background-color: #1c1e26;
 }
 
 #scroll {
-  margin: 0px;
+  margin: 0;
   border: none;
 }
 
 #text {
   margin: 5px;
   border: none;
-  color: #FDF0ED;
+  color: #e0e0e0;
 }
 
 #entry:selected {
-  background-color: #6C6F93;
+  background-color: #6be4e6;
+}
+
+#entry:selected #text {
+  color: #1c1e26;
 }
