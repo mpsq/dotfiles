@@ -13,9 +13,6 @@ set $right l
 
 font pango:monospace 9
 
-gaps inner 6
-gaps outer 0
-
 ### Theme
 #
 # class                 border  backgr. text indicator child_border
@@ -26,8 +23,11 @@ client.urgent           $ur     $bg     $fg  $bg       $ur
 client.placeholder      $bg     $bg     $fg  $bg       $bg
 client.background $bg
 
+gaps inner 6
+gaps outer 0
 default_border pixel 2
 default_floating_border pixel 3
+hide_edge_borders smart
 
 ### Input/output
 #
@@ -52,7 +52,7 @@ xwayland enable
 #
 no_focus [window_role="pop-up"]
 no_focus [app_id="waybar"]
-focus_on_window_activation focus
+focus_on_window_activation urgent
 
 ### Key bindings
 #
