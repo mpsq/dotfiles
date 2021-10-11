@@ -21,5 +21,6 @@ alias em="emacs"
 alias emc="emacsclient"
 
 alias k="kubectl"
+alias vim="emacsclient -t"
 
 alias sway="exec systemd-cat --identifier=sway sway"
