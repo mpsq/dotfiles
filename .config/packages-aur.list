@@ -1,10 +1,7 @@
-amazon-ecr-credential-helper
 bashate
-bitwarden-bin
 bitwarden-cli
 direnv
 emacs-gcc-wayland-devel-bin
-english-wordnet
 flashfocus-git
 foot
 hadolint-bin
@@ -20,5 +17,6 @@ ttf-unifont
 vcsh-git
 wob
 wordnet-cli
+wordnet-common
 yay
-zsa-wally
+zsa-wally-bin

@@ -3,6 +3,7 @@ aspell-en
 aspell-fr
 baobab
 bash-completion
+bitwarden
 bc
 bluez
 bluez-utils
@@ -66,6 +67,7 @@ lm_sensors
 lxappearance
 mako
 man-db
+mate-polkit
 mesa
 mkinitcpio
 mlocate
@@ -78,8 +80,8 @@ ncdu
 neofetch
 networkmanager
 nm-connection-editor
+pam-u2f
 pamixer
-polkit-gnome
 python-gobject
 python-pip
 noto-fonts-emoji
