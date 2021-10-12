@@ -17,10 +17,8 @@
 
 ;; Misc. settings
 (setq display-line-numbers-type 'relative
-      evil-want-fine-undo t               ; By default while in insert all changes are one big blob. Be more granular
       fill-column 80
       org-directory "~/docs"
-      scroll-margin 2
       show-trailing-whitespace t
       undo-limit 80000000)
 
@@ -99,7 +97,6 @@
 (use-package! mu4e
   :config
   (setq
-   doom-modeline-buffer-encoding nil
    doom-modeline-github t
    doom-modeline-mu4e t))
 
@@ -122,6 +119,9 @@
 
 ;; Magit inline diff
 (setq magit-diff-refine-hunk (quote all))
+(after! magit
+  (setq forge-topic-list-limit '(60 . 0) ; Hides closed topics
+        ))
 
 ;; Load private stuff
 (when (file-exists-p "~/.config/priv/config.el")
