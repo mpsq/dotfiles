@@ -5,6 +5,7 @@ baobab
 bash-completion
 bitwarden
 bc
+blueberry
 bluez
 bluez-utils
 ccid
@@ -95,11 +96,10 @@ pavucontrol
 pinta
 pipewire
 pipewire-media-session
+pipewire-pulse
 pkgfile
 playerctl
 powertop
-pulseaudio
-pulseaudio-alsa
 pulseaudio-bluetooth
 pygmentize
 python-i3ipc
