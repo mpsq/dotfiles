@@ -32,9 +32,9 @@ parse_git_branch() {
 }
 
 # If TTY
-if [ -t 0 ]; then
-  export GPG_TTY=`tty`
-  echo "UPDATESTARTUPTTY" | gpg-connect-agent > /dev/null 2>&1
+if tty | grep -q tty; then
+  export GPG_TTY=$(tty)
+  echo "UPDATESTARTUPTTY" | gpg-connect-agent >/dev/null 2>&1
 fi
 
 if [[ "$TERM" == "dumb" ]]; then
