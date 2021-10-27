@@ -2,17 +2,12 @@
   "layer": "top",
   "position": "top",
   "height": 24,
-  "modules-left": [
-    "sway/workspaces",
-    "sway/mode",
-    "sway/window"
-  ],
-  "modules-center": [
-    "clock"
-  ],
+  "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
+  "modules-center": ["clock"],
   "modules-right": [
     "custom/mu",
     "custom/systemd",
+    "custom/toggle-headphones-profile",
     "idle_inhibitor",
     "pulseaudio",
     "cpu",
@@ -108,7 +103,14 @@
   },
   "custom/systemd": {
     "interval": 10,
-    "exec": "systemd-fail-reporter",
+    "exec": "systemd-fail-reporter"
+  },
+  "custom/toggle-headphones-profile": {
+    "exec": "headphones-profile-status",
+    "tooltip": false,
+    "interval": 1,
+    "on-click": "toggle-headphones-profile",
+    "tooltip": false
   },
   "temperature": {
     "thermal-zone": 3,

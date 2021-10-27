@@ -40,6 +40,7 @@
 #clock,
 #cpu,
 #custom-crypto,
+#custom-toggle-headphones-profile,
 #custom-mu,
 #custom-systemd,
 #idle_inhibitor,
@@ -51,7 +52,7 @@
 #tray {
   padding-left: 8px;
   padding-right: 8px;
-  min-width: 32px;
+  min-width: 24px;
 }
 
 #battery {
@@ -87,6 +88,10 @@
 }
 
 #clock {
+}
+
+#custom-toggle-headphones-profile {
+  font-family: FontAwesome;
 }
 
 #window {
