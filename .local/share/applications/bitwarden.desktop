@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Bitwarden
+GenericName=Password Manager
+Comment=A secure and free password manager for all of your devices.
+Exec=bitwarden-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland -- %U
+Terminal=false
+Type=Application
+Icon=bitwarden
+Categories=Utility;
+StartupWMClass=Bitwarden
