@@ -18,6 +18,39 @@
   safecrlf = warn
   editor = emacsclient
 
+[diff]
+  algorithm = patience
+  compactionHeuristic = true
+  colorMoved = default
+
+[merge]
+  commit = no
+  ff = no
+
+[pager]
+  diff = delta --relative-paths
+  log = delta --relative-paths
+  reflog = delta --relative-paths
+  show = delta --relative-paths
+
+[interactive]
+  diffFilter = delta --relative-paths --line-numbers --color-only --features=interactive
+
+[delta]
+  features = decorations
+
+[delta "interactive"]
+  keep-plus-minus-markers = false
+
+[delta]
+  commit-decoration-style = bold ol dim yellow
+  features = line-numbers decorations
+  file-decoration-style = brightyellow ul ol
+  file-style = brightyellow
+  hunk-header-decoration-style = purple box
+  whitespace-error-style = 22 reverse
+  hunk-header-style = file line-number syntax
+
 [log]
   date = relative
 
@@ -43,15 +76,17 @@
 
 [commit]
   gpgsign = true
+  verbose = true
 
 [rebase]
+  autoStash = true
   stat = true
 
 [pull]
   rebase = true
 
-[rerere]
-  enabled = true
+[fetch]
+  prune = true
 
 [magithub]
   online = true
@@ -60,9 +95,6 @@
   includeStatusHeader = false
   includePullRequestsSection = false
   includeIssuesSection = false
-
-[hub]
-  protocol = ssh
 
 [include]
   path = .gitconfig.host
