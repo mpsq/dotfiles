@@ -1,0 +1,4 @@
+[screencast]
+max_fps=33
+exec_before=notify-send --urgency=normal --app-name=xdpw "Screenshare started"
+exec_after=notify-send --urgency=normal --app-name=xdpw "Screenshare ended"
