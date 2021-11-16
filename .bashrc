@@ -37,10 +37,7 @@ if tty | grep -q tty; then
   echo "UPDATESTARTUPTTY" | gpg-connect-agent >/dev/null 2>&1
 fi
 
-if [[ "$TERM" == "dumb" ]]; then
-  PS1='\u at \h in \w\n\$ '
-else
-  # Vars
+if [[ "$TERM" != "dumb" ]]; then
   hname=$(hostname)
 
   # Better history
@@ -74,12 +71,12 @@ else
   PS1=$PS1'\[$(vterm_prompt_end)\]'
   PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}:${PWD}\007"'
 
-  if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
+  if [[ "$INSIDE_EMACS" == 'vterm' ]]; then
     function clear() {
       vterm_printf "51;Evterm-clear-scrollback"
       tput clear
     }
-  else
+  elif [[ "$TERM" == "xterm-256color" ]]; then
     # Enable vi mode
     set -o vi
   fi
