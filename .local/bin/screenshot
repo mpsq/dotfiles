@@ -1,9 +1,13 @@
 #!/bin/sh
 
+arg="$1"
+
+set -euxo pipefail
+
 mkdir -p ~/instants
 now=$(date +'%Y-%m-%d-%H%M%S')
 
-if [[ "$1" == "video" ]]; then
+if [[ "$arg" == "video" ]]; then
     if ps -e | grep -q wf-recorder; then
         killall -s 2 wf-recorder
     else
