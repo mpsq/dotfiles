@@ -1,7 +1,7 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Doom config
-(setq doom-theme 'doom-horizon
+(setq doom-theme 'doom-ir-black
       doom-font (font-spec :family "Iosevka Fixed SS17" :size 13)
       doom-big-font (font-spec :family "Iosevka Fixed SS17" :size 14)
       doom-variable-pitch-font (font-spec :family "Droid Sans" :size 13)
@@ -122,6 +122,20 @@
 (after! magit
   (setq forge-topic-list-limit '(60 . 0) ; Hides closed topics
         ))
+
+;; https://github.com/hlissner/doom-emacs/issues/2905
+(when (featurep! :lang sh)
+  ;; use shfmt directly instead of format-all
+  (use-package! shfmt
+    :hook (sh-mode . shfmt-on-save-mode)
+    :config
+    (setq
+     shfmt-arguments
+     `(
+       ;; indent with spaces, has to be 2 different strings due to the space
+       "-i" , "2"
+       ;; indent switch case
+       "-ci"))))
 
 ;; Load private stuff
 (when (file-exists-p "~/.config/priv/config.el")
