@@ -62,6 +62,12 @@ if [[ "$TERM" != "dumb" ]]; then
     eval "$(dircolors -b ~/.dir_colors)"
   fi
 
+  # Get color support for 'less'
+  export LESS="--RAW-CONTROL-CHARS"
+
+  # Use colors for less, man, etc.
+  [[ -f ~/.LESS_TERMCAP ]] && . ~/.LESS_TERMCAP
+
   txtcyn='\e[0;36m' # Cyan
   txtprl='\e[1;35m' # Purple
   bldblu='\e[1;34m' # Bold Blue
