@@ -18,6 +18,7 @@ docker
 docker-compose
 docker-machine
 dnsmasq
+easyeffects
 eog
 evince
 exa
@@ -46,6 +47,7 @@ gst-plugins-good
 gst-plugins-ugly
 gtk-engine-murrine
 gtk-engines
+helvum
 htop
 hunspell
 hunspell-en_GB
@@ -95,7 +97,6 @@ parallel
 pavucontrol
 pinta
 pipewire
-pipewire-media-session
 pipewire-pulse
 pkgfile
 playerctl
@@ -134,8 +135,9 @@ usbutils
 veracrypt
 waybar
 wayland
-wget
 wf-recorder
+wget
+wireplumber
 wl-clipboard
 wofi
 xdg-desktop-portal
