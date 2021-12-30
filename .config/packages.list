@@ -101,7 +101,6 @@ pipewire-pulse
 pkgfile
 playerctl
 powertop
-pulseaudio-bluetooth
 pygmentize
 python-i3ipc
 qt5-multimedia
