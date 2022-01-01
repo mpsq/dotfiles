@@ -87,6 +87,7 @@ pam-u2f
 pamixer
 python-gobject
 python-pip
+python-sounddevice
 noto-fonts-emoji
 ntp
 otf-font-awesome
