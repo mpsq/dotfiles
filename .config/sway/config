@@ -162,9 +162,9 @@ bindsym --release $mod+Shift+u exec --no-startup-id screenshot
 bindsym --release $mod+Shift+v exec --no-startup-id "screenshot video"
 
 # Launcher
-bindsym $mod+d exec wofi
+set $menu exec $term --app-id=sway-launcher -e /usr/bin/sway-launcher-desktop
+bindsym $mod+d exec $menu
 bindsym $mod+Shift+e exec wofi-power
-bindsym $mod+Shift+w exec wofi-window-switcher
 
 # Notifications
 bindsym $mod+Shift+n exec makoctl dismiss --all
@@ -172,6 +172,7 @@ bindsym $mod+Shift+n exec makoctl dismiss --all
 ### Floating
 #
 # Display window as floating. Find out wayland app_id with "swaymsg -t get_tree | jq '.' | grep app_id" and xorg class with xprop
+for_window [app_id="^sway-launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
 for_window [class = "(?i)pinentry"] floating enable
 for_window [app_id = "(Y|y)ad"] floating enable
 for_window [app_id="mpv"] sticky enable, resize set 450px 450px
