@@ -62,8 +62,10 @@ if [[ "$TERM" != "dumb" ]]; then
     eval "$(dircolors -b ~/.dir_colors)"
   fi
 
-  # Get color support for 'less'
-  export LESS="--RAW-CONTROL-CHARS"
+  # Pager / man
+  export LESS='-RX --mouse --quit-if-one-screen'
+  export PAGER="less -rX"
+  export MANWIDTH=92
 
   # Use colors for less, man, etc.
   [[ -f ~/.LESS_TERMCAP ]] && . ~/.LESS_TERMCAP
