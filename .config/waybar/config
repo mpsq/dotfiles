@@ -91,7 +91,7 @@
   },
   "custom/systemd": {
     "interval": 10,
-    "exec": "systemd-fail-reporter"
+    "exec": "waybar-systemd"
   },
   "custom/wf-recorder": {
     "format": "",
