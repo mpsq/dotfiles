@@ -11,4 +11,4 @@ export PKG_CONFIG_PATH=/usr/local/share/pkgconfig:$PKG_CONFIG_PATH
 export LD_LIBRARY_PATH=/usr/local/lib/:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=/usr/local/lib64/:$LD_LIBRARY_PATH
 
-#[ -r "$HOME/.bashrc" ] && . "$HOME/.bashrc"
+[ -r "$HOME/.bashrc" ] && . "$HOME/.bashrc"
