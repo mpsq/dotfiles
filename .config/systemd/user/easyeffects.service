@@ -1,5 +1,6 @@
 [Unit]
 Description=Audio effects for PipeWire applications
+After=graphical-session.target
 PartOf=graphical-session.target
 After=pipewire.service
 Wants=pipewire.service
@@ -8,9 +9,7 @@ Wants=pipewire.service
 Type=simple
 Restart=on-failure
 RestartSec=3
-ExecCondition=/bin/sh -c '[ -n "$WAYLAND_DISPLAY" ]'
 ExecStart=/usr/bin/easyeffects --gapplication-service
-Slice=session.slice
 
 [Install]
-WantedBy=default.target
+WantedBy=graphical-session.target
