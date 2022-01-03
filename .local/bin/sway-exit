@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+case "$1" in
+  exit)
+    systemctl --user stop sway-session.target
+    swaymsg exit
+    ;;
+  reboot)
+    systemctl -i reboot
+    ;;
+  shutdown)
+    systemctl -i poweroff
+    ;;
+  *)
+    echo "Usage: $0 {exit|reboot|shutdown}"
+    exit 2
+    ;;
+esac

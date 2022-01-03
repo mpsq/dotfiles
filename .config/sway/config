@@ -166,9 +166,9 @@ set $menu exec $term --app-id=sway-launcher -e /usr/bin/sway-launcher-desktop
 bindsym $mod+d exec $menu
 set $mode_system (l) logout, (r) reboot, (s) shutdown
 mode "$mode_system" {
- bindsym l exec --no-startup-id swaymsg exit, mode "default"
- bindsym r exec --no-startup-id systemctl reboot, mode "default"
- bindsym s exec --no-startup-id systemctl poweroff, mode "default"
+ bindsym l exec --no-startup-id sway-exit exit, mode "default"
+ bindsym r exec --no-startup-id sway-exit reboot, mode "default"
+ bindsym s exec --no-startup-id sway-exit poweroff, mode "default"
 
  bindsym Return mode "default"
  bindsym Escape mode "default"
