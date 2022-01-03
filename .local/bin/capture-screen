@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-arg="$1"
+arg="${1:-instant}"
 
 mkdir -p ~/instants
 now=$(date +'%Y-%m-%d-%H%M%S')

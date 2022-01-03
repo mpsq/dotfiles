@@ -158,8 +158,8 @@ bindsym XF86MonBrightnessDown exec brightness-down
 bindsym Ctrl+Shift+Super_L exec --no-startup-id swaylock
 
 # Screenshot
-bindsym --release $mod+Shift+u exec --no-startup-id capture
-bindsym --release $mod+Shift+v exec --no-startup-id capture video
+bindsym --release $mod+Shift+u exec --no-startup-id capture-screen
+bindsym --release $mod+Shift+v exec --no-startup-id capture-screen video
 
 # Launcher
 set $menu exec $term --app-id=sway-launcher -e /usr/bin/sway-launcher-desktop
