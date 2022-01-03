@@ -1,6 +1,12 @@
 [Unit]
 Description=mbsync as a service
+After=graphical-session.target
+PartOf=graphical-session.target
 
 [Service]
 Type=simple
+ExecCondition=/bin/sh -c '[ -n "$WAYLAND_DISPLAY" ]'
 ExecStart=%h/.local/services/mbsync-run
+
+[Install]
+WantedBy=graphical-session.target
