@@ -14,15 +14,6 @@ for unit in $(systemctl --user --no-legend --state=failed list-units | cut -f2 -
 done
 
 export XDG_CURRENT_DESKTOP=sway
-VARIABLES="DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+dbus-update-activation-environment --systemd DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
-# DBus activation environment is independent from systemd. While most of
-# dbus-activated services are already using `SystemdService` directive, some
-# still don't and thus we should set the dbus environment with a separate
-# command.
-if hash dbus-update-activation-environment 2>/dev/null; then
-  dbus-update-activation-environment --systemd $VARIABLES
-fi
-
-systemctl --user import-environment $VARIABLES
 systemctl --user --wait start sway-session.target
