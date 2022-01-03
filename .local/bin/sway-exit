@@ -4,6 +4,7 @@ set -euo pipefail
 case "$1" in
   exit)
     systemctl --user stop sway-session.target
+    systemctl --user unset-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
     swaymsg exit
     ;;
   reboot)

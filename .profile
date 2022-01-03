@@ -6,6 +6,8 @@ do
   done < <(grep . "$f")
 done
 
+systemctl --user reset-failed
+
 [ -r "$XDG_CONFIG_HOME/priv/stuff.bash" ] && . "$XDG_CONFIG_HOME/priv/stuff.bash"
 
 export PYENV_ROOT="$HOME/.pyenv"

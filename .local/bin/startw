@@ -1,19 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# robustness: if the previous graphical session left some failed units,
-# reset them so that they don't break this startup
-for unit in $(systemctl --user --no-legend --state=failed list-units | cut -f2 -d' '); do
-  partof="$(systemctl --user show -p PartOf --value "$unit")"
-  for target in sway-session.target graphical-session.target; do
-    if [ "$partof" = "$target" ]; then
-      systemctl --user reset-failed "$unit"
-      break
-    fi
-  done
-done
-
-export XDG_CURRENT_DESKTOP=sway
 dbus-update-activation-environment --systemd DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-
 systemctl --user --wait start sway-session.target
