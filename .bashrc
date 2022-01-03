@@ -57,7 +57,7 @@ if [[ "$TERM" != "dumb" ]]; then
   stty ixoff -ixon
 
   if command -v dircolors >/dev/null; then
-    eval $(dircolors -p | perl -pe 's/^((CAP|S[ET]|O[TR]|M|E)\w+).*/$1 00/' | dircolors -)
+    eval `dircolors`
   fi
 
   # Pager / man
