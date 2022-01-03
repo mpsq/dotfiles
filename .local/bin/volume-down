@@ -1,9 +1,10 @@
-#!/bin/sh
-ids=($(pamixer --list-sinks | sed -n '1d;p' | grep -oP '^([0-9]+)'))
+#!/usr/bin/env bash
+set -euo pipefail
+
+mapfile -t ids < <(pamixer --list-sinks | sed -n '1d;p' | grep -oP '^([0-9]+)')
 
 for i in "${ids[@]}"; do
-    pamixer --sink "$i" -d 2
+  pamixer --sink "$i" -d 2
 done
 
-vol=$(pamixer --get-volume)
-echo "$vol" > /run/user/1000/wob.sock
+pamixer --get-volume >/run/user/1000/wob.sock

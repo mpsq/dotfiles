@@ -5,9 +5,8 @@
   "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
   "modules-center": ["clock"],
   "modules-right": [
-    "custom/mu",
     "custom/systemd",
-    "custom/toggle-headphones-profile",
+    "custom/mu",
     "idle_inhibitor",
     "pulseaudio",
     "cpu",
@@ -88,29 +87,15 @@
     "on-scroll-up": "volume_up",
     "on-scroll-down": "volume_down"
   },
-  "custom/crypto": {
-    "format": "{}",
-    "interval": 600,
-    "return-type": "json",
-    "exec": "~/.config/waybar/modules/crypto/crypto.py",
-    "exec-if": "ping pro-api.coinmarketcap.com -c1"
-  },
   "custom/mu": {
     "format": "{}",
-    "interval": 5,
+    "interval": 10,
     "return-type": "json",
-    "exec": "~/.config/waybar/modules/mu/check.sh"
+    "exec": "waybar-mu"
   },
   "custom/systemd": {
     "interval": 10,
     "exec": "systemd-fail-reporter"
-  },
-  "custom/toggle-headphones-profile": {
-    "exec": "headphones-profile-status",
-    "tooltip": false,
-    "interval": 1,
-    "on-click": "toggle-headphones-profile",
-    "tooltip": false
   },
   "temperature": {
     "thermal-zone": 3,

@@ -11,14 +11,14 @@ old=$(sha256sum "$IMG")
 new="$old"
 
 if [ "$online" == "Y" ]; then
-    sleep 3
-    wget --quiet --output-document="${IMG}" https://cldup.com/1dM_TOR8sC.jpg
-    new=$(sha256sum "$IMG")
+  sleep 3
+  wget --quiet --output-document="${IMG}" https://cldup.com/1dM_TOR8sC.jpg
+  new=$(sha256sum "$IMG")
 fi
 
 if [ ! "$old" == "$new" ]; then
-    kill %1
-    swaybg --image "$IMG" --mode fill
+  kill %1
+  swaybg --image "$IMG" --mode fill
 else
-    fg
+  fg
 fi

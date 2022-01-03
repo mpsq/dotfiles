@@ -1,7 +1,6 @@
 [Unit]
-Description=Mailbox synchronization service
+Description=mbsync as a service
 
 [Service]
-Type=oneshot
-ExecStart=/usr/bin/mbsync -Va
-ExecStartPost=/usr/bin/bash -c 'emacsclient -ue \'(mu4e-update-index)\' || mu index -q'
+Type=simple
+ExecStart=%h/.local/services/mbsync-run

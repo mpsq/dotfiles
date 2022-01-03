@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env bash
+set -euo pipefail
 
 FAILED_USER="$(systemctl --plain --no-legend --user list-units --state=failed | wc -l)"
 FAILED_SYSTEM="$(systemctl --plain --no-legend list-units --state=failed | wc -l)"

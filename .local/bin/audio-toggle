@@ -1,2 +1,4 @@
-#!/usr/bin/env sh
-pamixer --toggle-mute && ( pamixer --get-mute && echo 0 > /run/user/1000/wob.sock ) || pamixer --get-volume > /run/user/1000/wob.sock
+#!/usr/bin/env bash
+set -euo pipefail
+
+pamixer --toggle-mute && (pamixer --get-mute && echo 0 >/run/user/1000/wob.sock) || pamixer --get-volume >/run/user/1000/wob.sock

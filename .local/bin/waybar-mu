@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# A mu script exists for checking the message count for q query. The script
+# is unfortunately too verbose, using "mu find" prevents spamming the logs.
+count=$(mu find flag:unread AND NOT flag:trashed 2>/dev/null | wc -l)
+
+set -euo pipefail
+
+if [[ count -gt 0 ]]; then
+  echo "{\"text\":\"\uf0e0 $count\",\"class\":\"new\"}"
+else
+  echo "{\"text\":\"\"}"
+fi
