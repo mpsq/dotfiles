@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+DUMPS_DIR=${XDG_CONFIG_HOME:-$HOME/.config}/dconf/
+
+CONFIGS=(
+  /org/gnome/desktop/interface
+  /org/gnome/desktop/privacy
+  /org/gtk/settings/file-chooser
+)
+
+for CONFIG in "${CONFIGS[@]}"; do
+  FILENAME=$(echo "$CONFIG" | sed 's/\//./g' | sed '1s/^.//')
+  dconf dump "$CONFIG"/ >"$DUMPS_DIR/$FILENAME.conf"
+done

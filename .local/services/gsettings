@@ -1,17 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-expressions=""
-in="gtk-theme:gtk-theme-name \
-icon-theme:gtk-icon-theme-name \
-cursor-theme:gtk-cursor-theme-name"
+DUMPS_DIR=${XDG_CONFIG_HOME:-$HOME/.config}/dconf/
 
-for pair in "$in"; do
-  IFS=:
-  set -- $pair
-  expressions="$expressions -e 's:^$2=(.*)$:gsettings set org.gnome.desktop.interface $1 \1:e'"
+cd "$DUMPS_DIR" || exit
+
+for file in *.conf; do
+  DCONF_PATH=$(echo ".$file." | sed -e 's/\.conf//g' | sed -e 's/\./\//g')
+  dconf load "$DCONF_PATH" <"$file"
 done
-IFS=
-eval exec sed -E $expressions "${XDG_CONFIG_HOME:-$HOME/.config}"/gtk-3.0/settings.ini >/dev/null
-
-dconf load /org/gnome/desktop/ <~/.dconf-settings.ini
