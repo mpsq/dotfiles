@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
-
 dbus-update-activation-environment --systemd DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP SSH_AUTH_SOCK
 systemctl --user --wait start sway-session.target
