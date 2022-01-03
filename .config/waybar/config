@@ -22,18 +22,13 @@
     "disable-scroll": true,
     "format": "{icon} {name}",
     "format-icons": {
-      "1:www": "龜",
-      "2:mail": "",
-      "3:editor": "",
-      "4:terminals": "",
-      "5:portal": "",
       "urgent": "",
       "focused": "",
       "default": ""
     }
   },
   "sway/mode": {
-    "format": "<span style=\"italic\">  {}</span>"
+    "format": "{}"
   },
   "idle_inhibitor": {
     "format": "{icon}",

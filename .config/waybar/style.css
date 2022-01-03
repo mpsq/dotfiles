@@ -13,6 +13,11 @@
   font-size: 9.5pt;
 }
 
+#mode {
+  background-color: black;
+  font-style: italic;
+}
+
 #backlight,
 #battery,
 #clock,

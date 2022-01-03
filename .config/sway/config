@@ -164,7 +164,16 @@ bindsym --release $mod+Shift+v exec --no-startup-id capture-screen video
 # Launcher
 set $menu exec $term --app-id=sway-launcher -e /usr/bin/sway-launcher-desktop
 bindsym $mod+d exec $menu
-bindsym $mod+Shift+e exec wofi-power
+set $mode_system <span class="power">(l) logout, (r) reboot, (s) shutdown</span>
+mode "$mode_system" {
+ bindsym l exec --no-startup-id swaymsg exit, mode "default"
+ bindsym r exec --no-startup-id systemctl reboot, mode "default"
+ bindsym s exec --no-startup-id systemctl poweroff, mode "default"
+
+ bindsym Return mode "default"
+ bindsym Escape mode "default"
+}
+bindsym $mod+Shift+e mode "$mode_system"
 
 # Notifications
 bindsym $mod+Shift+n exec makoctl dismiss --all
