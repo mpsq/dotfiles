@@ -57,18 +57,15 @@ if [[ "$TERM" != "dumb" ]]; then
   stty ixany
   stty ixoff -ixon
 
-  # Colours
-  if [[ $(hash dircolors 2>/dev/null) ]] && [ -f "$HOME/.dir_colors" ]; then
-    eval "$(dircolors -b ~/.dir_colors)"
+  if command -v dircolors >/dev/null; then
+    eval $(dircolors -p | perl -pe 's/^((CAP|S[ET]|O[TR]|M|E)\w+).*/$1 00/' | dircolors -)
   fi
 
   # Pager / man
-  export LESS='-RX --mouse --quit-if-one-screen'
+  export LESS='-RX --mouse --quit-if-one-screen -Dd+r$Du+b'
+  export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
   export PAGER="less -rX"
   export MANWIDTH=92
-
-  # Use colors for less, man, etc.
-  [[ -f ~/.LESS_TERMCAP ]] && . ~/.LESS_TERMCAP
 
   txtcyn='\e[0;36m' # Cyan
   txtprl='\e[1;35m' # Purple
