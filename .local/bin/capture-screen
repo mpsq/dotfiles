@@ -7,10 +7,15 @@ mkdir -p ~/instants
 now=$(date +'%Y-%m-%d-%H%M%S')
 
 if [[ "$arg" == "video" ]]; then
-  if ps -e | grep -q wf-recorder; then
+  if pgrep wf-recorder >/dev/null; then
     killall -s 2 wf-recorder
+    while [ ! -z $(pgrep -x wf-recorder) ]; do sleep 0.1; done
+    pkill -SIGRTMIN+8 waybar
+    notify-send --urgency=normal --app-name=wf-recorder "Screen capture ended"
   else
-    wf-recorder -g "$(slurp)" -f ~/instants/"$now".mp4
+    wf-recorder -g "$(slurp)" -f ~/instants/"$now".mp4 &
+    while [ -z $(pgrep -x wf-recorder) ]; do sleep 0.1; done
+    pkill -RTMIN+8 waybar
   fi
 else
   grim -g "$(slurp)" ~/instants/"$now".png

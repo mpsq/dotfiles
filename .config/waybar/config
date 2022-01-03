@@ -14,6 +14,7 @@
     "temperature",
     "network",
     "battery",
+    "custom/wf-recorder",
     "tray"
   ],
   "sway/workspaces": {
@@ -96,6 +97,15 @@
   "custom/systemd": {
     "interval": 10,
     "exec": "systemd-fail-reporter"
+  },
+  "custom/wf-recorder": {
+    "format": "",
+    "return-type": "json",
+    "interval": 10,
+    "signal": 8,
+    "exec": "echo '{\"class\": \"recording\"}'",
+    "exec-if": "pgrep wf-recorder",
+    "tooltip": false
   },
   "temperature": {
     "thermal-zone": 3,

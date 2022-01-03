@@ -1,25 +1,3 @@
-@keyframes blink-warning {
-  70% {
-    color: white;
-  }
-
-  to {
-    color: white;
-    background-color: orange;
-  }
-}
-
-@keyframes blink-critical {
-  70% {
-    color: white;
-  }
-
-  to {
-    color: white;
-    background-color: red;
-  }
-}
-
 * {
   border: none;
   border-radius: 0;
@@ -40,9 +18,9 @@
 #clock,
 #cpu,
 #custom-crypto,
-#custom-toggle-headphones-profile,
 #custom-mu,
 #custom-systemd,
+#custom-wf-recorder,
 #idle_inhibitor,
 #memory,
 #mode,
@@ -71,6 +49,15 @@
   animation-duration: 2s;
 }
 
+#custom-wf-recorder.recording {
+  color: #ffffff;
+  animation-name: blink-recorder;
+  animation-duration: 0.75s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
 #battery.critical,
 #cpu.critical,
 #temperature.critical {
@@ -85,13 +72,6 @@
 #cpu.warning,
 #network.disconnected {
   color: orange;
-}
-
-#clock {
-}
-
-#custom-toggle-headphones-profile {
-  font-family: FontAwesome;
 }
 
 #window {
@@ -125,4 +105,32 @@ window#waybar.empty #window {
 #workspaces button.urgent {
   border-color: orange;
   color: orange;
+}
+
+@keyframes blink-warning {
+  70% {
+    color: white;
+  }
+
+  to {
+    color: white;
+    background-color: orange;
+  }
+}
+
+@keyframes blink-critical {
+  70% {
+    color: white;
+  }
+
+  to {
+    color: white;
+    background-color: red;
+  }
+}
+
+@keyframes blink-recorder {
+  to {
+    background-color: rebeccapurple;
+  }
 }
