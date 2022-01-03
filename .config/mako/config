@@ -21,7 +21,6 @@ icon-path=/usr/share/icons/Papirus
 
 # behaviour
 
-anchor=bottom-center
 default-timeout=5000
 max-history=5
 max-visible=8
