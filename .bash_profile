@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# ~/.bash_profile
-# shellcheck disable=SC1090
 
+[ -r "$XDG_CONFIG_HOME/sh/vars" ] && . "$XDG_CONFIG_HOME/sh/vars"
+[ -r "$XDG_CONFIG_HOME/sh/profile" ] && . "$XDG_CONFIG_HOME/sh/profile"
 [ -r "$HOME/.bashrc" ] && . "$HOME/.bashrc"
-[ -r "$HOME/.profile" ] && . "$HOME/.profile"

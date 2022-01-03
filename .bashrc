@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# ~/.bashrc
 # shellcheck disable=SC1091,SC1090
 
 vterm_printf() {
@@ -95,7 +94,16 @@ if [[ "$TERM" != "dumb" ]]; then
   [ -r "/usr/share/doc/pkgfile/command-not-found.bash" ] && . /usr/share/doc/pkgfile/command-not-found.bash
   [ -s "$NVM_SOURCE/nvm.sh" ] && . "$NVM_SOURCE/nvm.sh"
   [ -s "$HOME/.$hname-bashrc" ] && . "$HOME/.$hname-bashrc"
-  . ~/.profile
+  [ -r "$HOME/.config/sh/vars" ] && . "$HOME/.config/sh/vars"
+  [ -r "$XDG_CONFIG_HOME/sh/aliases" ] && . "$XDG_CONFIG_HOME/sh/aliases"
+
+  # pyenv integration
+  if [ -x "$(command -v pyenv)" ]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+
+    eval "$(pyenv init --path)"
+  fi
 
   # .envrc integration
   if command -v direnv >/dev/null; then
