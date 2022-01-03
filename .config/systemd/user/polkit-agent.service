@@ -1,11 +1,12 @@
 [Unit]
 Description=Polkit authentication agent
-PartOf=graphical-session.target
-After=graphical-session.target
+After=polkit.service
 
 [Service]
+Type=simple
 ExecStart=/usr/lib/mate-polkit/polkit-mate-authentication-agent-1
-Restart=on-failure
+RestartSec=15
+Restart=always
 
 [Install]
 WantedBy=graphical-session.target

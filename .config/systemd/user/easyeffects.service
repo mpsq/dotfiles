@@ -8,6 +8,7 @@ Wants=pipewire.service
 Type=simple
 Restart=on-failure
 RestartSec=3
+ExecCondition=/bin/sh -c '[ -n "$WAYLAND_DISPLAY" ]'
 ExecStart=/usr/bin/easyeffects --gapplication-service
 Slice=session.slice
 

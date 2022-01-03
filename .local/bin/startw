@@ -5,7 +5,7 @@ set -euo pipefail
 # reset them so that they don't break this startup
 for unit in $(systemctl --user --no-legend --state=failed list-units | cut -f2 -d' '); do
   partof="$(systemctl --user show -p PartOf --value "$unit")"
-  for target in sway-session.target wayland-session.target graphical-session.target; do
+  for target in sway-session.target graphical-session.target; do
     if [ "$partof" = "$target" ]; then
       systemctl --user reset-failed "$unit"
       break
@@ -24,5 +24,5 @@ if hash dbus-update-activation-environment 2>/dev/null; then
   dbus-update-activation-environment --systemd $VARIABLES
 fi
 
-systemctl --user import-environment
+systemctl --user import-environment $VARIABLES
 systemctl --user --wait start sway-session.target

@@ -9,6 +9,7 @@ Wants=wob.socket
 Type=simple
 StandardInput=socket
 StandardOutput=journal
+ExecCondition=/bin/sh -c '[ -n "$WAYLAND_DISPLAY" ]'
 ExecStartPre=/bin/sleep 5
 ExecStart=/usr/bin/wob -p 5 -b 0 -t 2000 --border-color "#3fdaa4ee" --bar-color "#ffffffee" --background-color "#3fdaa4ee"
 Restart=on-failure
