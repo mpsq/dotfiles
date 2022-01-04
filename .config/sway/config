@@ -168,7 +168,7 @@ set $mode_system (l) logout, (r) reboot, (s) shutdown
 mode "$mode_system" {
  bindsym l exec --no-startup-id sway-exit exit, mode "default"
  bindsym r exec --no-startup-id sway-exit reboot, mode "default"
- bindsym s exec --no-startup-id sway-exit poweroff, mode "default"
+ bindsym s exec --no-startup-id sway-exit shutdown, mode "default"
 
  bindsym Return mode "default"
  bindsym Escape mode "default"
