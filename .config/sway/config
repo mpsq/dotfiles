@@ -229,6 +229,6 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
 
 ### Start session
 #
-exec_always $HOME/.local/bin/startw
+exec "systemctl --user import-environment; systemctl --user start sway-session.target"
 
 include @sysconfdir@/sway/config.d/*

@@ -3,7 +3,7 @@ set -euo pipefail
 
 case "$1" in
   exit)
-    systemctl --user stop sway-session.target
+    systemctl --user stop graphical-session.target
     gpgconf --kill gpg-agent
     swaymsg exit
     ;;
