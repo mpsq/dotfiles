@@ -1,8 +1,8 @@
 [Unit]
 Description=Socket for wob - A lightweight overlay volume/backlight/progress/anything bar for Wayland
 Before=wob.service
-PartOf=sway-session.target
-After=sway-session.target
+PartOf=graphical-session.target
+After=graphical-session.target
 
 [Socket]
 ListenFIFO=%t/wob.sock

@@ -1,6 +1,7 @@
 [Unit]
 Description=Polkit authentication agent
-After=polkit.service
+After=graphical-session.target
+PartOf=graphical-session.target
 
 [Service]
 Type=simple

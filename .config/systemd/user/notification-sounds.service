@@ -11,4 +11,4 @@ RestartSec=5
 TimeoutStopSec=10
 
 [Install]
-WantedBy=sway-session.target
+WantedBy=graphical-session.target

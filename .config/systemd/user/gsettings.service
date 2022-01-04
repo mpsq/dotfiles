@@ -8,4 +8,4 @@ ExecStart=%h/.local/services/gsettings
 RemainAfterExit=true
 
 [Install]
-WantedBy=sway-session.target
+WantedBy=graphical-session.target

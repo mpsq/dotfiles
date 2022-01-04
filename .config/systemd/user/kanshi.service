@@ -1,5 +1,6 @@
 [Unit]
 PartOf=graphical-session.target
+After=graphical-session.target
 
 [Service]
 Type=simple
@@ -10,4 +11,4 @@ RestartSec=1
 TimeoutStopSec=10
 
 [Install]
-WantedBy=sway-session.target
+WantedBy=graphical-session.target
