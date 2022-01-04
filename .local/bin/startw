@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+VARIABLES="DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+
+# DBus activation environment is independent from systemd. While most of
+# dbus-activated services are already using `SystemdService` directive, some
+# still don't and thus we should set the dbus environment with a separate
+# command.
+if hash dbus-update-activation-environment 2>/dev/null; then
+  dbus-update-activation-environment --systemd $VARIABLES
+fi
+
+systemctl --user import-environment $VARIABLES
+systemctl --user start sway-session.target
