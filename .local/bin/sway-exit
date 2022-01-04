@@ -3,8 +3,8 @@ set -euo pipefail
 
 case "$1" in
   exit)
-    systemctl --user unset-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
     systemctl --user stop sway-session.target
+    systemctl --user unset-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK SSH_AUTH_SOCK
     gpgconf --kill gpg-agent
     swaymsg exit
     ;;
