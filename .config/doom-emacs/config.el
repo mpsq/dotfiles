@@ -111,7 +111,8 @@ functions."
   :config
   (setq
    doom-modeline-github t
-   doom-modeline-mu4e t))
+   doom-modeline-mu4e t
+   doom-modeline-persp-name t))
 
 ;; Treemacs config
 (setq +treemacs-git-mode 'deferred)
@@ -133,6 +134,27 @@ functions."
 ;; Magit inline diff
 (setq magit-diff-refine-hunk (quote all))
 
+;; vcsh / magit compatibility
+(after! magit
+        (defun ~/magit-process-environment (env)
+        "Add GIT_DIR and GIT_WORK_TREE to ENV when in a special directory.
+        https://github.com/magit/magit/issues/460."
+        (let ((default (file-name-as-directory (expand-file-name default-directory)))
+                (home (expand-file-name "~/")))
+        (when (string= default home)
+        (let ((gitdir (expand-file-name "~/.config/vcsh/repo.d/dotfiles.git/")))
+                (push (format "GIT_WORK_TREE=%s" home) env)
+                (push (format "GIT_DIR=%s" gitdir) env))))
+        env)
+
+        (advice-add 'magit-process-environment
+                :filter-return #'~/magit-process-environment))
+
+;; Prioritise javascript-eslint checker
+(setq-hook! 'js2-mode-hook flycheck-checker 'javascript-eslint)
+(setq-hook! 'typescript-tsx-mode-hook flycheck-checker 'javascript-eslint)
+(setq-hook! 'typescript-mode-hook flycheck-checker 'javascript-eslint)
+
 ;; https://github.com/hlissner/doom-emacs/issues/2905
 (when (featurep! :lang sh)
   ;; use shfmt directly instead of format-all
@@ -146,6 +168,11 @@ functions."
        "-i" , "2"
        ;; indent switch case
        "-ci"))))
+
+;; vterm
+(use-package! vterm
+  :config
+  (evil-define-key 'insert vterm-mode-map (kbd "C-j") #'vterm--self-insert))
 
 ;; Load private stuff
 (when (file-exists-p "~/.config/priv/config.el")
