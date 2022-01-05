@@ -1,39 +1,35 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC1091,SC1090
 
-vterm_printf() {
-  printf "\e]%s\e\\" "$1"
-}
-
-vterm_cmd() {
-  local vterm_elisp
-  vterm_elisp=""
-  while [ $# -gt 0 ]; do
-    vterm_elisp="$vterm_elisp""$(printf '"%s" ' "$(printf "%s" "$1" | sed -e 's|\\|\\\\|g' -e 's|"|\\"|g')")"
-    shift
-  done
-  vterm_printf "51;E$vterm_elisp"
-}
-
-vterm_prompt_end() {
-  vterm_printf "51;A$(whoami)@$(hostname):$(pwd)"
-}
-
-parse_git_dirty() {
-  if [[ $(git status 2>/dev/null | tail -n1) != *"working directory clean"* ]]; then
-    echo "*"
-  fi
-}
-
-parse_git_branch() {
-  git branch --no-color 2>/dev/null |
-    sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
-}
-
 # If TTY
 if tty | grep -q tty; then
   export GPG_TTY=$(tty)
   echo "UPDATESTARTUPTTY" | gpg-connect-agent >/dev/null 2>&1
+fi
+
+if [[ "$INSIDE_EMACS" == 'vterm' ]]; then
+  function vterm_printf() {
+    printf "\e]%s\e\\" "$1"
+  }
+
+  function clear() {
+    vterm_printf "51;Evterm-clear-scrollback"
+    tput clear
+  }
+
+  function vterm_cmd() {
+    local vterm_elisp
+    vterm_elisp=""
+    while [ $# -gt 0 ]; do
+      vterm_elisp="$vterm_elisp""$(printf '"%s" ' "$(printf "%s" "$1" | sed -e 's|\\|\\\\|g' -e 's|"|\\"|g')")"
+      shift
+    done
+    vterm_printf "51;E$vterm_elisp"
+  }
+
+  function vterm_prompt_end() {
+    vterm_printf "51;A$(whoami)@$(hostname):$(pwd)"
+  }
 fi
 
 if [[ "$TERM" != "dumb" ]]; then
@@ -56,15 +52,26 @@ if [[ "$TERM" != "dumb" ]]; then
   stty ixany
   stty ixoff -ixon
 
-  if command -v dircolors >/dev/null; then
-    eval `dircolors`
-  fi
-
   # Pager / man
   export LESS='-RX --mouse --quit-if-one-screen -Dd+r$Du+b'
   export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
   export PAGER="less -rX"
   export MANWIDTH=92
+
+  function parse_git_dirty() {
+    if [[ $(git status 2>/dev/null | tail -n1) != *"working directory clean"* ]]; then
+      echo "*"
+    fi
+  }
+
+  function parse_git_branch() {
+    git branch --no-color 2>/dev/null |
+      sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+  }
+
+  function include() {
+    [[ -r "$1" ]] && source "$1"
+  }
 
   txtcyn='\e[0;36m' # Cyan
   txtprl='\e[1;35m' # Purple
@@ -72,46 +79,43 @@ if [[ "$TERM" != "dumb" ]]; then
   txtrst='\e[0m'    # Text Reset
   git_branch="\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \"\|)\$(parse_git_branch)\$([[ -n \$(git branch 2> /dev/null) ]] && echo \|)"
   PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtrst\]\[$txtprl\]$git_branch\[$txtrst\]\[$txtcyn\]\n= \[$txtrst\]"
-  PS1=$PS1'\[$(vterm_prompt_end)\]'
   PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}:${PWD}\007"'
 
-  if [[ "$INSIDE_EMACS" == 'vterm' ]]; then
-    function clear() {
-      vterm_printf "51;Evterm-clear-scrollback"
-      tput clear
-    }
-  elif [[ "$TERM" == "xterm-256color" ]]; then
-    # Enable vi mode
-    set -o vi
+  # gpg / ssh agent integration
+  unset SSH_AGENT_PID
+  if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
   fi
 
   # Source things
-  [ -r "$HOME/.aliases" ] && . "$HOME/.aliases"
-  [ -r "/usr/share/z/z.sh" ] && . /usr/share/z/z.sh
-  [ -r "/usr/share/bash-completion/bash_completion" ] && . /usr/share/bash-completion/bash_completion
-  [ -r "/usr/share/skim/completion.bash " ] && . /usr/share/skim/completion.bash
-  [ -r "/usr/share/skim/key-bindings.bash" ] && . /usr/share/skim/key-bindings.bash
-  [ -r "/usr/share/doc/pkgfile/command-not-found.bash" ] && . /usr/share/doc/pkgfile/command-not-found.bash
-  [ -s "$NVM_SOURCE/nvm.sh" ] && . "$NVM_SOURCE/nvm.sh"
-  [ -s "$HOME/.$hname-bashrc" ] && . "$HOME/.$hname-bashrc"
-  [ -r "$HOME/.config/sh/vars" ] && . "$HOME/.config/sh/vars"
-  [ -r "$XDG_CONFIG_HOME/sh/aliases" ] && . "$XDG_CONFIG_HOME/sh/aliases"
+  include /usr/share/z/z.sh
+  include /usr/share/bash-completion/bash_completion
+  include /usr/share/skim/completion.bash
+  include /usr/share/skim/key-bindings.bash
+  include /usr/share/doc/pkgfile/command-not-found.bash
+  include "$NVM_SOURCE/nvm.sh"
+  include "$HOME/.config/sh/vars"
+  include "$XDG_CONFIG_HOME/sh/aliases"
+  include "$HOME/.$hname-bashrc"
 
-  # pyenv integration
-  if [ -x "$(command -v pyenv)" ]; then
+  if command -v pyenv >/dev/null; then
     export PYENV_ROOT="$HOME/.pyenv"
     export PATH="$PYENV_ROOT/bin:$PATH"
 
     eval "$(pyenv init --path)"
   fi
 
-  # .envrc integration
   if command -v direnv >/dev/null; then
     eval "$(direnv hook bash)"
   fi
 
-  unset SSH_AGENT_PID
-  if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+  if command -v dircolors >/dev/null; then
+    eval $(dircolors)
+  fi
+
+  if [[ ! -v INSIDE_EMACS ]]; then
+    set -o vi
+  else
+    PS1=$PS1'\[$(vterm_prompt_end)\]'
   fi
 fi
