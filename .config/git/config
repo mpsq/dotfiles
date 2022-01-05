@@ -97,4 +97,4 @@
   includeIssuesSection = false
 
 [include]
-  path = .gitconfig.host
+  path = ~/.config/git/host
