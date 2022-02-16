@@ -169,6 +169,12 @@ functions."
        ;; indent switch case
        "-ci"))))
 
+;; Projectile
+(use-package! projectile
+  :config
+  (setq
+   projectile-enable-caching nil))
+
 ;; vterm
 (use-package! vterm
   :config
