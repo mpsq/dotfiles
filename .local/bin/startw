@@ -10,10 +10,3 @@ if command -v dbus-update-activation-environment >/dev/null 2>&1; then
 fi
 
 systemctl --user start sway-session.target
-
-sleep 0.2
-systemctl --user restart pipewire
-sleep 0.2
-systemctl --user restart easyeffects
-systemctl --user restart xdg-desktop-portal-wlr
-systemctl --user restart waybar
