@@ -8,9 +8,9 @@
 }
 
 #waybar {
-  background-color: rgba(0, 0, 0, 0.6);
   color: white;
   font-size: 9.5pt;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 #mode {
@@ -85,7 +85,8 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
-window#waybar.empty #window {
+window#waybar.empty .horizontal:not(#workspaces) {
+  background: transparent;
 }
 
 #workspaces button {
@@ -97,7 +98,7 @@ window#waybar.empty #window {
 }
 
 #workspaces button:hover {
-  background: #323232;
+  background: rgba(255, 255, 255, 0.2);
   box-shadow: inherit;
   text-shadow: inherit;
 }
