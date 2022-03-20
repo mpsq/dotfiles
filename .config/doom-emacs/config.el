@@ -57,6 +57,7 @@ functions."
     (advice-add fun :before-until #'mpsq--advice-lsp-mode-silence)))
 
 ;; Format on save
+(setq-hook! 'json-mode-hook +format-with-lsp nil)
 (setq-hook! 'js2-mode-hook +format-with-lsp nil)
 (setq-hook! 'typescript-tsx-mode-hook +format-with-lsp nil)
 (setq-hook! 'typescript-mode-hook +format-with-lsp nil)
@@ -67,6 +68,7 @@ functions."
            tex-mode         ; latexindent is broken
            web-mode         ; broken with templates
            yaml-mode        ; clashes with other formatting tools
+           json-mode
            latex-mode))
 
 ;; Better window selection
