@@ -2,7 +2,7 @@
 Name=Bitwarden
 GenericName=Password Manager
 Comment=A secure and free password manager for all of your devices.
-Exec=bitwarden-desktop %U
+Exec=bitwarden-desktop --ozone-platform=wayland -- %U
 Terminal=false
 Type=Application
 Icon=bitwarden
