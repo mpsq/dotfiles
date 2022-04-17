@@ -116,6 +116,10 @@ functions."
    doom-modeline-mu4e t
    doom-modeline-persp-name t))
 
+;; Do not create new workspace for new emacsclient
+(after! persp-mode
+  (setq persp-emacsclient-init-frame-behaviour-override "main"))
+
 ;; Treemacs config
 (setq +treemacs-git-mode 'deferred)
 (remove-hook 'doom-load-theme-hook #'doom-themes-treemacs-config)
