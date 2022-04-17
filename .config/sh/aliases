@@ -17,9 +17,9 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
 alias em="emacs"
-alias emc="emacsclient"
+alias emc="emacsclient -t -a=vi"
 
 alias k="kubectl"
-alias vim="emacsclient -t"
+alias vim="emacsclient -t -a=vi"
 
 alias sway="exec systemd-cat --identifier=sway sway"
