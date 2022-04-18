@@ -10,7 +10,6 @@
 
        :ui
        doom
-       doom-dashboard
        doom-quit
        (emoji +unicode)
        fill-column
