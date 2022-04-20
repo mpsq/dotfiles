@@ -26,6 +26,9 @@ max-history=5
 max-visible=8
 ignore-timeout=1
 
+[mode=do-not-disturb]
+invisible=1
+
 # format
 
 format=%a\n<b>%s</b>\n%b
