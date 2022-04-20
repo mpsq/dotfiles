@@ -27,7 +27,7 @@ fd
 file-roller
 firefox
 firefox-developer-edition
-flatpak
+fuzzel
 fwupd
 gammastep
 gimp
@@ -48,8 +48,6 @@ gst-plugins-good
 gst-plugins-ugly
 gtk-engine-murrine
 gtk-engines
-helvum
-htop
 hunspell
 hunspell-en_GB
 hunspell-en_US
@@ -70,12 +68,10 @@ linux
 linux-firmware
 lm_sensors
 lxappearance
-lxsession-gtk3
 mako
 man-db
 mesa
 mkinitcpio
-mlocate
 mpv
 msmtp-mta
 mythes-en
@@ -100,8 +96,8 @@ pipewire
 pipewire-pulse
 pkgfile
 playerctl
+plocate
 powertop
-pygmentize
 python-gobject
 python-i3ipc
 python-pip
@@ -121,13 +117,11 @@ signal-desktop
 skim
 slurp
 smartmontools
-source-highlight
 sway
 swaybg
 swayidle
 swaylock
 systemd-resolvconf
-tidy
 tldr
 tokei
 ttc-iosevka-ss17
