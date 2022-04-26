@@ -162,7 +162,7 @@ bindsym --release $mod+Shift+u exec --no-startup-id capture-screen
 bindsym --release $mod+Shift+v exec --no-startup-id capture-screen video
 
 # Launcher
-set $menu exec $term --app-id=sway-launcher -e /usr/bin/sway-launcher-desktop
+set $menu exec fuzzel -i Papirus -b 1b110eff -C e08a26ff -B 7 -t e4cbb3ff --line-height=22 -w 45 -s e4cbb3ff -S 3e272dff
 bindsym $mod+d exec $menu
 set $mode_system (l) logout, (r) reboot, (s) shutdown
 mode "$mode_system" {
@@ -192,6 +192,10 @@ for_window [app_id="firefox" title="Library"] floating enable, border pixel 1, s
 for_window [app_id = "pavucontrol"] floating enable
 for_window [class = "^Zoom$"] floating enable
 for_window [app_id = "zoom"] floating enable
+for_window [app_id = "zoom" title="Choose ONE of the audio conference options"] floating enable
+for_window [app_id = "zoom" title="zoom"] floating enable
+for_window [app_id = "zoom" title="Zoom Meeting"] floating disable
+for_window [app_id = "zoom" title="Zoom - Free Account"] floating disable
 for_window [app_id = "nm-openconnect-auth-dialog"] floating enable
 for_window [app_id = "gnome-calculator"] floating enable
 for_window [title="Save File"] floating enable
