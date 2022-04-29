@@ -28,7 +28,7 @@
     }
   },
   "sway/window": {
-    "icon": true
+    "icon": false
   },
   "sway/mode": {
     "format": "{}"
