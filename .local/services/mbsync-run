@@ -2,9 +2,3 @@
 set -euo pipefail
 
 mbsync -a
-
-if pgrep emacs; then
-  emacsclient -ue '(mu4e-update-index)'
-else
-  mu index --quiet
-fi
