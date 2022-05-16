@@ -91,7 +91,6 @@ functions."
 
 ;; Email configuration
 ;; see https://tecosaur.github.io/emacs-config/config.html#rebuild-mail-index
-(setq +mu4e-backend nil)
 (after! mu4e
   (setq mail-envelope-from 'header
         mail-user-agent 'mu4e-user-agent
