@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+fuzzel --icon-theme Papirus \
+  --background 1b110eff \
+  --border-color e08a26ff \
+  --text-color e4cbb3ff \
+  --selection-color e4cbb3ff \
+  --selection-text-color 3e272dff \
+  --border-width 7 \
+  --line-height 22 \
+  --width 45 \
+  --dpi-aware no

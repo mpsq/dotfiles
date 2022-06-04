@@ -162,7 +162,7 @@ bindsym --release $mod+Shift+u exec --no-startup-id capture-screen
 bindsym --release $mod+Shift+v exec --no-startup-id capture-screen video
 
 # Launcher
-set $menu exec fuzzel -i Papirus -b 1b110eff -C e08a26ff -B 7 -t e4cbb3ff --line-height=22 -w 45 -s e4cbb3ff -S 3e272dff
+set $menu exec launcher
 bindsym $mod+d exec $menu
 set $mode_system (l) logout, (r) reboot, (s) shutdown
 mode "$mode_system" {
