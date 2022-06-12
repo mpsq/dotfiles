@@ -14,6 +14,7 @@ chromium
 cmake
 codespell
 dbus-python
+direnv
 dmidecode
 dnsmasq
 docker
