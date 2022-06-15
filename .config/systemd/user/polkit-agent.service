@@ -5,7 +5,7 @@ PartOf=graphical-session.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/lxpolkit
+ExecStart=/usr/lib/mate-polkit/polkit-mate-authentication-agent-1
 RestartSec=15
 Restart=always
 
