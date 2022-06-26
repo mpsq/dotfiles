@@ -10,7 +10,6 @@
 
        :ui
        doom
-       doom-quit
        (emoji +unicode)
        fill-column
        hl-todo
@@ -35,7 +34,7 @@
        snippets
 
        :emacs
-       (dired +icons)
+       (dired +icons +dirvish)
        electric
        (ibuffer +icons)
        undo
@@ -62,6 +61,7 @@
        rgb
        taskrunner
        terraform
+       tree-sitter
 
        :os
        ;;tty
