@@ -6,7 +6,7 @@ Documentation=info:emacs man:emacs(1) https://gnu.org/software/emacs/
 Type=forking
 ExecStart=sh -c 'emacs --daemon && emacsclient -c --eval "(delete-frame)"'
 ExecStop=/usr/bin/emacsclient --no-wait --eval "(progn (setq kill-emacs-hook nil) (kill emacs))"
-Restart=always
+Restart=on-failure
 
 # Remove the limit in startup timeout, since emacs
 # cloning and building all packages can take time
