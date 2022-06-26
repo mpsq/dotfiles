@@ -10,6 +10,7 @@
       doom-unicode-font (font-spec :family "Iosevka SS17")
       doom-symbol-fallback-font-families '("Unifont")
       doom-emoji-fallback-font-families '("Noto Color Emoji"))
+(setq confirm-kill-emacs nil)
 
 ;; Nicer default buffer names
 (setq doom-fallback-buffer-name "► Doom"
