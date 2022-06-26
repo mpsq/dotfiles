@@ -183,20 +183,14 @@ Prevents a series of redisplays from being called (when set to an appropriate va
 
 ;; Treemacs config
 (setq +treemacs-git-mode 'deferred)
-(remove-hook 'doom-load-theme-hook #'doom-themes-treemacs-config)
 (after! treemacs
-   (setq treemacs-no-png-images t)
    (treemacs-follow-mode))
 
 ;; GPG settings/keyring
 (setq auth-sources '("~/.authinfo.gpg")
       auth-source-cache-expiry nil
       password-cache-expiry nil
-      epa-armor t
-      epg-pinentry-mode 'loopback)
-(after! pinentry
-  :config
-  (pinentry-start))
+      epa-armor t)
 
 ;; Magit inline diff
 (setq magit-diff-refine-hunk (quote all))
@@ -216,20 +210,6 @@ Prevents a series of redisplays from being called (when set to an appropriate va
 
         (advice-add 'magit-process-environment
                 :filter-return #'~/magit-process-environment))
-
-;; https://github.com/hlissner/doom-emacs/issues/2905
-(when (featurep! :lang sh)
-  ;; use shfmt directly instead of format-all
-  (use-package! shfmt
-    :hook (sh-mode . shfmt-on-save-mode)
-    :config
-    (setq
-     shfmt-arguments
-     `(
-       ;; indent with spaces, has to be 2 different strings due to the space
-       "-i" , "2"
-       ;; indent switch case
-       "-ci"))))
 
 ;; Projectile
 (use-package! projectile
