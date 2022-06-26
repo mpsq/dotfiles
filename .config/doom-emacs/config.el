@@ -217,11 +217,6 @@ Prevents a series of redisplays from being called (when set to an appropriate va
         (advice-add 'magit-process-environment
                 :filter-return #'~/magit-process-environment))
 
-;; Prioritise javascript-eslint checker
-(setq-hook! 'js2-mode-hook flycheck-checker 'javascript-eslint)
-(setq-hook! 'typescript-tsx-mode-hook flycheck-checker 'javascript-eslint)
-(setq-hook! 'typescript-mode-hook flycheck-checker 'javascript-eslint)
-
 ;; https://github.com/hlissner/doom-emacs/issues/2905
 (when (featurep! :lang sh)
   ;; use shfmt directly instead of format-all
