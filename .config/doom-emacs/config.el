@@ -123,12 +123,12 @@ Prevents a series of redisplays from being called (when set to an appropriate va
                                  #'mu4e-file-reindex-request)))
 
   (defadvice! mu4e-stop-watching-for-reindex-request ()
-    :after #'mu4e~proc-kill
+    :after #'mu4e--server-kill
     (if mu4e-reindex-request--file-watcher
         (file-notify-rm-watch mu4e-reindex-request--file-watcher)))
 
   (defadvice! mu4e-watch-for-reindex-request ()
-    :after #'mu4e~proc-start
+    :after #'mu4e--server-start
     (mu4e-stop-watching-for-reindex-request)
     (when (file-exists-p mu4e-reindex-request-file)
       (delete-file mu4e-reindex-request-file))
@@ -144,27 +144,27 @@ Prevents a series of redisplays from being called (when set to an appropriate va
         (mu4e-reindex-maybe t))))
 
   (defun mu4e-reindex-maybe (&optional new-request)
-    "Run `mu4e~proc-index' if it's been more than
+    "Run `mu4e--server-index' if it's been more than
 `mu4e-reindex-request-min-seperation'seconds since the last request,"
     (let ((time-since-last-request (- (float-time)
                                       mu4e-reindex-request--last-time)))
       (when new-request
         (setq mu4e-reindex-request--last-time (float-time)))
       (if (> time-since-last-request mu4e-reindex-request-min-seperation)
-          (mu4e~proc-index nil t)
+          (mu4e--server-index nil t)
         (when new-request
           (run-at-time (* 1.1 mu4e-reindex-request-min-seperation) nil
                        #'mu4e-reindex-maybe)))))
 
 ;; Startup
 (defun greedily-do-daemon-setup ()
+  (require 'org)
   (when (require 'mu4e nil t)
     (setq mu4e-confirm-quit t)
     (setq +mu4e-lock-greedy t)
     (setq +mu4e-lock-relaxed t)
-    (+mu4e-lock-add-watcher)
     (when (+mu4e-lock-available t)
-      (mu4e~start))))
+      (mu4e--start))))
 
 (when (daemonp)
   (add-hook 'emacs-startup-hook #'greedily-do-daemon-setup))
