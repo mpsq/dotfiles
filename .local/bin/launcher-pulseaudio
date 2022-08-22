@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+#
+# Choose pulseaudio sink/source via fuzzel.
+# Changes default sink/source and moves all streams to that device.
+
+set -euo pipefail
+
+readonly type="$1"
+
+formatlist() {
+    awk "/^$type/ {s=\$1\" \"\$2;getline;gsub(/^ +/,\"\",\$0);print s\" \"\$0}"
+}
+
+prompt="OUTPUT >"
+default=$(ponymix defaults | formatlist)
+
+list=$(ponymix -t "$type" list | formatlist)
+list=$(echo "$list" | grep -v EasyEffects)
+# Make sure current is always first
+list=$(echo "$list" | grep -v "$default")
+list=$(printf "$default\n$list")
+
+if [[ "$type" == "source" ]]; then
+    prompt="INPUT >"
+    list=$(echo "$list" | grep -v Monitor)
+fi
+
+lines=$(echo "$list" | wc -l)
+device=$(
+    echo "$list" |
+        fuzzel \
+            --background 1b110eff \
+            --border-color e08a26ff \
+            --text-color e4cbb3ff \
+            --selection-color e4cbb3ff \
+            --selection-text-color 3e272dff \
+            --border-width 7 \
+            --line-height 22 \
+            --width 65 \
+            --dpi-aware no \
+            --lines "$lines" \
+            --prompt "$prompt" \
+            -d "pulseaudio $type:" |
+        grep -Po '[0-9]+(?=:)'
+)
+
+# Set device as default.
+ponymix set-default -t "$type" -d "$device"
+
+# Move all streams to the new sink/source.
+case "$type" in
+    sink)
+        for input in $(ponymix list -t sink-input | grep -Po '[0-9]+(?=:)'); do
+            ponymix -t sink-input -d "$input" move "$device"
+        done
+        ;;
+    source)
+        for output in $(ponymix list -t source-output | grep -Po '[0-9]+(?=:)'); do
+            ponymix -t source-output -d "$output" move "$device"
+        done
+        ;;
+esac
