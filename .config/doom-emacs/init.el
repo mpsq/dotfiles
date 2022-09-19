@@ -11,7 +11,6 @@
        :ui
        doom
        (emoji +unicode)
-       fill-column
        hl-todo
        hydra
        indent-guides
