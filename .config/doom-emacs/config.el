@@ -16,6 +16,9 @@
 (setq doom-fallback-buffer-name "► Doom"
       +doom-dashboard-name "► Doom")
 
+;; trigger recentf every 5 minutes (useful when running Emacs daemon)
+(run-at-time (current-time) 300 'recentf-save-list)
+
 ;; Misc. settings
 (setq display-line-numbers-type 'relative
       fill-column 80
