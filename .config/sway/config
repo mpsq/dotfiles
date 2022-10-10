@@ -197,12 +197,6 @@ for_window [app_id = "virt-manager"] floating enable
 for_window [title = "About Mozilla Firefox"] floating enable
 for_window [app_id="firefox" title="Library"] floating enable, border pixel 1, sticky enable
 for_window [app_id = "pavucontrol"] floating enable
-for_window [app_id = "zoom" title="Choose ONE of the audio conference options"] floating enable
-for_window [class = "^Zoom$"] floating disable
-for_window [app_id = "zoom"] floating disable
-for_window [app_id = "zoom" title="zoom"] floating disable
-for_window [app_id = "zoom" title="Zoom Meeting"] floating disable
-for_window [app_id = "zoom" title="Zoom - Free Account"] floating disable
 for_window [app_id = "nm-openconnect-auth-dialog"] floating enable
 for_window [app_id = "gnome-calculator"] floating enable
 for_window [title="Save File"] floating enable
@@ -222,6 +216,11 @@ for_window [class="info|Mate-color-select|gcolor2|timesup|QtPass|GtkFileChooserD
 for_window [window_role="File Operation Progress"] floating enable sticky
 for_window [window_role="Save As"] floating enable
 for_window [app_id = "floating"] floating enable
+# For pop up notification windows that don't use notifications api
+for_window [app_id="zoom" title="^zoom$"] border none, floating enable
+# For specific Zoom windows
+for_window [app_id="zoom" title="^(Zoom|About)$"] border pixel, floating enable
+for_window [app_id="zoom" title="Settings"] floating enable, floating_minimum_size
 
 ### Assign
 #
