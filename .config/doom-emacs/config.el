@@ -166,10 +166,14 @@ Prevents a series of redisplays from being called (when set to an appropriate va
     (when (+mu4e-lock-available t)
       (mu4e--start))))
 
+(defun autosave-history-daemon-mode ()
+   (require 'recentf)
+   ;; trigger recentf every 5 minutes (useful when running Emacs daemon)
+   (run-at-time (current-time) 300 'recentf-save-list))
+
 (when (daemonp)
   (add-hook 'emacs-startup-hook #'greedily-do-daemon-setup)
-  ;; trigger recentf every 5 minutes (useful when running Emacs daemon)
-  (run-at-time (current-time) 300 'recentf-save-list))
+  (add-hook 'emacs-startup-hook #'autosave-history-daemon-mode))
 
 ;; Modeline
 (use-package! mu4e
