@@ -2,5 +2,6 @@
 max_fps=60
 chooser_cmd=slurp -f %o -or
 chooser_type=simple
+force_mod_linear=1
 exec_before=sh -c "notify-send --urgency=normal --app-name=xdpw \"Screenshare started\" && makoctl set-mode do-not-disturb"
 exec_after=sh -c "notify-send --urgency=normal --app-name=xdpw \"Screenshare ended\" && makoctl set-mode default"
