@@ -5,6 +5,8 @@ baobab
 bash-completion
 bc
 bitwarden
+
+
 blueberry
 bluez
 bluez-utils
@@ -98,6 +100,7 @@ pipewire-pulse
 pkgfile
 playerctl
 plocate
+polkit-gnome
 powertop
 python-gobject
 python-i3ipc
