@@ -2,7 +2,7 @@
   "layer": "top",
   "position": "top",
   "height": 24,
-  "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
+  "modules-left": ["sway/workspaces", "sway/mode", "sway/window", "sway/scratchpad"],
   "modules-center": ["clock"],
   "modules-right": [
     "custom/systemd",
@@ -32,6 +32,13 @@
   },
   "sway/mode": {
     "format": "{}"
+  },
+  "sway/scratchpad": {
+    "format": "{icon} {count}",
+    "show-empty": false,
+    "format-icons": ["", ""],
+    "tooltip": true,
+    "tooltip-format": "{app}: {title}"
   },
   "idle_inhibitor": {
     "format": "{icon}",
