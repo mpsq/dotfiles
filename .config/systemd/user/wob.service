@@ -12,7 +12,7 @@ Type=simple
 StandardInput=socket
 StandardOutput=journal
 ExecStartPre=/bin/sleep 5
-ExecStart=/usr/bin/wob -p 5 -b 0 -t 2000 --border-color "#3fdaa4ee" --bar-color "#ffffffee" --background-color "#3fdaa4ee"
+ExecStart=/usr/bin/wob
 Restart=on-failure
 
 [Install]
