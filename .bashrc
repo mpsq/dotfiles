@@ -90,8 +90,8 @@ if [[ "$TERM" != "dumb" ]]; then
   # Source things
   include /usr/share/z/z.sh
   include /usr/share/bash-completion/bash_completion
-  include /usr/share/skim/completion.bash
-  include /usr/share/skim/key-bindings.bash
+  include /usr/share/fzf/completion.bash
+  include /usr/share/fzf/key-bindings.bash
   include /usr/share/doc/pkgfile/command-not-found.bash
   include "$NVM_SOURCE/nvm.sh"
   include "$HOME/.config/sh/vars"
