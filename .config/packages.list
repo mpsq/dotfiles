@@ -5,6 +5,7 @@ baobab
 bash-completion
 bc
 bitwarden
+bitwarden-cli
 blueberry
 bluez
 bluez-utils
@@ -28,6 +29,7 @@ fd
 file-roller
 firefox
 firefox-developer-edition
+foot
 fuzzel
 fwupd
 fzf
@@ -76,6 +78,7 @@ mesa
 mkinitcpio
 mpv
 msmtp-mta
+myrepos
 mythes-en
 nautilus
 ncdu
@@ -132,6 +135,7 @@ ttf-droid
 unrar
 unzip
 usbutils
+vcsh
 veracrypt
 waybar
 wayland
