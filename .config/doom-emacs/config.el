@@ -90,6 +90,10 @@ functions."
 (setq-default history-length 1000)
 (setq-default prescient-history-length 1000)
 
+;; Load private stuff
+(when (file-exists-p "~/.config/priv/config.el")
+  (load-file "~/.config/priv/config.el"))
+
 ;; Email configuration
 ;; see https://tecosaur.github.io/emacs-config/config.html#rebuild-mail-index
 (after! mu4e
@@ -97,14 +101,30 @@ functions."
         mail-user-agent 'mu4e-user-agent
         mail-specify-envelope-from 't
         message-kill-buffer-on-exit 't
+        ;; Do now expose hostname in Message-ID
+        message-required-mail-headers (remove' Message-ID message-required-mail-headers)
         message-send-mail-function #'message-send-mail-with-sendmail
         message-sendmail-envelope-from 'header
         message-sendmail-extra-arguments '("--read-envelope-from")
         message-sendmail-f-is-evil t
+        +mu4e-min-header-frame-width 142
         mu4e-attachment-dir "~/dl"
         mu4e-change-filenames-when-moving t
+        mu4e-headers-date-format "%d/%m/%y"
+        mu4e-headers-time-format "⧖ %H:%M"
+        mu4e-search-results-limit 1000
         send-mail-function #'smtpmail-send-it
-        sendmail-program "/usr/bin/msmtp"))
+        sendmail-program "/usr/bin/msmtp")
+
+  (setq mu4e-headers-fields
+     '((:account-stripe . 1)
+       (:human-date . 18)
+       (:maildir . 30)
+       (:flags . 6)
+       (:from-or-to . 30)
+       (:recipnum . 2)
+       (:subject)))
+
   (defvar mu4e-reindex-request-file "/tmp/mu_reindex_now"
     "Location of the reindex request, signaled by existance")
   (defvar mu4e-reindex-request-min-seperation 5.0
@@ -154,7 +174,7 @@ Prevents a series of redisplays from being called (when set to an appropriate va
           (mu4e--server-index nil t)
         (when new-request
           (run-at-time (* 1.1 mu4e-reindex-request-min-seperation) nil
-                       #'mu4e-reindex-maybe)))))
+                       #'mu4e-reindex-maybe))))))
 
 ;; Startup
 (defun greedily-do-daemon-setup ()
@@ -227,7 +247,3 @@ Prevents a series of redisplays from being called (when set to an appropriate va
 (use-package! vterm
   :config
   (evil-define-key 'insert vterm-mode-map (kbd "C-j") #'vterm--self-insert))
-
-;; Load private stuff
-(when (file-exists-p "~/.config/priv/config.el")
-  (load-file "~/.config/priv/config.el"))
