@@ -108,12 +108,7 @@ python-gobject
 python-i3ipc
 python-pip
 python-sounddevice
-qt5-multimedia
-qt5-script
 qt5-wayland
-qt5-webchannel
-qt5-webengine
-qt5-webkit
 qt5ct
 reflector
 ripgrep
