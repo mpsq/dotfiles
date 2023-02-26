@@ -12,14 +12,13 @@
        doom
        (emoji +unicode)
        hl-todo
-       hydra
        indent-guides
        modeline
        nav-flash
        ophints
        (popup +all +defaults)
        (treemacs +lsp)
-       vc-gutter
+       (vc-gutter +pretty)
        vi-tilde-fringe
        (window-select +numbers)
        workspaces
@@ -44,14 +43,15 @@
 
        :checkers
        (syntax +childframe)
-       (spell +flyspell +hunspell)
+       (spell +flyspell +hunspell +everywhere)
        grammar
 
        :tools
        (debugger +lsp)
+       direnv
        (docker +lsp)
+       editorconfig
        (eval +overlay)
-       gist
        (lookup +dictionary +offline)
        (lsp +peek)
        (magit +forge)
@@ -63,26 +63,29 @@
        tree-sitter
 
        :os
-       ;;tty
+       tty
 
        :lang
        data
        emacs-lisp
-       (go +lsp)
+       (go +lsp +tree-sitter)
        (json +lsp)
        (java +lsp)
-       (javascript +lsp)
+       (javascript +lsp +tree-sitter)
        markdown
        (org +journal +hugo +pretty)
        (python +lsp)
        rest
        (rust +lsp)
-       (sh +lsp)
-       (web +lsp)
+       (sh +lsp +tree-sitter)
+       (web +lsp +tree-sitter)
        (yaml +lsp)
 
        :email
        (mu4e +gmail)
+
+       :app
+       ;;everywhere
 
        :config
        (default +bindings +smartparens))
