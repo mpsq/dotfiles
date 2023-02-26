@@ -22,6 +22,7 @@ docker
 docker-compose
 docker-machine
 easyeffects
+editorconfig-core-c
 eog
 evince
 exa
