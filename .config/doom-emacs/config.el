@@ -43,19 +43,7 @@
 
 ;; LSP
 (setq lsp-file-watch-threshold 20000)
-(use-package! lsp-mode
-  :config
-  (defun mpsq--advice-lsp-mode-silence (format &rest args)
-    "Silence needless diagnostic messages from `lsp-mode'.
-This is a `:before-until' advice for several `lsp-mode' logging
-functions."
-    (or
-     (string-match-p "Connected to %s" format)
-     (string-match-p "Unable to calculate the languageId" format)
-     (and (stringp (car args)))))
-
-  (dolist (fun '(lsp-warn lsp--warn lsp--info lsp--error))
-    (advice-add fun :before-until #'mpsq--advice-lsp-mode-silence)))
+(setq lsp-use-plists "true")
 
 ;; Format on save
 (setq-hook! 'json-mode-hook +format-with-lsp nil)

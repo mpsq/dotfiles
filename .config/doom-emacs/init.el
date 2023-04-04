@@ -4,6 +4,8 @@
 ;;      Press 'K' on a module to view its documentation
 ;;      Press 'gd' on a module to browse its  directory
 
+(setenv "LSP_USE_PLISTS" "1")
+
 (doom! :completion
        (company +childframe)
        (vertico +icons)
