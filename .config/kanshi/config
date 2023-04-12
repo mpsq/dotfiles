@@ -1,18 +1,18 @@
 profile out {
-  output eDP-1 enable position 2560,190
+  output eDP-1 enable position 2560,180
   output "Dell Inc. DELL P3421W 8C6SH53" enable position 0,0
   exec swaymsg workspace 1, move workspace to "Dell Inc. DELL P3421W 8C6SH53"
 }
 
 profile out2 {
-  output eDP-1 enable position 2560,190
-  output "Dell Inc. DELL U2722D 66BLS83" enable position 0,0
+  output eDP-1 enable position 2560,180
+  output "Dell Inc. DELL U2722D 66BLS83" enable position 0,0 #
   exec swaymsg workspace 1, move workspace to "Dell Inc. DELL U2722D 66BLS83"
 }
 
 profile main {
-  output eDP-1 enable position 2560,190
-  output "Dell Inc. DELL P2418D MY3ND02E0BET" enable position 0,0
+  output eDP-1 enable position 0,180
+  output "Dell Inc. DELL P2418D MY3ND02E0BET" enable position 1920,0
   exec swaymsg workspace 1, move workspace to "Dell Inc. DELL P2418D MY3ND02E0BET"
 }
 
