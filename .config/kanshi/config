@@ -5,8 +5,8 @@ profile out {
 }
 
 profile out2 {
-  output eDP-1 enable position 2560,180
-  output "Dell Inc. DELL U2722D 66BLS83" enable position 0,0 #
+  output eDP-1 enable position 0,180
+  output "Dell Inc. DELL U2722D 66BLS83" enable position 1920,0
   exec swaymsg workspace 1, move workspace to "Dell Inc. DELL U2722D 66BLS83"
 }
 
