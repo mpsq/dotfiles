@@ -50,7 +50,7 @@
 
        :tools
        (debugger +lsp)
-       direnv
+       ;;direnv
        (docker +lsp)
        editorconfig
        (eval +overlay)

@@ -4,7 +4,6 @@ set -euo pipefail
 arg="${1:-instant}"
 
 mkdir -p ~/instants
-now=$(date +'%Y-%m-%d-%H%M%S')
 
 if [[ "$arg" == "video" ]]; then
   if pgrep wf-recorder >/dev/null; then
@@ -13,10 +12,12 @@ if [[ "$arg" == "video" ]]; then
     pkill -SIGRTMIN+8 waybar
     notify-send --urgency=normal --app-name=wf-recorder "Screen capture ended"
   else
+    now=$(date +'%Y-%m-%d-%H%M%S')
+
     wf-recorder -g "$(slurp)" -f ~/instants/"$now".mp4 &
     while [ -z $(pgrep -x wf-recorder) ]; do sleep 0.1; done
     pkill -RTMIN+8 waybar
   fi
 else
-  grim -g "$(slurp)" ~/instants/"$now".png
+  grim -g "$(slurp)" - | swappy -f -
 fi
