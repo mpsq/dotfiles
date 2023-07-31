@@ -8,9 +8,9 @@
       doom-unicode-font (font-spec :family "Liberation Mono")
       doom-serif-font (font-spec :family "Droid Sans Mono")
       doom-unicode-font (font-spec :family "Iosevka SS17")
-      doom-symbol-fallback-font-families '("Unifont")
-      doom-emoji-fallback-font-families '("Noto Color Emoji"))
+      doom-emoji-fallback-font-families '("Twemoji"))
 (setq confirm-kill-emacs nil)
+(setq emojify-emoji-set "twemoji-v2")
 
 ;; Nicer default buffer names
 (setq doom-fallback-buffer-name "► Doom"
