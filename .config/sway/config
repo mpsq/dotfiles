@@ -186,12 +186,12 @@ bindsym $mod+Shift+e mode "$mode_system"
 bindsym $mod+Shift+n exec makoctl dismiss --all
 
 ### Floating
+for_window [app_id="pavucontrol"]floating enable
+for_window [app_id="nm-connection-editor"] floating enable
+for_window [app_id="gcolor3"] floating enable
+for_window [app_id="firefox" title="Firefox — Sharing Indicator"]  floating enable
 for_window [app_id="firefox" title="Library"] floating enable, border pixel 1, sticky enable
-# For pop up notification windows that don't use notifications api
-for_window [app_id="zoom" title="^zoom$"] border none, floating enable
-# For specific Zoom windows
-for_window [app_id="zoom" title="^(Zoom|About)$"] border pixel, floating enable
-for_window [app_id="zoom" title="Settings"] floating enable, floating_minimum_size
+for_window [app_id="zoom" title="(Zoom - Free Account|zoom|as_toolbar)"] floating enable
 
 ### Assign
 #
