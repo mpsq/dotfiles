@@ -7,7 +7,7 @@
 (setenv "LSP_USE_PLISTS" "1")
 
 (doom! :completion
-       (vertico +icons)
+       (vertico +icons +childframe)
 
        :ui
        doom
@@ -49,7 +49,6 @@
 
        :tools
        (debugger +lsp)
-       ;;direnv
        (docker +lsp)
        editorconfig
        (eval +overlay)
