@@ -7,7 +7,7 @@
       doom-variable-pitch-font (font-spec :family "Droid Sans" :size 13)
       doom-unicode-font (font-spec :family "Liberation Mono")
       doom-serif-font (font-spec :family "Droid Sans Mono")
-      doom-unicode-font (font-spec :family "Iosevka SS17")
+      doom-unicode-font (font-spec :family "Twemoji")
       doom-emoji-fallback-font-families '("Twemoji"))
 (setq confirm-kill-emacs nil)
 (setq emojify-emoji-set "twemoji-v2")
