@@ -1,7 +1,7 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Doom config
-(setq doom-theme 'doom-gruvbox
+(setq doom-theme 'doom-lantern
       doom-font (font-spec :family "Iosevka Fixed SS17" :size 13)
       doom-big-font (font-spec :family "Iosevka Fixed SS17" :size 14)
       doom-variable-pitch-font (font-spec :family "Droid Sans" :size 13)
@@ -40,6 +40,11 @@
 (add-hook! typescript-mode
   (setq typescript-indent-level 2))
 (setq-hook! 'typescript-tsx-mode-hook web-mode-code-indent-offset 2)
+
+;; Enable rainbow delimiters in prog-mode
+(use-package! rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode)
+  :config (setq rainbow-delimiters-max-face-count 4))
 
 ;; LSP
 (setq lsp-file-watch-threshold 20000)
@@ -163,6 +168,9 @@ Prevents a series of redisplays from being called (when set to an appropriate va
         (when new-request
           (run-at-time (* 1.1 mu4e-reindex-request-min-seperation) nil
                        #'mu4e-reindex-maybe))))))
+
+;; https://github.com/doomemacs/doomemacs/issues/7196
+(set-popup-rule! "^\\*mu4e-\\(main\\|headers\\)\\*" :ignore t)
 
 ;; Startup
 (defun greedily-do-daemon-setup ()

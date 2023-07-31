@@ -7,7 +7,6 @@
 (setenv "LSP_USE_PLISTS" "1")
 
 (doom! :completion
-       (company +childframe)
        (vertico +icons)
 
        :ui
@@ -90,4 +89,7 @@
        ;;everywhere
 
        :config
-       (default +bindings +smartparens))
+       (default +bindings +smartparens)
+
+       :custom
+       (corfu +icons +orderless))

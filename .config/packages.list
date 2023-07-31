@@ -23,6 +23,7 @@ docker-compose
 docker-machine
 easyeffects
 editorconfig-core-c
+emacs-wayland
 eog
 evince
 exa

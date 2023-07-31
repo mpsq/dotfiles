@@ -6,8 +6,7 @@
  '(package-selected-packages '(mu4e-alert))
  '(safe-local-variable-values
    '((lsp-eslint-working-directories .
-      [(directory "./app")
-       (pattern "./packages/*")]))))
+      [(pattern "./packages/*")]))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
