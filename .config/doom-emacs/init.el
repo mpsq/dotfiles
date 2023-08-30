@@ -7,6 +7,7 @@
 (setenv "LSP_USE_PLISTS" "1")
 
 (doom! :completion
+       (company +childframe)
        (vertico +icons +childframe)
 
        :ui
@@ -30,7 +31,6 @@
        fold
        (format +onsave)
        multiple-cursors
-       snippets
 
        :emacs
        (dired +icons +dirvish)
@@ -89,6 +89,4 @@
 
        :config
        (default +bindings +smartparens)
-
-       :custom
-       (corfu +icons +orderless))
+       )
