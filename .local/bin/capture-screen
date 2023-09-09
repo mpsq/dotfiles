@@ -14,7 +14,7 @@ if [[ "$arg" == "video" ]]; then
   else
     now=$(date +'%Y-%m-%d-%H%M%S')
 
-    wf-recorder -g "$(slurp)" -f ~/instants/"$now".mp4 &
+    wf-recorder -g "$(slurp)" -f ~/instants/"$now".mp4 -x yuv420p &
     while [ -z $(pgrep -x wf-recorder) ]; do sleep 0.1; done
     pkill -RTMIN+8 waybar
   fi
