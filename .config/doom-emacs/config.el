@@ -6,9 +6,7 @@
       doom-big-font (font-spec :family "Iosevka Fixed SS17" :size 14)
       doom-variable-pitch-font (font-spec :family "Droid Sans" :size 13)
       doom-unicode-font (font-spec :family "Liberation Mono")
-      doom-serif-font (font-spec :family "Droid Sans Mono")
-      doom-unicode-font (font-spec :family "Twemoji")
-      doom-emoji-fallback-font-families '("Twemoji"))
+      doom-serif-font (font-spec :family "Droid Sans Mono"))
 (setq confirm-kill-emacs nil)
 (setq emojify-emoji-set "twemoji-v2")
 
@@ -42,28 +40,26 @@
 (setq-hook! 'typescript-tsx-mode-hook web-mode-code-indent-offset 2)
 
 ;; Enable rainbow delimiters in prog-mode
-(use-package! rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode)
-  :config (setq rainbow-delimiters-max-face-count 4))
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+
+;; Enable rainbow-mode for relevant major modes
+(add-hook! org-mode 'rainbow-mode)
+(add-hook! prog-mode 'rainbow-mode)
 
 ;; LSP
+;; Prioritise javascript-eslint checker
+(setq-hook! 'js2-mode-hook flycheck-checker 'javascript-eslint)
+(setq-hook! 'typescript-tsx-mode-hook flycheck-checker 'javascript-eslint)
+(setq-hook! 'typescript-mode-hook flycheck-checker 'javascript-eslint)
 (setq lsp-file-watch-threshold 20000)
 (setq lsp-use-plists "true")
 
 ;; Format on save
-;; (setq-hook! 'json-mode-hook +format-with-lsp nil)
-;; (setq-hook! 'js2-mode-hook +format-with-lsp nil)
-;; (setq-hook! 'typescript-tsx-mode-hook +format-with-lsp nil)
-;; (setq-hook! 'typescript-mode-hook +format-with-lsp nil)
-;; (setq-hook! 'web-hook +format-with-lsp nil)
-(setq +format-on-save-disabled-modes
-      '(emacs-lisp-mode  ; elisp's mechanisms are good enough
-        sql-mode         ; sqlformat is currently broken
-        tex-mode         ; latexindent is broken
-        web-mode         ; broken with templates
-        yaml-mode        ; clashes with other formatting tools
-        json-mode
-        latex-mode))
+;; (setq +format-on-save-disabled-modes
+;;       '(web-mode         ; broken with templates
+;;         yaml-mode        ; clashes with other formatting tools
+;;         ))
 
 ;; Better window selection
 (map!
@@ -204,8 +200,11 @@ Prevents a series of redisplays from being called (when set to an appropriate va
   (setq persp-emacsclient-init-frame-behaviour-override "main"))
 
 ;; Treemacs config
-(setq +treemacs-git-mode 'deferred)
+(setq +treemacs-git-mode 'extended)
 (after! treemacs
+  (setq treemacs-no-png-images t
+        treemacs-space-between-root-nodes nil
+        treemacs-collapse-dirs 5)
   (treemacs-follow-mode))
 
 ;; GPG settings/keyring
