@@ -51,19 +51,19 @@
 (setq lsp-use-plists "true")
 
 ;; Format on save
-(setq-hook! 'json-mode-hook +format-with-lsp nil)
-(setq-hook! 'js2-mode-hook +format-with-lsp nil)
-(setq-hook! 'typescript-tsx-mode-hook +format-with-lsp nil)
-(setq-hook! 'typescript-mode-hook +format-with-lsp nil)
-(setq-hook! 'web-hook +format-with-lsp nil)
-(setq +format-on-save-enabled-modes
-     '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
-           sql-mode         ; sqlformat is currently broken
-           tex-mode         ; latexindent is broken
-           web-mode         ; broken with templates
-           yaml-mode        ; clashes with other formatting tools
-           json-mode
-           latex-mode))
+;; (setq-hook! 'json-mode-hook +format-with-lsp nil)
+;; (setq-hook! 'js2-mode-hook +format-with-lsp nil)
+;; (setq-hook! 'typescript-tsx-mode-hook +format-with-lsp nil)
+;; (setq-hook! 'typescript-mode-hook +format-with-lsp nil)
+;; (setq-hook! 'web-hook +format-with-lsp nil)
+(setq +format-on-save-disabled-modes
+      '(emacs-lisp-mode  ; elisp's mechanisms are good enough
+        sql-mode         ; sqlformat is currently broken
+        tex-mode         ; latexindent is broken
+        web-mode         ; broken with templates
+        yaml-mode        ; clashes with other formatting tools
+        json-mode
+        latex-mode))
 
 ;; Better window selection
 (map!
@@ -110,13 +110,13 @@
         sendmail-program "/usr/bin/msmtp")
 
   (setq mu4e-headers-fields
-     '((:account-stripe . 1)
-       (:human-date . 18)
-       (:maildir . 30)
-       (:flags . 6)
-       (:from-or-to . 30)
-       (:recipnum . 2)
-       (:subject)))
+        '((:account-stripe . 1)
+          (:human-date . 18)
+          (:maildir . 30)
+          (:flags . 6)
+          (:from-or-to . 30)
+          (:recipnum . 2)
+          (:subject)))
 
   (defvar mu4e-reindex-request-file "/tmp/mu_reindex_now"
     "Location of the reindex request, signaled by existance")
@@ -183,9 +183,9 @@ Prevents a series of redisplays from being called (when set to an appropriate va
       (mu4e--start))))
 
 (defun autosave-history-daemon-mode ()
-   (require 'recentf)
-   ;; trigger recentf every 5 minutes (useful when running Emacs daemon)
-   (run-at-time (current-time) 300 'recentf-save-list))
+  (require 'recentf)
+  ;; trigger recentf every 5 minutes (useful when running Emacs daemon)
+  (run-at-time (current-time) 300 'recentf-save-list))
 
 (when (daemonp)
   (add-hook 'emacs-startup-hook #'greedily-do-daemon-setup)
@@ -206,7 +206,7 @@ Prevents a series of redisplays from being called (when set to an appropriate va
 ;; Treemacs config
 (setq +treemacs-git-mode 'deferred)
 (after! treemacs
-   (treemacs-follow-mode))
+  (treemacs-follow-mode))
 
 ;; GPG settings/keyring
 (setq auth-sources '("~/.authinfo.gpg")
@@ -219,19 +219,19 @@ Prevents a series of redisplays from being called (when set to an appropriate va
 
 ;; vcsh / magit compatibility
 (after! magit
-        (defun ~/magit-process-environment (env)
-        "Add GIT_DIR and GIT_WORK_TREE to ENV when in a special directory.
+  (defun ~/magit-process-environment (env)
+    "Add GIT_DIR and GIT_WORK_TREE to ENV when in a special directory.
         https://github.com/magit/magit/issues/460."
-        (let ((default (file-name-as-directory (expand-file-name default-directory)))
-                (home (expand-file-name "~/")))
-        (when (string= default home)
+    (let ((default (file-name-as-directory (expand-file-name default-directory)))
+          (home (expand-file-name "~/")))
+      (when (string= default home)
         (let ((gitdir (expand-file-name "~/.config/vcsh/repo.d/dotfiles.git/")))
-                (push (format "GIT_WORK_TREE=%s" home) env)
-                (push (format "GIT_DIR=%s" gitdir) env))))
-        env)
+          (push (format "GIT_WORK_TREE=%s" home) env)
+          (push (format "GIT_DIR=%s" gitdir) env))))
+    env)
 
-        (advice-add 'magit-process-environment
-                :filter-return #'~/magit-process-environment))
+  (advice-add 'magit-process-environment
+              :filter-return #'~/magit-process-environment))
 
 ;; Projectile
 (use-package! projectile
