@@ -56,10 +56,10 @@
 (setq lsp-use-plists "true")
 
 ;; Format on save
-;; (setq +format-on-save-disabled-modes
-;;       '(web-mode         ; broken with templates
-;;         yaml-mode        ; clashes with other formatting tools
-;;         ))
+(setq +format-on-save-disabled-modes
+      '(web-mode         ; broken with templates
+        yaml-mode        ; clashes with other formatting tools
+        ))
 
 ;; Better window selection
 (map!
