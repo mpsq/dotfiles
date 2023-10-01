@@ -93,10 +93,10 @@ if [[ "$TERM" != "dumb" ]]; then
   include /usr/share/fzf/completion.bash
   include /usr/share/fzf/key-bindings.bash
   include /usr/share/doc/pkgfile/command-not-found.bash
-  include "$NVM_SOURCE/nvm.sh"
   include "$HOME/.config/sh/vars"
   include "$XDG_CONFIG_HOME/sh/aliases"
   include "$HOME/.$hname-bashrc"
+  source /usr/share/nvm/init-nvm.sh
 
   if command -v pyenv >/dev/null; then
     export PYENV_ROOT="$HOME/.pyenv"
