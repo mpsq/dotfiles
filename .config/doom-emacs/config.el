@@ -19,6 +19,7 @@
       fill-column 80
       org-directory "~/docs"
       show-trailing-whitespace t
+      tramp-histfile-override "/dev/null"
       undo-limit 80000000)
 
 ;; Indentation madness...
@@ -46,6 +47,12 @@
 ;; Enable rainbow-mode for relevant major modes
 (add-hook! org-mode 'rainbow-mode)
 (add-hook! prog-mode 'rainbow-mode)
+
+;; format markdown with prettier
+(use-package! apheleia
+  :defer t
+  :config
+  (push '(markdown-mode . prettier) apheleia-mode-alist))
 
 ;; LSP
 ;; Prioritise javascript-eslint checker
