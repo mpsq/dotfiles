@@ -13,7 +13,7 @@ profile out2 {
 profile main {
   output eDP-1 enable position 0,180
   output "Dell Inc. DELL P2418D MY3ND02E0BET" enable position 1920,0
-  exec swaymsg workspace 1, move workspace to "Dell Inc. DELL P2418D MY3ND02E0BET"
+  exec swaymsg workspace 1, move workspace to "DP-2"
 }
 
 profile default {
