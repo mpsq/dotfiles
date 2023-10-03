@@ -14,6 +14,7 @@ x-scheme-handler/eclipse+command=_usr_lib_eclipse_.desktop
 application/pdf=org.gnome.Evince.desktop
 image/jpeg=org.gnome.eog.desktop
 x-scheme-handler/postman=Postman.desktop
+image/webp=org.gnome.eog.desktop
 
 [Added Associations]
 x-scheme-handler/http=firefox.desktop;
@@ -34,3 +35,4 @@ image/svg+xml=org.gnome.eog.desktop;
 application/pdf=evince.desktop;org.gnome.Evince.desktop;
 image/jpeg=org.gnome.eog.desktop;
 x-scheme-handler/zoommtg=us.zoom.Zoom.desktop
+image/webp=org.gnome.eog.desktop;
