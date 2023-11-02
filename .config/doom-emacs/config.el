@@ -56,9 +56,22 @@
 
 ;; LSP
 ;; Prioritise javascript-eslint checker
-(setq-hook! 'js2-mode-hook flycheck-checker 'javascript-eslint)
-(setq-hook! 'typescript-tsx-mode-hook flycheck-checker 'javascript-eslint)
-(setq-hook! 'typescript-mode-hook flycheck-checker 'javascript-eslint)
+(defun --set-flycheck-eslint ()
+  (lsp-diagnostics-lsp-checker-if-needed)
+  (setq-local flycheck-checker 'javascript-eslint)
+  (flycheck-add-next-checker 'javascript-eslint 'lsp)
+  (flycheck-mode 1)
+  (lsp-mode 1)
+  (flycheck-select-checker 'javascript-eslint))
+(after! flycheck
+  (flycheck-add-mode 'javascript-eslint 'typescript-mode)
+  (flycheck-add-mode 'javascript-eslint 'typescript-tsx-mode)
+  (flycheck-add-mode 'javascript-eslint 'js2-mode)
+
+  (after! typescript-mode
+    (add-hook! (typescript-mode typescript-tsx-mode) '--set-flycheck-eslint))
+  (after! js2-mode
+    (add-hook! js2-mode '--set-flycheck-eslint)))
 (setq lsp-file-watch-threshold 20000)
 (setq lsp-use-plists "true")
 
