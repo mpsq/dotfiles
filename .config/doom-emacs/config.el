@@ -2,8 +2,8 @@
 
 ;; Doom config
 (setq doom-theme 'doom-monokai-ristretto
-      doom-font (font-spec :family "Iosevka Fixed SS17" :size 13)
-      doom-big-font (font-spec :family "Iosevka Fixed SS17" :size 14)
+      doom-font (font-spec :family "Iosevka Fixed SS16" :size 13)
+      doom-big-font (font-spec :family "Iosevka Fixed SS16" :size 14)
       doom-variable-pitch-font (font-spec :family "Droid Sans" :size 13)
       doom-unicode-font (font-spec :family "Liberation Mono")
       doom-serif-font (font-spec :family "Droid Sans Mono"))
