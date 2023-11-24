@@ -3,6 +3,7 @@ aspell-en
 aspell-fr
 baobab
 bash-completion
+bash-language-server
 bc
 bitwarden
 bitwarden-cli
@@ -25,6 +26,8 @@ easyeffects
 editorconfig-core-c
 emacs-wayland
 eog
+eslint
+eslint-language-server
 evince
 exa
 fd
@@ -45,6 +48,7 @@ gnome-disk-utility
 gnome-system-monitor
 gnome-themes-standard
 goimapnotify
+gopls
 grim
 gst-libav
 gst-plugins-bad
@@ -106,9 +110,12 @@ playerctl
 plocate
 polkit-gnome
 powertop
+prettier
 python-gobject
 python-i3ipc
+python-lsp-server
 python-pip
+python-pylint
 python-sounddevice
 qt5-wayland
 qt5ct
@@ -131,11 +138,15 @@ tokei
 ttc-iosevka-ss16
 ttc-iosevka-ss17
 ttf-droid
+typescript
+typescript-language-server
 unrar
 unzip
 usbutils
 vcsh
 veracrypt
+vscode-css-languageserver
+vscode-json-languageserver
 waybar
 wayland
 wf-recorder
@@ -146,6 +157,8 @@ xdg-desktop-portal
 xdg-desktop-portal-wlr
 xdg-user-dirs
 xorg-server-xwayland
+yaml-language-server
+yarn
 z
 zip
 zsa-wally-cli
