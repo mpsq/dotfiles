@@ -1,11 +1,11 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Doom config
-(setq doom-theme 'doom-monokai-ristretto
+(setq doom-theme 'doom-zenburn
       doom-font (font-spec :family "Iosevka Fixed SS16" :size 13)
       doom-big-font (font-spec :family "Iosevka Fixed SS16" :size 14)
       doom-variable-pitch-font (font-spec :family "Droid Sans" :size 13)
-      doom-unicode-font (font-spec :family "Liberation Mono")
+      doom-symbol-font (font-spec :family "Liberation Mono")
       doom-serif-font (font-spec :family "Droid Sans Mono"))
 (setq confirm-kill-emacs nil)
 (setq emojify-emoji-set "twemoji-v2")
@@ -55,23 +55,13 @@
   (push '(markdown-mode . prettier) apheleia-mode-alist))
 
 ;; LSP
-;; Prioritise javascript-eslint checker
-(defun --set-flycheck-eslint ()
-  (lsp-diagnostics-lsp-checker-if-needed)
-  (setq-local flycheck-checker 'javascript-eslint)
-  (flycheck-add-next-checker 'javascript-eslint 'lsp)
-  (flycheck-mode 1)
-  (lsp-mode 1)
-  (flycheck-select-checker 'javascript-eslint))
-(after! flycheck
-  (flycheck-add-mode 'javascript-eslint 'typescript-mode)
-  (flycheck-add-mode 'javascript-eslint 'typescript-tsx-mode)
-  (flycheck-add-mode 'javascript-eslint 'js2-mode)
-
-  (after! typescript-mode
-    (add-hook! (typescript-mode typescript-tsx-mode) '--set-flycheck-eslint))
-  (after! js2-mode
-    (add-hook! js2-mode '--set-flycheck-eslint)))
+;; Typescript LSP
+(setq lsp-clients-typescript-max-ts-server-memory 4096)
+(setq lsp-clients-typescript-prefer-use-project-ts-server t)
+(setq lsp-typescript-suggest-complete-function-calls t)
+;; Disable lsp formatting since prettier is used
+(setq-hook! 'typescript-mode-hook +format-with-lsp nil)
+(setq-hook! 'typescript-tsx-mode-hook +format-with-lsp nil)
 (setq lsp-file-watch-threshold 20000)
 (setq lsp-use-plists "true")
 
@@ -251,12 +241,6 @@ Prevents a series of redisplays from being called (when set to an appropriate va
 
   (advice-add 'magit-process-environment
               :filter-return #'~/magit-process-environment))
-
-;; Projectile
-(use-package! projectile
-  :config
-  (setq
-   projectile-enable-caching nil))
 
 ;; vterm
 (use-package! vterm
