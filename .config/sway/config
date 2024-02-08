@@ -183,6 +183,13 @@ bindsym $mod+Shift+e mode "$mode_system"
 # Notifications
 bindsym $mod+Shift+n exec makoctl dismiss --all
 
+# Setup headless output for screensharing
+output HEADLESS-1 resolution 1920x1080 position 0,1080
+output HEADLESS-1 bg "#a9a9a9" solid_color
+workspace 0 output HEADLESS-1
+bindsym $mod+0 workspace number 0
+bindsym $mod+Shift+0 move container to workspace number 0
+
 ### Floating
 for_window [app_id="pavucontrol"]floating enable
 for_window [app_id="nm-connection-editor"] floating enable
@@ -205,12 +212,6 @@ for_window [class="Spotify"] move window to workspace 4
 # prevent idle state at fullscreen mode for some apps
 for_window [app_id="Chromium"] inhibit_idle fullscreen
 for_window [app_id="firefox"] inhibit_idle fullscreen
-
-output HEADLESS-1 resolution 1920x1080 position 0,1080
-output HEADLESS-1 bg "#a9a9a9" solid_color
-workspace 0 output HEADLESS-1
-bindsym $mod+0 workspace number 0
-bindsym $mod+Shift+0 move container to workspace number 0
 
 ### Start session
 #
