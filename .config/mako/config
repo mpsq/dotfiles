@@ -56,13 +56,13 @@ format=<b>%s</b>\n%b
 history=0
 
 [desktop-entry=Firefox summary~="New message from.*"]
-on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/window-attention.oga
+on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/complete.oga
 border-color=#c158dc
 background-color=#c158dc
 default-timeout=8000
 
 [desktop-entry=Firefox summary~="New message in.*"]
-on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/message.oga
+on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/complete.oga
 text-color=#c158dc
 default-timeout=8000
 
