@@ -7,7 +7,8 @@
 (setenv "LSP_USE_PLISTS" "1")
 
 (doom! :completion
-       (company +childframe)
+       ;; (company +childframe)
+       (corfu +orderless +icons)
        (vertico +icons +childframe)
 
        :ui
