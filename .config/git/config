@@ -36,9 +36,6 @@
 [interactive]
   diffFilter = delta --relative-paths --line-numbers --color-only --features=interactive
 
-[delta]
-  features = decorations
-
 [delta "interactive"]
   keep-plus-minus-markers = false
 
@@ -98,3 +95,6 @@
 
 [include]
   path = ~/.config/git/host
+
+[init]
+  defaultBranch = main
