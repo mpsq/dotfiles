@@ -1,4 +1,5 @@
 bashate
+devbox
 dockerfile-language-server
 hadolint-bin
 libinput-gestures
