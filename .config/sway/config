@@ -216,5 +216,6 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
 ### Start session
 #
 exec startw
+exec swaymsg create_output
 
 include @sysconfdir@/sway/config.d/*
