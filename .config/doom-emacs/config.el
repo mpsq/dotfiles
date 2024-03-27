@@ -54,6 +54,11 @@
   :config
   (push '(markdown-mode . prettier) apheleia-mode-alist))
 
+;; Prioritise javascript-eslint checker
+(setq-hook! 'js2-mode-hook flycheck-checker 'javascript-eslint)
+(setq-hook! 'typescript-tsx-mode-hook flycheck-checker 'javascript-eslint)
+(setq-hook! 'typescript-mode-hook flycheck-checker 'javascript-eslint)
+
 ;; LSP
 ;; Typescript LSP
 (setq lsp-clients-typescript-max-ts-server-memory 4096)
