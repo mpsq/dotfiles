@@ -58,8 +58,6 @@
        (magit +forge)
        make
        pdf
-       rgb
-       taskrunner
        terraform
        tree-sitter
 
