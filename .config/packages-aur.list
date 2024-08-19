@@ -2,6 +2,7 @@ bashate
 devbox
 dockerfile-language-server
 hadolint-bin
+keybase-bin
 libinput-gestures
 mu
 mullvad-vpn-bin
