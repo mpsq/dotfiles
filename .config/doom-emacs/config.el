@@ -230,6 +230,8 @@ Prevents a series of redisplays from being called (when set to an appropriate va
 
 ;; Magit inline diff
 (setq magit-diff-refine-hunk (quote all))
+;; https://github.com/magit/magit/issues/3549
+(setq magit-process-finish-apply-ansi-colors t)
 
 ;; vcsh / magit compatibility
 (after! magit
