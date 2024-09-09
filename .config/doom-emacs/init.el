@@ -81,7 +81,7 @@
        (yaml +lsp)
 
        :email
-       (mu4e +gmail)
+       (mu4e +gmail +mbsync)
 
        :app
        ;;everywhere

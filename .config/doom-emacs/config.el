@@ -22,6 +22,10 @@
       tramp-histfile-override "/dev/null"
       undo-limit 80000000)
 
+;; Improve completion
+(setq-default history-length 1000)
+(setq-default prescient-history-length 1000)
+
 ;; Indentation madness...
 (setq evil-shift-width 2
       standard-indent 2
@@ -40,41 +44,30 @@
   (setq typescript-indent-level 2))
 (setq-hook! 'typescript-tsx-mode-hook web-mode-code-indent-offset 2)
 
+;; rainbow-mode
 ;; Enable rainbow delimiters in prog-mode
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
-
 ;; Enable rainbow-mode for relevant major modes
 (add-hook! org-mode 'rainbow-mode)
 (add-hook! prog-mode 'rainbow-mode)
 
-;; format markdown with prettier
+;; Formatting
 (use-package! apheleia
   :defer t
   :config
+  ;; format markdown with prettier
   (push '(markdown-mode . prettier) apheleia-mode-alist))
-
-;; Prioritise javascript-eslint checker
-(setq-hook! 'js2-mode-hook flycheck-checker 'javascript-eslint)
-(setq-hook! 'typescript-tsx-mode-hook flycheck-checker 'javascript-eslint)
-(setq-hook! 'typescript-mode-hook flycheck-checker 'javascript-eslint)
-
-;; LSP
-;; Typescript LSP
-(setq lsp-clients-typescript-max-ts-server-memory 4096)
-(setq lsp-clients-typescript-prefer-use-project-ts-server t)
-(setq lsp-typescript-suggest-complete-function-calls t)
-;; Disable lsp formatting since prettier is used
-(setq-hook! 'typescript-mode-hook +format-with-lsp nil)
-(setq-hook! 'typescript-tsx-mode-hook +format-with-lsp nil)
-(setq lsp-file-watch-threshold 20000)
-(setq lsp-use-plists "true")
-
-;; Format on save
+;; On save
 (setq +format-on-save-disabled-modes
       '(web-mode         ; broken with templates
         yaml-mode        ; clashes with other formatting tools
         ))
+
+;; LSP
+(setq lsp-clients-typescript-max-ts-server-memory 4096)
+(setq lsp-file-watch-threshold 20000)
+(setq lsp-use-plists "true")
 
 ;; Better window selection
 (map!
@@ -90,10 +83,6 @@
   :desc "Switch to window 8" :n "8" #'winum-select-window-8
   :desc "Switch to window 9" :n "9" #'winum-select-window-9))
 
-;; Improve completion
-(setq-default history-length 1000)
-(setq-default prescient-history-length 1000)
-
 ;; Load private stuff
 (when (file-exists-p "~/.config/priv/config.el")
   (load-file "~/.config/priv/config.el"))
@@ -101,24 +90,21 @@
 ;; Email configuration
 ;; see https://tecosaur.github.io/emacs-config/config.html#rebuild-mail-index
 (after! mu4e
-  (setq mail-envelope-from 'header
-        mail-user-agent 'mu4e-user-agent
-        mail-specify-envelope-from 't
+  (setq mail-user-agent 'mu4e-user-agent
         message-kill-buffer-on-exit 't
         ;; Do now expose hostname in Message-ID
         message-required-mail-headers (remove' Message-ID message-required-mail-headers)
-        message-send-mail-function #'message-send-mail-with-sendmail
-        message-sendmail-envelope-from 'header
-        message-sendmail-extra-arguments '("--read-envelope-from")
-        message-sendmail-f-is-evil t
-        +mu4e-min-header-frame-width 142
         mu4e-attachment-dir "~/dl"
         mu4e-change-filenames-when-moving t
-        mu4e-headers-date-format "%d/%m/%y"
-        mu4e-headers-time-format "⧖ %H:%M"
-        mu4e-search-results-limit 1000
+        mu4e-search-results-limit 1000)
+
+  ;; mstmp conf
+  (setq sendmail-program (executable-find "msmtp")
         send-mail-function #'smtpmail-send-it
-        sendmail-program "/usr/bin/msmtp")
+        message-sendmail-f-is-evil t
+        message-sendmail-envelope-from 'header
+        message-sendmail-extra-arguments '("--read-envelope-from")
+        message-send-mail-function #'message-send-mail-with-sendmail)
 
   (setq mu4e-headers-fields
         '((:account-stripe . 1)
@@ -180,9 +166,6 @@ Prevents a series of redisplays from being called (when set to an appropriate va
           (run-at-time (* 1.1 mu4e-reindex-request-min-seperation) nil
                        #'mu4e-reindex-maybe))))))
 
-;; https://github.com/doomemacs/doomemacs/issues/7196
-(set-popup-rule! "^\\*mu4e-\\(main\\|headers\\)\\*" :ignore t)
-
 ;; Startup
 (defun greedily-do-daemon-setup ()
   (require 'org)
@@ -228,7 +211,7 @@ Prevents a series of redisplays from being called (when set to an appropriate va
       password-cache-expiry nil
       epa-armor t)
 
-;; Magit inline diff
+;; Magit
 (setq magit-diff-refine-hunk (quote all))
 ;; https://github.com/magit/magit/issues/3549
 (setq magit-process-finish-apply-ansi-colors t)
