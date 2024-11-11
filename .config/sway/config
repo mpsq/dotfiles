@@ -184,8 +184,9 @@ bindsym $mod+Shift+e mode "$mode_system"
 bindsym $mod+Shift+n exec makoctl dismiss --all
 
 # Setup headless output for screensharing
-output HEADLESS-1 resolution 1920x1080 position 0,1080
+output HEADLESS-1 resolution 1920x1080
 output HEADLESS-1 bg "#a9a9a9" solid_color
+output HEADLESS-1 enable
 workspace 0 output HEADLESS-1
 bindsym $mod+0 workspace number 0
 bindsym $mod+Shift+0 move container to workspace number 0
@@ -196,7 +197,7 @@ for_window [app_id="nm-connection-editor"] floating enable
 for_window [app_id="gcolor3"] floating enable
 for_window [app_id="firefox" title="Firefox — Sharing Indicator"]  floating enable
 for_window [app_id="firefox" title="Library"] floating enable, border pixel 1, sticky enable
-for_window [app_id="zoom" title="(Zoom - Free Account|zoom|as_toolbar)"] floating enable
+for_window [app_id="chrome-*"] floating enable
 
 ### Assign
 #
