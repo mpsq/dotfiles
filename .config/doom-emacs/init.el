@@ -34,7 +34,7 @@
        multiple-cursors
 
        :emacs
-       (dired +icons +dirvish)
+       (dired +icons)
        electric
        (ibuffer +icons)
        undo
