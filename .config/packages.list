@@ -69,9 +69,7 @@ isync
 iw
 jq
 kanshi
-keybase
 libreoffice-fresh
-libva-vdpau-driver
 libvdpau-va-gl
 light
 linux
@@ -110,7 +108,6 @@ playerctl
 plocate
 polkit-gnome
 powertop
-prettier
 python-gobject
 python-i3ipc
 python-lsp-server
@@ -153,11 +150,11 @@ wf-recorder
 wget
 wireplumber
 wl-clipboard
+wob
 xdg-desktop-portal
 xdg-desktop-portal-wlr
 xdg-user-dirs
 xorg-server-xwayland
-yaml-language-server
 yarn
 z
 zip
