@@ -1,24 +1,4 @@
 #!/usr/bin/env bash
 set -euom pipefail
 
-IMG=$(xdg-user-dir PICTURES)
-IMG="$IMG/bkg.png"
-
-swaybg --image "$IMG" --mode fill &
-
-online=$(ping -q -w1 -c1 gnu.org &>/dev/null && echo Y || echo N)
-old=$(sha256sum "$IMG")
-new="$old"
-
-if [ "$online" == "Y" ]; then
-  sleep 3
-  wget --quiet --output-document="${IMG}" https://cldup.com/1dM_TOR8sC.jpg
-  new=$(sha256sum "$IMG")
-fi
-
-if [ ! "$old" == "$new" ]; then
-  kill %1
-  swaybg --image "$IMG" --mode fill
-else
-  fg
-fi
+swaybg --image /usr/share/backgrounds/archlinux/small.png --mode fill
