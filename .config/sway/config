@@ -191,28 +191,26 @@ workspace 0 output HEADLESS-1
 bindsym $mod+0 workspace number 0
 bindsym $mod+Shift+0 move container to workspace number 0
 
-### Floating
-for_window [app_id="pavucontrol"]floating enable
+### Application specific settings
 for_window [app_id="nm-connection-editor"] floating enable
-for_window [app_id="gcolor3"] floating enable
-for_window [app_id="firefox" title="Firefox — Sharing Indicator"]  floating enable
-for_window [app_id="firefox" title="Library"] floating enable, border pixel 1, sticky enable
-for_window [app_id="chrome-*"] floating enable
+for_window [app_id="org.gnome.Calculator"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [title = "Picture-in-Picture"] floating enable
+for_window [app_id="foot"] opacity 0.95
 
 ### Assign
-#
 assign [app_id = "emacs"] 2
-assign [class = "^Spotify$"] 4
-assign [app_id = "Signal"] 4
-assign [class = "^Zoom$"] 9
-assign [app_id = "^zoom$"] 9
-
-# for X11 apps: for_window X move window to workspace
-for_window [class="Spotify"] move window to workspace 4
+assign [app_id = "spotify"] 4
 
 # prevent idle state at fullscreen mode for some apps
-for_window [app_id="Chromium"] inhibit_idle fullscreen
+for_window [app_id="google-chrome"] inhibit_idle fullscreen
 for_window [app_id="firefox"] inhibit_idle fullscreen
+for_window [app_id="firefox-developer-edition"] inhibit_idle fullscreen
 
 ### Start session
 #
