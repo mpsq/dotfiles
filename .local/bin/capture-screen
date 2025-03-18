@@ -19,5 +19,5 @@ if [[ "$arg" == "video" ]]; then
     pkill -RTMIN+8 waybar
   fi
 else
-  grim -g "$(slurp)" - | swappy -f -
+  dulcepan - | swappy -f -
 fi
