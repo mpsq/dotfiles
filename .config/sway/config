@@ -194,12 +194,13 @@ bindsym $mod+Shift+0 move container to workspace number 0
 ### Application specific settings
 for_window [app_id="nm-connection-editor"] floating enable
 for_window [app_id="org.gnome.Calculator"] floating enable
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="bubble"] floating enable
-for_window [window_role="task_dialog"] floating enable
-for_window [window_role="Preferences"] floating enable
-for_window [window_type="dialog"] floating enable
-for_window [window_type="menu"] floating enable
+for_window [app_id="gcr-prompter"] floating enable opacity 0.90
+for_window [window_role="pop-up"] floating enable opacity 0.95
+for_window [window_role="bubble"] floating enable opacity 0.95
+for_window [window_role="task_dialog"] floating enable opacity 0.95
+for_window [window_role="Preferences"] floating enable opacity 0.95
+for_window [window_type="dialog"] floating enable opacity 0.95
+for_window [window_type="menu"] floating enable opacity 0.95
 for_window [title = "Picture-in-Picture"] floating enable
 for_window [app_id="foot"] opacity 0.95
 
