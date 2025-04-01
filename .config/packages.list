@@ -1,4 +1,4 @@
-arc-gtk-theme
+adw-gtk-theme
 archlinux-wallpaper
 aspell-en
 aspell-fr
@@ -76,7 +76,6 @@ light
 linux
 linux-firmware
 lm_sensors
-lxappearance
 mako
 man-db
 mesa
@@ -92,16 +91,16 @@ networkmanager
 nm-connection-editor
 noto-fonts-emoji
 ntp
+nwg-displays
+nwg-look
 otf-font-awesome
 p7zip
-packer
 pacman-contrib
 pam-u2f
 pamixer
 papirus-icon-theme
 parallel
 pavucontrol
-pinta
 pipewire
 pipewire-pulse
 pkgfile
@@ -109,12 +108,6 @@ playerctl
 plocate
 polkit-gnome
 powertop
-python-gobject
-python-i3ipc
-python-lsp-server
-python-pip
-python-pylint
-python-sounddevice
 qt5-wayland
 qt5ct
 reflector
