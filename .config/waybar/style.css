@@ -1,67 +1,32 @@
+/* See https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/css-variables.html for colours */
+
 * {
   border: none;
   border-radius: 0;
-  min-height: 0;
-  margin: 0;
-  padding: 0;
   font-family: sans-serif;
+  font-size: 9.5pt;
+  min-height: 0;
 }
 
 window#waybar {
-  color: #ffffff;
-  font-size: 9.5pt;
-  background-color: rgba(0, 0, 0, 0.6);
+  background: @theme_base_color;
+  border-bottom: 2px solid @unfocused_borders;
+  color: @theme_text_color;
 }
 
-label {
-  all: unset;
-}
-
-button {
-  all: unset;
-  /* Use box-shadow instead of border so the text isn't offset */
-  box-shadow: inset 0 -3px transparent;
-  /* Avoid rounded borders under each button name */
-  border: none;
-  border-radius: 0;
-}
-
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-button:hover {
-  background: inherit;
-  box-shadow: inset 0 -3px #ffffff;
-}
-
-#mode {
-  background-color: black;
-  font-style: italic;
-}
-
-#backlight,
-#battery,
-#clock,
-#cpu,
-#custom-crypto,
-#custom-mu,
-#custom-systemd,
-#custom-wf-recorder,
-#idle_inhibitor,
-#memory,
-#mode,
-#network,
-#pulseaudio,
-#temperature,
-#tray {
-  color: #ffffff;
-  padding-left: 8px;
-  padding-right: 8px;
+label.module {
+  padding: 0 10px;
+  color: @theme_text_color;
   min-width: 24px;
+}
+
+#workspaces button.focused {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 #battery {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  animation-direction: alternate;
 }
 
 #battery.warning.discharging {
@@ -74,11 +39,11 @@ button:hover {
   animation-duration: 2s;
 }
 
+#custom-headphones.active,
 #custom-wf-recorder.recording {
-  color: #ffffff;
   animation-name: blink-recorder;
-  animation-duration: 0.75s;
-  animation-timing-function: linear;
+  animation-duration: 1s;
+  animation-timing-function: steps(12);
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
@@ -86,17 +51,13 @@ button:hover {
 #battery.critical,
 #cpu.critical,
 #temperature.critical {
-  color: red;
-}
-
-#custom-mu.new {
-  color: yellow;
+  color: #e01b24;
 }
 
 #battery.warning,
 #cpu.warning,
 #network.disconnected {
-  color: orange;
+  color: #e66100;
 }
 
 .modules-left .horizontal:not(#workspaces) {
@@ -109,53 +70,25 @@ window#waybar.empty .horizontal:not(#workspaces) {
   background: transparent;
 }
 
-#workspaces button {
-  border-bottom: 2px solid transparent;
-  padding-top: 2px;
-  padding-left: 6px;
-  padding-right: 6px;
-  color: white;
-}
-
-#workspaces button:hover {
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: inherit;
-  text-shadow: inherit;
-}
-
-#workspaces button.focused {
-  border-color: white;
-}
-
 #workspaces button.urgent {
-  border-color: orange;
-  color: orange;
+  border-color: #e66100;
+  color: #e66100;
 }
 
 @keyframes blink-warning {
-  70% {
-    color: white;
-  }
-
   to {
-    color: white;
-    background-color: orange;
+    background: #e66100;
   }
 }
 
 @keyframes blink-critical {
-  70% {
-    color: white;
-  }
-
   to {
-    color: white;
-    background-color: red;
+    background: #e01b24;
   }
 }
 
 @keyframes blink-recorder {
   to {
-    background-color: rebeccapurple;
+    background: #1a5fb4;
   }
 }

@@ -5,8 +5,7 @@
   "modules-left": ["sway/workspaces", "sway/mode", "sway/window", "sway/scratchpad"],
   "modules-center": ["clock"],
   "modules-right": [
-    "custom/systemd",
-    "custom/mu",
+    "systemd-failed-units",
     "idle_inhibitor",
     "pulseaudio",
     "cpu",
@@ -15,7 +14,7 @@
     "network",
     "battery",
     "custom/wf-recorder",
-    "tray"
+    "custom/headphones"
   ],
   "sway/workspaces": {
     "all-outputs": false,
@@ -99,9 +98,21 @@
     "return-type": "json",
     "exec": "waybar-mu"
   },
-  "custom/systemd": {
-    "interval": 10,
-    "exec": "waybar-systemd"
+  "systemd-failed-units": {
+    "hide-on-ok": false,
+    "format": "✗ {nr_failed}",
+    "format-ok": "✓",
+    "system": true,
+    "user": true
+  },
+  "custom/headphones": {
+    "format": "",
+    "return-type": "json",
+    "interval": 5,
+    "signal": 8,
+    "exec": "echo '{\"class\": \"active\"}'",
+    "exec-if": "pactl list sinks short | grep -i headphones | grep -q RUNNING",
+    "tooltip": false
   },
   "custom/wf-recorder": {
     "format": "",
