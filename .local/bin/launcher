@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-fuzzel
+# Fake GNOME usage here ;; this will make fuzzel filter
+# desktop entries according to "NotShowIn=GNOME", which
+# is useful for LSP (and other) apps.
+XDG_CURRENT_DESKTOP=GNOME fuzzel
