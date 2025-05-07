@@ -32,90 +32,82 @@ if [[ "$INSIDE_EMACS" == 'vterm' ]]; then
   }
 fi
 
-if [[ "$TERM" != "dumb" ]]; then
-  hname=$(hostname)
+hname=$(hostname)
 
-  # Better history
-  shopt -s checkwinsize
-  shopt -s nocaseglob
-  shopt -s histappend
-  shopt -s cdspell
-  shopt -s cmdhist
-  set -o ignoreeof
-  export HISTCONTROL="erasedups:ignoreboth"
-  export HISTSIZE=100000
-  export HISTFILESIZE=$HISTSIZE
-  export HISTTIMEFORMAT='%F %T '
-  export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear:gpg"
+# Better history
+shopt -s checkwinsize
+shopt -s nocaseglob
+shopt -s histappend
+shopt -s cdspell
+shopt -s cmdhist
+set -o ignoreeof
+export HISTCONTROL="erasedups:ignoreboth"
+export HISTSIZE=100000
+export HISTFILESIZE=$HISTSIZE
+export HISTTIMEFORMAT='%F %T '
+export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear:gpg"
 
-  # Disable ctrl-s sending XOFF
-  stty ixany
-  stty ixoff -ixon
+# Disable ctrl-s sending XOFF
+stty ixany
+stty ixoff -ixon
 
-  # Pager / man
-  export LESS='-RX --mouse --quit-if-one-screen -Dd+r$Du+b'
-  export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
-  export PAGER="less -rX"
-  export MANWIDTH=92
+# Pager / man
+export LESS='-RX --mouse --quit-if-one-screen -Dd+r$Du+b'
+export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
+export PAGER="less -rX"
+export MANWIDTH=92
 
-  function parse_git_dirty() {
-    if [[ $(git status 2>/dev/null | tail -n1) != *"working directory clean"* ]]; then
-      echo "*"
-    fi
-  }
-
-  function parse_git_branch() {
-    git branch --no-color 2>/dev/null |
-      sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
-  }
-
-  function include() {
-    [[ -r "$1" ]] && source "$1"
-  }
-
-  txtcyn='\e[0;36m' # Cyan
-  txtprl='\e[1;35m' # Purple
-  bldblu='\e[1;34m' # Bold Blue
-  txtrst='\e[0m'    # Text Reset
-  git_branch="\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \"\|)\$(parse_git_branch)\$([[ -n \$(git branch 2> /dev/null) ]] && echo \|)"
-  PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtrst\]\[$txtprl\]$git_branch\[$txtrst\]\[$txtcyn\]\n= \[$txtrst\]"
-  PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}:${PWD}\007"'
-
-  # gpg / ssh agent integration
-  unset SSH_AGENT_PID
-  if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+function parse_git_dirty() {
+  if [[ $(git status 2>/dev/null | tail -n1) != *"working directory clean"* ]]; then
+    echo "*"
   fi
+}
 
-  # Source things
-  include /usr/share/z/z.sh
-  include /usr/share/bash-completion/bash_completion
-  include /usr/share/fzf/completion.bash
-  include /usr/share/fzf/key-bindings.bash
-  include /usr/share/doc/pkgfile/command-not-found.bash
-  include "$HOME/.config/sh/vars"
-  include "$XDG_CONFIG_HOME/sh/aliases"
-  include "$HOME/.$hname-bashrc"
-  source /usr/share/nvm/init-nvm.sh
+function parse_git_branch() {
+  git branch --no-color 2>/dev/null |
+    sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+}
 
-  if command -v pyenv >/dev/null; then
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
+function include() {
+  [[ -r "$1" ]] && source "$1"
+}
 
-    eval "$(pyenv init --path)"
-  fi
+txtcyn='\e[0;36m' # Cyan
+txtprl='\e[1;35m' # Purple
+bldblu='\e[1;34m' # Bold Blue
+txtrst='\e[0m'    # Text Reset
+git_branch="\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \"\|)\$(parse_git_branch)\$([[ -n \$(git branch 2> /dev/null) ]] && echo \|)"
+PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtrst\]\[$txtprl\]$git_branch\[$txtrst\]\[$txtcyn\]\n= \[$txtrst\]"
+PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}:${PWD}\007"'
 
-  if command -v direnv >/dev/null; then
-    eval "$(direnv hook bash)"
-  fi
+# gpg / ssh agent integration
+unset SSH_AGENT_PID
+if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+fi
 
-  if command -v dircolors >/dev/null; then
-    eval $(dircolors)
-  fi
+# Source things
+include /usr/share/z/z.sh
+include /usr/share/bash-completion/bash_completion
+include /usr/share/fzf/completion.bash
+include /usr/share/fzf/key-bindings.bash
+include /usr/share/doc/pkgfile/command-not-found.bash
+include "$HOME/.config/sh/vars"
+include "$XDG_CONFIG_HOME/sh/aliases"
+include "$HOME/.$hname-bashrc"
 
-  if [[ ! -v INSIDE_EMACS ]]; then
-    set -o vi
-  else
-    PS1=$PS1'\[$(vterm_prompt_end)\]'
-  fi
+if command -v direnv >/dev/null; then
+  eval "$(direnv hook bash)"
+fi
+
+if command -v dircolors >/dev/null; then
+  eval $(dircolors)
+fi
+
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+if [[ ! -v INSIDE_EMACS ]]; then
+  set -o vi
+else
+  PS1=$PS1'\[$(vterm_prompt_end)\]'
 fi
