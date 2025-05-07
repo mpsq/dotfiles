@@ -110,8 +110,6 @@ playerctl
 plocate
 polkit-gnome
 powertop
-qt5-wayland
-qt5ct
 reflector
 ripgrep
 shellcheck
