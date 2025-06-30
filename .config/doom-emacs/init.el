@@ -80,9 +80,6 @@
        (web +lsp +tree-sitter)
        (yaml +lsp)
 
-       :email
-       (mu4e +gmail +mbsync)
-
        :app
        ;;everywhere
 

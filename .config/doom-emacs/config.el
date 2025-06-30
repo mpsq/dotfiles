@@ -44,14 +44,6 @@
   (setq typescript-indent-level 2))
 (setq-hook! 'typescript-tsx-mode-hook web-mode-code-indent-offset 2)
 
-;; rainbow-mode
-;; Enable rainbow delimiters in prog-mode
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
-;; Enable rainbow-mode for relevant major modes
-(add-hook! org-mode 'rainbow-mode)
-(add-hook! prog-mode 'rainbow-mode)
-
 ;; Formatting
 (use-package! apheleia
   :defer t
@@ -87,110 +79,16 @@
 (when (file-exists-p "~/.config/priv/config.el")
   (load-file "~/.config/priv/config.el"))
 
-;; Email configuration
-;; see https://tecosaur.github.io/emacs-config/config.html#rebuild-mail-index
-(after! mu4e
-  (setq mail-user-agent 'mu4e-user-agent
-        message-kill-buffer-on-exit 't
-        ;; Do now expose hostname in Message-ID
-        message-required-mail-headers (remove' Message-ID message-required-mail-headers)
-        mu4e-attachment-dir "~/dl"
-        mu4e-change-filenames-when-moving t
-        mu4e-search-results-limit 1000)
-
-  ;; mstmp conf
-  (setq sendmail-program (executable-find "msmtp")
-        send-mail-function #'smtpmail-send-it
-        message-sendmail-f-is-evil t
-        message-sendmail-envelope-from 'header
-        message-sendmail-extra-arguments '("--read-envelope-from")
-        message-send-mail-function #'message-send-mail-with-sendmail)
-
-  (setq mu4e-headers-fields
-        '((:account-stripe . 1)
-          (:human-date . 18)
-          (:maildir . 30)
-          (:flags . 6)
-          (:from-or-to . 30)
-          (:recipnum . 2)
-          (:subject)))
-
-  (defvar mu4e-reindex-request-file "/tmp/mu_reindex_now"
-    "Location of the reindex request, signaled by existance")
-  (defvar mu4e-reindex-request-min-seperation 5.0
-    "Don't refresh again until this many second have elapsed.
-Prevents a series of redisplays from being called (when set to an appropriate value)")
-
-  (defvar mu4e-reindex-request--file-watcher nil)
-  (defvar mu4e-reindex-request--file-just-deleted nil)
-  (defvar mu4e-reindex-request--last-time 0)
-
-  (defun mu4e-reindex-request--add-watcher ()
-    (setq mu4e-reindex-request--file-just-deleted nil)
-    (setq mu4e-reindex-request--file-watcher
-          (file-notify-add-watch mu4e-reindex-request-file
-                                 '(change)
-                                 #'mu4e-file-reindex-request)))
-
-  (defadvice! mu4e-stop-watching-for-reindex-request ()
-    :after #'mu4e--server-kill
-    (if mu4e-reindex-request--file-watcher
-        (file-notify-rm-watch mu4e-reindex-request--file-watcher)))
-
-  (defadvice! mu4e-watch-for-reindex-request ()
-    :after #'mu4e--server-start
-    (mu4e-stop-watching-for-reindex-request)
-    (when (file-exists-p mu4e-reindex-request-file)
-      (delete-file mu4e-reindex-request-file))
-    (mu4e-reindex-request--add-watcher))
-
-  (defun mu4e-file-reindex-request (event)
-    "Act based on the existance of `mu4e-reindex-request-file'"
-    (if mu4e-reindex-request--file-just-deleted
-        (mu4e-reindex-request--add-watcher)
-      (when (equal (nth 1 event) 'created)
-        (delete-file mu4e-reindex-request-file)
-        (setq mu4e-reindex-request--file-just-deleted t)
-        (mu4e-reindex-maybe t))))
-
-  (defun mu4e-reindex-maybe (&optional new-request)
-    "Run `mu4e--server-index' if it's been more than
-`mu4e-reindex-request-min-seperation'seconds since the last request,"
-    (let ((time-since-last-request (- (float-time)
-                                      mu4e-reindex-request--last-time)))
-      (when new-request
-        (setq mu4e-reindex-request--last-time (float-time)))
-      (if (> time-since-last-request mu4e-reindex-request-min-seperation)
-          (mu4e--server-index nil t)
-        (when new-request
-          (run-at-time (* 1.1 mu4e-reindex-request-min-seperation) nil
-                       #'mu4e-reindex-maybe))))))
-
-;; Startup
-(defun greedily-do-daemon-setup ()
-  (require 'org)
-  (when (require 'mu4e nil t)
-    (setq mu4e-confirm-quit t)
-    (setq +mu4e-lock-greedy t)
-    (setq +mu4e-lock-relaxed t)
-    (when (+mu4e-lock-available t)
-      (mu4e--start))))
-
-(defun autosave-history-daemon-mode ()
-  (require 'recentf)
-  ;; trigger recentf every 5 minutes (useful when running Emacs daemon)
-  (run-at-time (current-time) 300 'recentf-save-list))
-
-(when (daemonp)
-  (add-hook 'emacs-startup-hook #'greedily-do-daemon-setup)
-  (add-hook 'emacs-startup-hook #'autosave-history-daemon-mode))
+;; Trigger recentf every 5 minutes (useful when running Emacs daemon)
+(after! recentf
+  (recentf-load-list)
+  (run-at-time nil (* 5 60) #'recentf-save-list))
 
 ;; Modeline
-(use-package! mu4e
+(use-package! doom-modeline
   :config
   (setq
    doom-modeline-github t
-   doom-modeline-mu4e t
    doom-modeline-persp-name t))
 
 ;; Do not create new workspace for new emacsclient
