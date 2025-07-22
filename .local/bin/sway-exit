@@ -2,19 +2,19 @@
 set -euo pipefail
 
 case "$1" in
-  exit)
-    systemctl --user stop graphical-session.target
-    gpgconf --kill gpg-agent
-    swaymsg exit
-    ;;
-  reboot)
-    systemctl -i reboot
-    ;;
-  shutdown)
-    systemctl -i poweroff
-    ;;
-  *)
-    echo "Usage: $0 {exit|reboot|shutdown}"
-    exit 2
-    ;;
+exit)
+  systemctl --user stop graphical-session.target
+  gpgconf --kill gpg-agent
+  swaymsg exit
+  ;;
+reboot)
+  systemctl -i reboot
+  ;;
+shutdown)
+  systemctl -i poweroff
+  ;;
+*)
+  echo "Usage: $0 {exit|reboot|shutdown}"
+  exit 2
+  ;;
 esac
