@@ -4,7 +4,7 @@ set $mod Mod1
 set $term foot
 set $bg #1c1e26
 set $fg #e0e0e0
-set $fc #59e1e3
+set $fc #666666
 set $ur #e95678
 set $left h
 set $down j
@@ -27,7 +27,6 @@ gaps inner 6
 gaps outer 0
 default_border pixel 2
 default_floating_border pixel 3
-hide_edge_borders smart
 
 ### Input/output
 #

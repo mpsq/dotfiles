@@ -4,15 +4,10 @@
   "height": 0,
   "spacing": 0,
   "margin-top": 6,
-  "margin-right": 4,
+  "margin-right": 6,
   "margin-bottom": 0,
-  "margin-left": 4,
-  "modules-left": [
-    "sway/workspaces",
-    "sway/mode",
-    "sway/window",
-    "sway/scratchpad"
-  ],
+  "margin-left": 6,
+  "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"],
   "modules-center": ["clock"],
   "modules-right": [
     "systemd-failed-units",
@@ -27,15 +22,13 @@
   "sway/workspaces": {
     "all-outputs": false,
     "disable-scroll": true,
-    "format": "{icon} {name}",
+    "format": "{name}",
     "format-icons": {
       "urgent": "",
-      "focused": "",
+      "active": "",
+      "empty": "",
       "default": ""
     }
-  },
-  "sway/window": {
-    "icon": false
   },
   "sway/mode": {
     "format": "<span style=\"italic\">{}</span>"
@@ -81,14 +74,14 @@
     "format-muted": "",
     "format-icons": ["", "", ""],
     "on-click": "pavucontrol",
-    "scroll-step": 0.2
+    "scroll-step": 1
   },
   "wireplumber#source": {
     "node-type": "Audio/Source",
     "format": " {volume}%",
     "format-muted": "",
     "on-click": "helvum",
-    "scroll-step": 0.2
+    "scroll-step": 1
   },
   "systemd-failed-units": {
     "hide-on-ok": true,

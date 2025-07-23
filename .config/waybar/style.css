@@ -1,47 +1,40 @@
 /* See https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/css-variables.html for colours */
 
+@define-color white rgb (221, 221, 221);
+@define-color gray rgb (6, 0, 0);
+@define-color orange rgb (144, 84, 0);
+@define-color red rgb (195, 0, 0);
+@define-color blue rgb (53, 132, 228);
+
 * {
-  border: none;
-  border-radius: 6px;
   font-family: monospace;
-  font-size: 13px;
-  min-height: 0;
-  padding: 0;
+  font-size: 14px;
 }
 
+.module,
+.modules-left,
+.modules-center,
+.modules-right,
 window#waybar {
-  background-color: transparent;
-  transition-property: background-color;
-  transition-duration: 0.5s;
+  all: unset;
 }
 
-#window,
-#workspaces,
 .module {
-  margin-right: 4px;
-  padding: 0px 6px;
-  background-color: #1b1d1e;
-  border: 1px solid #262829;
-  color: #dddddd;
+  padding: 0 8px;
 }
 
-.modules-left {
-  margin-left: 4px;
+.modules-left,
+.modules-center,
+.modules-right {
+  border-radius: 10px;
+  color: @white;
+  padding: 2px 0;
+  background-color: alpha(@gray, 0.73);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.6);
 }
 
 window#waybar.empty .horizontal:not(#workspaces) {
   background-color: transparent;
-  border: none;
-}
-
-#workspaces {
-  padding: 0px;
-}
-
-#clock {
-  background-color: #3a3c49;
-  font-weight: 700;
-  border: none;
 }
 
 #battery {
@@ -68,35 +61,40 @@ window#waybar.empty .horizontal:not(#workspaces) {
   animation-direction: alternate;
 }
 
+#workspaces {
+  padding: 4px;
+}
+
 #workspaces button {
   all: initial;
-  padding: 2px 4px;
+  color: @white;
+  padding: 0 8px;
   border-radius: 6px;
 }
 
 #workspaces button.focused {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: alpha(@white, 0.2);
 }
 
 #workspaces button.urgent {
-  border-color: rgb(230, 97, 0);
-  color: rgb(230, 97, 0);
+  animation-name: blink-critical;
+  animation-duration: 2s;
 }
 
 @keyframes blink-warning {
   to {
-    background-color: rgba(230, 97, 0, 0.4);
+    background-color: alpha(@orange, 0.3);
   }
 }
 
 @keyframes blink-critical {
   to {
-    background-color: rgba(224, 27, 36, 0.4);
+    background-color: alpha(@red, 0.3);
   }
 }
 
 @keyframes blink-recorder {
   to {
-    background-color: #1a5fb4;
+    background-color: @blue;
   }
 }
