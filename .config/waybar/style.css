@@ -4,8 +4,7 @@
   border: none;
   border-radius: 6px;
   font-family: monospace;
-  font-size: 11pt;
-  font-weight: 500;
+  font-size: 13px;
   min-height: 0;
   padding: 0;
 }
@@ -37,6 +36,12 @@ window#waybar.empty .horizontal:not(#workspaces) {
 
 #workspaces {
   padding: 0px;
+}
+
+#clock {
+  background-color: #3a3c49;
+  font-weight: 700;
+  border: none;
 }
 
 #battery {

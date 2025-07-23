@@ -56,7 +56,7 @@
   },
   "clock": {
     "tooltip-format": "{:%d-%m-%Y · %H:%M}",
-    "format": "{:%A · %d %B %Y · %H:%M}"
+    "format": "{:%d %B %Y · %H:%M}"
   },
   "battery": {
     "states": {
