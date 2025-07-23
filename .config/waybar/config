@@ -50,8 +50,8 @@
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
-      "activated": " ON",
-      "deactivated": " OFF"
+      "activated": "",
+      "deactivated": ""
     }
   },
   "clock": {
@@ -60,16 +60,19 @@
   },
   "battery": {
     "states": {
-      "good": 95,
       "warning": 30,
       "critical": 15
     },
-    "format": " {capacity}%",
-    "format-discharging": "{icon} {capacity}% - {time}",
-    "format-icons": ["", "", "", "", ""]
+    "format": "{icon} {capacity}%",
+    "format-discharging": "{icon} {capacity}%",
+    "format-charging": "{icon} {capacity}% ",
+    "format-plugged": "{icon} {capacity}% ",
+    "format-full": "{icon} {capacity}% ",
+    "format-icons": ["", "", "", "", ""],
+    "tooltip-format": "{time}"
   },
   "network": {
-    "format-wifi": " {essid} ({signalStrength}%)",
+    "format-wifi": " {essid} · {signalStrength}%",
     "format-ethernet": " {ipaddr}",
     "format-disconnected": "Disconnected"
   },
