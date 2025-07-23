@@ -2,26 +2,41 @@
 
 * {
   border: none;
-  border-radius: 0;
-  font-family: sans-serif;
-  font-size: 9.5pt;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 11pt;
+  font-weight: 500;
   min-height: 0;
+  padding: 0;
 }
 
 window#waybar {
-  background: @theme_base_color;
-  border-bottom: 2px solid @unfocused_borders;
-  color: @theme_text_color;
+  background-color: transparent;
+  transition-property: background-color;
+  transition-duration: 0.5s;
 }
 
-label.module {
-  padding: 0 10px;
-  color: @theme_text_color;
-  min-width: 24px;
+#window,
+#workspaces,
+.module {
+  margin-right: 4px;
+  padding: 0px 6px;
+  background-color: #1b1d1e;
+  border: 1px solid #262829;
+  color: #dddddd;
 }
 
-#workspaces button.focused {
-  background: rgba(255, 255, 255, 0.2);
+.modules-left {
+  margin-left: 4px;
+}
+
+window#waybar.empty .horizontal:not(#workspaces) {
+  background-color: transparent;
+  border: none;
+}
+
+#workspaces {
+  padding: 0px;
 }
 
 #battery {
@@ -48,47 +63,35 @@ label.module {
   animation-direction: alternate;
 }
 
-#battery.critical,
-#cpu.critical,
-#temperature.critical {
-  color: #e01b24;
+#workspaces button {
+  all: initial;
+  padding: 2px 4px;
+  border-radius: 6px;
 }
 
-#battery.warning,
-#cpu.warning,
-#network.disconnected {
-  color: #e66100;
-}
-
-.modules-left .horizontal:not(#workspaces) {
-  margin-left: 12px;
-  padding: 0 12px;
-  background: rgba(255, 255, 255, 0.2);
-}
-
-window#waybar.empty .horizontal:not(#workspaces) {
-  background: transparent;
+#workspaces button.focused {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 #workspaces button.urgent {
-  border-color: #e66100;
-  color: #e66100;
+  border-color: rgb(230, 97, 0);
+  color: rgb(230, 97, 0);
 }
 
 @keyframes blink-warning {
   to {
-    background: #e66100;
+    background-color: rgba(230, 97, 0, 0.4);
   }
 }
 
 @keyframes blink-critical {
   to {
-    background: #e01b24;
+    background-color: rgba(224, 27, 36, 0.4);
   }
 }
 
 @keyframes blink-recorder {
   to {
-    background: #1a5fb4;
+    background-color: #1a5fb4;
   }
 }
