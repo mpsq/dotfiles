@@ -37,28 +37,27 @@ window#waybar.empty .horizontal:not(#workspaces) {
   background-color: transparent;
 }
 
+#custom-headphones.active,
+#custom-wf-recorder.recording,
 #battery {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-duration: 0.75s;
 }
 
+#workspaces button.urgent,
 #battery.warning.discharging {
   animation-name: blink-warning;
-  animation-duration: 3s;
 }
 
 #battery.critical.discharging {
   animation-name: blink-critical;
-  animation-duration: 2s;
 }
 
 #custom-headphones.active,
 #custom-wf-recorder.recording {
   animation-name: blink-recorder;
-  animation-duration: 1s;
-  animation-timing-function: steps(12);
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
 }
 
 #workspaces {
@@ -76,25 +75,20 @@ window#waybar.empty .horizontal:not(#workspaces) {
   background-color: alpha(@white, 0.2);
 }
 
-#workspaces button.urgent {
-  animation-name: blink-critical;
-  animation-duration: 2s;
-}
-
 @keyframes blink-warning {
   to {
-    background-color: alpha(@orange, 0.3);
+    color: alpha(@orange, 0.9);
   }
 }
 
 @keyframes blink-critical {
   to {
-    background-color: alpha(@red, 0.3);
+    color: alpha(@red, 0.8);
   }
 }
 
 @keyframes blink-recorder {
   to {
-    background-color: @blue;
+    color: alpha(@blue, 0.9);
   }
 }
