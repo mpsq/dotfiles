@@ -104,7 +104,7 @@ if command -v dircolors >/dev/null; then
   eval $(dircolors)
 fi
 
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "/usr/share/nvm/init-nvm.sh" ] && \. /usr/share/nvm/init-nvm.sh
 
 if [[ ! -v INSIDE_EMACS ]]; then
   set -o vi
