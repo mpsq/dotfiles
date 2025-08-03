@@ -2,10 +2,6 @@
 #
 set $mod Mod1
 set $term foot
-set $bg #1c1e26
-set $fg #e0e0e0
-set $fc #666666
-set $ur #e95678
 set $left h
 set $down j
 set $up k
@@ -13,15 +9,14 @@ set $right l
 
 font pango:monospace 9
 
-### Theme
-#
-# class                 border  backgr. text indicator child_border
-client.focused          $fc     $bg     $fg  $bg       $fc
-client.focused_inactive $bg     $bg     $fg  $bg       $bg
-client.unfocused        $bg     $bg     $fg  $bg       $bg
-client.urgent           $ur     $bg     $fg  $bg       $ur
-client.placeholder      $bg     $bg     $fg  $bg       $bg
-client.background $bg
+# Theme colors
+# class                 border  backgr. text    indic.   child_border
+client.focused          #333333 #585858 #333333 #d0d0d0
+client.focused_inactive #333333 #333333 #d7875f #454948
+client.unfocused        #333333 #333333 #d7875f #454948
+client.urgent           #333333 #333333 #af005f #5fafd7
+client.placeholder      #1c1c1c #0c0c0c #ffffff #1c1c1c
+client.background       #333333
 
 gaps inner 6
 gaps outer 0
@@ -201,7 +196,7 @@ for_window [window_role="Preferences"] floating enable opacity 0.95
 for_window [window_type="dialog"] floating enable opacity 0.95
 for_window [window_type="menu"] floating enable opacity 0.95
 for_window [title = "Picture-in-Picture"] floating enable
-for_window [app_id="foot"] opacity 0.95
+for_window [app_id="foot"] opacity 0.90
 
 ### Assign
 assign [app_id = "emacs"] 2
