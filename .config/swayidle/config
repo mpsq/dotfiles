@@ -1,2 +1,2 @@
-timeout 300 'swaylock -f'
-before-sleep 'swaylock -f'
+timeout 300 'lock-session'
+before-sleep 'lock-session'

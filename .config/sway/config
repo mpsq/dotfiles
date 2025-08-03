@@ -159,7 +159,7 @@ bindsym XF86MonBrightnessUp exec brightness-up
 bindsym XF86MonBrightnessDown exec brightness-down
 
 # Lock
-bindsym Ctrl+Shift+Super_L exec --no-startup-id swaylock
+bindsym Ctrl+Shift+Super_L exec --no-startup-id lock-session
 
 # Screenshot
 bindsym --release $mod+Shift+u exec --no-startup-id capture-screen

@@ -1,0 +1,42 @@
+@define-color overlay         #ffffff;
+
+* {
+  all: unset;
+}
+
+window {
+  background-image: url("/usr/share/backgrounds/archlinux/geolanes.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#date-label,
+#clock-label {
+  color: @overlay;
+  font-size: 34px;
+  font-family: monospace;
+  font-weight: 800;
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+#clock-label {
+  font-size: 72px;
+}
+
+#date-label {
+  margin-bottom: 10px;
+}
+
+#input-field {
+  border-radius: 20px;
+  padding: 10px 15px;
+  border: 1px solid @overlay;
+}
+
+/* hide labels */
+#input-label,
+#unlock-button {
+  font-size: 0;
+}
