@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
 set -euom pipefail
 
-swaybg --image /usr/share/backgrounds/archlinux/small.png --mode fill
+bkg_img="$HOME/img/bkg.jpg"
+dst_img="/usr/share/backgrounds/archlinux/small.png"
+
+if [ -e "$bkg_img" ]; then
+    dst_img="$bkg_img"
+fi
+
+swaybg --image "$dst_img" --mode fill
