@@ -1,7 +1,7 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Doom config
-(setq doom-theme 'doom-Iosvkem
+(setq doom-theme 'doom-tomorrow-night
       doom-font (font-spec :family "Iosevka Fixed SS16" :size 13)
       doom-big-font (font-spec :family "Iosevka Fixed SS16" :size 14)
       doom-variable-pitch-font (font-spec :family "Droid Sans" :size 13)
