@@ -1,2 +1,3 @@
 timeout 300 'lock-session'
+timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
 before-sleep 'lock-session'
