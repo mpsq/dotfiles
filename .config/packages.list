@@ -8,8 +8,6 @@ baobab
 bash-completion
 bash-language-server
 bc
-bitwarden
-bitwarden-cli
 blueberry
 bluez
 bluez-utils
@@ -43,6 +41,7 @@ fuzzel
 fwupd
 fzf
 gammastep
+gcr
 gimp
 git
 git-delta
@@ -50,7 +49,6 @@ glfw-wayland
 glu
 gnome-disk-utility
 gnome-system-monitor
-gnome-themes-standard
 goimapnotify
 gopls
 grim
@@ -89,11 +87,11 @@ myrepos
 mythes-en
 nautilus
 ncdu
-neofetch
 networkmanager
 nm-connection-editor
 noto-fonts-emoji
 ntp
+nvm
 nwg-displays
 nwg-look
 otf-font-awesome
