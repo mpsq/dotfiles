@@ -147,6 +147,7 @@ wireplumber
 wl-clipboard
 wob
 xdg-desktop-portal
+xdg-desktop-portal-gtk
 xdg-desktop-portal-wlr
 xdg-user-dirs
 xorg-server-xwayland
