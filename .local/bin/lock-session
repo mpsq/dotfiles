@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
-# bkg_img="$XDG_CONFIG_HOME/gtklock/lock.jpg"
-# src_img="$XDG_CONFIG_HOME/gtklock/arch.jpg"
+bkg_img="$XDG_CONFIG_HOME/gtklock/lock.jpg"
+src_img="$XDG_CONFIG_HOME/gtklock/arch.jpg"
 
-# if ! [ -e "$bkg_img" ]; then
-#   magick "$src_img" -colorspace gray "$bkg_img"
-#   magick "$bkg_img" -blur 0x5 "$bkg_img"
-#   cp "$bkg_img" "$bkg_img"
-# fi
+if ! [ -e "$src_img" ]; then
+    curl -s "https://mailfence.com/pub/docs/merilpilon/web/arch.jpg" -o "$src_img"
+    magick "$src_img" -colorspace gray "$bkg_img"
+    magick "$bkg_img" -blur 0x9 "$bkg_img"
+    cp "$bkg_img" "$bkg_img"
+fi
 
 gtklock -d

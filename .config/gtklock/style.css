@@ -5,7 +5,7 @@
 }
 
 window {
-  background-image: url("/usr/share/backgrounds/archlinux/geolanes.png");
+  background-image: url("lock.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -14,14 +14,14 @@ window {
 #date-label,
 #clock-label {
   color: @overlay;
-  font-size: 34px;
+  font-size: 36px;
   font-family: monospace;
   font-weight: 800;
   text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
 }
 
 #clock-label {
-  font-size: 72px;
+  font-size: 84px;
 }
 
 #date-label {
