@@ -18,7 +18,6 @@ window {
   font-family: monospace;
   font-weight: 800;
   text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 #clock-label {
