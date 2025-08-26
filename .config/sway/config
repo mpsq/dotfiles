@@ -10,13 +10,18 @@ set $right l
 font pango:monospace 9
 
 # Theme colors
-# class                 border  backgr. text    indic.   child_border
-client.focused          #333333 #585858 #333333 #d0d0d0
-client.focused_inactive #333333 #333333 #d7875f #454948
-client.unfocused        #333333 #333333 #d7875f #454948
-client.urgent           #333333 #333333 #af005f #5fafd7
-client.placeholder      #1c1c1c #0c0c0c #ffffff #1c1c1c
-client.background       #333333
+set $dark      #2d2d2d
+set $focus     #585858
+set $bright    #d0d0d0
+set $urgent    #af005f
+set $highlight #d7875f
+
+# class                  border  background text    indicator  child_border
+client.focused           $focus  $focus     $dark   $highlight $focus
+client.unfocused         $dark   $dark      $bright $dark      $dark
+client.focused_inactive  $dark   $dark      $bright $dark      $dark
+client.focused_tab_title $focus  $dark      $bright
+client.urgent            $urgent $urgent    $dark   $urgent
 
 gaps inner 6
 gaps outer 0
