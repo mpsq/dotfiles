@@ -25,13 +25,21 @@ client.urgent            $urgent $urgent    $dark   $urgent
 
 gaps inner 6
 gaps outer 0
-default_border pixel 2
+# Slightly thicker borders.
+default_border pixel 3
 default_floating_border pixel 3
+# Hide borders if window is child in a workspace or container.
+hide_edge_borders --i3 smart
+titlebar_padding 6 6
 
 ### Input/output
 #
 input type:keyboard {
   xkb_layout gb
+}
+
+input type:pointer {
+  accel_profile flat
 }
 
 input type:touchpad {
@@ -40,6 +48,7 @@ input type:touchpad {
   tap enabled
   natural_scroll enabled
   middle_emulation enabled
+  accel_profile flat
   pointer_accel 0.12
 }
 
