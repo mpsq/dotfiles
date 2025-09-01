@@ -6,7 +6,6 @@ aspell-en
 aspell-fr
 baobab
 bash-completion
-bash-language-server
 bc
 blueberry
 bluez
@@ -29,7 +28,6 @@ editorconfig-core-c
 emacs-wayland
 eog
 eslint
-eslint-language-server
 evince
 exa
 fd
@@ -130,14 +128,11 @@ ttc-iosevka-ss16
 ttc-iosevka-ss17
 ttf-droid
 typescript
-typescript-language-server
 unrar
 unzip
 usbutils
 vcsh
 veracrypt
-vscode-css-languageserver
-vscode-json-languageserver
 waybar
 wayland
 wf-recorder

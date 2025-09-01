@@ -44,18 +44,6 @@
   (setq typescript-indent-level 2))
 (setq-hook! 'typescript-tsx-mode-hook web-mode-code-indent-offset 2)
 
-;; Formatting
-(use-package! apheleia
-  :defer t
-  :config
-  ;; format markdown with prettier
-  (push '(markdown-mode . prettier) apheleia-mode-alist))
-;; On save
-(setq +format-on-save-disabled-modes
-      '(web-mode         ; broken with templates
-        yaml-mode        ; clashes with other formatting tools
-        ))
-
 ;; LSP
 (setq lsp-clients-typescript-max-ts-server-memory 4096)
 (setq lsp-file-watch-threshold 20000)
@@ -74,10 +62,6 @@
   :desc "Switch to window 7" :n "7" #'winum-select-window-7
   :desc "Switch to window 8" :n "8" #'winum-select-window-8
   :desc "Switch to window 9" :n "9" #'winum-select-window-9))
-
-;; Load private stuff
-(when (file-exists-p "~/.config/priv/config.el")
-  (load-file "~/.config/priv/config.el"))
 
 ;; Trigger recentf every 5 minutes (useful when running Emacs daemon)
 (after! recentf
@@ -98,9 +82,6 @@
 ;; Treemacs config
 (setq +treemacs-git-mode 'extended)
 (after! treemacs
-  (setq treemacs-no-png-images t
-        treemacs-space-between-root-nodes nil
-        treemacs-collapse-dirs 5)
   (treemacs-follow-mode))
 
 ;; GPG settings/keyring
@@ -111,8 +92,6 @@
 
 ;; Magit
 (setq magit-diff-refine-hunk (quote all))
-;; https://github.com/magit/magit/issues/3549
-(setq magit-process-finish-apply-ansi-colors t)
 
 ;; vcsh / magit compatibility
 (after! magit

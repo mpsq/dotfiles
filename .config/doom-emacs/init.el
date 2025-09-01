@@ -7,7 +7,6 @@
 (setenv "LSP_USE_PLISTS" "1")
 
 (doom! :completion
-       ;; (company +childframe)
        (corfu +orderless +icons)
        (vertico +icons +childframe)
 
@@ -49,16 +48,14 @@
        grammar
 
        :tools
-       (debugger +lsp)
-       (docker +lsp)
+       debugger
+       (docker +lsp +tree-sitter)
        editorconfig
-       (eval +overlay)
        (lookup +dictionary +offline)
-       (lsp +peek)
+       lsp
        (magit +forge)
        make
-       pdf
-       terraform
+       (terraform +lsp)
        tree-sitter
 
        :os
@@ -68,21 +65,20 @@
        data
        emacs-lisp
        (go +lsp +tree-sitter)
-       (json +lsp)
-       (java +lsp)
+       (json +lsp +tree-sitter)
+       (java +lsp +tree-sitter)
        (javascript +lsp +tree-sitter)
-       markdown
-       (org +journal +hugo +pretty)
-       (python +lsp)
-       rest
-       (rust +lsp)
+       (markdown +tree-sitter)
+       (org +journal +pretty)
+       (python +lsp +tree-sitter)
+       (rest +jq)
+       (rust +lsp +tree-sitter)
        (sh +lsp +tree-sitter)
        (web +lsp +tree-sitter)
-       (yaml +lsp)
+       (yaml +lsp +tree-sitter)
 
        :app
-       ;;everywhere
 
        :config
-       (default +bindings +smartparens)
+       (default +bindings +smartparens +gnupg)
        )
