@@ -83,6 +83,14 @@
 (setq +treemacs-git-mode 'extended)
 (after! treemacs
   (treemacs-follow-mode))
+;; Docs for M-x +treemacs/toggle says to use M-x treemacs command to use it to
+;; get the old functionality (ie. not removing projects from current)
+(map! :leader "o p" #'treemacs)
+
+;; Configure projectile for better project management
+(after! projectile
+  (setq projectile-project-search-path '("~/devel/" "~/code/")
+        projectile-require-project-root nil))
 
 ;; GPG settings/keyring
 (setq auth-sources '("~/.authinfo.gpg")
@@ -113,3 +121,6 @@
 (use-package! vterm
   :config
   (evil-define-key 'insert vterm-mode-map (kbd "C-j") #'vterm--self-insert))
+
+;; Dim regions not on … focus
+(use-package! focus)
