@@ -6,10 +6,11 @@ libdeep_filter_ladspa-bin
 mullvad-vpn-bin
 pinta
 pwvucontrol
+shellcheck-bin
 spotify
 tflint-bin
 ttf-twemoji
 ttf-unifont
-wordnet-progs
 wordnet-common
+wordnet-progs
 yay
