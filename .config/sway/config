@@ -17,7 +17,7 @@ set $urgent    #af005f
 set $highlight #d7875f
 
 # class                  border  background text    indicator  child_border
-client.focused           $focus  $focus     $dark   $highlight $focus
+client.focused           $focus  $focus     $focus  $highlight $focus
 client.unfocused         $dark   $dark      $bright $dark      $dark
 client.focused_inactive  $dark   $dark      $bright $dark      $dark
 client.focused_tab_title $focus  $dark      $bright
