@@ -49,6 +49,17 @@
 (setq lsp-file-watch-threshold 20000)
 (setq lsp-use-plists "true")
 
+(use-package! lsp-biome
+  :init
+  (setq lsp-biome-format-on-save t)
+
+  :preface
+  (defun my/lsp-biome-active-hook ()
+    (setq-local apheleia-formatter '(biome)))
+
+  :config
+  (add-hook 'lsp-biome-active-hook #'my/lsp-biome-active-hook))
+
 ;; Better window selection
 (map!
  (:leader
