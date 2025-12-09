@@ -1,7 +1,7 @@
 [screencast]
-max_fps=60
+max_fps=30
 chooser_type=dmenu
-chooser_cmd=swaymsg -t get_outputs | jq '.[] | .name' | sed 's/"//g' | fuzzel -d
+chooser_cmd=fuzzel --dmenu --width 65
 force_mod_linear=1
 exec_before=sh -c "notify-send --urgency=normal --app-name=xdpw \"Screenshare started\" && makoctl set-mode do-not-disturb"
 exec_after=sh -c "notify-send --urgency=normal --app-name=xdpw \"Screenshare ended\" && makoctl set-mode default"
