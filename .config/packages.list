@@ -57,8 +57,6 @@ gst-plugins-base
 gst-plugins-base-libs
 gst-plugins-good
 gst-plugins-ugly
-gtk-engine-murrine
-gtk-engines
 gtklock
 hunspell
 hunspell-en_GB
