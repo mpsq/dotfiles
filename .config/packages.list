@@ -23,7 +23,6 @@ dnsmasq
 docker
 docker-compose
 docker-machine
-easyeffects
 editorconfig-core-c
 emacs-wayland
 eog
@@ -84,6 +83,7 @@ myrepos
 mythes-en
 nautilus
 ncdu
+net-tools
 networkmanager
 nm-connection-editor
 noto-fonts-emoji
