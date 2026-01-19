@@ -210,7 +210,6 @@ for_window [window_role="Preferences"] floating enable opacity 0.95
 for_window [window_type="dialog"] floating enable opacity 0.95
 for_window [window_type="menu"] floating enable opacity 0.95
 for_window [title = "Picture-in-Picture"] floating enable
-for_window [app_id="foot"] opacity 0.90
 for_window [app_id="(pwvucontrol|pavucontrol)"] floating enable
 for_window [app_id="firefox" title="Firefox — Sharing Indicator"] floating enable
 for_window [app_id="firefox" title="Picture-in-Picture"] floating enable
