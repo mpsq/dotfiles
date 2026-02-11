@@ -1,12 +1,13 @@
-rule = {
-  matches = {
-    {
-      { "node.name", "matches", "alsa_output.*" },
-    },
-  },
-  apply_properties = {
-    ["session.suspend-timeout-seconds"] = 0,
-  },
-}
-
-table.insert(alsa_monitor.rules, rule)
+monitor.alsa.rules = [
+  {
+    matches = [
+      { node.name = "~alsa_output.*" }
+      { node.name = "~alsa_input.*" }
+    ]
+    actions = {
+      update-props = {
+        session.suspend-timeout-seconds = 0
+      }
+    }
+  }
+]
