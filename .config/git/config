@@ -20,10 +20,10 @@
 
 [diff]
   algorithm = patience
-  compactionHeuristic = true
   colorMoved = default
 
 [merge]
+  conflictstyle = zdiff3
   commit = no
   ff = no
 
@@ -54,13 +54,15 @@
 [format]
   pretty = %C(Yellow)%h  %C(reset)%ad (%C(Green)%cr%C(reset))%x09 %C(Cyan)%an: %C(reset)%s
 
+[push]
+  autoSetupRemote = true
+
 [alias]
   # misc
   ci = commit
   s = status
   a = add
   aa = add --all
-  pu = "!git push -u origin \"$(git rev-parse --abbrev-ref HEAD)\""
   puf = push --force-with-lease
   d = diff
 
