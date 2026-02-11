@@ -4,6 +4,7 @@
 # compositor and falls back to pinentry-curses in a TTY.
 
 set -euo pipefail
+trap '' PIPE
 
 FUZZEL_OPTS=(
   --prompt-only ""
@@ -50,7 +51,7 @@ OK_LABEL=""
 CANCEL_LABEL=""
 TIMEOUT=0
 
-echo "OK Please go ahead"
+echo "OK Please go ahead" 2>/dev/null || exit 0
 
 while IFS= read -r line; do
   # Split into command and arguments
@@ -251,7 +252,7 @@ while IFS= read -r line; do
     echo "OK"
     ;;
   BYE)
-    echo "OK closing connection"
+    echo "OK closing connection" 2>/dev/null || true
     exit 0
     ;;
 
