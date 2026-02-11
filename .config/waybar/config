@@ -12,7 +12,7 @@
   "modules-right": [
     "systemd-failed-units",
     "idle_inhibitor",
-    "wireplumber#sink",
+    "wireplumber",
     "temperature",
     "network",
     "battery",
@@ -69,19 +69,11 @@
     "format-ethernet": " {ipaddr}",
     "format-disconnected": "Disconnected"
   },
-  "wireplumber#sink": {
+  "wireplumber": {
     "format": "{icon} {volume}%",
-    "format-muted": "",
-    "format-icons": ["", "", ""],
-    "on-click": "pavucontrol",
-    "scroll-step": 1
-  },
-  "wireplumber#source": {
-    "format": "{format_source}",
-    "format-source": " ",
-    "format-source-muted": "",
-    "tooltip-format": "{node_name}, {source_volume}%",
-    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+    "format-muted": "",
+    "on-click": "pwvucontrol",
+    "format-icons": ["", "", ""]
   },
   "systemd-failed-units": {
     "hide-on-ok": true,
