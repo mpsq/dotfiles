@@ -14,7 +14,11 @@ FUZZEL_OPTS=(
 )
 CURSES_BIN="/usr/bin/pinentry-curses"
 
-if [[ -z "${WAYLAND_DISPLAY:-}" ]]; then
+# Check both the env var AND that the Wayland socket is actually reachable.
+# gpg-agent is long-lived and may have inherited WAYLAND_DISPLAY from a
+# session that is no longer active (e.g. when using a TTY).
+wayland_socket="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/${WAYLAND_DISPLAY:-}"
+if [[ -z "${WAYLAND_DISPLAY:-}" ]] || [[ ! -S "$wayland_socket" ]]; then
   exec "$CURSES_BIN" "$@"
 fi
 
