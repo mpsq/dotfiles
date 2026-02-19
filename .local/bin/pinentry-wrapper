@@ -1,49 +1,89 @@
 #!/bin/bash
-
-# pinentry-wrapper: Wayland-aware pinentry that uses fuzzel under a
-# compositor and falls back to pinentry-curses in a TTY.
+# pinentry-wrapper: minimal pinentry using fuzzel on Wayland,
+# falling back to pinentry-curses when no compositor is reachable.
 
 set -euo pipefail
-trap '' PIPE
+trap '' PIPE # gpg-agent closes its end early sometimes
 
-FUZZEL_OPTS=(
-  --prompt-only ""
-  --cache /dev/null
-  --password
-  --dmenu
-)
 CURSES_BIN="/usr/bin/pinentry-curses"
 
-# Check both the env var AND that the Wayland socket is actually reachable.
-# gpg-agent is long-lived and may have inherited WAYLAND_DISPLAY from a
-# session that is no longer active (e.g. when using a TTY).
+# ── Wayland liveness check ──────────────────────────────────────────
+# The socket file can outlive the compositor, so test that it's usable.
 wayland_socket="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/${WAYLAND_DISPLAY:-}"
-if [[ -z "${WAYLAND_DISPLAY:-}" ]] || [[ ! -S "$wayland_socket" ]]; then
-  exec "$CURSES_BIN" "$@"
+if [[ -z "${WAYLAND_DISPLAY:-}" || ! -S "$wayland_socket" ]]; then
+    exec "$CURSES_BIN" "$@"
 fi
 
-decode_url() {
-  printf '%b' "${1//%/\\x}"
-}
+# ── Helpers ─────────────────────────────────────────────────────────
+decode_url() { printf '%b' "${1//%/\\x}"; }
 
 notify() {
-  local appname="$1" summary="$2" body="${3:-}" expire="${4:-0}"
-  dbus-send \
-    --session \
-    --dest=org.freedesktop.Notifications \
-    --type=method_call \
-    --print-reply \
-    /org/freedesktop/Notifications org.freedesktop.Notifications.Notify \
-    string:"$appname" \
-    uint32:0 \
-    string:"" \
-    string:"$summary" \
-    string:"$body" \
-    array:string: \
-    dict:string:string: \
-    int32:"$expire" >/dev/null 2>&1 || true
+    local appname="$1" summary="$2" body="${3:-}" expire="${4:-0}"
+    dbus-send --session \
+        --dest=org.freedesktop.Notifications \
+        --type=method_call --print-reply \
+        /org/freedesktop/Notifications \
+        org.freedesktop.Notifications.Notify \
+        string:"$appname" uint32:0 string:"" \
+        string:"$summary" string:"$body" \
+        array:string: dict:string:string: \
+        int32:"$expire" >/dev/null 2>&1 || true
 }
 
+# Strip HTML tags gpg-agent embeds in descriptions.
+strip_html() { sed 's/<[^>]*>//g; s/  */ /g' <<<"$1"; }
+
+# ── Assemble a human-readable prompt label ──────────────────────────
+build_prompt() {
+    local desc="$1" label="" ident=""
+
+    # Detect SSH vs GPG context
+    if [[ "$desc" == *SSH* || "$desc" == *ssh* ]]; then
+        label="SSH"
+    elif [[ "$desc" == *OpenPGP* || "$desc" == *GPG* || "$desc" == *gpg* ]]; then
+        label="GPG"
+    fi
+
+    # Extract identity: quoted name, file path, or hex fingerprint
+    if [[ "$desc" =~ \"([^\"]+)\" ]]; then
+        ident="${BASH_REMATCH[1]}"
+    elif [[ "$desc" =~ (/[^[:space:]]+) ]]; then
+        ident="${BASH_REMATCH[1]}"
+    elif [[ "$desc" =~ ([0-9A-Fa-f]{8,}) ]]; then
+        ident="${BASH_REMATCH[1]}"
+    fi
+
+    # Key metadata (e.g. "4096-bit RSA key")
+    local meta=""
+    if [[ "$desc" =~ ([0-9]+-bit[[:space:]]+[A-Za-z0-9]+[[:space:]]+key) ]]; then
+        meta="${BASH_REMATCH[1]}"
+    fi
+
+    # Compose
+    if [[ -n "$label" && -n "$ident" && -n "$meta" ]]; then
+        echo "$label $ident ($meta): "
+    elif [[ -n "$label" && -n "$ident" ]]; then
+        echo "$label $ident: "
+    elif [[ -n "$label" ]]; then
+        echo "$label key: "
+    elif [[ -n "$ident" ]]; then
+        echo "$ident: "
+    else
+        echo "Passphrase: "
+    fi
+}
+
+# ── Ask for a passphrase via fuzzel ─────────────────────────────────
+ask_pass() {
+    local prompt="$1"
+    fuzzel --prompt-only "$prompt" \
+        --cache /dev/null \
+        --width 60 \
+        --password \
+        --dmenu 2>/dev/null
+}
+
+# ── State variables ─────────────────────────────────────────────────
 TITLE="pinentry-wrapper"
 DESC=""
 PROMPT="PIN:"
@@ -51,217 +91,129 @@ ERROR=""
 KEYINFO=""
 REPEAT=""
 REPEAT_ERROR=""
-OK_LABEL=""
-CANCEL_LABEL=""
 TIMEOUT=0
 
+# ── Main loop ───────────────────────────────────────────────────────
 echo "OK Please go ahead" 2>/dev/null || exit 0
 
 while IFS= read -r line; do
-  # Split into command and arguments
-  cmd="${line%% *}"
-  rest="${line#* }"
-  [[ "$cmd" == "$rest" ]] && rest=""
+    cmd="${line%% *}"
+    rest="${line#* }"
+    [[ "$cmd" == "$rest" ]] && rest=""
+    cmd="${cmd^^}"
 
-  cmd="${cmd^^}"
+    case "$cmd" in
 
-  case "$cmd" in
+    GETINFO)
+        case "$rest" in
+        flavor)
+            echo "D fuzzel"
+            echo "OK"
+            ;;
+        version)
+            echo "D 0.2.0"
+            echo "OK"
+            ;;
+        ttyinfo)
+            echo "D - - -"
+            echo "OK"
+            ;;
+        pid)
+            echo "D $$"
+            echo "OK"
+            ;;
+        *) echo "OK" ;;
+        esac
+        ;;
 
-  GETINFO)
-    case "$rest" in
-    flavor)
-      echo "D fuzzel"
-      echo "OK"
-      ;;
-    version)
-      echo "D 0.2.0"
-      echo "OK"
-      ;;
-    ttyinfo)
-      echo "D - - -"
-      echo "OK"
-      ;;
-    pid)
-      echo "D $$"
-      echo "OK"
-      ;;
+    OPTION)
+        [[ "$rest" =~ ^timeout=([0-9]+) ]] && TIMEOUT="${BASH_REMATCH[1]}"
+        echo "OK"
+        ;;
+
+    SETTITLE)
+        TITLE="$(decode_url "$rest")"
+        echo "OK"
+        ;;
+    SETDESC)
+        DESC="$(decode_url "$rest")"
+        echo "OK"
+        ;;
+    SETPROMPT)
+        PROMPT="$(decode_url "$rest")"
+        echo "OK"
+        ;;
+    SETKEYINFO)
+        KEYINFO="$rest"
+        echo "OK"
+        ;;
+    SETOK | SETCANCEL) echo "OK" ;;
+    SETREPEAT)
+        REPEAT=1
+        echo "OK"
+        ;;
+    SETREPEATERROR)
+        REPEAT_ERROR="$(decode_url "$rest")"
+        echo "OK"
+        ;;
+    SETQUALITYBAR | SETQUALITYBAR_TT) echo "OK" ;;
+
+    SETERROR)
+        ERROR="$(decode_url "$rest")"
+        notify "$TITLE" "Error" "$ERROR" 5000
+        echo "OK"
+        ;;
+
+    GETPIN)
+        clean_desc=""
+        [[ -n "$DESC" ]] && clean_desc="$(strip_html "$DESC")"
+
+        prompt_label="$(build_prompt "$clean_desc")"
+
+        # Show full context as a notification alongside the fuzzel prompt
+        [[ -n "$clean_desc" ]] && notify "$TITLE" "Passphrase requested" "$clean_desc" 10000
+
+        result="$(ask_pass "$prompt_label")" || true
+
+        if [[ -z "$result" ]]; then
+            echo "ERR 83886179 Operation cancelled <Pinentry>"
+        elif [[ -n "$REPEAT" ]]; then
+            confirm="$(ask_pass "Confirm $prompt_label")" || true
+            if [[ "$result" != "$confirm" ]]; then
+                notify "$TITLE" "Error" "${REPEAT_ERROR:-Passphrases do not match.}" 3000
+                echo "ERR 83886179 Mismatch <Pinentry>"
+            else
+                echo "D $result"
+                echo "OK"
+            fi
+            REPEAT=""
+        else
+            echo "D $result"
+            echo "OK"
+        fi
+        ;;
+
+    CONFIRM)
+        [[ -n "$DESC" ]] && notify "$TITLE" "$DESC" "" 5000
+        echo "OK"
+        ;;
+
+    MESSAGE)
+        notify "$TITLE" "$DESC" "" 5000
+        echo "OK"
+        ;;
+
+    RESET)
+        TITLE="pinentry-wrapper" DESC="" PROMPT="PIN:" ERROR=""
+        KEYINFO="" REPEAT="" REPEAT_ERROR="" TIMEOUT=0
+        echo "OK"
+        ;;
+
+    BYE)
+        echo "OK closing connection" 2>/dev/null || true
+        exit 0
+        ;;
+
     *) echo "OK" ;;
     esac
-    ;;
-
-  OPTION)
-    # Honour the grab / ttyname / lc-ctype etc. options silently.
-    # Parse timeout if provided: OPTION timeout=N
-    if [[ "$rest" =~ ^timeout=([0-9]+) ]]; then
-      TIMEOUT="${BASH_REMATCH[1]}"
-    fi
-    echo "OK"
-    ;;
-  SETKEYINFO)
-    KEYINFO="$rest"
-    echo "OK"
-    ;;
-
-  SETTITLE)
-    TITLE="$(decode_url "$rest")"
-    echo "OK"
-    ;;
-  SETDESC)
-    DESC="$(decode_url "$rest")"
-    echo "OK"
-    ;;
-  SETPROMPT)
-    PROMPT="$(decode_url "$rest")"
-    echo "OK"
-    ;;
-  SETERROR)
-    ERROR="$(decode_url "$rest")"
-    notify "$TITLE" "Error" "$ERROR" 5000
-    echo "OK"
-    ;;
-  SETOK)
-    OK_LABEL="$(decode_url "$rest")"
-    echo "OK"
-    ;;
-  SETCANCEL)
-    CANCEL_LABEL="$(decode_url "$rest")"
-    echo "OK"
-    ;;
-  SETREPEAT)
-    REPEAT="1"
-    echo "OK"
-    ;;
-  SETREPEATERROR)
-    REPEAT_ERROR="$(decode_url "$rest")"
-    echo "OK"
-    ;;
-  SETQUALITYBAR | SETQUALITYBAR_TT)
-    echo "OK"
-    ;;
-
-  GETPIN)
-    # Strip HTML markup gpg-agent likes to include
-    clean_desc=""
-    if [[ -n "$DESC" ]]; then
-      clean_desc="$(echo "$DESC" | sed 's/<[^>]*>//g; s/  */ /g')"
-    fi
-
-    # Detect what is requesting the passphrase and build a visible
-    # prompt label so the user knows what they're unlocking.
-    prompt_label=""
-    if [[ "$clean_desc" == *"SSH"* || "$clean_desc" == *"ssh"* ]]; then
-      prompt_label="SSH"
-    elif [[ "$clean_desc" == *"OpenPGP"* || "$clean_desc" == *"GPG"* || "$clean_desc" == *"gpg"* ]]; then
-      prompt_label="GPG"
-    fi
-
-    # Try to extract an identity: quoted string first ("user <email>"),
-    # then a file path, then a long hex fingerprint.
-    key_id=""
-    if [[ "$clean_desc" =~ \"([^\"]+)\" ]]; then
-      key_id="${BASH_REMATCH[1]}"
-    elif [[ "$clean_desc" =~ (/[^[:space:]]+) ]]; then
-      key_id="${BASH_REMATCH[1]}"
-    elif [[ "$clean_desc" =~ ([0-9A-Fa-f]{8,}) ]]; then
-      key_id="${BASH_REMATCH[1]}"
-    fi
-
-    # Also try to extract the key type/size line gpg-agent sends,
-    # e.g. "4096-bit RSA key, ID 0xABCD1234"
-    key_meta=""
-    if [[ "$clean_desc" =~ ([0-9]+-bit[[:space:]]+[A-Za-z0-9]+[[:space:]]+key) ]]; then
-      key_meta="${BASH_REMATCH[1]}"
-    fi
-
-    # Assemble the prompt: "SSH /home/user/.ssh/id_ed25519: "
-    #                    or "GPG user@example.com (4096-bit RSA key): "
-    #                    or "Passphrase: "
-    if [[ -n "$prompt_label" && -n "$key_id" && -n "$key_meta" ]]; then
-      prompt_label="$prompt_label $key_id ($key_meta): "
-    elif [[ -n "$prompt_label" && -n "$key_id" ]]; then
-      prompt_label="$prompt_label $key_id: "
-    elif [[ -n "$prompt_label" ]]; then
-      prompt_label="$prompt_label key: "
-    elif [[ -n "$key_id" ]]; then
-      prompt_label="$key_id: "
-    else
-      prompt_label="Passphrase: "
-    fi
-
-    # Fire a notification with the full description so the user can
-    # read the complete context while the fuzzel prompt is up.
-    if [[ -n "$clean_desc" ]]; then
-      notify "$TITLE" "Passphrase requested" "$clean_desc" 10000
-    fi
-
-    result="$(fuzzel \
-      --prompt-only "$prompt_label" \
-      --cache /dev/null \
-      --width 60 \
-      --password \
-      --dmenu \
-      2>/dev/null)" || true
-
-    if [[ -z "$result" ]]; then
-      echo "ERR 83886179 Operation cancelled <Pinentry>"
-    else
-      if [[ -n "$REPEAT" ]]; then
-        confirm="$(fuzzel \
-          --prompt-only "Confirm $prompt_label" \
-          --cache /dev/null \
-          --width 60 \
-          --password \
-          --dmenu \
-          2>/dev/null)" || true
-        if [[ "$result" != "$confirm" ]]; then
-          errmsg="${REPEAT_ERROR:-Passphrases do not match.}"
-          notify "$TITLE" "Error" "$errmsg" 3000
-          echo "ERR 83886179 Mismatch <Pinentry>"
-          REPEAT=""
-          continue
-        fi
-        REPEAT=""
-      fi
-      echo "D $result"
-      echo "OK"
-    fi
-    ;;
-
-  CONFIRM)
-    # fuzzel can't really do yes/no buttons, so show the description
-    # as a notification and assume OK.  If --one-button was set we
-    # just acknowledge.
-    if [[ -n "$DESC" ]]; then
-      notify "$TITLE" "$DESC" "" 5000
-    fi
-    echo "OK"
-    ;;
-
-  MESSAGE)
-    notify "$TITLE" "$DESC" "" 5000
-    echo "OK"
-    ;;
-
-  RESET)
-    TITLE="pinentry-wrapper"
-    DESC=""
-    PROMPT="PIN:"
-    ERROR=""
-    KEYINFO=""
-    REPEAT=""
-    REPEAT_ERROR=""
-    OK_LABEL=""
-    CANCEL_LABEL=""
-    TIMEOUT=0
-    echo "OK"
-    ;;
-  BYE)
-    echo "OK closing connection" 2>/dev/null || true
-    exit 0
-    ;;
-
-  *)
-    echo "OK"
-    ;;
-  esac
 done
