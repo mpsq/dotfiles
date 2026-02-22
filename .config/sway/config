@@ -227,3 +227,4 @@ include /etc/sway/config.d/*
 ### Start session
 exec swaymsg create_output
 exec_always systemctl --user start sway-session.target
+exec systemctl --user import-environment WAYLAND_DISPLAY SWAYSOCK DISPLAY XDG_CURRENT_DESKTOP
