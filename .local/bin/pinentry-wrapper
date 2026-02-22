@@ -11,40 +11,23 @@ CURSES_BIN="/usr/bin/pinentry-curses"
 # The socket file can outlive the compositor, so test that it's usable.
 wayland_socket="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/${WAYLAND_DISPLAY:-}"
 if [[ -z "${WAYLAND_DISPLAY:-}" || ! -S "$wayland_socket" ]]; then
-    # Only fall back to curses if a real TTY is available
-    if [[ -t 0 && -t 1 ]]; then
-        exec "$CURSES_BIN" "$@"
-    fi
-    # No Wayland, no TTY — run a stub that rejects GETPIN gracefully
-    # so gpg-agent gets a clean cancel instead of an ioctl error.
-    echo "OK Please go ahead"
-    while IFS= read -r line; do
-        case "${line%% *}" in
-        GETPIN) echo "ERR 83886179 No display or TTY available <Pinentry>" ;;
-        BYE)
-            echo "OK closing connection"
-            exit 0
-            ;;
-        *) echo "OK" ;;
-        esac
-    done
-    exit 0
+  exec "$CURSES_BIN" "$@"
 fi
 
 # ── Helpers ─────────────────────────────────────────────────────────
 decode_url() { printf '%b' "${1//%/\\x}"; }
 
 notify() {
-    local appname="$1" summary="$2" body="${3:-}" expire="${4:-0}"
-    dbus-send --session \
-        --dest=org.freedesktop.Notifications \
-        --type=method_call --print-reply \
-        /org/freedesktop/Notifications \
-        org.freedesktop.Notifications.Notify \
-        string:"$appname" uint32:0 string:"" \
-        string:"$summary" string:"$body" \
-        array:string: dict:string:string: \
-        int32:"$expire" >/dev/null 2>&1 || true
+  local appname="$1" summary="$2" body="${3:-}" expire="${4:-0}"
+  dbus-send --session \
+    --dest=org.freedesktop.Notifications \
+    --type=method_call --print-reply \
+    /org/freedesktop/Notifications \
+    org.freedesktop.Notifications.Notify \
+    string:"$appname" uint32:0 string:"" \
+    string:"$summary" string:"$body" \
+    array:string: dict:string:string: \
+    int32:"$expire" >/dev/null 2>&1 || true
 }
 
 # Strip HTML tags gpg-agent embeds in descriptions.
@@ -52,52 +35,52 @@ strip_html() { sed 's/<[^>]*>//g; s/  */ /g' <<<"$1"; }
 
 # ── Assemble a human-readable prompt label ──────────────────────────
 build_prompt() {
-    local desc="$1" label="" ident=""
+  local desc="$1" label="" ident=""
 
-    # Detect SSH vs GPG context
-    if [[ "$desc" == *SSH* || "$desc" == *ssh* ]]; then
-        label="SSH"
-    elif [[ "$desc" == *OpenPGP* || "$desc" == *GPG* || "$desc" == *gpg* ]]; then
-        label="GPG"
-    fi
+  # Detect SSH vs GPG context
+  if [[ "$desc" == *SSH* || "$desc" == *ssh* ]]; then
+    label="SSH"
+  elif [[ "$desc" == *OpenPGP* || "$desc" == *GPG* || "$desc" == *gpg* ]]; then
+    label="GPG"
+  fi
 
-    # Extract identity: quoted name, file path, or hex fingerprint
-    if [[ "$desc" =~ \"([^\"]+)\" ]]; then
-        ident="${BASH_REMATCH[1]}"
-    elif [[ "$desc" =~ (/[^[:space:]]+) ]]; then
-        ident="${BASH_REMATCH[1]}"
-    elif [[ "$desc" =~ ([0-9A-Fa-f]{8,}) ]]; then
-        ident="${BASH_REMATCH[1]}"
-    fi
+  # Extract identity: quoted name, file path, or hex fingerprint
+  if [[ "$desc" =~ \"([^\"]+)\" ]]; then
+    ident="${BASH_REMATCH[1]}"
+  elif [[ "$desc" =~ (/[^[:space:]]+) ]]; then
+    ident="${BASH_REMATCH[1]}"
+  elif [[ "$desc" =~ ([0-9A-Fa-f]{8,}) ]]; then
+    ident="${BASH_REMATCH[1]}"
+  fi
 
-    # Key metadata (e.g. "4096-bit RSA key")
-    local meta=""
-    if [[ "$desc" =~ ([0-9]+-bit[[:space:]]+[A-Za-z0-9]+[[:space:]]+key) ]]; then
-        meta="${BASH_REMATCH[1]}"
-    fi
+  # Key metadata (e.g. "4096-bit RSA key")
+  local meta=""
+  if [[ "$desc" =~ ([0-9]+-bit[[:space:]]+[A-Za-z0-9]+[[:space:]]+key) ]]; then
+    meta="${BASH_REMATCH[1]}"
+  fi
 
-    # Compose
-    if [[ -n "$label" && -n "$ident" && -n "$meta" ]]; then
-        echo "$label $ident ($meta): "
-    elif [[ -n "$label" && -n "$ident" ]]; then
-        echo "$label $ident: "
-    elif [[ -n "$label" ]]; then
-        echo "$label key: "
-    elif [[ -n "$ident" ]]; then
-        echo "$ident: "
-    else
-        echo "Passphrase: "
-    fi
+  # Compose
+  if [[ -n "$label" && -n "$ident" && -n "$meta" ]]; then
+    echo "$label $ident ($meta): "
+  elif [[ -n "$label" && -n "$ident" ]]; then
+    echo "$label $ident: "
+  elif [[ -n "$label" ]]; then
+    echo "$label key: "
+  elif [[ -n "$ident" ]]; then
+    echo "$ident: "
+  else
+    echo "Passphrase: "
+  fi
 }
 
 # ── Ask for a passphrase via fuzzel ─────────────────────────────────
 ask_pass() {
-    local prompt="$1"
-    fuzzel --prompt-only "$prompt" \
-        --cache /dev/null \
-        --width 60 \
-        --password \
-        --dmenu 2>/dev/null
+  local prompt="$1"
+  fuzzel --prompt-only "$prompt" \
+    --cache /dev/null \
+    --width 60 \
+    --password \
+    --dmenu 2>/dev/null
 }
 
 # ── State variables ─────────────────────────────────────────────────
@@ -114,123 +97,123 @@ TIMEOUT=0
 echo "OK Please go ahead" 2>/dev/null || exit 0
 
 while IFS= read -r line; do
-    cmd="${line%% *}"
-    rest="${line#* }"
-    [[ "$cmd" == "$rest" ]] && rest=""
-    cmd="${cmd^^}"
+  cmd="${line%% *}"
+  rest="${line#* }"
+  [[ "$cmd" == "$rest" ]] && rest=""
+  cmd="${cmd^^}"
 
-    case "$cmd" in
+  case "$cmd" in
 
-    GETINFO)
-        case "$rest" in
-        flavor)
-            echo "D fuzzel"
-            echo "OK"
-            ;;
-        version)
-            echo "D 0.2.0"
-            echo "OK"
-            ;;
-        ttyinfo)
-            echo "D - - -"
-            echo "OK"
-            ;;
-        pid)
-            echo "D $$"
-            echo "OK"
-            ;;
-        *) echo "OK" ;;
-        esac
-        ;;
-
-    OPTION)
-        [[ "$rest" =~ ^timeout=([0-9]+) ]] && TIMEOUT="${BASH_REMATCH[1]}"
-        echo "OK"
-        ;;
-
-    SETTITLE)
-        TITLE="$(decode_url "$rest")"
-        echo "OK"
-        ;;
-    SETDESC)
-        DESC="$(decode_url "$rest")"
-        echo "OK"
-        ;;
-    SETPROMPT)
-        PROMPT="$(decode_url "$rest")"
-        echo "OK"
-        ;;
-    SETKEYINFO)
-        KEYINFO="$rest"
-        echo "OK"
-        ;;
-    SETOK | SETCANCEL) echo "OK" ;;
-    SETREPEAT)
-        REPEAT=1
-        echo "OK"
-        ;;
-    SETREPEATERROR)
-        REPEAT_ERROR="$(decode_url "$rest")"
-        echo "OK"
-        ;;
-    SETQUALITYBAR | SETQUALITYBAR_TT) echo "OK" ;;
-
-    SETERROR)
-        ERROR="$(decode_url "$rest")"
-        notify "$TITLE" "Error" "$ERROR" 5000
-        echo "OK"
-        ;;
-
-    GETPIN)
-        clean_desc=""
-        [[ -n "$DESC" ]] && clean_desc="$(strip_html "$DESC")"
-
-        prompt_label="$(build_prompt "$clean_desc")"
-
-        # Show full context as a notification alongside the fuzzel prompt
-        [[ -n "$clean_desc" ]] && notify "$TITLE" "Passphrase requested" "$clean_desc" 10000
-
-        result="$(ask_pass "$prompt_label")" || true
-
-        if [[ -z "$result" ]]; then
-            echo "ERR 83886179 Operation cancelled <Pinentry>"
-        elif [[ -n "$REPEAT" ]]; then
-            confirm="$(ask_pass "Confirm $prompt_label")" || true
-            if [[ "$result" != "$confirm" ]]; then
-                notify "$TITLE" "Error" "${REPEAT_ERROR:-Passphrases do not match.}" 3000
-                echo "ERR 83886179 Mismatch <Pinentry>"
-            else
-                echo "D $result"
-                echo "OK"
-            fi
-            REPEAT=""
-        else
-            echo "D $result"
-            echo "OK"
-        fi
-        ;;
-
-    CONFIRM)
-        [[ -n "$DESC" ]] && notify "$TITLE" "$DESC" "" 5000
-        echo "OK"
-        ;;
-
-    MESSAGE)
-        notify "$TITLE" "$DESC" "" 5000
-        echo "OK"
-        ;;
-
-    RESET)
-        TITLE="pinentry-wrapper" DESC="" PROMPT="PIN:" ERROR=""
-        KEYINFO="" REPEAT="" REPEAT_ERROR="" TIMEOUT=0
-        echo "OK"
-        ;;
-
-    BYE)
-        echo "OK closing connection" 2>/dev/null || true
-        exit 0
-        ;;
-
+  GETINFO)
+    case "$rest" in
+    flavor)
+      echo "D fuzzel"
+      echo "OK"
+      ;;
+    version)
+      echo "D 0.2.0"
+      echo "OK"
+      ;;
+    ttyinfo)
+      echo "D - - -"
+      echo "OK"
+      ;;
+    pid)
+      echo "D $$"
+      echo "OK"
+      ;;
     *) echo "OK" ;;
     esac
+    ;;
+
+  OPTION)
+    [[ "$rest" =~ ^timeout=([0-9]+) ]] && TIMEOUT="${BASH_REMATCH[1]}"
+    echo "OK"
+    ;;
+
+  SETTITLE)
+    TITLE="$(decode_url "$rest")"
+    echo "OK"
+    ;;
+  SETDESC)
+    DESC="$(decode_url "$rest")"
+    echo "OK"
+    ;;
+  SETPROMPT)
+    PROMPT="$(decode_url "$rest")"
+    echo "OK"
+    ;;
+  SETKEYINFO)
+    KEYINFO="$rest"
+    echo "OK"
+    ;;
+  SETOK | SETCANCEL) echo "OK" ;;
+  SETREPEAT)
+    REPEAT=1
+    echo "OK"
+    ;;
+  SETREPEATERROR)
+    REPEAT_ERROR="$(decode_url "$rest")"
+    echo "OK"
+    ;;
+  SETQUALITYBAR | SETQUALITYBAR_TT) echo "OK" ;;
+
+  SETERROR)
+    ERROR="$(decode_url "$rest")"
+    notify "$TITLE" "Error" "$ERROR" 5000
+    echo "OK"
+    ;;
+
+  GETPIN)
+    clean_desc=""
+    [[ -n "$DESC" ]] && clean_desc="$(strip_html "$DESC")"
+
+    prompt_label="$(build_prompt "$clean_desc")"
+
+    # Show full context as a notification alongside the fuzzel prompt
+    [[ -n "$clean_desc" ]] && notify "$TITLE" "Passphrase requested" "$clean_desc" 10000
+
+    result="$(ask_pass "$prompt_label")" || true
+
+    if [[ -z "$result" ]]; then
+      echo "ERR 83886179 Operation cancelled <Pinentry>"
+    elif [[ -n "$REPEAT" ]]; then
+      confirm="$(ask_pass "Confirm $prompt_label")" || true
+      if [[ "$result" != "$confirm" ]]; then
+        notify "$TITLE" "Error" "${REPEAT_ERROR:-Passphrases do not match.}" 3000
+        echo "ERR 83886179 Mismatch <Pinentry>"
+      else
+        echo "D $result"
+        echo "OK"
+      fi
+      REPEAT=""
+    else
+      echo "D $result"
+      echo "OK"
+    fi
+    ;;
+
+  CONFIRM)
+    [[ -n "$DESC" ]] && notify "$TITLE" "$DESC" "" 5000
+    echo "OK"
+    ;;
+
+  MESSAGE)
+    notify "$TITLE" "$DESC" "" 5000
+    echo "OK"
+    ;;
+
+  RESET)
+    TITLE="pinentry-wrapper" DESC="" PROMPT="PIN:" ERROR=""
+    KEYINFO="" REPEAT="" REPEAT_ERROR="" TIMEOUT=0
+    echo "OK"
+    ;;
+
+  BYE)
+    echo "OK closing connection" 2>/dev/null || true
+    exit 0
+    ;;
+
+  *) echo "OK" ;;
+  esac
 done
