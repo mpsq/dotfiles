@@ -102,7 +102,17 @@ if command -v dircolors >/dev/null; then
   eval $(dircolors)
 fi
 
-[ -s "/usr/share/nvm/init-nvm.sh" ] && \. /usr/share/nvm/init-nvm.sh
+if [ -s "/usr/share/nvm/init-nvm.sh" ]; then
+  _nvm_lazy_load() {
+    unset -f nvm node npm npx yarn
+    \. "/usr/share/nvm/init-nvm.sh"
+  }
+  nvm()  { _nvm_lazy_load; nvm  "$@"; }
+  node() { _nvm_lazy_load; node "$@"; }
+  npm()  { _nvm_lazy_load; npm  "$@"; }
+  npx()  { _nvm_lazy_load; npx  "$@"; }
+  yarn() { _nvm_lazy_load; yarn "$@"; }
+fi
 
 if [[ ! -v INSIDE_EMACS ]]; then
   set -o vi
