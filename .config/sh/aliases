@@ -4,10 +4,10 @@ alias grep="grep --color=auto"
 alias egrep="egrep --color=auto"
 alias fgrep="fgrep --color=auto"
 
-alias ls="ls --color=auto"
-alias l="ls -lFh --color=auto"
-alias la="ls -laFh --color=auto"
-alias lsd='ls -lF --color=auto | grep "^d"'
+alias ls="eza"
+alias l="eza -lFh"
+alias la="eza -laFh"
+alias lsd="eza -lF --only-dirs"
 
 alias vgit="vcsh dotfiles"
 alias fire="DISPLAY= cacafire"
