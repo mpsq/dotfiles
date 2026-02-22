@@ -5,8 +5,8 @@ alias egrep="egrep --color=auto"
 alias fgrep="fgrep --color=auto"
 
 alias ls="eza"
-alias l="eza -lFh"
-alias la="eza -laFh"
+alias l="eza -lhF"
+alias la="eza -lahF"
 alias lsd="eza -lF --only-dirs"
 
 alias vgit="vcsh dotfiles"
