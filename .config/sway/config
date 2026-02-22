@@ -160,28 +160,25 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
-bindsym $mod+Shift+s exec launcher-pulseaudio source
-bindsym $mod+Shift+d exec launcher-pulseaudio sink
-
 # Sreen brightness
 bindsym XF86MonBrightnessUp exec brightness-up
 bindsym XF86MonBrightnessDown exec brightness-down
 
 # Lock
-bindsym Ctrl+Shift+Super_L exec --no-startup-id lock-session
+bindsym Ctrl+Shift+Super_L exec lock-session
 
 # Screenshot
-bindsym --release $mod+Shift+u exec --no-startup-id capture-screen
-bindsym --release $mod+Shift+v exec --no-startup-id capture-screen video
+bindsym --release $mod+Shift+u exec capture-screen
+bindsym --release $mod+Shift+v exec capture-screen video
 
 # Launcher
 set $menu exec launcher
 bindsym $mod+d exec $menu
 set $mode_system (l) logout, (r) reboot, (s) shutdown
 mode "$mode_system" {
- bindsym l exec --no-startup-id sway-exit exit, mode "default"
- bindsym r exec --no-startup-id sway-exit reboot, mode "default"
- bindsym s exec --no-startup-id sway-exit shutdown, mode "default"
+ bindsym l exec sway-exit exit, mode "default"
+ bindsym r exec sway-exit reboot, mode "default"
+ bindsym s exec sway-exit shutdown, mode "default"
 
  bindsym Return mode "default"
  bindsym Escape mode "default"

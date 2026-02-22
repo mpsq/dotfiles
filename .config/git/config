@@ -17,8 +17,9 @@
   editor = emacsclient
 
 [diff]
-  algorithm = patience
+  algorithm = histogram
   colorMoved = default
+  submodule = log
 
 [merge]
   conflictstyle = zdiff3
@@ -82,6 +83,16 @@
 
 [fetch]
   prune = true
+
+[branch]
+  sort = -committerdate
+
+[rerere]
+  enabled = true
+  autoUpdate = true
+
+[column]
+  ui = auto
 
 [magithub]
   online = true

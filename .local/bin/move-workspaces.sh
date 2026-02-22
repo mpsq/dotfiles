@@ -24,4 +24,4 @@ nomad)
   ;;
 esac
 
-notify-send "shikane" "profile $1 has been applied"
+notify-send "move-workspaces" "profile $1 has been applied"

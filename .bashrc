@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC1091,SC1090
 
-# If TTY
-if tty | grep -q tty; then
-  export GPG_TTY=$(tty)
+# If interactive terminal
+if [[ -t 0 ]]; then
+  GPG_TTY=$(tty)
+  export GPG_TTY
   echo "UPDATESTARTUPTTY" | gpg-connect-agent >/dev/null 2>&1
 fi
 
@@ -48,13 +49,12 @@ export HISTTIMEFORMAT='%F %T '
 export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear:gpg"
 
 # Disable ctrl-s sending XOFF
-stty ixany
-stty ixoff -ixon
+[[ -t 0 ]] && stty ixany ixoff -ixon
 
 # Pager / man
 export LESS='-RX --mouse --quit-if-one-screen -Dd+r$Du+b'
 export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
-export PAGER="less -rX"
+export PAGER=less
 export MANWIDTH=92
 
 function parse_git_dirty() {
@@ -99,7 +99,7 @@ if command -v direnv >/dev/null; then
 fi
 
 if command -v dircolors >/dev/null; then
-  eval $(dircolors)
+  eval "$(dircolors)"
 fi
 
 if [ -s "/usr/share/nvm/init-nvm.sh" ]; then

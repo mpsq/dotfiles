@@ -7,7 +7,7 @@ mkdir -p ~/instants
 
 if [[ "$arg" == "video" ]]; then
   if pgrep wf-recorder >/dev/null; then
-    killall -s 2 wf-recorder
+    pkill -SIGINT wf-recorder
     for _i in {1..100}; do pgrep -x wf-recorder >/dev/null || break; sleep 0.1; done
     pkill -SIGRTMIN+8 waybar
     notify-send --urgency=normal --app-name=wf-recorder "Screen capture ended"

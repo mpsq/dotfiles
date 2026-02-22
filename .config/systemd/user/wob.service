@@ -11,7 +11,6 @@ PartOf=graphical-session.target
 Type=simple
 StandardInput=socket
 StandardOutput=journal
-ExecStartPre=/bin/sleep 5
 ExecStart=/usr/bin/wob
 Restart=on-failure
 

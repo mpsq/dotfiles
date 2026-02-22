@@ -3,7 +3,7 @@ set -euo pipefail
 
 systemctl --user enable --now gammastep
 systemctl --user enable --now gsettings
-systemctl --user enable --now kanshi
+systemctl --user enable --now shikane
 systemctl --user enable --now mako
 systemctl --user enable --now polkit-agent
 systemctl --user enable --now sway-bg
