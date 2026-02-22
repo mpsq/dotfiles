@@ -10,4 +10,11 @@ if ! [ -e "$src_img" ]; then
   cp "$bkg_img" "$bkg_img"
 fi
 
-pgrep gktlock || gtklock --daemonize --follow-focus
+swaymsg output HEADLESS-1 disable
+
+if ! pgrep gtklock; then
+  gtklock
+  # gtklock blocks until unlock, then we re-enable
+  swaymsg output HEADLESS-1 enable
+fi
+# pgrep swaylock || swaylock -f
