@@ -117,8 +117,8 @@ bindsym $mod+Control+Shift+$up move workspace to output up
 #
 # Layout stuff:
 #
-bindsym $mod+t split h
-bindsym $mod+v split v
+bindsym $mod+t splith
+bindsym $mod+v splitv
 
 bindsym $mod+f fullscreen toggle
 
