@@ -33,7 +33,7 @@ if [[ "$INSIDE_EMACS" == 'vterm' ]]; then
   }
 fi
 
-hname=$(hostname)
+hname=$HOSTNAME
 
 # Better history
 shopt -s checkwinsize
@@ -57,25 +57,18 @@ export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
 export PAGER=less
 export MANWIDTH=92
 
-function parse_git_dirty() {
-  [[ -n $(git status --porcelain 2>/dev/null) ]] && echo "*"
-}
-
-function parse_git_branch() {
-  git branch --no-color 2>/dev/null |
-    sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
-}
-
 function include() {
   [[ -r "$1" ]] && source "$1"
 }
+
+source /usr/share/git/completion/git-prompt.sh
+GIT_PS1_SHOWDIRTYSTATE=1
 
 txtcyn='\e[0;36m' # Cyan
 txtprl='\e[1;35m' # Purple
 bldblu='\e[1;34m' # Bold Blue
 txtrst='\e[0m'    # Text Reset
-git_branch="\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \"\|)\$(parse_git_branch)\$([[ -n \$(git branch 2> /dev/null) ]] && echo \|)"
-PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtrst\]\[$txtprl\]$git_branch\[$txtrst\]\[$txtcyn\]\n= \[$txtrst\]"
+PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtprl\]\$(__git_ps1 ' |%s|')\[$txtrst\]\[$txtcyn\]\n= \[$txtrst\]"
 PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}:${PWD}\007"'
 
 # gpg / ssh agent integration
