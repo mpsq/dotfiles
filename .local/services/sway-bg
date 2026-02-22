@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euom pipefail
+set -euo pipefail
 
 bkg_img="$HOME/img/bkg.jpg"
 dst_img="/usr/share/backgrounds/archlinux/small.png"

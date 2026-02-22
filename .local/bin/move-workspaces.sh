@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -eo pipefail
+set -euo pipefail
 
 current_workspace=$(swaymsg -t get_workspaces | jq '.[]|select(.focused) | .name')
 laptop="eDP-1"
@@ -24,4 +24,4 @@ nomad)
   ;;
 esac
 
-notify-send shikane \"profile $1 has been applied\"
+notify-send "shikane" "profile $1 has been applied"
