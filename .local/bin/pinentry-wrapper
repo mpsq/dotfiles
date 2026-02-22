@@ -11,7 +11,24 @@ CURSES_BIN="/usr/bin/pinentry-curses"
 # The socket file can outlive the compositor, so test that it's usable.
 wayland_socket="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/${WAYLAND_DISPLAY:-}"
 if [[ -z "${WAYLAND_DISPLAY:-}" || ! -S "$wayland_socket" ]]; then
-    exec "$CURSES_BIN" "$@"
+    # Only fall back to curses if a real TTY is available
+    if [[ -t 0 && -t 1 ]]; then
+        exec "$CURSES_BIN" "$@"
+    fi
+    # No Wayland, no TTY — run a stub that rejects GETPIN gracefully
+    # so gpg-agent gets a clean cancel instead of an ioctl error.
+    echo "OK Please go ahead"
+    while IFS= read -r line; do
+        case "${line%% *}" in
+        GETPIN) echo "ERR 83886179 No display or TTY available <Pinentry>" ;;
+        BYE)
+            echo "OK closing connection"
+            exit 0
+            ;;
+        *) echo "OK" ;;
+        esac
+    done
+    exit 0
 fi
 
 # ── Helpers ─────────────────────────────────────────────────────────

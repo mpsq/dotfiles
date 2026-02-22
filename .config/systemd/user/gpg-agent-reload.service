@@ -1,0 +1,12 @@
+[Unit]
+Description=Reload gpg-agent with Wayland environment
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecCondition=/bin/sh -c '[ -n "$WAYLAND_DISPLAY" ]'
+ExecStart=/usr/bin/gpgconf --kill gpg-agent
+
+[Install]
+WantedBy=graphical-session.target
