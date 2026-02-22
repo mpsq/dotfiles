@@ -58,9 +58,7 @@ export PAGER="less -rX"
 export MANWIDTH=92
 
 function parse_git_dirty() {
-  if [[ $(git status 2>/dev/null | tail -n1) != *"working directory clean"* ]]; then
-    echo "*"
-  fi
+  [[ -n $(git status --porcelain 2>/dev/null) ]] && echo "*"
 }
 
 function parse_git_branch() {
