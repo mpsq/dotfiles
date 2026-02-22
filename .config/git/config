@@ -10,8 +10,7 @@
   user = mpsq
 
 [color]
-  ui = always
-  diff = auto
+  ui = auto
 
 [core]
   autocrlf = input
