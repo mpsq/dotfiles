@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # pinentry-wrapper: minimal pinentry using fuzzel on Wayland,
 # falling back to pinentry-curses when no compositor is reachable.
 
