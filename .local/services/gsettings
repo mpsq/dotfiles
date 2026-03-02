@@ -6,7 +6,7 @@ dconf_dir=${XDG_CONFIG_HOME:-$HOME/.config}/dconf/
 cd "$dconf_dir" || exit
 
 for file in *.conf; do
-  dconf_path=$(echo ".$file." | sed -e 's/\.conf//g' | sed -e 's/\./\//g')
+  dconf_path=$(printf '/%s/' "${file%.conf}" | tr '.' '/')
   dconf load "$dconf_path" <"$file"
 done
 
@@ -15,10 +15,10 @@ config="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-3.0/settings.ini"
 if [ ! -f "$config" ]; then exit 1; fi
 
 gnome_schema="org.gnome.desktop.interface"
-gtk_theme="$(grep 'gtk-theme-name' "$config" | sed 's/.*\s*=\s*//')"
-icon_theme="$(grep 'gtk-icon-theme-name' "$config" | sed 's/.*\s*=\s*//')"
-cursor_theme="$(grep 'gtk-cursor-theme-name' "$config" | sed 's/.*\s*=\s*//')"
-font_name="$(grep 'gtk-font-name' "$config" | sed 's/.*\s*=\s*//')"
+gtk_theme="$(grep -m1 'gtk-theme-name' "$config" | sed 's/.*\s*=\s*//')"
+icon_theme="$(grep -m1 'gtk-icon-theme-name' "$config" | sed 's/.*\s*=\s*//')"
+cursor_theme="$(grep -m1 'gtk-cursor-theme-name' "$config" | sed 's/.*\s*=\s*//')"
+font_name="$(grep -m1 'gtk-font-name' "$config" | sed 's/.*\s*=\s*//')"
 gsettings set "$gnome_schema" gtk-theme "$gtk_theme"
 gsettings set "$gnome_schema" icon-theme "$icon_theme"
 gsettings set "$gnome_schema" cursor-theme "$cursor_theme"

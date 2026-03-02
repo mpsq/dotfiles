@@ -13,8 +13,9 @@ if [[ "$arg" == "video" ]]; then
     notify-send --urgency=normal --app-name=wf-recorder "Screen capture ended"
   else
     now=$(date +'%Y-%m-%d-%H%M%S')
+    region="$(slurp)" || exit 0
 
-    wf-recorder -g "$(slurp)" -f ~/instants/"$now".mp4 -x yuv420p &
+    wf-recorder -g "$region" -f ~/instants/"$now".mp4 -x yuv420p &
     for _i in {1..50}; do pgrep -x wf-recorder >/dev/null && break; sleep 0.1; done
     pkill -RTMIN+8 waybar
   fi

@@ -61,7 +61,7 @@ function include() {
   [[ -r "$1" ]] && source "$1"
 }
 
-source /usr/share/git/completion/git-prompt.sh
+include /usr/share/git/completion/git-prompt.sh
 GIT_PS1_SHOWDIRTYSTATE=1
 
 txtcyn='\e[0;36m' # Cyan

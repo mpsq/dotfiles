@@ -16,7 +16,7 @@ if [ "$profile" = "nomad" ]; then
 else
   # Pick the first enabled non-eDP, non-HEADLESS output
   target=$(swaymsg -t get_outputs -r | jq -r '.[] | select(.active and (.name | test("^(eDP|HEADLESS)") | not)) | .name' | head -n1)
-  target="${target:-DP-1}"
+  target="${target:-$laptop}"
 fi
 
 current_workspace=$(swaymsg -t get_workspaces | jq -r '.[] | select(.focused) | .name')

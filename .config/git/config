@@ -94,14 +94,6 @@
 [column]
   ui = auto
 
-[magithub]
-  online = true
-
-[magithub "status"]
-  includeStatusHeader = false
-  includePullRequestsSection = false
-  includeIssuesSection = false
-
 [include]
   path = ~/.config/git/host
 
