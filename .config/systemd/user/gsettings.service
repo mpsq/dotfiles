@@ -1,4 +1,5 @@
 [Unit]
+Description=Apply GTK and dconf settings
 PartOf=graphical-session.target
 After=graphical-session.target
 

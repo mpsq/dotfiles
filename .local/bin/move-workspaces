@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# When called from shikane's exec, $SHIKANE_PROFILE_NAME is set automatically.
+# Fall back to journal parsing if run manually.
+profile="${SHIKANE_PROFILE_NAME:-}"
+if [ -z "$profile" ]; then
+  profile=$(journalctl -b 0 --user -u shikane | grep "applying profile '" | tail -n 1 | cut -d "'" -f 2)
+fi
+
+laptop="eDP-1"
+
+# Determine target output dynamically from sway
+if [ "$profile" = "nomad" ]; then
+  target="$laptop"
+else
+  # Pick the first enabled non-eDP, non-HEADLESS output
+  target=$(swaymsg -t get_outputs -r | jq -r '.[] | select(.active and (.name | test("^(eDP|HEADLESS)") | not)) | .name' | head -n1)
+  target="${target:-DP-1}"
+fi
+
+current_workspace=$(swaymsg -t get_workspaces | jq -r '.[] | select(.focused) | .name')
+
+for i in {1..9}; do
+  swaymsg "[workspace=\"$i\"] move workspace to output $target" || true
+done
+
+swaymsg workspace "$current_workspace"
+
+if [ "$profile" = "nomad" ]; then
+  swaymsg output "$laptop" dpms on
+  # SIGKILL noctalia to prevent Qt6 SEGV on output removal.
+  # SIGTERM is insufficient: quickshell processes pending Wayland events
+  # during graceful shutdown, hitting the same crash. SIGKILL prevents
+  # event processing entirely. systemd auto-restarts via Restart=on-failure.
+  systemctl --user kill -s KILL noctalia.service 2>/dev/null || true
+else
+  swaymsg output "$laptop" dpms off
+fi
+
+notify-send "shikane" "'$profile' profile applied"

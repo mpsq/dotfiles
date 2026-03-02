@@ -9,25 +9,13 @@ set $right l
 
 font pango:monospace 9
 
-# Theme colors
-set $dark      #2d2d2d
-set $focus     #585858
-set $bright    #d0d0d0
-set $urgent    #af005f
-set $highlight #d7875f
-
-# class                  border  background text    indicator  child_border
-client.focused           $focus  $focus     $focus  $highlight $focus
-client.unfocused         $dark   $dark      $bright $dark      $dark
-client.focused_inactive  $dark   $dark      $bright $dark      $dark
-client.focused_tab_title $focus  $dark      $bright
-client.urgent            $urgent $urgent    $dark   $urgent
+# Theme colors defined in ~/.config/sway/noctalia
 
 gaps inner 6
 gaps outer 0
 # Slightly thicker borders.
-default_border pixel 3
-default_floating_border pixel 3
+default_border pixel 2
+default_floating_border pixel 2
 # Hide borders if window is child in a workspace or container.
 hide_edge_borders --i3 smart
 titlebar_padding 6 6
@@ -59,11 +47,11 @@ xwayland disable
 ### Focus settings
 #
 no_focus [window_role="pop-up"]
-no_focus [app_id="waybar"]
 focus_on_window_activation urgent
 
 ### Key bindings
 #
+set $ipc qs -c noctalia-shell ipc call
 
 #
 # Basics:
@@ -156,41 +144,30 @@ bindsym Shift+Ctrl+Super_R exec volume-up
 bindsym XF86AudioLowerVolume exec volume-down
 bindsym XF86AudioRaiseVolume exec volume-up
 bindsym XF86AudioMute exec audio-toggle
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioPause exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-# Sreen brightness
-bindsym XF86MonBrightnessUp exec brightness-up
-bindsym XF86MonBrightnessDown exec brightness-down
+bindsym XF86AudioPlay exec $ipc media playPause
+bindsym XF86AudioPause exec $ipc media playPause
+bindsym XF86AudioNext exec $ipc media next
+bindsym XF86AudioPrev exec $ipc media previous
+# Screen brightness
+bindsym --locked XF86MonBrightnessUp exec $ipc brightness increase
+bindsym --locked XF86MonBrightnessDown exec $ipc brightness decrease
 
 # Lock
-bindsym Ctrl+Shift+Super_L exec lock-session
+bindsym Ctrl+Shift+Super_L exec $ipc sessionMenu lock
 
 # Screenshot
 bindsym --release $mod+Shift+u exec capture-screen
 bindsym --release $mod+Shift+v exec capture-screen video
 
 # Launcher
-set $menu exec launcher
-bindsym $mod+d exec $menu
-set $mode_system (l) logout, (r) reboot, (s) shutdown
-mode "$mode_system" {
- bindsym l exec sway-exit exit, mode "default"
- bindsym r exec sway-exit reboot, mode "default"
- bindsym s exec sway-exit shutdown, mode "default"
-
- bindsym Return mode "default"
- bindsym Escape mode "default"
-}
-bindsym $mod+Shift+e mode "$mode_system"
+bindsym $mod+d exec $ipc launcher toggle
+bindsym $mod+Shift+e exec $ipc sessionMenu toggle
 
 # Notifications
 bindsym $mod+Shift+n exec makoctl dismiss --all
 
 # Setup headless output for screensharing
 output HEADLESS-1 resolution 1920x1080
-output HEADLESS-1 bg "#a9a9a9" solid_color
 output HEADLESS-1 enable
 workspace 0 output HEADLESS-1
 bindsym $mod+0 workspace number 0
@@ -222,9 +199,11 @@ for_window [app_id="google-chrome"] inhibit_idle fullscreen
 for_window [app_id="firefox"] inhibit_idle fullscreen
 for_window [app_id="firefox-developer-edition"] inhibit_idle fullscreen
 
+### Session
 include /etc/sway/config.d/*
+include ~/.config/sway/noctalia
 
-### Start session
 exec swaymsg create_output
-exec_always systemctl --user start sway-session.target
-exec systemctl --user import-environment WAYLAND_DISPLAY SWAYSOCK DISPLAY XDG_CURRENT_DESKTOP
+exec systemctl --user start sway-session.target
+exec swaymsg -t subscribe -m '["shutdown"]' && systemctl --user stop sway-session.target
+

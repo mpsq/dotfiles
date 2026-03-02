@@ -1,6 +1,8 @@
 [Unit]
-Description=Emacs text editor daemon (debug mode)
+Description=Emacs text editor daemon
 Documentation=info:emacs man:emacs(1) https://gnu.org/software/emacs/
+PartOf=graphical-session.target
+After=graphical-session.target
 
 [Service]
 Type=notify
