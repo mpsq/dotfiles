@@ -170,8 +170,8 @@ bindsym $mod+Shift+n exec makoctl dismiss --all
 # Gestures
 bindgesture swipe:3:right workspace prev
 bindgesture swipe:3:left workspace next
-bindgesture swipe:up exec swaymsg fullscreen enable
-bindgesture swipe:down exec swaymsg fullscreen disable
+bindgesture swipe:3:up exec swaymsg fullscreen enable
+bindgesture swipe:3:down exec swaymsg fullscreen disable
 
 # Setup headless output for screensharing
 output HEADLESS-1 resolution 1920x1080

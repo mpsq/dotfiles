@@ -9,4 +9,4 @@ paint_mode=brush
 early_exit=false
 fill_shape=false
 auto_save=false
-custom_color=rgba(193,125,17,1)
+custom_color=rgba(255,199,153,1)
