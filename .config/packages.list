@@ -113,6 +113,7 @@ shikane
 signal-desktop
 slurp
 smartmontools
+source-highlight
 swappy
 sway
 systemd-resolvconf
