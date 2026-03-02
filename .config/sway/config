@@ -40,13 +40,14 @@ input type:touchpad {
   pointer_accel 0.12
 }
 
+seat * xcursor_theme Adwaita 24
+
 ## XWayland
 #
 xwayland disable
 
 ### Focus settings
 #
-no_focus [window_role="pop-up"]
 focus_on_window_activation urgent
 
 ### Key bindings
@@ -166,6 +167,12 @@ bindsym $mod+Shift+e exec $ipc sessionMenu toggle
 # Notifications
 bindsym $mod+Shift+n exec makoctl dismiss --all
 
+# Gestures
+bindgesture swipe:3:right workspace prev
+bindgesture swipe:3:left workspace next
+bindgesture swipe:up exec swaymsg fullscreen enable
+bindgesture swipe:down exec swaymsg fullscreen disable
+
 # Setup headless output for screensharing
 output HEADLESS-1 resolution 1920x1080
 output HEADLESS-1 enable
@@ -177,12 +184,6 @@ bindsym $mod+Shift+0 move container to workspace number 0
 for_window [app_id="nm-connection-editor"] floating enable
 for_window [app_id="org.gnome.Calculator"] floating enable
 for_window [app_id="gcr-prompter"] opacity 0.90
-for_window [window_role="pop-up"] floating enable opacity 0.95
-for_window [window_role="bubble"] floating enable opacity 0.95
-for_window [window_role="task_dialog"] floating enable opacity 0.95
-for_window [window_role="Preferences"] floating enable opacity 0.95
-for_window [window_type="dialog"] floating enable opacity 0.95
-for_window [window_type="menu"] floating enable opacity 0.95
 for_window [title = "Picture-in-Picture"] floating enable
 for_window [app_id="(pwvucontrol|pavucontrol)"] floating enable
 for_window [app_id="firefox" title="Firefox — Sharing Indicator"] floating enable
@@ -205,5 +206,5 @@ include ~/.config/sway/noctalia
 
 exec swaymsg create_output
 exec systemctl --user start sway-session.target
-exec swaymsg -t subscribe -m '["shutdown"]' && systemctl --user stop sway-session.target
+exec swaymsg -t subscribe -m '["shutdown"]' ; systemctl --user stop sway-session.target
 
