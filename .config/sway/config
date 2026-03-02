@@ -19,6 +19,8 @@ default_floating_border pixel 2
 # Hide borders if window is child in a workspace or container.
 hide_edge_borders --i3 smart
 titlebar_padding 6 6
+workspace_auto_back_and_forth yes
+popup_during_fullscreen smart
 
 ### Input/output
 #
@@ -59,7 +61,7 @@ set $ipc qs -c noctalia-shell ipc call
 #
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
-bindsym $mod+Shift+c reload
+bindsym $mod+Shift+c reload; exec notify-send -t 2000 "sway" "Config reloaded"
 floating_modifier $mod normal
 
 #
@@ -183,7 +185,7 @@ bindsym $mod+Shift+0 move container to workspace number 0
 ### Application specific settings
 for_window [app_id="nm-connection-editor"] floating enable
 for_window [app_id="org.gnome.Calculator"] floating enable
-for_window [app_id="gcr-prompter"] opacity 0.90
+for_window [app_id="gcr-prompter"] floating enable, opacity 0.90
 for_window [title = "Picture-in-Picture"] floating enable
 for_window [app_id="(pwvucontrol|pavucontrol)"] floating enable
 for_window [app_id="firefox" title="Firefox — Sharing Indicator"] floating enable

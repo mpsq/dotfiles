@@ -384,7 +384,7 @@
         "passwordChars": true,
         "radiusRatio": 1,
         "reverseScroll": false,
-        "scaleRatio": 0.8500000000000001,
+        "scaleRatio": 0.85,
         "screenRadiusRatio": 1,
         "shadowDirection": "bottom_right",
         "shadowOffsetX": 2,
