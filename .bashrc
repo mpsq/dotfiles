@@ -87,6 +87,10 @@ include "$HOME/.config/sh/vars"
 include "$XDG_CONFIG_HOME/sh/aliases"
 include "$HOME/.$hname-bashrc"
 
+if [ -f ~/.config/fzf/noctalia-theme.sh ]; then
+  source ~/.config/fzf/noctalia-theme.sh
+fi
+
 if command -v direnv >/dev/null; then
   eval "$(direnv hook bash)"
 fi

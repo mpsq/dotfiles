@@ -623,7 +623,7 @@
                 "id": "kcolorscheme"
             }
         ],
-        "enableUserTheming": false
+        "enableUserTheming": true
     },
     "ui": {
         "boxBorderEnabled": false,
