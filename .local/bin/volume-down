@@ -2,4 +2,3 @@
 set -euo pipefail
 
 wpctl set-volume "@DEFAULT_SINK@" 2%-
-wpctl get-volume "@DEFAULT_SINK@"
