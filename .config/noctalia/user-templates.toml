@@ -6,3 +6,8 @@
 input_path = "~/.config/noctalia/templates/fzf.sh"
 output_path = "~/.config/fzf/noctalia-theme.sh"
 post_hook = ""
+
+[templates.mako]
+input_path = "~/.config/noctalia/templates/mako.conf"
+output_path = "~/.config/mako/config"
+post_hook = "makoctl reload"
