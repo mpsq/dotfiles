@@ -7,6 +7,9 @@ set $down j
 set $up k
 set $right l
 
+# System defaults (environment setup, etc.) -- must come before user settings
+include /etc/sway/config.d/*
+
 font pango:monospace 9
 
 # Theme colors defined in ~/.config/sway/noctalia
@@ -142,21 +145,22 @@ bindsym $mod+r mode "resize"
 # Custom:
 #
 # Audio controls
-bindsym Shift+Ctrl+ISO_Level3_Shift exec volume-down
-bindsym Shift+Ctrl+Super_R exec volume-up
-bindsym XF86AudioLowerVolume exec volume-down
-bindsym XF86AudioRaiseVolume exec volume-up
-bindsym XF86AudioMute exec audio-toggle
-bindsym XF86AudioPlay exec $ipc media playPause
-bindsym XF86AudioPause exec $ipc media playPause
-bindsym XF86AudioNext exec $ipc media next
-bindsym XF86AudioPrev exec $ipc media previous
+bindsym --locked Shift+Ctrl+ISO_Level3_Shift exec volume-down
+bindsym --locked Shift+Ctrl+Super_R exec volume-up
+bindsym --locked XF86AudioLowerVolume exec volume-down
+bindsym --locked XF86AudioRaiseVolume exec volume-up
+bindsym --locked XF86AudioMute exec audio-toggle
+bindsym --locked XF86AudioPlay exec $ipc media playPause
+bindsym --locked XF86AudioPause exec $ipc media playPause
+bindsym --locked XF86AudioNext exec $ipc media next
+bindsym --locked XF86AudioPrev exec $ipc media previous
 # Screen brightness
 bindsym --locked XF86MonBrightnessUp exec $ipc brightness increase
 bindsym --locked XF86MonBrightnessDown exec $ipc brightness decrease
 
 # Lock
 bindsym Ctrl+Shift+Super_L exec $ipc sessionMenu lock
+bindswitch --locked lid:on exec $ipc sessionMenu lock
 
 # Screenshot
 bindsym --release $mod+Shift+u exec capture-screen
@@ -178,7 +182,7 @@ bindgesture swipe:3:down exec swaymsg fullscreen disable
 # Setup headless output for screensharing
 output HEADLESS-1 resolution 1920x1080
 output HEADLESS-1 enable
-workspace 0 output HEADLESS-1
+workspace number 0 output HEADLESS-1
 bindsym $mod+0 workspace number 0
 bindsym $mod+Shift+0 move container to workspace number 0
 
@@ -203,10 +207,8 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
 for_window [app_id="firefox-developer-edition"] inhibit_idle fullscreen
 
 ### Session
-include /etc/sway/config.d/*
 include ~/.config/sway/noctalia
 
 exec swaymsg create_output
 exec systemctl --user start sway-session.target
-exec swaymsg -t subscribe -m '["shutdown"]' ; systemctl --user stop sway-session.target
-
+exec swaymsg -t subscribe '["shutdown"]' && systemctl --user stop sway-session.target

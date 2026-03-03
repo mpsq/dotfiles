@@ -1,6 +1,9 @@
 [Unit]
+Description=Sway idle management daemon
 PartOf=graphical-session.target
 After=graphical-session.target
+StartLimitIntervalSec=30
+StartLimitBurst=5
 
 [Service]
 Type=simple
