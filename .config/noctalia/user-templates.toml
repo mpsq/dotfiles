@@ -11,3 +11,8 @@ post_hook = ""
 input_path = "~/.config/noctalia/templates/mako.conf"
 output_path = "~/.config/mako/config"
 post_hook = "makoctl reload"
+
+[templates.sway]
+input_path = "/etc/xdg/quickshell/noctalia-shell/Assets/Templates/sway"
+output_path = "~/.config/sway/noctalia"
+post_hook = "move-workspaces"

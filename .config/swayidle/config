@@ -1,3 +1,3 @@
 idlehint 300
-timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+timeout 600 'swaymsg "output * dpms off"' resume 'move-workspaces'
 before-sleep 'qs -c noctalia-shell ipc call sessionMenu lock'
