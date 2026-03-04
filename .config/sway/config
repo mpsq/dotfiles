@@ -182,7 +182,7 @@ bindgesture swipe:3:down exec swaymsg fullscreen disable
 # Setup headless output for screensharing
 output HEADLESS-1 resolution 1920x1080
 output HEADLESS-1 enable
-workspace number 0 output HEADLESS-1
+workspace 0 output HEADLESS-1
 bindsym $mod+0 workspace number 0
 bindsym $mod+Shift+0 move container to workspace number 0
 
@@ -209,6 +209,5 @@ for_window [app_id="firefox-developer-edition"] inhibit_idle fullscreen
 ### Session
 include ~/.config/sway/noctalia
 
-exec swaymsg create_output
-exec systemctl --user start sway-session.target
-exec swaymsg -t subscribe '["shutdown"]' && systemctl --user stop sway-session.target
+exec swaymsg create_output && systemctl --user reset-failed && systemctl --user start sway-session.target
+exec swaymsg -t subscribe '["shutdown"]' || true && systemctl --user stop graphical-session.target

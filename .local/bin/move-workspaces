@@ -4,16 +4,12 @@ set -euo pipefail
 shikane_profile=$(shikanectl debug current-state | grep -oE '[^ ]+$')
 focused_workspace=$(swaymsg -t get_workspaces | jq -r '.[] | select(.focused) | .name')
 laptop_output="eDP-1"
-target_output="$laptop_output"
 
 # Pick the first enabled non-eDP, non-HEADLESS output
-if [ "$shikane_profile" != "nomad" ]; then
-  target_output=$(swaymsg -t get_outputs -r | jq -r '.[] | select(.active and (.name | test("^(eDP|HEADLESS)") | not)) | .name' | head -n1)
-  target_output="${target_output:-$laptop_output}"
-  swaymsg output "$laptop_output" dpms off
-fi
+target_output=$(swaymsg -t get_outputs -r | jq -r '.[] | select(.active and (.name | test("^(eDP|HEADLESS)") | not)) | .name' | head -n1)
+target_output="${target_output:-$laptop_output}"
 
-for ws in $(swaymsg -t get_workspaces | jq -r --arg t "$target_output" '.[] | select(.output != $t) | .name'); do
+for ws in $(swaymsg -t get_workspaces | jq -r '.[] | .name'); do
   swaymsg "[workspace=\"$ws\"] move workspace to output $target_output" &>/dev/null || true
 done
 
@@ -23,6 +19,10 @@ if [ "$touch_focused_workspace" != "$focused_workspace" ]; then
   swaymsg workspace "$focused_workspace"
 fi
 
-swaymsg output "$target_output" dpms on
+#if [ "$target_output" != "$laptop_output" ]; then
+#  swaymsg "output $target_output dpms off"
+#else
+#  swaymsg "output * dpms off"
+#fi
 
 notify-send "shell" "'$shikane_profile' profile applied"
