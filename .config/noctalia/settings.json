@@ -94,9 +94,9 @@
                 {
                     "characterCount": 2,
                     "colorizeIcons": false,
-                    "emptyColor": "primary",
-                    "enableScrollWheel": true,
-                    "focusedColor": "tertiary",
+                    "emptyColor": "none",
+                    "enableScrollWheel": false,
+                    "focusedColor": "secondary",
                     "followFocusedScreen": false,
                     "groupedBorderOpacity": 1,
                     "hideUnoccupied": false,
@@ -107,7 +107,7 @@
                     "pillSize": 0.6,
                     "showApplications": true,
                     "showBadge": true,
-                    "showLabelsOnlyWhenOccupied": true,
+                    "showLabelsOnlyWhenOccupied": false,
                     "unfocusedIconsOpacity": 1
                 },
                 {

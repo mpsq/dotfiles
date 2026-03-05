@@ -1,28 +1,23 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-shikane_profile=$(shikanectl debug current-state | grep -oE '[^ ]+$')
-focused_workspace=$(swaymsg -t get_workspaces | jq -r '.[] | select(.focused) | .name')
 laptop_output="eDP-1"
 
-# Pick the first enabled non-eDP, non-HEADLESS output
-target_output=$(swaymsg -t get_outputs -r | jq -r '.[] | select(.active and (.name | test("^(eDP|HEADLESS)") | not)) | .name' | head -n1)
+# 1. Pick the first enabled non-eDP, non-HEADLESS output
+target_output=$(swaymsg -t get_outputs -r | jq -r '.[] | select((.name | test("^(eDP|HEADLESS)") | not)) | .name' | head -n1)
 target_output="${target_output:-$laptop_output}"
 
-for ws in $(swaymsg -t get_workspaces | jq -r '.[] | .name'); do
-  swaymsg "[workspace=\"$ws\"] move workspace to output $target_output" &>/dev/null || true
+# 2. Filter workspaces:
+# - Not a scratchpad (.num != -1)
+# - Has windows/content (.focus != [])
+# - IS NOT already on the target output (.output != $target_output)
+workspaces=$(swaymsg -t get_workspaces -r | jq -r --arg target "$target_output" \
+  '.[] | select(.num != -1 and .focus != [] and .output != $target) | .name')
+
+# 3. Move only the remaining candidates
+for ws in $workspaces; do
+  swaymsg "workspace \"$ws\"; move workspace to output \"$target_output\"" &>/dev/null || true
+  echo "Moved workspace: $ws"
 done
 
-touch_focused_workspace=$(swaymsg -t get_workspaces | jq -r '.[] | select(.focused) | .name')
-
-if [ "$touch_focused_workspace" != "$focused_workspace" ]; then
-  swaymsg workspace "$focused_workspace"
-fi
-
-#if [ "$target_output" != "$laptop_output" ]; then
-#  swaymsg "output $target_output dpms off"
-#else
-#  swaymsg "output * dpms off"
-#fi
-
-notify-send "shell" "'$shikane_profile' profile applied"
+swaymsg workspace 1
