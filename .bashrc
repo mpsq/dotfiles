@@ -99,6 +99,10 @@ if command -v dircolors >/dev/null; then
   eval "$(dircolors)"
 fi
 
+if command -v mise >/dev/null; then
+  eval "$(mise activate bash)"
+fi
+
 if [ -s "/usr/share/nvm/init-nvm.sh" ]; then
   _nvm_lazy_load() {
     unset -f nvm node npm npx yarn
