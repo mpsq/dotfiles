@@ -14,7 +14,7 @@
 
 [core]
   autocrlf = input
-  editor = emacsclient
+  editor = emacsclient -t
 
 [diff]
   algorithm = histogram

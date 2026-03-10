@@ -3,7 +3,8 @@ set -euo pipefail
 
 arg="${1:-instant}"
 
-mkdir -p "$HOME/instants"
+screenshots_dir="${XDG_SCREENSHOTS_DIR:-$HOME/instants}"
+mkdir -p "$screenshots_dir"
 
 if [[ "$arg" == "video" ]]; then
   if pgrep wf-recorder >/dev/null; then
@@ -14,7 +15,7 @@ if [[ "$arg" == "video" ]]; then
     now=$(date +'%Y-%m-%d-%H%M%S')
     region="$(slurp)" || exit 0
 
-    wf-recorder -g "$region" -f "$HOME/instants/$now.mp4" -x yuv420p &
+    wf-recorder -g "$region" -f "$screenshots_dir/$now.mp4" -x yuv420p &
     for _i in {1..50}; do pgrep -x wf-recorder >/dev/null && break; sleep 0.1; done
   fi
 else

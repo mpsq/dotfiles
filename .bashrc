@@ -33,7 +33,7 @@ if [[ "$INSIDE_EMACS" == 'vterm' ]]; then
   }
 fi
 
-hname=$HOSTNAME
+hname="${HOSTNAME:-$(hostname)}"
 
 # Better history
 shopt -s checkwinsize
@@ -83,8 +83,8 @@ include /usr/share/bash-completion/bash_completion
 include /usr/share/fzf/completion.bash
 include /usr/share/fzf/key-bindings.bash
 include /usr/share/doc/pkgfile/command-not-found.bash
-include "$HOME/.config/sh/vars"
-include "$XDG_CONFIG_HOME/sh/aliases"
+include "${XDG_CONFIG_HOME:-$HOME/.config}/sh/vars"
+include "${XDG_CONFIG_HOME:-$HOME/.config}/sh/aliases"
 include "$HOME/.$hname-bashrc"
 
 include ~/.config/fzf/noctalia-theme.sh
