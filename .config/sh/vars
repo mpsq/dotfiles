@@ -4,8 +4,8 @@ for f in "$HOME"/.config/environment.d/*; do
     [[ -r "$f" ]] || continue
     while IFS= read -r l; do
         [[ "$l" =~ ^[[:space:]]*(#|$) ]] && continue
-        export "$l"
-    done < "$f"
+        eval export "$l"
+    done <"$f"
 done
 
 # Setting fd as the default source for fzf
