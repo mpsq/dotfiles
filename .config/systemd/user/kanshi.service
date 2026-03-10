@@ -1,11 +1,11 @@
 [Unit]
-Description=Shikane display configuration daemon
+Description=Kanshi display configuration daemon
 PartOf=graphical-session.target
 After=graphical-session.target noctalia.service
 
 [Service]
 Type=simple
-ExecStartPre=/usr/bin/sleep 2
+ExecStartPre=/usr/bin/sleep 3
 ExecStart=/usr/bin/kanshi
 KillSignal=SIGINT
 Restart=on-failure
