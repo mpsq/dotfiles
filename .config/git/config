@@ -20,6 +20,7 @@
   algorithm = histogram
   colorMoved = default
   submodule = log
+  renames = copies
 
 [merge]
   conflictstyle = zdiff3
@@ -68,6 +69,8 @@
   # branch
   b = branch
   co = checkout
+  l = log --oneline -20
+  unstage = reset HEAD --
 
 
 [commit]
@@ -80,6 +83,18 @@
 
 [pull]
   rebase = true
+
+[tag]
+  sort = -version:refname
+
+[transfer]
+  fsckObjects = true
+
+[status]
+  submoduleSummary = true
+
+[submodule]
+  recurse = true
 
 [fetch]
   prune = true
@@ -96,6 +111,9 @@
 
 [include]
   path = ~/.config/git/host
+
+[url "git@github.com:"]
+  insteadOf = gh:
 
 [init]
   defaultBranch = main
