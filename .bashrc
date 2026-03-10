@@ -41,6 +41,9 @@ shopt -s nocaseglob
 shopt -s histappend
 shopt -s cdspell
 shopt -s cmdhist
+shopt -s globstar
+shopt -s autocd
+shopt -s direxpand
 set -o ignoreeof
 export HISTCONTROL="erasedups:ignoreboth"
 export HISTSIZE=100000
@@ -61,15 +64,24 @@ function include() {
   [[ -r "$1" ]] && source "$1"
 }
 
+mkcd() { mkdir -p "$1" && cd "$1"; }
+
+up() {
+  local d=""
+  for ((i = 1; i <= ${1:-1}; i++)); do d="../$d"; done
+  cd "$d" || return
+}
+
 include /usr/share/git/completion/git-prompt.sh
 GIT_PS1_SHOWDIRTYSTATE=1
 
 txtcyn='\e[0;36m' # Cyan
 txtprl='\e[1;35m' # Purple
 bldblu='\e[1;34m' # Bold Blue
+txtred='\e[0;31m' # Red
 txtrst='\e[0m'    # Text Reset
 PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtprl\]\$(__git_ps1 ' |%s|')\[$txtrst\]\[$txtcyn\]\n= \[$txtrst\]"
-PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME}:${PWD}\007"'
+PROMPT_COMMAND='history -a; echo -ne "\033]0;${HOSTNAME}:${PWD}\007"'
 
 # gpg / ssh agent integration
 unset SSH_AGENT_PID
