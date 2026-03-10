@@ -5,7 +5,7 @@ After=graphical-session.target noctalia.service
 
 [Service]
 Type=simple
-ExecStartPre=/usr/bin/sleep 3
+ExecStartPre=%h/.local/bin/kanshi-delay
 ExecStart=/usr/bin/kanshi
 KillSignal=SIGINT
 Restart=on-failure
