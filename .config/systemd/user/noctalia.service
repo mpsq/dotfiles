@@ -1,6 +1,6 @@
 [Unit]
 Description=Noctalia Shell
-Documentation=man:noctalia(1)
+Documentation=https://github.com/noctalia/noctalia
 PartOf=graphical-session.target
 After=graphical-session.target
 StartLimitIntervalSec=10
