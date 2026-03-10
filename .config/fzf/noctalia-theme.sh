@@ -17,7 +17,7 @@ export FZF_DEFAULT_OPTS="
 --color=border:#5e5e5e
 --height=40%
 --border=rounded
---inline-info
+--info=inline
 --preview-window=right:50%:wrap
 --bind='ctrl-u:preview-page-up,ctrl-d:preview-page-down'
 --bind='ctrl-f:page-down,ctrl-b:page-up'
