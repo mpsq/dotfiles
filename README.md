@@ -1,44 +1,50 @@
-# dotfiles
+# mpsq's dotfiles
 
-Configuration files for my Arch Linux desktop, managed with
-[VCSH](https://github.com/RichiH/vcsh). The setup runs
-[Sway](https://github.com/swaywm/sway) on Wayland with [Doom
-Emacs](https://github.com/doomemacs/doomemacs) as the primary editor.
+Configuration files for an Arch Linux desktop that took far longer to set up
+than anyone would care to admit. Managed with
+[VCSH](https://github.com/RichiH/vcsh), because symlinks are for people who
+haven't suffered enough.
 
-## What's included
+## What's in the box
 
-- **Window manager** -- [Sway](https://github.com/swaywm/sway),
-  [Waybar](https://github.com/Alexays/Waybar) and
-  [Fuzzel](https://codeberg.org/dnkl/fuzzel)
-- **Editor** -- Doom Emacs in daemon mode 
-- **Shell** -- Bash with vi mode
-- **Terminal** -- [Foot](https://codeberg.org/dnkl/foot)
-- **Audio** -- PipeWire / WirePlumber,
-  [EasyEffects](https://github.com/wwmm/easyeffects)
-- **Git** -- GPG commit signing, [delta](https://github.com/dandavison/delta)
-  pager
-- **Dev tools** -- Go, Java, Python, Rust, JavaScript/Node
-  ([NVM](https://github.com/nvm-sh/nvm)), Docker, Terraform, Kubernetes
-- **Systemd user services** -- most desktop components launch via
-  `sway-session.target`
-- **Scripts** -- volume/brightness control, screen capture, session lock,
-  workspace management, launcher
+**Desktop** -- [Sway](https://github.com/swaywm/sway) on Wayland,
+[Noctalia](https://github.com/noctalia-dev/noctalia-shell) for the shell and
+theming + [Fuzzel](https://codeberg.org/dnkl/fuzzel) as a dynamic menu.  The
+whole session is orchestrated by systemd user services under
+`sway-session.target`.
+
+**Editor** -- [Doom Emacs](https://github.com/doomemacs/doomemacs) running as a
+daemon. LSP and tree-sitter.
+
+**Terminal** -- [Foot](https://codeberg.org/dnkl/foot). Fast, Wayland-native,
+does what it's told.
+
+**Shell** -- Bash with vi mode.
+
+**Audio** -- PipeWire and WirePlumber.
+[EasyEffects](https://github.com/wwmm/easyeffects) for bikeshedding audio
+settings.
+
+**Dev tools** -- Go, Java, Python, Rust, JavaScript. Docker, Terraform,
+Kubernetes.
+
+**Scripts** -- Volume control, screen capture, workspace shuffling, and a
+pinentry wrapper.
 
 ## Setup
-
-These dotfiles are deployed with VCSH. Each file lands in `$HOME` at the path
-shown above.
 
 ```sh
 vcsh clone <repo-url> dotfiles
 ```
 
-## Key packages
+That's it. Every file lands in `$HOME` where it belongs.
 
-A full list lives in `.config/packages.list` and `.config/packages-aur.list`.
-NPM and pip packages are listed in `.config/packages-npm.list` and
-`.config/packages-pip.list`.
+## Packages
+
+The full inventory lives in `.config/packages.list` and
+`.config/packages-aur.list`. NPM and pip dependencies in
+`.config/packages-npm.list` and `.config/packages-pip.list`.
 
 ## License
 
-These are personal configuration files. Use whatever you find useful.
+Personal config files. Take whatever you find useful, no need to ask.
