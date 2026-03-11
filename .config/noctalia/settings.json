@@ -89,7 +89,7 @@
                 {
                     "clockColor": "none",
                     "customFont": "",
-                    "formatHorizontal": "ddd, MMM dd ⚫︎ HH:mm",
+                    "formatHorizontal": "ddd, MMM dd ● HH:mm",
                     "formatVertical": "HH mm - dd MM",
                     "id": "Clock",
                     "tooltipFormat": "HH:mm ddd, MMM dd",
