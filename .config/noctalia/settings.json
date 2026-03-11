@@ -147,6 +147,9 @@
                     ]
                 },
                 {
+                    "id": "plugin:privacy-indicator"
+                },
+                {
                     "compactMode": true,
                     "diskPath": "/",
                     "iconColor": "none",
@@ -336,15 +339,15 @@
         "pinnedStatic": false,
         "position": "bottom",
         "showDockIndicator": false,
-        "showLauncherIcon": false,
+        "showLauncherIcon": true,
         "sitOnFrame": false,
         "size": 1
     },
     "general": {
         "allowPanelsOnScreenWithoutBar": true,
         "allowPasswordWithFprintd": false,
-        "animationDisabled": true,
-        "animationSpeed": 1,
+        "animationDisabled": false,
+        "animationSpeed": 1.4000000000000001,
         "autoStartAuth": false,
         "avatarImage": "~/.face",
         "boxRadiusRatio": 1,
