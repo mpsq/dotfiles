@@ -99,7 +99,9 @@ fi
 if command -v dircolors >/dev/null; then
   eval "$(dircolors)"
 fi
-include /usr/share/z/z.sh
+if command -v zoxide >/dev/null; then
+  eval "$(zoxide init bash)"
+fi
 include /usr/share/bash-completion/bash_completion
 include /usr/share/fzf/completion.bash
 include /usr/share/fzf/key-bindings.bash

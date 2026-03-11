@@ -139,6 +139,6 @@ xdg-desktop-portal-gtk
 xdg-desktop-portal-wlr
 xdg-user-dirs
 yarn
-z
+zoxide
 zip
 zsa-wally-cli
