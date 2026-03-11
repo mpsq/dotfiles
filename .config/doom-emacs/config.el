@@ -31,7 +31,7 @@
       standard-indent 2
       tab-width 2
       indent-tabs-mode nil
-      typecript-indent-level 2
+      typescript-indent-level 2
       javascript-indent-level 2
       js-indent-level 2
       jsx-indent-level 2
