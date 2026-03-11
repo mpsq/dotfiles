@@ -47,7 +47,7 @@
 ;; LSP
 (setq lsp-clients-typescript-max-ts-server-memory 4096)
 (setq lsp-file-watch-threshold 20000)
-(setq lsp-use-plists "true")
+(setq lsp-use-plists t)
 
 (use-package! lsp-biome
   :init
@@ -110,7 +110,7 @@
       epa-armor t)
 
 ;; Magit
-(setq magit-diff-refine-hunk (quote all))
+(setq magit-diff-refine-hunk 'all)
 
 ;; vcsh / magit compatibility
 (after! magit
