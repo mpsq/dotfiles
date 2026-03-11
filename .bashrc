@@ -62,7 +62,7 @@ function include() {
   [[ -r "$1" ]] && source "$1"
 }
 
-mkcd() { mkdir -p "$1" && cd "$1" || exit 0; }
+mkcd() { mkdir -p "$1" && cd "$1" || return; }
 
 up() {
   local d=""
@@ -71,13 +71,14 @@ up() {
 }
 
 include /usr/share/git/completion/git-prompt.sh
+command -v __git_ps1 &>/dev/null || __git_ps1() { :; }
 
 txtcyn='\e[0;36m' # Cyan
 txtprl='\e[1;35m' # Purple
 bldblu='\e[1;34m' # Bold Blue
 txtrst='\e[0m'    # Text Reset
 PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtprl\]\$(__git_ps1 ' |%s|')\[$txtrst\]\[$txtcyn\]\n= \[$txtrst\]"
-PROMPT_COMMAND='history -a; echo -ne "\033]0;${HOSTNAME}:${PWD}\007"'
+PROMPT_COMMAND=('history -a' 'printf "\033]0;%s:%s\007" "${HOSTNAME}" "${PWD}"')
 
 # gpg / ssh agent integration
 unset SSH_AGENT_PID
