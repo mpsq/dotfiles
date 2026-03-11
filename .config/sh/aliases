@@ -5,9 +5,9 @@ alias egrep="grep -E --color=auto"
 alias fgrep="grep -F --color=auto"
 
 alias ls="eza"
-alias l="eza -lhF"
-alias la="eza -lahF"
-alias lsd="eza -lF --only-dirs"
+alias l="eza -lh --classify --icons=auto"
+alias la="eza -lah --classify --icons=auto"
+alias lsd="eza -l --classify --only-dirs --icons=auto"
 
 alias vgit="vcsh dotfiles"
 alias ..="cd .."
@@ -16,7 +16,7 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
 alias em="emacs"
-alias emc="TERM=screen-256color emacsclient -t -a=vi"
+alias emc="emacsclient -t -a=vi"
 
 alias k="kubectl"
 alias vim="emc"
