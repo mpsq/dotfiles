@@ -4,9 +4,9 @@
 (setq doom-theme 'doom-monokai-ristretto
       doom-font (font-spec :family "Iosevka Fixed SS16" :size 13)
       doom-big-font (font-spec :family "Iosevka Fixed SS16" :size 14)
-      doom-variable-pitch-font (font-spec :family "Droid Sans" :size 13)
+      doom-variable-pitch-font (font-spec :family "Inter" :size 13)
       doom-symbol-font (font-spec :family "Liberation Mono")
-      doom-serif-font (font-spec :family "Droid Sans Mono"))
+      doom-serif-font (font-spec :family "Droid Serif"))
 (setq confirm-kill-emacs nil)
 (setq emojify-emoji-set "twemoji-v2")
 
@@ -40,8 +40,6 @@
       web-mode-css-indent-offset 2
       web-mode-code-indent-offset 2
       css-indent-offset 2)
-(add-hook! typescript-mode
-  (setq typescript-indent-level 2))
 (setq-hook! 'typescript-tsx-mode-hook web-mode-code-indent-offset 2)
 
 ;; LSP
