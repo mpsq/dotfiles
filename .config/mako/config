@@ -71,13 +71,11 @@ default-timeout=8000
 [desktop-entry=Firefox summary~="New message in.*"]
 on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/complete.oga --volume=100
 text-color=#fbadff
-background-color=#fbadff
 default-timeout=8000
 
 [desktop-entry=firefox-developer-edition summary~="New message in.*"]
 on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/complete.oga --volume=100
 text-color=#fbadff
-background-color=#fbadff
 default-timeout=8000
 
 [desktop-entry=Firefox body~="[0-9][0-9]:[0-9][0-9][ap]m – [0-9][0-9]:[0-9][0-9][ap]m$"]
