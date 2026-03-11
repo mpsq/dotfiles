@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC1091,SC1090
+# shellcheck disable=SC1090
 
 # If interactive terminal
 if [[ -t 0 ]]; then
@@ -33,8 +33,6 @@ if [[ "$INSIDE_EMACS" == 'vterm' ]]; then
   }
 fi
 
-hname="${HOSTNAME:-$(hostname)}"
-
 # Better history
 shopt -s checkwinsize
 shopt -s nocaseglob
@@ -55,7 +53,7 @@ export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear:gpg"
 [[ -t 0 ]] && stty ixany ixoff -ixon
 
 # Pager / man
-export LESS='-RX --mouse --quit-if-one-screen -Dd+r$Du+b'
+export LESS="-RX --mouse --quit-if-one-screen -Dd+r\$Du+b"
 export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
 export PAGER=less
 export MANWIDTH=92
@@ -64,7 +62,7 @@ function include() {
   [[ -r "$1" ]] && source "$1"
 }
 
-mkcd() { mkdir -p "$1" && cd "$1"; }
+mkcd() { mkdir -p "$1" && cd "$1" || exit 0; }
 
 up() {
   local d=""
@@ -73,12 +71,10 @@ up() {
 }
 
 include /usr/share/git/completion/git-prompt.sh
-GIT_PS1_SHOWDIRTYSTATE=1
 
 txtcyn='\e[0;36m' # Cyan
 txtprl='\e[1;35m' # Purple
 bldblu='\e[1;34m' # Bold Blue
-txtred='\e[0;31m' # Red
 txtrst='\e[0m'    # Text Reset
 PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtprl\]\$(__git_ps1 ' |%s|')\[$txtrst\]\[$txtcyn\]\n= \[$txtrst\]"
 PROMPT_COMMAND='history -a; echo -ne "\033]0;${HOSTNAME}:${PWD}\007"'
@@ -86,21 +82,15 @@ PROMPT_COMMAND='history -a; echo -ne "\033]0;${HOSTNAME}:${PWD}\007"'
 # gpg / ssh agent integration
 unset SSH_AGENT_PID
 if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+  SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+  export SSH_AUTH_SOCK
 fi
 
-# Source things
-include /usr/share/z/z.sh
-include /usr/share/bash-completion/bash_completion
-include /usr/share/fzf/completion.bash
-include /usr/share/fzf/key-bindings.bash
-include /usr/share/doc/pkgfile/command-not-found.bash
+# Variables
 include "${XDG_CONFIG_HOME:-$HOME/.config}/sh/vars"
 include "${XDG_CONFIG_HOME:-$HOME/.config}/sh/aliases"
-include "$HOME/.$hname-bashrc"
 
-include ~/.config/fzf/noctalia-theme.sh
-
+# Integration
 if command -v direnv >/dev/null; then
   eval "$(direnv hook bash)"
 fi
@@ -108,15 +98,20 @@ fi
 if command -v dircolors >/dev/null; then
   eval "$(dircolors)"
 fi
+include /usr/share/z/z.sh
+include /usr/share/bash-completion/bash_completion
+include /usr/share/fzf/completion.bash
+include /usr/share/fzf/key-bindings.bash
+include /usr/share/doc/pkgfile/command-not-found.bash
+include "${XDG_CONFIG_HOME:-$HOME/.config}/fzf/noctalia-theme.sh"
+include "$NVM_DIR/nvm.sh"
+if command -v mise >/dev/null; then
+  eval "$(mise activate bash)"
+fi
 
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
+# PS1 / Emacs support
 if [[ ! -v INSIDE_EMACS ]]; then
   set -o vi
 else
   PS1=$PS1'\[$(vterm_prompt_end)\]'
-fi
-
-if command -v mise >/dev/null; then
-  eval "$(mise activate bash)"
 fi

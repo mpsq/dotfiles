@@ -10,7 +10,6 @@ alias la="eza -lahF"
 alias lsd="eza -lF --only-dirs"
 
 alias vgit="vcsh dotfiles"
-alias fire="DISPLAY= cacafire"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
