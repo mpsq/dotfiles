@@ -20,6 +20,7 @@
   algorithm = histogram
   colorMoved = default
   colorMovedWS = allow-indentation-change
+  mnemonicPrefix = true
   submodule = log
   renames = copies
 
@@ -83,6 +84,7 @@
 [rebase]
   autoStash = true
   stat = true
+  updateRefs = true
 
 [pull]
   rebase = true
