@@ -4,6 +4,7 @@ for f in "$HOME"/.config/environment.d/*; do
     [[ -r "$f" ]] || continue
     while IFS= read -r l; do
         [[ "$l" =~ ^[[:space:]]*(#|$) ]] && continue
+        [[ "$l" =~ ^[A-Za-z_][A-Za-z_0-9]*= ]] || continue
         eval export "$l"
     done <"$f"
 done
