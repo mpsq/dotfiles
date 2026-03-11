@@ -162,8 +162,8 @@ bindsym Ctrl+Shift+Super_L exec $ipc sessionMenu lock
 bindswitch --locked lid:on exec $ipc sessionMenu lock
 
 # Screenshot
-bindsym --release $mod+Shift+u exec capture-screen
-bindsym --release $mod+Shift+v exec capture-screen video
+bindsym $mod+Shift+u exec capture-screen
+bindsym $mod+Shift+v exec capture-screen video
 
 # Launcher
 bindsym $mod+d exec $ipc launcher toggle
