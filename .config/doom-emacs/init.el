@@ -1,11 +1,5 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
-;; NOTE Press 'SPC h d h' to access the documentation
-;;      Press 'K' on a module to view its documentation
-;;      Press 'gd' on a module to browse its  directory
-
-(setenv "LSP_USE_PLISTS" "1")
-
 (doom! :completion
        (corfu +orderless +icons)
        (vertico +icons +childframe)
@@ -29,7 +23,7 @@
        (evil +everywhere)
        file-templates
        fold
-       (format +onsave)
+       (format +onsave +lsp)
        multiple-cursors
 
        :emacs
@@ -44,13 +38,14 @@
 
        :checkers
        (syntax +childframe)
-       (spell +flyspell +hunspell +everywhere)
+       (spell +hunspell +everywhere)
        grammar
 
        :tools
        debugger
        (docker +lsp +tree-sitter)
        editorconfig
+       llm
        (lookup +dictionary +offline)
        lsp
        (magit +forge)
@@ -68,17 +63,16 @@
        (json +lsp +tree-sitter)
        (java +lsp +tree-sitter)
        (javascript +lsp +tree-sitter)
-       (markdown +lsp +tree-sitter)
+       markdown
        (org +journal +pretty)
-       (python +lsp +tree-sitter)
+       (python +lsp +pyright +tree-sitter)
        (rest +jq)
        (rust +lsp +tree-sitter)
-       (sh +lsp +tree-sitter)
+       (sh +lsp)
        (web +lsp +tree-sitter)
        (yaml +lsp +tree-sitter)
 
        :app
 
        :config
-       (default +bindings +smartparens +gnupg)
-       )
+       (default +bindings +smartparens +gnupg))

@@ -2,13 +2,12 @@
 
 ;; Doom config
 (setq doom-theme 'doom-monokai-spectrum
-      doom-font (font-spec :family "Iosevka Fixed SS16" :size 13)
-      doom-big-font (font-spec :family "Iosevka Fixed SS16" :size 16)
-      doom-variable-pitch-font (font-spec :family "Inter" :size 13)
+      doom-font (font-spec :family "Iosevka Fixed SS16" :size 13.0)
+      doom-big-font (font-spec :family "Iosevka Fixed SS16" :size 16.0)
+      doom-variable-pitch-font (font-spec :family "Inter" :size 13.0)
       doom-symbol-font (font-spec :family "Liberation Mono")
       doom-serif-font (font-spec :family "Droid Serif"))
 (setq confirm-kill-emacs nil)
-(setq emojify-emoji-set "twemoji-v2")
 
 ;; Nicer default buffer names
 (setq doom-fallback-buffer-name "► Doom"
@@ -33,8 +32,6 @@
               typescript-indent-level 2
               javascript-indent-level 2
               js-indent-level 2
-              jsx-indent-level 2
-              js2-basic-offset 2
               web-mode-markup-indent-offset 2
               web-mode-css-indent-offset 2
               web-mode-code-indent-offset 2
@@ -44,9 +41,9 @@
       '(sql-mode tex-mode latex-mode))
 
 ;; LSP
-(setq lsp-clients-typescript-max-ts-server-memory 4096)
-(setq lsp-file-watch-threshold 20000)
-(setq read-process-output-max (* 1024 1024))
+(setq lsp-clients-typescript-max-ts-server-memory 4096
+      lsp-file-watch-threshold 20000
+      lsp-idle-delay 0.5)
 
 (use-package! lsp-biome
   :init
@@ -97,7 +94,10 @@
 ;; get the old functionality (ie. not removing projects from current)
 (map! :leader "o p" #'treemacs)
 
-;; Configure projectile for better project management
+;; Project management
+(after! project
+  (setq project-vc-extra-root-markers '(".project" "package.json" "Cargo.toml" "go.mod")))
+
 (after! projectile
   (setq projectile-project-search-path '("~/devel/" "~/code/")
         projectile-require-project-root nil))
