@@ -14,6 +14,7 @@ StandardError=journal
 Restart=on-failure
 RestartSec=5s
 TimeoutStartSec=120
+TimeoutStopSec=30
 
 [Install]
 WantedBy=graphical-session.target
