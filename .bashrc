@@ -43,7 +43,10 @@ shopt -s globstar
 shopt -s autocd
 shopt -s direxpand
 shopt -s no_empty_cmd_completion
+shopt -s patsub_replacement
 set -o ignoreeof
+export HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/bash/history"
+mkdir -p "${HISTFILE%/*}" 2>/dev/null
 export HISTCONTROL="erasedups:ignoreboth"
 export HISTSIZE=100000
 export HISTFILESIZE=$HISTSIZE
@@ -82,13 +85,6 @@ PROMPT_DIRTRIM=3
 PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtprl\]\$(__git_ps1 ' |%s|')\[$txtrst\]\[$txtcyn\]\n= \[$txtrst\]"
 PROMPT_COMMAND=('history -a' 'printf "\033]0;%s:%s\007" "${HOSTNAME}" "${PWD}"')
 
-# gpg / ssh agent integration
-unset SSH_AGENT_PID
-if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-  export SSH_AUTH_SOCK
-fi
-
 # Variables
 include "${XDG_CONFIG_HOME:-$HOME/.config}/sh/vars"
 include "${XDG_CONFIG_HOME:-$HOME/.config}/sh/aliases"
@@ -117,6 +113,6 @@ fi
 # PS1 / Emacs support
 if [[ ! -v INSIDE_EMACS ]]; then
   set -o vi
-else
+elif [[ "$INSIDE_EMACS" == 'vterm' ]]; then
   PS1=$PS1'\[$(vterm_prompt_end)\]'
 fi
