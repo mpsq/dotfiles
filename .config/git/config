@@ -15,6 +15,8 @@
 [core]
   autocrlf = input
   editor = emacsclient -t
+  fsmonitor = true
+  commentChar = auto
 
 [diff]
   algorithm = histogram
@@ -49,15 +51,21 @@
   hunk-header-decoration-style = purple box
   whitespace-error-style = 22 reverse
   hunk-header-style = file line-number syntax
+  navigate = true
+  hyperlinks = true
 
 [log]
-  date = relative
+  date = short
 
 [format]
   pretty = %C(Yellow)%h  %C(reset)%ad (%C(Green)%cr%C(reset))%x09 %C(Cyan)%an: %C(reset)%s
 
+[feature]
+  manyFiles = true
+
 [push]
   autoSetupRemote = true
+  useForceIfIncludes = true
 
 [alias]
   # misc
@@ -91,6 +99,7 @@
 
 [tag]
   sort = -version:refname
+  gpgsign = true
 
 [transfer]
   fsckObjects = true
@@ -104,6 +113,10 @@
 [fetch]
   prune = true
   writeCommitGraph = true
+  fsckObjects = true
+
+[receive]
+  fsckObjects = true
 
 [branch]
   sort = -committerdate
