@@ -44,17 +44,8 @@ export FZF_ALT_C_OPTS="
 # FZF completion trigger
 export FZF_COMPLETION_TRIGGER='**'
 
-# FZF completion options
+# FZF completion options (colors inherited from FZF_DEFAULT_OPTS)
 export FZF_COMPLETION_OPTS="
 --border
 --info=inline
---color=bg+:#1c1c1c
---color=bg:#0c0c0c
---color=hl:#ffc799
---color=fg:#ffffff
---color=pointer:#ffc799
---color=marker:#ffc799
---color=fg+:#ffffff
---color=prompt:#ffc799
---color=hl+:#ffc799
 "
