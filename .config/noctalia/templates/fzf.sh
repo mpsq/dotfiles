@@ -26,9 +26,9 @@ export FZF_DEFAULT_OPTS="
 "
 
 # FZF command configurations with theme colors
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --color=always'
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git --color=always'
+export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
 
 # FZF preview commands with syntax highlighting
 export FZF_CTRL_T_OPTS="
@@ -44,17 +44,8 @@ export FZF_ALT_C_OPTS="
 # FZF completion trigger
 export FZF_COMPLETION_TRIGGER='**'
 
-# FZF completion options
+# FZF completion options (colors inherited from FZF_DEFAULT_OPTS)
 export FZF_COMPLETION_OPTS="
 --border
 --info=inline
---color=bg+:{{colors.surface_container.default.hex}}
---color=bg:{{colors.surface.default.hex}}
---color=hl:{{colors.primary.default.hex}}
---color=fg:{{colors.on_surface.default.hex}}
---color=pointer:{{colors.primary.default.hex}}
---color=marker:{{colors.primary.default.hex}}
---color=fg+:{{colors.on_surface.default.hex}}
---color=prompt:{{colors.primary.default.hex}}
---color=hl+:{{colors.primary.default.hex}}
 "

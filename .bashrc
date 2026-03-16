@@ -33,6 +33,9 @@ if [[ "$INSIDE_EMACS" == 'vterm' ]]; then
   }
 fi
 
+# Variables
+[[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/sh/vars" ]] && source "${XDG_CONFIG_HOME:-$HOME/.config}/sh/vars"
+
 # Better history
 shopt -s checkwinsize
 shopt -s nocaseglob
@@ -54,7 +57,7 @@ export HISTTIMEFORMAT='%F %T '
 export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear:gpg"
 
 # Disable ctrl-s sending XOFF
-[[ -t 0 ]] && stty ixany ixoff -ixon
+[[ -t 0 ]] && stty -ixon
 
 # Pager / man
 export LESS="-RX --mouse --quit-if-one-screen -Dd+r\$Du+b"
@@ -83,10 +86,8 @@ bldblu='\e[1;34m' # Bold Blue
 txtrst='\e[0m'    # Text Reset
 PROMPT_DIRTRIM=3
 PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtprl\]\$(__git_ps1 ' |%s|')\[$txtrst\]\[$txtcyn\]\n= \[$txtrst\]"
-PROMPT_COMMAND=('history -a' 'printf "\033]0;%s:%s\007" "${HOSTNAME}" "${PWD}"')
+PROMPT_COMMAND=('history -a' 'printf "\e]0;%s:%s\a" "${HOSTNAME}" "${PWD}"')
 
-# Variables
-include "${XDG_CONFIG_HOME:-$HOME/.config}/sh/vars"
 include "${XDG_CONFIG_HOME:-$HOME/.config}/sh/aliases"
 
 # Integration
