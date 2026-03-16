@@ -1,4 +1,4 @@
 import-js
 marked
 vmd
-vscode-html-languageserver-bin
+vscode-langservers-extracted
