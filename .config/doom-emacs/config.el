@@ -3,7 +3,7 @@
 ;; Doom config
 (setq doom-theme 'doom-monokai-spectrum
       doom-font (font-spec :family "Iosevka Fixed SS16" :size 13)
-      doom-big-font (font-spec :family "Iosevka Fixed SS16" :size 14)
+      doom-big-font (font-spec :family "Iosevka Fixed SS16" :size 16)
       doom-variable-pitch-font (font-spec :family "Inter" :size 13)
       doom-symbol-font (font-spec :family "Liberation Mono")
       doom-serif-font (font-spec :family "Droid Serif"))
@@ -24,28 +24,29 @@
 
 ;; Improve completion
 (setq-default history-length 1000)
-(setq-default prescient-history-length 1000)
 
 ;; Indentation madness...
 (setq-default evil-shift-width 2
-             standard-indent 2
-             tab-width 2
-             indent-tabs-mode nil
-             typescript-indent-level 2
-             javascript-indent-level 2
-             js-indent-level 2
-             jsx-indent-level 2
-             js2-basic-offset 2
-             web-mode-markup-indent-offset 2
-             web-mode-css-indent-offset 2
-             web-mode-code-indent-offset 2
-             css-indent-offset 2)
-(setq-hook! 'typescript-tsx-mode-hook web-mode-code-indent-offset 2)
+              standard-indent 2
+              tab-width 2
+              indent-tabs-mode nil
+              typescript-indent-level 2
+              javascript-indent-level 2
+              js-indent-level 2
+              jsx-indent-level 2
+              js2-basic-offset 2
+              web-mode-markup-indent-offset 2
+              web-mode-css-indent-offset 2
+              web-mode-code-indent-offset 2
+              css-indent-offset 2)
+
+(setq +format-on-save-disabled-modes
+      '(sql-mode tex-mode latex-mode))
 
 ;; LSP
 (setq lsp-clients-typescript-max-ts-server-memory 4096)
 (setq lsp-file-watch-threshold 20000)
-(setq lsp-use-plists t)
+(setq read-process-output-max (* 1024 1024))
 
 (use-package! lsp-biome
   :init

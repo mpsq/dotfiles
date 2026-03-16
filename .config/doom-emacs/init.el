@@ -68,7 +68,7 @@
        (json +lsp +tree-sitter)
        (java +lsp +tree-sitter)
        (javascript +lsp +tree-sitter)
-       (markdown +tree-sitter)
+       (markdown +lsp +tree-sitter)
        (org +journal +pretty)
        (python +lsp +tree-sitter)
        (rest +jq)
