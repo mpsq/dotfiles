@@ -15,12 +15,18 @@ set show-mode-in-prompt on
 set vi-ins-mode-string \1\e[5 q\2
 set vi-cmd-mode-string \1\e[2 q\2
 
+# Visual feedback
+set enable-active-region on
+set blink-matching-paren on
+
 $if mode=vi
 
 set keymap vi-command
 Control-l: clear-screen
 Control-p: history-search-backward
 Control-n: history-search-forward
+"gg": beginning-of-history
+"G": end-of-history
 
 set keymap vi-insert
 Control-l: clear-screen
