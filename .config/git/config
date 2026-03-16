@@ -16,7 +16,6 @@
   autocrlf = input
   editor = emacsclient -t
   fsmonitor = true
-  commentChar = auto
 
 [diff]
   algorithm = histogram
@@ -87,7 +86,6 @@
 
 [commit]
   gpgsign = true
-  verbose = true
 
 [rebase]
   autoStash = true
