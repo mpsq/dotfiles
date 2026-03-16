@@ -10,6 +10,7 @@ CONFIGS=(
 )
 
 for CONFIG in "${CONFIGS[@]}"; do
-  FILENAME=$(echo "$CONFIG" | sed 's/\//./g' | sed '1s/^.//')
+  FILENAME="${CONFIG//\//.}"
+  FILENAME="${FILENAME#.}"
   dconf dump "$CONFIG"/ >"$DUMPS_DIR/$FILENAME.conf"
 done

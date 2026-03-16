@@ -42,6 +42,7 @@ shopt -s cmdhist
 shopt -s globstar
 shopt -s autocd
 shopt -s direxpand
+shopt -s no_empty_cmd_completion
 set -o ignoreeof
 export HISTCONTROL="erasedups:ignoreboth"
 export HISTSIZE=100000
@@ -77,6 +78,7 @@ txtcyn='\e[0;36m' # Cyan
 txtprl='\e[1;35m' # Purple
 bldblu='\e[1;34m' # Bold Blue
 txtrst='\e[0m'    # Text Reset
+PROMPT_DIRTRIM=3
 PS1="\[$bldblu\]\u\[$txtrst\] \w\[$txtprl\]\$(__git_ps1 ' |%s|')\[$txtrst\]\[$txtcyn\]\n= \[$txtrst\]"
 PROMPT_COMMAND=('history -a' 'printf "\033]0;%s:%s\007" "${HOSTNAME}" "${PWD}"')
 
