@@ -1,3 +1,4 @@
+7zip
 adw-gtk-theme
 alsa-firmware
 alsa-utils
@@ -19,7 +20,6 @@ chromium
 cliphist
 cmake
 codespell
-dbus-python
 ddcutil
 direnv
 dmidecode
@@ -45,13 +45,11 @@ gcr
 gimp
 git
 git-delta
-glfw-wayland
+glfw
 glu
 gnome-disk-utility
 gnome-system-monitor
-goimapnotify
 gopls
-grim
 gst-libav
 gst-plugins-bad
 gst-plugins-base
@@ -69,6 +67,7 @@ iptables
 isync
 iw
 jq
+languagetool
 libreoffice-fresh
 libvdpau-va-gl
 linux
@@ -92,7 +91,6 @@ nvm
 nwg-displays
 nwg-look
 otf-font-awesome
-p7zip
 pacman-contrib
 pam-u2f
 papirus-icon-theme
@@ -109,7 +107,6 @@ powertop
 reflector
 ripgrep
 shfmt
-shikane
 signal-desktop
 slurp
 smartmontools
