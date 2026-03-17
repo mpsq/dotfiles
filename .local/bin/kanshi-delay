@@ -3,7 +3,6 @@
 # This gives the external display time to be ready.
 set -euo pipefail
 
-if [[ "${HOSTNAME:-$(hostname)}" == "spectrum" ]] &&
-  grep -qsx connected /sys/class/drm/card*-DP-1/status 2>/dev/null; then
+if [[ "${HOSTNAME:-$(hostname)}" == "spectrum" ]]; then
   sleep 3
 fi
