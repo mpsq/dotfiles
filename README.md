@@ -42,8 +42,8 @@ That's it. Every file lands in `$HOME` where it belongs.
 ## Packages
 
 The full inventory lives in `.config/packages.list` and
-`.config/packages-aur.list`. NPM and pip dependencies in
-`.config/packages-npm.list` and `.config/packages-pip.list`.
+`.config/packages-aur.list`. NPM dependencies in
+`.config/packages-npm.list`.
 
 ## License
 
