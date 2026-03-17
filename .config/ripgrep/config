@@ -1,0 +1,11 @@
+--smart-case
+--hidden
+--follow
+--glob=!.git/
+--glob=!node_modules/
+--glob=!.cache/
+--glob=!vendor/
+--glob=!target/
+--glob=!.direnv/
+--max-columns=150
+--max-columns-preview

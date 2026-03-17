@@ -9,13 +9,9 @@
 [gitlab]
   user = mpsq
 
-[color]
-  ui = auto
-
 [core]
   autocrlf = input
   editor = emacsclient -t
-  fsmonitor = true
 
 [diff]
   algorithm = histogram
@@ -55,6 +51,7 @@
 
 [log]
   date = short
+  decorate = auto
 
 [format]
   pretty = %C(Yellow)%h  %C(reset)%ad (%C(Green)%cr%C(reset))%x09 %C(Cyan)%an: %C(reset)%s
@@ -131,6 +128,9 @@
 
 [url "git@github.com:"]
   insteadOf = gh:
+
+[maintenance]
+  auto = true
 
 [init]
   defaultBranch = main

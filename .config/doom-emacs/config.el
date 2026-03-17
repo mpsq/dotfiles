@@ -2,9 +2,9 @@
 
 ;; Doom config
 (setq doom-theme 'doom-monokai-spectrum
-      doom-font (font-spec :family "Iosevka Fixed SS16" :size 13)
+      doom-font (font-spec :family "Iosevka Fixed SS16" :size 12)
       doom-big-font (font-spec :family "Iosevka Fixed SS16" :size 16)
-      doom-variable-pitch-font (font-spec :family "Inter" :size 13)
+      doom-variable-pitch-font (font-spec :family "Inter" :size 12)
       doom-symbol-font (font-spec :family "Liberation Mono")
       doom-serif-font (font-spec :family "Droid Serif"))
 (setq confirm-kill-emacs nil)
@@ -73,13 +73,12 @@
 ;; Trigger recentf every 5 minutes (useful when running Emacs daemon)
 (after! recentf
   (recentf-load-list)
-  (run-at-time nil (* 5 60) #'recentf-save-list))
+  (run-at-time nil (* 15 60) #'recentf-save-list))
 
 ;; Modeline
 (use-package! doom-modeline
   :config
   (setq
-   doom-modeline-github t
    doom-modeline-persp-name t))
 
 ;; Do not create new workspace for new emacsclient

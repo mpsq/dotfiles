@@ -1,0 +1,6 @@
+--paging=auto
+--italic-text=always
+--style=auto
+--map-syntax '*.bashrc:Bash'
+--map-syntax '*.bash_profile:Bash'
+--map-syntax '*.conf:INI'
