@@ -50,7 +50,7 @@ shopt -s patsub_replacement
 set -o ignoreeof
 export HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/bash/history"
 mkdir -p "${HISTFILE%/*}" 2>/dev/null
-export HISTCONTROL="erasedups:ignoreboth"
+export HISTCONTROL="erasedups:ignorespace"
 export HISTSIZE=100000
 export HISTFILESIZE=$HISTSIZE
 export HISTTIMEFORMAT='%F %T '
