@@ -46,7 +46,7 @@
        (docker +lsp +tree-sitter)
        editorconfig
        llm
-       (lookup +dictionary +offline)
+       (lookup +dictionary)
        lsp
        (magit +forge)
        make

@@ -2,8 +2,8 @@ devbox-bin
 dulcepan-git
 hadolint-bin
 keybase-bin
-noctalia-shell
 mullvad-vpn-bin
+noctalia-shell
 pinta
 pwvucontrol
 shellcheck-bin
@@ -11,6 +11,4 @@ spotify
 tflint-bin
 ttf-twemoji
 ttf-unifont
-wordnet-common
-wordnet-progs
 yay
