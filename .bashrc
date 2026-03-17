@@ -77,6 +77,14 @@ up() {
   cd "$d" || return
 }
 
+jctl() {
+  if [[ "$*" == *"-f"* ]]; then
+    journalctl "$@" | bat --paging=never -l syslog
+  else
+    journalctl "$@" | bat -l syslog
+  fi
+}
+
 include /usr/share/git/completion/git-prompt.sh
 command -v __git_ps1 &>/dev/null || __git_ps1() { :; }
 
