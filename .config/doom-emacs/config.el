@@ -2,9 +2,9 @@
 
 ;; Doom config
 (setq doom-theme 'doom-monokai-spectrum
-      doom-font (font-spec :family "Iosevka Fixed SS16" :size 12)
-      doom-big-font (font-spec :family "Iosevka Fixed SS16" :size 16)
-      doom-variable-pitch-font (font-spec :family "Inter" :size 12)
+      doom-font (font-spec :family "Iosevka Fixed SS16" :size 10.0)
+      doom-big-font (font-spec :family "Iosevka Fixed SS16" :size 14.0)
+      doom-variable-pitch-font (font-spec :family "Inter" :size 10.0)
       doom-symbol-font (font-spec :family "Liberation Mono")
       doom-serif-font (font-spec :family "Droid Serif"))
 (setq confirm-kill-emacs nil)
