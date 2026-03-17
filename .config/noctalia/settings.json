@@ -146,6 +146,7 @@
                     "hidePassive": false,
                     "id": "Tray",
                     "pinned": [
+                        "chrome_status_icon_1"
                     ]
                 },
                 {
