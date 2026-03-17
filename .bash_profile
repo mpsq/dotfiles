@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-[[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/sh/vars" ]] && source "${XDG_CONFIG_HOME:-$HOME/.config}/sh/vars"
-
 PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/local/lib64/pkgconfig:/usr/local/share/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}
 export PKG_CONFIG_PATH
 
