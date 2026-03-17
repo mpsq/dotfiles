@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Sleep before kanshi starts, but only on spectrum with DP-1 connected.
 # This gives the external display time to be ready.
+set -euo pipefail
 
 if [[ "${HOSTNAME:-$(hostname)}" == "spectrum" ]] &&
   grep -qsx connected /sys/class/drm/card*-DP-1/status 2>/dev/null; then

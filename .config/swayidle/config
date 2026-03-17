@@ -1,4 +1,5 @@
 idlehint 300
+timeout 300 'qs -c noctalia-shell ipc call lockScreen lock'
 timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
 before-sleep 'qs -c noctalia-shell ipc call sessionMenu lock || swaymsg "output * dpms off"'
 lock 'qs -c noctalia-shell ipc call sessionMenu lock || swaymsg "output * dpms off"'
