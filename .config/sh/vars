@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-for f in "$HOME"/.config/environment.d/*; do
-    [[ -r "$f" ]] || continue
-    while IFS= read -r l; do
-        [[ "$l" =~ ^[[:space:]]*(#|$) ]] && continue
-        [[ "$l" =~ ^[A-Za-z_][A-Za-z_0-9]*= ]] || continue
-        eval export "$l"
-    done <"$f"
-done
+set -a
+. "${XDG_CONFIG_HOME:-$HOME/.config}/environment.d/10-all.conf"
+set +a
