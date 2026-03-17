@@ -209,4 +209,4 @@ for_window [app_id="firefox-developer-edition"] inhibit_idle fullscreen
 include ~/.config/sway/noctalia
 
 exec swaymsg create_output && systemctl --user reset-failed && systemctl --user start sway-session.target
-exec { swaymsg -t subscribe '["shutdown"]' || true; } && systemctl --user stop graphical-session.target
+exec (swaymsg -t subscribe '["shutdown"]' || true) && systemctl --user stop graphical-session.target
