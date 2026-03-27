@@ -147,7 +147,8 @@
                     "hidePassive": false,
                     "id": "Tray",
                     "pinned": [
-                        "chrome_status_icon_1"
+                        "chrome_status_icon_1",
+                        "spotify-client"
                     ]
                 },
                 {
