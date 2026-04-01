@@ -24,7 +24,6 @@
 [merge]
   conflictstyle = zdiff3
   commit = no
-  ff = no
 
 [pager]
   diff = delta --relative-paths
@@ -69,7 +68,6 @@
   s = status
   a = add
   aa = add --all
-  puf = push --force-with-lease
   d = diff
 
   # branch
