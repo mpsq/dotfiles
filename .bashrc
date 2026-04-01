@@ -43,7 +43,6 @@ shopt -s histappend
 shopt -s cdspell
 shopt -s cmdhist
 shopt -s globstar
-shopt -s autocd
 shopt -s direxpand
 shopt -s no_empty_cmd_completion
 shopt -s patsub_replacement
