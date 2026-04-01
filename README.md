@@ -22,8 +22,6 @@ does what it's told.
 **Shell** -- Bash with vi mode.
 
 **Audio** -- PipeWire and WirePlumber.
-[EasyEffects](https://github.com/wwmm/easyeffects) for bikeshedding audio
-settings.
 
 **Dev tools** -- Go, Java, Python, Rust, JavaScript. Docker, Terraform,
 Kubernetes.
