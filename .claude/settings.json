@@ -1,7 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "cleanupPeriodDays": 7,
-  "effortLevel": "high",
   "env": {
     "CLAUDE_LOG_LEVEL": "info",
     "DISABLE_TELEMETRY": "1",
@@ -14,13 +13,14 @@
       "Write(./**)",
       "Edit(./**)",
       "MultiEdit(./**)",
-      "Bash(npm run lint)",
-      "Bash(npm run test)",
-      "Bash(npm run build)",
       "WebFetch",
       "WebSearch",
       "Glob",
-      "Grep"
+      "Grep",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(pnpm:*)",
+      "Bash(npm:*)"
     ],
     "deny": [
       "Read(~/.ssh/**)",
@@ -36,7 +36,7 @@
       "Bash(systemctl:*)",
       "Bash(service:*)"
     ],
-    "defaultMode": "plan"
+    "defaultMode": "default"
   },
   "model": "opus",
   "hooks": {
@@ -64,5 +64,6 @@
         "repo": "anthropics/knowledge-work-plugins"
       }
     }
-  }
+  },
+  "effortLevel": "high"
 }
