@@ -70,7 +70,7 @@
   :desc "Switch to window 8" :n "8" #'winum-select-window-8
   :desc "Switch to window 9" :n "9" #'winum-select-window-9))
 
-;; Trigger recentf every 5 minutes (useful when running Emacs daemon)
+;; Trigger recentf every 15 minutes (useful when running Emacs daemon)
 (after! recentf
   (recentf-load-list)
   (run-at-time nil (* 15 60) #'recentf-save-list))
