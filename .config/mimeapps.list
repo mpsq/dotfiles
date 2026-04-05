@@ -124,3 +124,4 @@ application/rtf=libreoffice-writer.desktop
 
 # File manager
 inode/directory=org.gnome.Nautilus.desktop
+x-scheme-handler/sgnl=signal.desktop
