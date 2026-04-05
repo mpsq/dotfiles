@@ -17,4 +17,4 @@ alias emc="emacsclient -t -a vi"
 alias k="kubectl"
 alias vim="emc"
 
-alias sway="exec systemd-cat --identifier=sway sway"
+sway() { exec systemd-cat --identifier=sway sway "$@"; }

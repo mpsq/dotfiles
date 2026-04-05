@@ -8,7 +8,7 @@ StartLimitBurst=5
 
 [Service]
 Type=simple
-ExecStartPre=-/bin/rm -rf %t/quickshell
+ExecStartPre=-/bin/rm -rf -- %t/quickshell
 ExecStart=/usr/bin/qs -c noctalia-shell
 Restart=on-failure
 RestartSec=2
