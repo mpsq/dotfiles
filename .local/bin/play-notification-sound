@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+usage() {
+  echo "Usage: play-notification-sound <direct-message|thread-message|meeting>"
+  exit 1
+}
+
+URGENT=""
+# mpv scale: 100 = original level, up to 130 before clipping
+VOLUME=100
+
+NOTIFICATION_TYPE="${1:-}"
+shift || true
+
+case "$NOTIFICATION_TYPE" in
+direct-message)
+  SOUND_FILE="/usr/share/sounds/elementary/stereo/dialog-information.oga"
+  VOLUME=130
+  ;;
+thread-message)
+  SOUND_FILE="/usr/share/sounds/freedesktop/stereo/message.oga"
+  VOLUME=100
+  ;;
+meeting)
+  SOUND_FILE="/usr/share/sounds/freedesktop/stereo/complete.oga"
+  URGENT=true
+  VOLUME=75
+  ;;
+*)
+  echo "Unknown notification type: ${NOTIFICATION_TYPE:-<none>}"
+  usage
+  ;;
+esac
+
+# Skip non-urgent sounds when the screen is locked — no point alerting
+# an absent user. Urgent sounds always play (e.g. alarms, critical alerts).
+if [[ "$URGENT" != "true" ]]; then
+  LOCKED=$(loginctl show-session "$XDG_SESSION_ID" -p LockedHint --value 2>/dev/null)
+  if [[ "$LOCKED" == "yes" ]]; then
+    exit 0
+  fi
+fi
+
+MPV_ARGS=(--no-video --really-quiet --volume="$VOLUME")
+exec mpv "${MPV_ARGS[@]}" "$SOUND_FILE"
