@@ -1,0 +1,17 @@
+[Unit]
+Description=Stream desktop audio to Snapcast server
+After=pipewire.service pipewire-pulse.service
+Wants=pipewire.service pipewire-pulse.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/gst-launch-1.0 -q --no-position \
+    pulsesrc device=snapcast.monitor \
+    ! audio/x-raw,rate=48000,channels=2,format=S16LE \
+    ! volume volume=0.75 \
+    ! tcpclientsink host=192.168.0.3 port=4953
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=default.target

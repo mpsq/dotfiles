@@ -1,0 +1,14 @@
+[Unit]
+Description=Snapcast client
+Documentation=https://github.com/badaix/snapcast
+After=pipewire.service pipewire-pulse.service network-online.target
+Wants=pipewire.service
+
+[Service]
+ExecStart=/usr/bin/snapclient --logsink=system --player pipewire --logfilter *:notice
+ExecStartPost=%h/.local/bin/snapclient-volume-set
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

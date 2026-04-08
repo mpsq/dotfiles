@@ -1,0 +1,5 @@
+#!/bin/bash
+until id=$(pw-dump 2>/dev/null | jq -r --arg n snapcast '.[] | select(.type == "PipeWire:Interface:Node") | select(.info.props."node.name" == "Snapcast") | .id' | head -1) && [ -n "$id" ]; do
+  sleep 0.5
+done
+wpctl set-volume "$id" 1.52
