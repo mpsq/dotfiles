@@ -50,6 +50,7 @@ glu
 gnome-disk-utility
 gnome-system-monitor
 gopls
+grim
 gst-libav
 gst-plugins-bad
 gst-plugins-base
@@ -108,13 +109,13 @@ powertop
 qt6ct
 reflector
 ripgrep
+satty
 shfmt
 signal-desktop
 slurp
 smartmontools
 sound-theme-elementary
 source-highlight
-swappy
 sway
 systemd-resolvconf
 terminus-font
