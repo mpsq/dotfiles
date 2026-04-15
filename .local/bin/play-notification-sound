@@ -41,5 +41,19 @@ if [[ "$URGENT" != "true" ]]; then
   fi
 fi
 
+# Skip sounds while the microphone is actively being recorded from — we're
+# likely in a call and don't want the notification leaking to the other
+# participants.
+if pw-dump 2>/dev/null | jq -e '
+  any(
+    .[];
+    .info.props["media.class"] == "Stream/Input/Audio"
+    and .info.state == "running"
+    and ((.info.props["target.object"] // "") | test("\\.monitor$") | not)
+  )
+' >/dev/null; then
+  exit 0
+fi
+
 MPV_ARGS=(--no-video --really-quiet --volume="$VOLUME")
 exec mpv "${MPV_ARGS[@]}" "$SOUND_FILE"
