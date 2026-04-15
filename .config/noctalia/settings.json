@@ -216,6 +216,7 @@
                 {
                     "colorizeDistroLogo": true,
                     "colorizeSystemIcon": "none",
+                    "colorizeSystemText": "none",
                     "customIconPath": "",
                     "enableColorization": true,
                     "icon": "noctalia",
