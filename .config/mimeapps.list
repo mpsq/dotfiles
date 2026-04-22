@@ -125,3 +125,4 @@ application/rtf=libreoffice-writer.desktop
 # File manager
 inode/directory=org.gnome.Nautilus.desktop
 x-scheme-handler/sgnl=signal.desktop
+x-scheme-handler/claude=com.anthropic.claude-desktop.desktop
