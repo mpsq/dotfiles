@@ -79,7 +79,9 @@
 (use-package! doom-modeline
   :config
   (setq
-   doom-modeline-persp-name t))
+   doom-modeline-persp-name t
+   ;; Show window number as plain digit (1) instead of the unicode dingbat (➊).
+   doom-modeline-unicode-number nil))
 
 ;; Do not create new workspace for new emacsclient
 (after! persp-mode
@@ -132,4 +134,4 @@
   (evil-define-key 'insert vterm-mode-map (kbd "C-j") #'vterm--self-insert))
 
 ;; Dim regions not on … focus
-(use-package! focus)
+(use-package! focus :defer t)
