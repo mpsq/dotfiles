@@ -1,26 +1,36 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "cleanupPeriodDays": 7,
+  "cleanupPeriodDays": 30,
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "env": {
-    "CLAUDE_LOG_LEVEL": "info",
-    "DISABLE_TELEMETRY": "1",
+    "CLAUDE_CODE_ATTRIBUTION_HEADER": "0",
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "CLAUDE_CODE_NO_FLICKER": "1",
+    "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
+    "ENABLE_TOOL_SEARCH": "true",
     "DISABLE_ERROR_REPORTING": "1",
-    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "false"
+    "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1",
+    "DISABLE_TELEMETRY": "1",
+    "USE_BUILTIN_RIPGREP": "1"
   },
   "permissions": {
     "allow": [
-      "Read(./**)",
-      "Write(./**)",
-      "Edit(./**)",
-      "MultiEdit(./**)",
-      "WebFetch",
-      "WebSearch",
-      "Glob",
-      "Grep",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
       "Bash(ls:*)",
-      "Bash(cat:*)",
-      "Bash(pnpm:*)",
-      "Bash(npm:*)"
+      "Bash(rg:*)"
+    ],
+    "ask": [
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git clean -fd:*)",
+      "Bash(npm publish:*)",
+      "Bash(eval:*)"
     ],
     "deny": [
       "Read(~/.ssh/**)",
@@ -28,13 +38,17 @@
       "Read(./.env.*)",
       "Read(./**/.env)",
       "Read(./**/.env.*)",
+      "Read(~/.aws/**)",
+      "Read(**/*credential*)",
+      "Read(**/*secret*)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
       "Bash(rm -rf:*)",
+      "Bash(rm -fr:*)",
       "Bash(sudo:*)",
       "Bash(chmod 777:*)",
       "Bash(chown:*)",
-      "Bash(chgrp:*)",
-      "Bash(systemctl:*)",
-      "Bash(service:*)"
+      "Bash(chgrp:*)"
     ],
     "defaultMode": "default"
   },
@@ -65,5 +79,6 @@
       }
     }
   },
-  "effortLevel": "high"
+  "effortLevel": "high",
+  "theme": "dark-ansi"
 }
