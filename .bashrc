@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC1090
+# shellcheck disable=SC1090,SC1091
 
 # If interactive terminal
 if [[ -t 0 ]]; then
@@ -8,7 +8,7 @@ if [[ -t 0 ]]; then
   echo "UPDATESTARTUPTTY" | gpg-connect-agent >/dev/null 2>&1
 fi
 
-if [[ "$INSIDE_EMACS" == 'vterm' ]]; then
+if [[ "${INSIDE_EMACS:-}" == 'vterm' ]]; then
   function vterm_printf() {
     printf "\e]%s\e\\" "$1"
   }
@@ -19,10 +19,9 @@ if [[ "$INSIDE_EMACS" == 'vterm' ]]; then
   }
 
   function vterm_cmd() {
-    local vterm_elisp
-    vterm_elisp=""
+    local vterm_elisp=""
     while [[ $# -gt 0 ]]; do
-      vterm_elisp="$vterm_elisp""$(printf '"%s" ' "$(printf "%s" "$1" | sed -e 's|\\|\\\\|g' -e 's|"|\\"|g')")"
+      vterm_elisp+="$(printf '"%s" ' "$(printf '%s' "$1" | sed -e 's|\\|\\\\|g' -e 's|"|\\"|g')")"
       shift
     done
     vterm_printf "51;E$vterm_elisp"
@@ -36,7 +35,7 @@ fi
 # Variables
 [[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/sh/vars" ]] && source "${XDG_CONFIG_HOME:-$HOME/.config}/sh/vars"
 
-# Better history
+# Shell options
 shopt -s checkwinsize
 shopt -s nocaseglob
 shopt -s histappend
@@ -47,6 +46,8 @@ shopt -s direxpand
 shopt -s no_empty_cmd_completion
 shopt -s patsub_replacement
 set -o ignoreeof
+
+# History
 export HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/bash/history"
 mkdir -p "${HISTFILE%/*}" 2>/dev/null
 export HISTCONTROL="erasedups:ignorespace"
@@ -55,7 +56,7 @@ export HISTFILESIZE=$HISTSIZE
 export HISTTIMEFORMAT='%F %T '
 export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear:gpg"
 
-# Disable ctrl-s sending XOFF
+# Disable ctrl-s sending XOFF so it works as fzf reverse-search trigger.
 [[ -t 0 ]] && stty -ixon
 
 # Pager / man
@@ -64,9 +65,7 @@ export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
 export PAGER=less
 export MANWIDTH=92
 
-function include() {
-  [[ -r "$1" ]] && source "$1"
-}
+include() { [[ -r "$1" ]] && source "$1"; }
 
 mkcd() { mkdir -p "$1" && cd "$1" || return; }
 
@@ -118,9 +117,17 @@ if command -v mise >/dev/null; then
   eval "$(mise activate bash)"
 fi
 
+# Telemetry opt-out
+export NEXT_TELEMETRY_DISABLED=1
+export STORYBOOK_DISABLE_TELEMETRY=1
+export VERCEL_TELEMETRY_DISABLED=1
+export YARN_ENABLE_TELEMETRY=0
+export GOTELEMETRY=off
+export DO_NOT_TRACK=1
+
 # PS1 / Emacs support
-if [[ ! -v INSIDE_EMACS ]]; then
+if [[ -z "${INSIDE_EMACS:-}" ]]; then
   set -o vi
-elif [[ "$INSIDE_EMACS" == 'vterm' ]]; then
-  PS1=$PS1'\[$(vterm_prompt_end)\]'
+elif [[ "${INSIDE_EMACS:-}" == 'vterm' ]]; then
+  PS1="$PS1"'\[$(vterm_prompt_end)\]'
 fi
