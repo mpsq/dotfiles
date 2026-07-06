@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC1090,SC1091
+# ~/.bashrc — interactive shell config.
 
 # If interactive terminal
 if [[ -t 0 ]]; then
@@ -15,7 +16,7 @@ if [[ "${INSIDE_EMACS:-}" == 'vterm' ]]; then
 
   function clear() {
     vterm_printf "51;Evterm-clear-scrollback"
-    tput clear
+    command clear
   }
 
   function vterm_cmd() {
@@ -44,7 +45,7 @@ shopt -s cmdhist
 shopt -s globstar
 shopt -s direxpand
 shopt -s no_empty_cmd_completion
-shopt -s patsub_replacement
+shopt -s patsub_replacement 2>/dev/null # bash 5.2+
 set -o ignoreeof
 
 # History
@@ -54,7 +55,9 @@ export HISTCONTROL="erasedups:ignorespace"
 export HISTSIZE=100000
 export HISTFILESIZE=$HISTSIZE
 export HISTTIMEFORMAT='%F %T '
-export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear:gpg"
+# HISTIGNORE patterns must match the full line (bash anchors them), so `cd`
+# only suppresses bare `cd` — `cd /foo` still enters history.
+export HISTIGNORE="&:[ ]*:exit:bg:fg:history:clear:pwd:cd:cd -:gpg"
 
 # Disable ctrl-s sending XOFF so it works as fzf reverse-search trigger.
 [[ -t 0 ]] && stty -ixon
@@ -117,12 +120,17 @@ if command -v mise >/dev/null; then
   eval "$(mise activate bash)"
 fi
 
+export COLORTERM=truecolor
+
 # Telemetry opt-out
 export NEXT_TELEMETRY_DISABLED=1
+export GATSBY_TELEMETRY_DISABLED=1
+export ASTRO_TELEMETRY_DISABLED=1
 export STORYBOOK_DISABLE_TELEMETRY=1
 export VERCEL_TELEMETRY_DISABLED=1
 export YARN_ENABLE_TELEMETRY=0
 export GOTELEMETRY=off
+export AWS_CLI_DISABLE_TELEMETRY=1
 export DO_NOT_TRACK=1
 
 # PS1 / Emacs support

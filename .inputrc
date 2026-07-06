@@ -13,6 +13,8 @@ set menu-complete-display-prefix on
 
 # Vi cursor shapes (foot-compatible)
 set show-mode-in-prompt on
+# 6 q = steady bar (Insert mode)
+# 2 q = steady block (Normal mode)
 set vi-ins-mode-string "\1\e[6 q\2"
 set vi-cmd-mode-string "\1\e[2 q\2"
 
