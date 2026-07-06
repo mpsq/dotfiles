@@ -52,7 +52,7 @@
     ],
     "defaultMode": "default"
   },
-  "model": "opus",
+  "model": "opus[1m]",
   "hooks": {
     "Notification": [
       {
@@ -79,6 +79,7 @@
       }
     }
   },
-  "effortLevel": "high",
+  "effortLevel": "xhigh",
+  "skipWorkflowUsageWarning": true,
   "theme": "dark-ansi"
 }
