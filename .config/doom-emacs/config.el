@@ -21,7 +21,7 @@
       tramp-histfile-override "/dev/null"
       undo-limit 80000000)
 
-;; Improve completion
+;; Keep more minibuffer history
 (setq-default history-length 1000)
 
 ;; Indentation madness...
@@ -29,7 +29,7 @@
               standard-indent 2
               tab-width 2
               indent-tabs-mode nil
-              typescript-indent-level 2
+              typescript-ts-mode-indent-offset 2
               javascript-indent-level 2
               js-indent-level 2
               web-mode-markup-indent-offset 2
@@ -76,8 +76,7 @@
   (run-at-time nil (* 15 60) #'recentf-save-list))
 
 ;; Modeline
-(use-package! doom-modeline
-  :config
+(after! doom-modeline
   (setq
    doom-modeline-persp-name t
    ;; Show window number as plain digit (1) instead of the unicode dingbat (➊).
@@ -129,9 +128,8 @@
               :filter-return #'~/magit-process-environment))
 
 ;; vterm
-(use-package! vterm
-  :config
+(after! vterm
   (evil-define-key 'insert vterm-mode-map (kbd "C-j") #'vterm--self-insert))
 
 ;; Dim regions not on … focus
-(use-package! focus :defer t)
+(use-package! focus)
