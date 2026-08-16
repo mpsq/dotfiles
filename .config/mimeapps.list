@@ -1,6 +1,4 @@
 [Default Applications]
-
-# Web
 x-scheme-handler/http=firefox.desktop
 x-scheme-handler/https=firefox.desktop
 x-scheme-handler/ftp=firefox.desktop
@@ -12,8 +10,6 @@ application/x-extension-html=firefox.desktop
 application/x-extension-shtml=firefox.desktop
 application/x-extension-xhtml=firefox.desktop
 application/x-extension-xht=firefox.desktop
-
-# Text / Code
 text/plain=emacs.desktop
 text/markdown=emacs.desktop
 text/x-markdown=emacs.desktop
@@ -53,8 +49,6 @@ application/x-ruby=emacs.desktop
 application/sql=emacs.desktop
 application/xml=emacs.desktop
 application/x-desktop=emacs.desktop
-
-# Images
 image/png=org.gnome.eog.desktop
 image/jpeg=org.gnome.eog.desktop
 image/gif=org.gnome.eog.desktop
@@ -67,8 +61,6 @@ image/heif=org.gnome.eog.desktop
 image/heic=org.gnome.eog.desktop
 image/x-icon=org.gnome.eog.desktop
 image/vnd.microsoft.icon=org.gnome.eog.desktop
-
-# Video
 video/mp4=mpv.desktop
 video/x-matroska=mpv.desktop
 video/webm=mpv.desktop
@@ -79,8 +71,6 @@ video/quicktime=mpv.desktop
 video/x-flv=mpv.desktop
 video/3gpp=mpv.desktop
 video/3gpp2=mpv.desktop
-
-# Audio
 audio/mpeg=mpv.desktop
 audio/ogg=mpv.desktop
 audio/flac=mpv.desktop
@@ -90,15 +80,11 @@ audio/aac=mpv.desktop
 audio/webm=mpv.desktop
 audio/opus=mpv.desktop
 audio/x-vorbis+ogg=mpv.desktop
-
-# PDF / Documents
 application/pdf=org.gnome.Evince.desktop
 application/epub+zip=org.gnome.Evince.desktop
 application/x-cbz=org.gnome.Evince.desktop
 application/x-cbr=org.gnome.Evince.desktop
 image/vnd.djvu=org.gnome.Evince.desktop
-
-# Archives
 application/zip=org.gnome.FileRoller.desktop
 application/gzip=org.gnome.FileRoller.desktop
 application/x-tar=org.gnome.FileRoller.desktop
@@ -109,8 +95,6 @@ application/x-zstd-compressed-tar=org.gnome.FileRoller.desktop
 application/x-7z-compressed=org.gnome.FileRoller.desktop
 application/x-rar=org.gnome.FileRoller.desktop
 application/vnd.rar=org.gnome.FileRoller.desktop
-
-# Office
 application/vnd.oasis.opendocument.text=libreoffice-writer.desktop
 application/vnd.oasis.opendocument.spreadsheet=libreoffice-calc.desktop
 application/vnd.oasis.opendocument.presentation=libreoffice-impress.desktop
@@ -121,8 +105,9 @@ application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoff
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=libreoffice-calc.desktop
 application/vnd.openxmlformats-officedocument.presentationml.presentation=libreoffice-impress.desktop
 application/rtf=libreoffice-writer.desktop
-
-# File manager
 inode/directory=org.gnome.Nautilus.desktop
 x-scheme-handler/sgnl=signal.desktop
-x-scheme-handler/claude=com.anthropic.claude-desktop.desktop
+x-scheme-handler/claude=claude-desktop.desktop
+x-scheme-handler/claude-cli=claude-code-url-handler.desktop
+
+[Added Associations]
