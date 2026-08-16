@@ -115,13 +115,15 @@ temperature_night = 4400
 
 [notification]
 background_opacity = 1.0
-blacklist = [ "discord", "firefox", "chrome", "chromium", "edge" ]
+blacklist = []
+collapse_on_dismiss = false
 enable_daemon = false
+filter_order = []
 layer = "top"
 offset_x = 20
 offset_y = 8
-show_actions = true
-show_app_name = true
+show_actions = false
+show_app_name = false
 
 [osd]
 background_opacity = 1.0
