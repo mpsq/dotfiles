@@ -1,6 +1,6 @@
 [Unit]
 Description=Noctalia Shell
-Documentation=https://github.com/noctalia/noctalia
+Documentation=https://docs.noctalia.dev
 PartOf=graphical-session.target
 After=graphical-session.target
 StartLimitIntervalSec=10
@@ -8,8 +8,7 @@ StartLimitBurst=5
 
 [Service]
 Type=simple
-ExecStartPre=-/bin/rm -rf -- %t/quickshell
-ExecStart=/usr/bin/qs -c noctalia-shell
+ExecStart=/usr/bin/noctalia --daemon
 Restart=on-failure
 RestartSec=2
 TimeoutStopSec=2

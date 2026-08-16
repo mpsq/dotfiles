@@ -56,7 +56,7 @@ focus_on_window_activation smart
 
 ### Key bindings
 #
-set $ipc qs -c noctalia-shell ipc call
+set $ipc noctalia msg
 
 #
 # Basics:
@@ -149,25 +149,25 @@ bindsym --locked Shift+Ctrl+Super_R exec volume-up
 bindsym --locked XF86AudioLowerVolume exec volume-down
 bindsym --locked XF86AudioRaiseVolume exec volume-up
 bindsym --locked XF86AudioMute exec audio-toggle
-bindsym --locked XF86AudioPlay exec $ipc media playPause
-bindsym --locked XF86AudioPause exec $ipc media playPause
+bindsym --locked XF86AudioPlay exec $ipc media toggle
+bindsym --locked XF86AudioPause exec $ipc media toggle
 bindsym --locked XF86AudioNext exec $ipc media next
 bindsym --locked XF86AudioPrev exec $ipc media previous
 # Screen brightness
-bindsym --locked XF86MonBrightnessUp exec $ipc brightness increase
-bindsym --locked XF86MonBrightnessDown exec $ipc brightness decrease
+bindsym --locked XF86MonBrightnessUp exec $ipc brightness-up
+bindsym --locked XF86MonBrightnessDown exec $ipc brightness-down
 
 # Lock
-bindsym Ctrl+Shift+Super_L exec $ipc sessionMenu lock
-bindswitch --locked lid:on exec $ipc sessionMenu lock
+bindsym Ctrl+Shift+Super_L exec $ipc session lock
+bindswitch --locked lid:on exec $ipc session lock
 
 # Screenshot
 bindsym $mod+Shift+u exec capture-screen
 bindsym $mod+Shift+v exec capture-screen video
 
 # Launcher
-bindsym $mod+d exec $ipc launcher toggle
-bindsym $mod+Shift+e exec $ipc sessionMenu toggle
+bindsym $mod+d exec $ipc panel-toggle launcher
+bindsym $mod+Shift+e exec $ipc panel-toggle session
 
 # Notifications
 bindsym $mod+Shift+n exec makoctl dismiss --all
