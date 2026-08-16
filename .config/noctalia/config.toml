@@ -1,131 +1,111 @@
-[shell]
-corner_radius_scale = 1.0
-font_family = "Sans"
-time_format = "{:%H:%M}"
-date_format = "%A, %x"
-offline_mode = false
-telemetry_enabled = false
-polkit_agent = false
-password_style = "default"
-settings_show_advanced = false
-show_location = true
-avatar_path = "~/.face"
-
-clipboard_enabled = false
-clipboard_history_max_entries = 50
-clipboard_auto_paste = "off"
-clipboard_image_action_command = ""
-shared_gl_context = true
-
-[shell.animation]
-enabled = true
-speed = 1.4
-
-[shell.shadow]
-direction = "down_right"
-alpha = 0.55
-
-[shell.panel]
-transparency_mode = "soft"
-borders = false
-shadow = true
-clipboard_placement = "attached"
-control_center_placement = "attached"
-wallpaper_placement = "attached"
-session_placement = "attached"
-
-[shell.mpris]
-blacklist = []
-
-[wallpaper]
-enabled = true
-fill_mode = "crop"
-fill_color = "#000000"
-transition = ["disc"]
-transition_duration = 1500
-edge_smoothness = 0.05
-transition_on_startup = true
-directory = "~/img"
-
-[wallpaper.automation]
-enabled = false
-order = "random"
-recursive = true
-
-[backdrop]
-enabled = false
-blur_intensity = 0.4
-tint_intensity = 0.6
-
-[theme]
-mode = "dark"
-source = "community"
-community_palette = "Vesper"
-
-[theme.templates]
-enable_builtin_templates = true
-builtin_ids = ["sway", "foot", "qt", "gtk3", "gtk4", "btop", "kcolorscheme"]
-enable_community_templates = true
-community_ids = ["fuzzel"]
-
-[notification]
-enable_daemon = false
-show_app_name = true
-show_actions = true
-layer = "top"
-background_opacity = 1.0
-offset_x = 20
-offset_y = 8
-blacklist = ["discord", "firefox", "chrome", "chromium", "edge"]
-
-[osd]
-position = "top_right"
-orientation = "horizontal"
-background_opacity = 1.0
-offset_x = 20
-offset_y = 8
-
-[osd.kinds]
-volume = true
-volume_output = true
-volume_input = true
-brightness = true
-wifi = true
-bluetooth = true
-power_profile = true
-caffeine = true
-dnd = true
-lock_keys = true
-keyboard_layout = true
-
-[lockscreen]
-blurred_desktop = false
-blur_intensity = 0.63
-tint_intensity = 0.22
-
-[system.monitor]
-enabled = true
-cpu_poll_seconds = 2.0
-gpu_poll_seconds = 5.0
-memory_poll_seconds = 2.0
-network_poll_seconds = 3.0
-disk_poll_seconds = 10.0
-
-[weather]
-enabled = true
-refresh_minutes = 30
-unit = "celsius"
-effects = true
-
 [audio]
 enable_overdrive = false
 enable_sounds = false
+notification_sound = ""
 sound_volume = 0.5
 volume_change_sound = ""
-notification_sound = ""
+
+[backdrop]
+enabled = false
+
+[bar.main]
+auto_hide = false
+capsule = true
+center = [ "clock" ]
+end = [ "tray", "sysmon", "battery", "volume", "brightness", "control-center" ]
+margin_edge = 2
+margin_ends = 0
+margin_opposite_edge = 2
+padding = 2
+position = "top"
+radius = 12
+reserve_space = true
+scale = 1.0
+shadow = true
+start = [ "taskbar" ]
+thickness = 34
+widget_spacing = 6
 
 [brightness]
 enable_ddcutil = false
+
+[control_center]
+hidden_tabs = [ "media" ]
+
+    [[control_center.shortcuts]]
+    type = "wifi"
+
+    [[control_center.shortcuts]]
+    type = "bluetooth"
+
+    [[control_center.shortcuts]]
+    type = "wallpaper"
+
+    [[control_center.shortcuts]]
+    type = "notification"
+
+    [[control_center.shortcuts]]
+    type = "nightlight"
+
+    [[control_center.shortcuts]]
+    type = "session"
+
+[desktop_widgets]
+enabled = false
+
+[dock]
+auto_hide = true
+background_opacity = 1.0
+enabled = false
+icon_size = 48
+launcher_position = "end"
+pinned = []
+position = "bottom"
+reserve_space = false
+show_running = true
+
+[idle]
+pre_action_fade_seconds = 5.0
+
+    [idle.behavior.lock]
+    command = "noctalia:session lock"
+    enabled = true
+    timeout = 300
+
+    [idle.behavior.screen-off]
+    command = "noctalia:dpms-off"
+    enabled = true
+    resume_command = "noctalia:dpms-on"
+    timeout = 600
+
+    [idle.behavior.suspend]
+    command = "noctalia:session suspend"
+    enabled = true
+    timeout = 60
+
+[keybinds]
+cancel = [ "escape" ]
+down = [ "ctrl+j" ]
+left = [ "ctrl+h" ]
+right = [ "ctrl+l" ]
+up = [ "ctrl+k" ]
+validate = [ "return", "kp_enter" ]
+
+[location]
+address = "london"
+auto_locate = false
+sunrise = "06:30"
+sunset = "18:30"
+
+[lockscreen]
+blur_intensity = 0.63
+blurred_desktop = false
+fingerprint = false
+tint_intensity = 0.22
+
+[lockscreen_widgets]
+enabled = false
+schema_version = 2
 
 [nightlight]
 enabled = true
@@ -133,89 +113,145 @@ force = false
 temperature_day = 6500
 temperature_night = 4400
 
-[location]
-auto_locate = false
-address = "london"
-sunset = "18:30"
-sunrise = "06:30"
-
-[idle]
-pre_action_fade_seconds = 5.0
-
-[idle.behavior.lock]
-timeout = 300
-command = "noctalia:session lock"
-enabled = true
-
-[idle.behavior.screen-off]
-timeout = 600
-command = "noctalia:dpms-off"
-resume_command = "noctalia:dpms-on"
-enabled = true
-
-[idle.behavior.suspend]
-timeout = 60
-command = "noctalia:session suspend"
-enabled = true
-
-[keybinds]
-validate = ["return", "kp_enter"]
-cancel = ["escape"]
-left = ["ctrl+h"]
-right = ["ctrl+l"]
-up = ["ctrl+k"]
-down = ["ctrl+j"]
-
-[bar.main]
-position = "top"
-thickness = 34
-background_opacity = 0.93
-radius = 12
-padding = 2
-widget_spacing = 6
-scale = 1.0
-shadow = true
-auto_hide = false
-reserve_space = true
-capsule = true
-
-start = ["launcher", "workspaces", "media"]
-center = ["clock"]
-end = ["tray", "sysmon", "battery", "volume", "brightness", "control-center"]
-
-[dock]
-enabled = false
-position = "bottom"
-icon_size = 48
+[notification]
 background_opacity = 1.0
-auto_hide = true
-reserve_space = false
-show_running = true
-launcher_position = "end"
-pinned = []
+blacklist = [ "discord", "firefox", "chrome", "chromium", "edge" ]
+enable_daemon = false
+layer = "top"
+offset_x = 20
+offset_y = 8
+show_actions = true
+show_app_name = true
 
-[[control_center.shortcuts]]
-type = "wifi"
-[[control_center.shortcuts]]
-type = "bluetooth"
-[[control_center.shortcuts]]
-type = "wallpaper"
-[[control_center.shortcuts]]
-type = "notification"
-[[control_center.shortcuts]]
-type = "nightlight"
-[[control_center.shortcuts]]
-type = "session"
+[osd]
+background_opacity = 1.0
+offset_x = 20
+offset_y = 8
+orientation = "horizontal"
+position = "top_right"
 
-[desktop_widgets]
-enabled = false
+    [osd.kinds]
+    bluetooth = true
+    brightness = true
+    caffeine = true
+    dnd = true
+    keyboard_layout = true
+    lock_keys = true
+    power_profile = true
+    volume = true
+    volume_input = true
+    volume_output = true
+    wifi = true
 
-[theme.templates.user.fzf]
-input_path = "~/.config/noctalia/templates/fzf.sh"
-output_path = "~/.config/fzf/noctalia-theme.sh"
-post_hook = ""
+[shell]
+avatar_path = "~/.face"
+clipboard_auto_paste = "off"
+clipboard_enabled = false
+clipboard_history_max_entries = 50
+clipboard_image_action_command = ""
+corner_radius_scale = 1.0
+date_format = "%A, %x"
+font_family = "Sans"
+offline_mode = false
+password_style = "random"
+polkit_agent = false
+settings_show_advanced = false
+shared_gl_context = true
+show_location = true
+telemetry_enabled = false
+time_format = "{:%H:%M}"
 
-[theme.templates.user.mako]
-input_path = "~/.config/noctalia/templates/mako.conf"
-output_path = "~/.config/mako/config"
-post_hook = "makoctl reload"
+    [shell.animation]
+    enabled = true
+    speed = 1.3999999999999999
+
+    [shell.launcher]
+    categories = false
+    compact = true
+
+    [shell.mpris]
+    blacklist = []
+
+    [shell.panel]
+    borders = false
+    clipboard_placement = "attached"
+    control_center_placement = "attached"
+    session_placement = "floating"
+    session_position = "center"
+    shadow = true
+    transparency_mode = "solid"
+    wallpaper_placement = "attached"
+
+    [shell.shadow]
+    alpha = 0.55000000000000004
+    direction = "down_right"
+
+[system.monitor]
+cpu_poll_seconds = 2.0
+disk_poll_seconds = 10.0
+enabled = true
+gpu_poll_seconds = 5.0
+memory_poll_seconds = 2.0
+network_poll_seconds = 3.0
+
+[theme]
+builtin = "Rosé Pine"
+community_palette = "Vesper"
+mode = "dark"
+source = "community"
+
+    [theme.templates]
+    builtin_ids = [ "sway", "foot", "qt", "gtk3", "gtk4", "btop", "kcolorscheme" ]
+    community_ids = [ "fuzzel" ]
+    enable_builtin_templates = true
+    enable_community_templates = true
+
+        [theme.templates.user.fzf]
+        input_path = "~/.config/noctalia/templates/fzf.sh"
+        output_path = "~/.config/fzf/noctalia-theme.sh"
+        post_hook = ""
+
+        [theme.templates.user.mako]
+        input_path = "~/.config/noctalia/templates/mako.conf"
+        output_path = "~/.config/mako/config"
+        post_hook = "makoctl reload"
+
+[wallpaper]
+directory = "~/img"
+edge_smoothness = 0.050000000000000003
+enabled = true
+fill_color = "#000000"
+fill_mode = "crop"
+transition = [ "disc" ]
+transition_duration = 1500
+transition_on_startup = true
+
+    [wallpaper.automation]
+    enabled = false
+    order = "random"
+    recursive = true
+
+    [wallpaper.default]
+    path = "/home/meril/img/bkg.jpg"
+
+[weather]
+effects = true
+enabled = true
+refresh_minutes = 30
+unit = "celsius"
+
+[widget.clock]
+format = "{:%a, %b %d ● %H:%M}"
+
+[widget.taskbar]
+empty_color = "primary"
+focused_color = "secondary"
+group_by_workspace = true
+group_single_icon_per_app = true
+occupied_color = "primary"
+workspace_label_placement = "inside"
+
+[widget.workspaces]
+capsule = true
+empty_color = "tertiary"
+focused_output_only = true

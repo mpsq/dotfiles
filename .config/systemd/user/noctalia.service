@@ -7,7 +7,7 @@ StartLimitIntervalSec=10
 StartLimitBurst=5
 
 [Service]
-Type=simple
+Type=forking
 ExecStart=/usr/bin/noctalia --daemon
 Restart=on-failure
 RestartSec=2

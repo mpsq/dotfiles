@@ -210,3 +210,4 @@ include ~/.config/sway/noctalia
 
 exec swaymsg create_output && systemctl --user reset-failed && systemctl --user start sway-session.target
 exec (swaymsg -t subscribe '["shutdown"]' || true) && systemctl --user stop graphical-session.target
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_ID
