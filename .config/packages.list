@@ -61,6 +61,7 @@ hunspell
 hunspell-en_GB
 hunspell-en_US
 hunspell-fr
+hunspell-fr-revised
 imv
 inetutils
 inter-font
@@ -115,6 +116,7 @@ shfmt
 signal-desktop
 slurp
 smartmontools
+socat
 sound-theme-elementary
 source-highlight
 sway
@@ -132,6 +134,7 @@ unzip
 usbutils
 vcsh
 veracrypt
+virtiofsd
 wayland
 wf-recorder
 wget
