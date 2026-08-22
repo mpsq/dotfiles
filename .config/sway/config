@@ -178,13 +178,6 @@ bindgesture swipe:3:left workspace next
 bindgesture swipe:3:up fullscreen enable
 bindgesture swipe:3:down fullscreen disable
 
-# Setup headless output for screensharing
-output HEADLESS-1 resolution 1920x1080
-output HEADLESS-1 enable
-workspace 9 output HEADLESS-1
-bindsym $mod+0 workspace number 0
-bindsym $mod+Shift+0 move container to workspace number 0
-
 ### Application specific settings
 for_window [app_id="nm-connection-editor"] floating enable
 for_window [app_id="org.gnome.Calculator"] floating enable
@@ -208,6 +201,6 @@ for_window [app_id="firefox-developer-edition"] inhibit_idle fullscreen
 ### Session
 include ~/.config/sway/noctalia
 
-exec swaymsg create_output && systemctl --user reset-failed && systemctl --user start sway-session.target
+exec systemctl --user reset-failed && systemctl --user start sway-session.target
 exec (swaymsg -t subscribe '["shutdown"]' || true) && systemctl --user stop graphical-session.target
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_ID
