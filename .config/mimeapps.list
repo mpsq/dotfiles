@@ -107,7 +107,7 @@ application/vnd.openxmlformats-officedocument.presentationml.presentation=libreo
 application/rtf=libreoffice-writer.desktop
 inode/directory=org.gnome.Nautilus.desktop
 x-scheme-handler/sgnl=signal.desktop
-x-scheme-handler/claude=claude-desktop.desktop
+x-scheme-handler/claude=com.anthropic.Claude.desktop
 x-scheme-handler/claude-cli=claude-code-url-handler.desktop
 
 [Added Associations]

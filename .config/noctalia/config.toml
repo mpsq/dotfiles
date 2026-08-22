@@ -12,7 +12,7 @@ enabled = false
 auto_hide = false
 capsule = true
 center = [ "clock" ]
-end = [ "tray", "sysmon", "battery", "volume", "brightness", "control-center" ]
+end = [ "tray", "sysmon", "battery", "volume", "brightness", "caffeine", "control-center" ]
 margin_edge = 2
 margin_ends = 0
 margin_opposite_edge = 2
@@ -198,7 +198,7 @@ network_poll_seconds = 3.0
 
 [theme]
 builtin = "Rosé Pine"
-community_palette = "Vesper"
+community_palette = "Aura"
 mode = "dark"
 source = "community"
 
@@ -251,7 +251,9 @@ focused_color = "secondary"
 group_by_workspace = true
 group_single_icon_per_app = true
 occupied_color = "primary"
-workspace_label_placement = "inside"
+scale = 1.1500000000000001
+show_active_indicator = false
+workspace_label_placement = "corner"
 
 [widget.workspaces]
 capsule = true
